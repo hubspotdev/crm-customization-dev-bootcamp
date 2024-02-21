@@ -1,0 +1,13 @@
+{
+    "type": "crm-card",
+    "data": {
+      "title": "Create Rental",
+      "uid": "create_rental",
+      "location": "crm.record.tab",
+      "module": {
+        "file": "CreateRental.jsx"
+      },
+      "objectTypes": [{ "name": "contacts" }]
+    }
+  }
+  
