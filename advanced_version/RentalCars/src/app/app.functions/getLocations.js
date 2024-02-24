@@ -5,17 +5,17 @@ function calculateDistance(a, b) {
   const earthRadiusMiles = 3958.8; // Average radius of the Earth in miles
 
   // Convert degrees to radians
-  const lat1 = a.lat * (Math.PI/180);
-  const lng1 = a.lng * (Math.PI/180);
-  const lat2 = b.lat * (Math.PI/180);
-  const lng2 = b.lng * (Math.PI/180);
+  const lat1 = a.lat * (Math.PI / 180);
+  const lng1 = a.lng * (Math.PI / 180);
+  const lat2 = b.lat * (Math.PI / 180);
+  const lng2 = b.lng * (Math.PI / 180);
 
   // Haversine formula
   const differenceLat = lat2 - lat1;
   const differenceLng = lng2 - lng1;
   const aHav = Math.pow(Math.sin(differenceLat / 2), 2) +
-               Math.cos(lat1) * Math.cos(lat2) *
-               Math.pow(Math.sin(differenceLng / 2), 2);
+    Math.cos(lat1) * Math.cos(lat2) *
+    Math.pow(Math.sin(differenceLng / 2), 2);
   const c = 2 * Math.atan2(Math.sqrt(aHav), Math.sqrt(1 - aHav));
 
   // Distance in miles
@@ -70,10 +70,10 @@ function fetchLocations({ lat_min, lat_max, lng_min, lng_max, pickupDate, return
       }
     }`,
     variables: {
-      "lat_min":lat_min,
-      "lat_max":lat_max,
-      "lng_min":lng_min,
-      "lng_max":lng_max,
+      "lat_min": lat_min,
+      "lat_max": lat_max,
+      "lng_min": lng_min,
+      "lng_max": lng_max,
       "pickupDate": pickupDate,
       "returnDate": returnDate,
       "vehicleClass": vehicleClass
@@ -85,7 +85,7 @@ function fetchLocations({ lat_min, lat_max, lng_min, lng_max, pickupDate, return
     url: 'https://api.hubapi.com/collector/graphql',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer '+process.env['PRIVATE_APP_ACCESS_TOKEN'],
+      'Authorization': 'Bearer ' + process.env['PRIVATE_APP_ACCESS_TOKEN'],
     },
     data: data,
     maxBodyLength: Infinity
