@@ -1,0 +1,7 @@
+{
+  "appFunctions": {
+    "getLocations": {
+      "file": "getLocations.js"
+    }
+  }
+}
