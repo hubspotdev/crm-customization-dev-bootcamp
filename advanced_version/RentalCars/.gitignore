@@ -4,3 +4,4 @@ src/app/app.functions/package-lock.json
 src/app/app.functions/.env
 src/app/extensions/node_modules
 src/app/extensions/package-lock.json
+src/app/dist
