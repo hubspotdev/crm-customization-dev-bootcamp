@@ -1,5 +1,8 @@
 # Cards
 
+## Getting started
+Remember, after you have installed the HubSpot CLI, you can now open up the simple_version and run `hs project dev` and start developing live!
+
 ## Simple Version
 Perfect as a boilerplate for students to start with. Very bare bones but ready for you to take it to the next level.
 
