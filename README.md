@@ -1,6 +1,7 @@
 # CRM Customization Bootcamp
 ## The Repo
-This repo goes along with the **6-week HubSpot Academy Bootcamp**. You will start using this repo during weeks 4 - 6.
+This repo goes along with the **6-week HubSpot Academy Bootcamp**. 
+You will start using this repo during weeks 4 - 6.
 
 ## Bootcamp
 If you found this REPO and you're interested in signing up for the bootcamp, you can find more details here.

@@ -9,4 +9,4 @@ Perfect as a boilerplate for students to start with. Very bare bones but ready f
 - Distance calcuation from zip code to Location custom object.
 - Filter vehicle objects by location, availablility, and type of rental.
 
-This card shows you some of the powerful features of UI extensions. 
+This card shows you some of the powerful features of UI extensions.
