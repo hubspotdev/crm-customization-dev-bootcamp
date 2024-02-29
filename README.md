@@ -22,9 +22,22 @@ This will be your best friends and also an awesome place of community.
 - Your favorite editor, VS Code, Zed.dev, Notepad++ 
 
 ## Credits
-- [Carter McKay](https://github.com/05bmckay) <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/carterwm/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" height="10" alt="LinkedIn Badge"/></a>
-- [Justin Givens](https://github.com/justingivens) <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/justindgivens/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" height="10" alt="LinkedIn Badge"/></a>
-- [HubSpot Developer Advocates](https://github.com/hubspotdev/)
+<table>
+<tr>
+<td><h3>Carter McKay</h3>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/carterwm/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" height="30" alt="LinkedIn Badge"/></a></ul>
+</td>
+<td><h3>Justin Givens</h3>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/justindgivens/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" height="30" alt="LinkedIn Badge"/></a></p>
+</td>
+<td><h3>Dhiraj Pandey</h3>
+<p><a target="_blank" rel="noopener" href="https://www.linkedin.com/in/dhirajpandey/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" height="30" alt="LinkedIn Badge"/></a></p>
+</td>
+<td><a><a target="_blank" rel="noopener" href="https://github.com/hubspotdev/">Developer Advocates</a></h3>
+<p></p>
+</td>
+</tr>
+</table>
 
 ## Other useful links
 - [Developer HUG](https://events.hubspot.com/developer/)
