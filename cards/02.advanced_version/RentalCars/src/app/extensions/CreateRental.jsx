@@ -234,326 +234,437 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
 
   return (
     <>
-      <Flex
-        direction={'row'}
-        justify={'between'}
-      >
-        <StepIndicator
-          currentStep={currentStep}
-          stepNames={steps}
-          variant={"default"}
-          onClick={(step) => {
-            //make sure that the step is valid before allowing the user to go to the next step
-            if (step === 1) {
-              if (selectedLocation && selectedLocation.id) {
-                setCurrentStep(step);
-              }
-              else {
-                sendAlert({ message: "Please select a location", type: "danger" });
-              }
-            }
-            else {
-              setCurrentStep(step);
-            }
-          }}
-        />
-      </Flex>
+      <StepperBar
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        selectedLocation={selectedLocation}
+        sendAlert={sendAlert}
+        steps={steps}
+      />
       <Divider />
       {currentStep === 0 && (
-        <>
-          <Flex
-            direction={'row'}
-            justify={'start'}
-            wrap={'nowrap'}
-            gap={'extra-large'}
-            align={'start'}
-            alignSelf={'start'}
-          >
-            <Flex
-              width={'auto'}
-            >
-              <Input
-                label="Zip Code"
-                name="zipCode"
-                tooltip="Please enter your zip code"
-                placeholder="12345"
-                value={zipCode}
-                required={true}
-                onChange={value => {
-                  setZipCode(value);
-                }}
-
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <NumberInput
-                label="Miles Radius"
-                name="miles"
-                min={25}
-                max={300}
-                tooltip="Please enter the number of miles you are willing to travel"
-                placeholder="250"
-                value={miles}
-                required={true}
-                onChange={value => {
-                  setMiles(value);
-                }}
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <DateInput
-                label="Pickup Date"
-                name="pickupDate"
-                value={pickupDate}
-                max={returnDate}
-                onChange={(value) => {
-                  setPickupDate(value);
-                }}
-                format="ll"
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <DateInput
-                label="Return Date"
-                name="returnDate"
-                value={returnDate}
-                min={pickupDate}
-                onChange={(value) => {
-                  setReturnDate(value);
-                }}
-                format="ll"
-              />
-            </Flex>
-            <Flex
-              width={'max'}
-            >
-              <MultiSelect
-                label="Vehicle Class"
-                name="vehicleClass"
-                variant="transparent"
-                options={[
-                  { label: "Touring", value: "Touring" },
-                  { label: "Sport", value: "Sport" },
-                  { label: "Base", value: "Base" },
-                ]}
-                onChange={(value) => {
-                  setVehicleClass(value);
-                }}
-              />
-            </Flex>
-
-          </Flex>
-
-          <Divider />
-
-          <Table
-            width={'max'}
-            paginated={true}
-            pageCount={locationCount / pageSize}
-            onPageChange={(page) => {
-              setLocationPage(page);
-            }}
-            page={locationPage}
-          >
-            <TableHead>
-              <TableRow>
-                <TableHeader width={'min'}>Address</TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => setSort(distanceSort === 'asc' ? 'desc' : 'asc', 'distance')}
-                  >
-                    Distance
-                  </Link>  {distanceSort === '' ? ' ' : distanceSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => setSort(vehicleSort === 'asc' ? 'desc' : 'asc', 'vehicle')}
-                  >
-                    Availablity
-                  </Link>
-                  {vehicleSort === '' ? ' ' : vehicleSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'} >
-                  <Link variant="dark"
-                    onClick={() => setSort(vehicleMatchSort === 'asc' ? 'desc' : 'asc', 'vehicle_match')}
-                  >
-                    Vehicles that meet Filters
-                  </Link>
-                  {vehicleMatchSort === '' ? ' ' : vehicleMatchSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              {locationFetching === false && locationsOnPage.map((location) => (
-                <TableRow>
-                  <TableCell>
-                    <Text>{location.full_address}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{location.distance} miles</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => { goToVehiclePage(location.associations.all_vehicles.items.map(x => x.hs_object_id)); setSelectedLocation(location) }}>{location.number_of_available_vehicles} Vehicles Available</Link>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => {
-                      const vehicleClassArray = vehicleClass
-
-                      const filteredVehicles = vehicleClassArray.length === 0
-                        ? location.associations.all_vehicles.items
-                        : location.associations.all_vehicles.items.filter(vehicle =>
-                          vehicleClassArray.includes(vehicle.model.label)
-                        );
-
-                      const vehicleObjectIds = filteredVehicles.map(vehicle => vehicle.hs_object_id);
-
-                      goToVehiclePage(vehicleObjectIds);
-
-                      setSelectedLocation(location);
-                    }}>
-                      {
-                        location.associations.all_vehicles.items.filter(vehicle => {
-                          if (vehicleClass.length === 0) {
-                            return true; // If vehicleClass is empty, include all vehicles
-                          }
-                          const vehicleClassArray = vehicleClass;
-                          return vehicleClassArray.includes(vehicle.model.label);
-                        }).length
-                      } Vehicles
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </>
+        <StepZeroForm
+          distanceSort={distanceSort}
+          goToVehiclePage={goToVehiclePage}
+          locationCount={locationCount}
+          locationFetching={locationFetching}
+          locationsOnPage={locationsOnPage}
+          locationPage={locationPage}
+          miles={miles}
+          pageSize={pageSize}
+          pickupDate={pickupDate}
+          returnDate={returnDate}
+          setMiles={setMiles}
+          setLocationPage={setLocationPage}
+          setPickupDate={setPickupDate}
+          setReturnDate={setReturnDate}
+          setSelectedLocation={setSelectedLocation}
+          setSort={setSort}
+          setVehicleClass={setVehicleClass}
+          setZipCode={setZipCode}
+          vehicleClass={vehicleClass}
+          vehicleMatchSort={vehicleMatchSort}
+          vehicleSort={vehicleSort}
+          zipCode={zipCode}
+        />
       )}
       {currentStep === 1 && (
-        <>
-          <Table
-            width={'max'}
-            paginated={false}
-          >
-            <TableHead>
-              <TableRow>
-                <TableHeader width={'min'}>Make</TableHeader>
-                <TableHeader width={'min'}>
-                  Model
-                </TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => { setVehicleYearSort(vehicleYearSort === 'asc' ? 'desc' : 'asc') }}
-                  >
-                    Year
-                  </Link>
-                  {vehicleYearSort === '' ? ' ' : vehicleYearSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'} >
-                  Book
-                </TableHeader>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              {vehiclesOnPage.map((vehicle) => (
-                <TableRow>
-                  <TableCell>
-                    <Text>{vehicle.properties.make}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{vehicle.properties.model}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{vehicle.properties.year}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => { goToBookingPage(vehicle) }}>Book now</Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </>
+        <StepOneForm
+          goToBookingPage={goToBookingPage}
+          setVehicleYearSort={setVehicleYearSort}
+          vehiclesOnPage={vehiclesOnPage}
+          vehicleYearSort={vehicleYearSort}
+        />
       )}
       {
         currentStep === 2 && (
-          <Flex direction="column" gap="lg">
-            {/* First Row for Location and Vehicle */}
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Pickup Location */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Pickup Location:</Text>
-                <Text>{selectedLocation.full_address}</Text>
-              </Flex>
-              {/* Vehicle Details */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Vehicle:</Text>
-                <Text>
-                  {selectedVehicle.properties.year} {selectedVehicle.properties.make} {selectedVehicle.properties.model}
-                </Text>
-              </Flex>
-            </Flex>
-
-            {/* Second Row for Dates, Insurance, Rates, and Total */}
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Pickup Date */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Pickup Date:</Text>
-                <DateInput
-                  label=""
-                  name="pickupDate"
-                  value={pickupDate}
-                  max={returnDate}
-                  onChange={(value) => setPickupDate(value)}
-                  format="ll"
-                />
-              </Flex>
-              {/* Return Date */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Return Date:</Text>
-                <DateInput
-                  label=""
-                  name="returnDate"
-                  value={returnDate}
-                  min={pickupDate}
-                  onChange={(value) => setReturnDate(value)}
-                  format="ll"
-                />
-              </Flex>
-            </Flex>
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Insurance */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Insurance:</Text>
-                <Text>{insurance ? 'Yes' : 'No'}</Text>
-              </Flex>
-              {/* Daily Rate */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Daily Rate:</Text>
-                <Text>$ {selectedVehicle.properties.daily_price}</Text>
-              </Flex>
-              {/* Days */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Days:</Text>
-                <Text>{days}</Text>
-              </Flex>
-              {/* Total */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Total:</Text>
-                <Text>{(selectedVehicle.properties.daily_price * days) + insuranceCost}</Text>
-              </Flex>
-            </Flex>
-          </Flex>
+          <StepTwoForm
+            days={days}
+            insurance={insurance}
+            insuranceCost={insuranceCost}
+            pickupDate={pickupDate}
+            returnDate={returnDate}
+            selectedLocation={selectedLocation}
+            selectedVehicle={selectedVehicle}
+            setPickupDate={setPickupDate}
+            setReturnDate={setReturnDate}
+          />
         )
       }
       <Divider />
     </>
+  );
+};
+
+const StepperBar = ({
+  currentStep,
+  setCurrentStep,
+  selectedLocation,
+  sendAlert,
+  steps
+}) => {
+  return(
+    <Flex
+      direction={'row'}
+      justify={'between'}
+    >
+      <StepIndicator
+        currentStep={currentStep}
+        stepNames={steps}
+        variant={"default"}
+        onClick={(step) => {
+          //make sure that the step is valid before allowing the user to go to the next step
+          if (step === 1) {
+            if (selectedLocation && selectedLocation.id) {
+              setCurrentStep(step);
+            }
+            else {
+              sendAlert({ message: "Please select a location", type: "danger" });
+            }
+          }
+          else {
+            setCurrentStep(step);
+          }
+        }}
+      />
+    </Flex>
+  );
+};
+
+const StepZeroForm = ({
+  distanceSort,
+  goToVehiclePage,
+  locationCount,
+  locationFetching,
+  locationsOnPage,
+  locationPage,
+  miles,
+  pageSize,
+  pickupDate,
+  returnDate,
+  setMiles,
+  setLocationPage,
+  setPickupDate,
+  setReturnDate,
+  setSelectedLocation,
+  setSort,
+  setVehicleClass,
+  setZipCode,
+  vehicleClass,
+  vehicleMatchSort,
+  vehicleSort,
+  zipCode
+}) => {
+  return (
+    <>
+      <Flex
+        direction={'row'}
+        justify={'start'}
+        wrap={'nowrap'}
+        gap={'extra-large'}
+        align={'start'}
+        alignSelf={'start'}
+      >
+        <Flex
+          width={'auto'}
+        >
+          <Input
+            label="Zip Code"
+            name="zipCode"
+            tooltip="Please enter your zip code"
+            placeholder="12345"
+            value={zipCode}
+            required={true}
+            onChange={value => {
+              setZipCode(value);
+            }}
+
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <NumberInput
+            label="Miles Radius"
+            name="miles"
+            min={25}
+            max={300}
+            tooltip="Please enter the number of miles you are willing to travel"
+            placeholder="250"
+            value={miles}
+            required={true}
+            onChange={value => {
+              setMiles(value);
+            }}
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <DateInput
+            label="Pickup Date"
+            name="pickupDate"
+            value={pickupDate}
+            max={returnDate}
+            onChange={(value) => {
+              setPickupDate(value);
+            }}
+            format="ll"
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <DateInput
+            label="Return Date"
+            name="returnDate"
+            value={returnDate}
+            min={pickupDate}
+            onChange={(value) => {
+              setReturnDate(value);
+            }}
+            format="ll"
+          />
+        </Flex>
+        <Flex
+          width={'max'}
+        >
+          <MultiSelect
+            label="Vehicle Class"
+            name="vehicleClass"
+            variant="transparent"
+            options={[
+              { label: "Touring", value: "Touring" },
+              { label: "Sport", value: "Sport" },
+              { label: "Base", value: "Base" },
+            ]}
+            onChange={(value) => {
+              setVehicleClass(value);
+            }}
+          />
+        </Flex>
+
+      </Flex>
+
+      <Divider />
+
+      <Table
+        width={'max'}
+        paginated={true}
+        pageCount={locationCount / pageSize}
+        onPageChange={(page) => {
+          setLocationPage(page);
+        }}
+        page={locationPage}
+      >
+        <TableHead>
+          <TableRow>
+            <TableHeader width={'min'}>Address</TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => setSort(distanceSort === 'asc' ? 'desc' : 'asc', 'distance')}
+              >
+                Distance
+              </Link>  {distanceSort === '' ? ' ' : distanceSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => setSort(vehicleSort === 'asc' ? 'desc' : 'asc', 'vehicle')}
+              >
+                Availablity
+              </Link>
+              {vehicleSort === '' ? ' ' : vehicleSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'} >
+              <Link variant="dark"
+                onClick={() => setSort(vehicleMatchSort === 'asc' ? 'desc' : 'asc', 'vehicle_match')}
+              >
+                Vehicles that meet Filters
+              </Link>
+              {vehicleMatchSort === '' ? ' ' : vehicleMatchSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+          {locationFetching === false && locationsOnPage.map((location) => (
+            <TableRow>
+              <TableCell>
+                <Text>{location.full_address}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{location.distance} miles</Text>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => { goToVehiclePage(location.associations.all_vehicles.items.map(x => x.hs_object_id)); setSelectedLocation(location) }}>{location.number_of_available_vehicles} Vehicles Available</Link>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => {
+                  const vehicleClassArray = vehicleClass
+
+                  const filteredVehicles = vehicleClassArray.length === 0
+                    ? location.associations.all_vehicles.items
+                    : location.associations.all_vehicles.items.filter(vehicle =>
+                      vehicleClassArray.includes(vehicle.model.label)
+                    );
+
+                  const vehicleObjectIds = filteredVehicles.map(vehicle => vehicle.hs_object_id);
+
+                  goToVehiclePage(vehicleObjectIds);
+
+                  setSelectedLocation(location);
+                }}>
+                  {
+                    location.associations.all_vehicles.items.filter(vehicle => {
+                      if (vehicleClass.length === 0) {
+                        return true; // If vehicleClass is empty, include all vehicles
+                      }
+                      const vehicleClassArray = vehicleClass;
+                      return vehicleClassArray.includes(vehicle.model.label);
+                    }).length
+                  } Vehicles
+                </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+const StepOneForm = ({
+  goToBookingPage,
+  setVehicleYearSort,
+  vehiclesOnPage,
+  vehicleYearSort
+}) => {
+  return(
+    <>
+      <Table
+        width={'max'}
+        paginated={false}
+      >
+        <TableHead>
+          <TableRow>
+            <TableHeader width={'min'}>Make</TableHeader>
+            <TableHeader width={'min'}>
+              Model
+            </TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => { setVehicleYearSort(vehicleYearSort === 'asc' ? 'desc' : 'asc') }}
+              >
+                Year
+              </Link>
+              {vehicleYearSort === '' ? ' ' : vehicleYearSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'} >
+              Book
+            </TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {vehiclesOnPage.map((vehicle) => (
+            <TableRow>
+              <TableCell>
+                <Text>{vehicle.properties.make}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{vehicle.properties.model}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{vehicle.properties.year}</Text>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => { goToBookingPage(vehicle) }}>Book now</Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+const StepTwoForm = ({
+  days,
+  insurance,
+  insuranceCost,
+  pickupDate,
+  returnDate,
+  selectedLocation,
+  selectedVehicle,
+  setPickupDate,
+  setReturnDate
+}) => {
+  return(
+    <Flex direction="column" gap="lg">
+      {/* First Row for Location and Vehicle */}
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Pickup Location */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Pickup Location:</Text>
+          <Text>{selectedLocation.full_address}</Text>
+        </Flex>
+        {/* Vehicle Details */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Vehicle:</Text>
+          <Text>
+            {selectedVehicle.properties.year} {selectedVehicle.properties.make} {selectedVehicle.properties.model}
+          </Text>
+        </Flex>
+      </Flex>
+
+      {/* Second Row for Dates, Insurance, Rates, and Total */}
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Pickup Date */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Pickup Date:</Text>
+          <DateInput
+            label=""
+            name="pickupDate"
+            value={pickupDate}
+            max={returnDate}
+            onChange={(value) => setPickupDate(value)}
+            format="ll"
+          />
+        </Flex>
+        {/* Return Date */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Return Date:</Text>
+          <DateInput
+            label=""
+            name="returnDate"
+            value={returnDate}
+            min={pickupDate}
+            onChange={(value) => setReturnDate(value)}
+            format="ll"
+          />
+        </Flex>
+      </Flex>
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Insurance */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Insurance:</Text>
+          <Text>{insurance ? 'Yes' : 'No'}</Text>
+        </Flex>
+        {/* Daily Rate */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Daily Rate:</Text>
+          <Text>$ {selectedVehicle.properties.daily_price}</Text>
+        </Flex>
+        {/* Days */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Days:</Text>
+          <Text>{days}</Text>
+        </Flex>
+        {/* Total */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Total:</Text>
+          <Text>${(selectedVehicle.properties.daily_price * days) + insuranceCost}</Text>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
