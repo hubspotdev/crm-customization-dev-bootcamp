@@ -278,73 +278,17 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
       )}
       {
         currentStep === 2 && (
-          <Flex direction="column" gap="lg">
-            {/* First Row for Location and Vehicle */}
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Pickup Location */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Pickup Location:</Text>
-                <Text>{selectedLocation.full_address}</Text>
-              </Flex>
-              {/* Vehicle Details */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Vehicle:</Text>
-                <Text>
-                  {selectedVehicle.properties.year} {selectedVehicle.properties.make} {selectedVehicle.properties.model}
-                </Text>
-              </Flex>
-            </Flex>
-
-            {/* Second Row for Dates, Insurance, Rates, and Total */}
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Pickup Date */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Pickup Date:</Text>
-                <DateInput
-                  label=""
-                  name="pickupDate"
-                  value={pickupDate}
-                  max={returnDate}
-                  onChange={(value) => setPickupDate(value)}
-                  format="ll"
-                />
-              </Flex>
-              {/* Return Date */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Return Date:</Text>
-                <DateInput
-                  label=""
-                  name="returnDate"
-                  value={returnDate}
-                  min={pickupDate}
-                  onChange={(value) => setReturnDate(value)}
-                  format="ll"
-                />
-              </Flex>
-            </Flex>
-            <Flex gap='lg' direction="row" wrap="nowrap">
-              {/* Insurance */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Insurance:</Text>
-                <Text>{insurance ? 'Yes' : 'No'}</Text>
-              </Flex>
-              {/* Daily Rate */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Daily Rate:</Text>
-                <Text>$ {selectedVehicle.properties.daily_price}</Text>
-              </Flex>
-              {/* Days */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Days:</Text>
-                <Text>{days}</Text>
-              </Flex>
-              {/* Total */}
-              <Flex direction="column" gap="sm">
-                <Text format={{ fontWeight: 'bold' }}>Total:</Text>
-                <Text>{(selectedVehicle.properties.daily_price * days) + insuranceCost}</Text>
-              </Flex>
-            </Flex>
-          </Flex>
+          <StepTwoForm
+            days={days}
+            insurance={insurance}
+            insuranceCost={insuranceCost}
+            pickupDate={pickupDate}
+            returnDate={returnDate}
+            selectedLocation={selectedLocation}
+            selectedVehicle={selectedVehicle}
+            setPickupDate={setPickupDate}
+            setReturnDate={setReturnDate}
+          />
         )
       }
       <Divider />
@@ -640,5 +584,87 @@ const StepOneForm = ({
         </TableBody>
       </Table>
     </>
+  );
+};
+
+const StepTwoForm = ({
+  days,
+  insurance,
+  insuranceCost,
+  pickupDate,
+  returnDate,
+  selectedLocation,
+  selectedVehicle,
+  setPickupDate,
+  setReturnDate
+}) => {
+  return(
+    <Flex direction="column" gap="lg">
+      {/* First Row for Location and Vehicle */}
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Pickup Location */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Pickup Location:</Text>
+          <Text>{selectedLocation.full_address}</Text>
+        </Flex>
+        {/* Vehicle Details */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Vehicle:</Text>
+          <Text>
+            {selectedVehicle.properties.year} {selectedVehicle.properties.make} {selectedVehicle.properties.model}
+          </Text>
+        </Flex>
+      </Flex>
+
+      {/* Second Row for Dates, Insurance, Rates, and Total */}
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Pickup Date */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Pickup Date:</Text>
+          <DateInput
+            label=""
+            name="pickupDate"
+            value={pickupDate}
+            max={returnDate}
+            onChange={(value) => setPickupDate(value)}
+            format="ll"
+          />
+        </Flex>
+        {/* Return Date */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Return Date:</Text>
+          <DateInput
+            label=""
+            name="returnDate"
+            value={returnDate}
+            min={pickupDate}
+            onChange={(value) => setReturnDate(value)}
+            format="ll"
+          />
+        </Flex>
+      </Flex>
+      <Flex gap='lg' direction="row" wrap="nowrap">
+        {/* Insurance */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Insurance:</Text>
+          <Text>{insurance ? 'Yes' : 'No'}</Text>
+        </Flex>
+        {/* Daily Rate */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Daily Rate:</Text>
+          <Text>$ {selectedVehicle.properties.daily_price}</Text>
+        </Flex>
+        {/* Days */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Days:</Text>
+          <Text>{days}</Text>
+        </Flex>
+        {/* Total */}
+        <Flex direction="column" gap="sm">
+          <Text format={{ fontWeight: 'bold' }}>Total:</Text>
+          <Text>${(selectedVehicle.properties.daily_price * days) + insuranceCost}</Text>
+        </Flex>
+      </Flex>
+    </Flex>
   );
 };
