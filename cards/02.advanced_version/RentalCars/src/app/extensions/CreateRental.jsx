@@ -269,51 +269,12 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
         />
       )}
       {currentStep === 1 && (
-        <>
-          <Table
-            width={'max'}
-            paginated={false}
-          >
-            <TableHead>
-              <TableRow>
-                <TableHeader width={'min'}>Make</TableHeader>
-                <TableHeader width={'min'}>
-                  Model
-                </TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => { setVehicleYearSort(vehicleYearSort === 'asc' ? 'desc' : 'asc') }}
-                  >
-                    Year
-                  </Link>
-                  {vehicleYearSort === '' ? ' ' : vehicleYearSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'} >
-                  Book
-                </TableHeader>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              {vehiclesOnPage.map((vehicle) => (
-                <TableRow>
-                  <TableCell>
-                    <Text>{vehicle.properties.make}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{vehicle.properties.model}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{vehicle.properties.year}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => { goToBookingPage(vehicle) }}>Book now</Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </>
+        <StepOneForm
+          goToBookingPage={goToBookingPage}
+          setVehicleYearSort={setVehicleYearSort}
+          vehiclesOnPage={vehiclesOnPage}
+          vehicleYearSort={vehicleYearSort}
+        />
       )}
       {
         currentStep === 2 && (
@@ -619,6 +580,60 @@ const StepZeroForm = ({
                     }).length
                   } Vehicles
                 </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
+  );
+};
+
+const StepOneForm = ({
+  goToBookingPage,
+  setVehicleYearSort,
+  vehiclesOnPage,
+  vehicleYearSort
+}) => {
+  return(
+    <>
+      <Table
+        width={'max'}
+        paginated={false}
+      >
+        <TableHead>
+          <TableRow>
+            <TableHeader width={'min'}>Make</TableHeader>
+            <TableHeader width={'min'}>
+              Model
+            </TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => { setVehicleYearSort(vehicleYearSort === 'asc' ? 'desc' : 'asc') }}
+              >
+                Year
+              </Link>
+              {vehicleYearSort === '' ? ' ' : vehicleYearSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'} >
+              Book
+            </TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {vehiclesOnPage.map((vehicle) => (
+            <TableRow>
+              <TableCell>
+                <Text>{vehicle.properties.make}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{vehicle.properties.model}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{vehicle.properties.year}</Text>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => { goToBookingPage(vehicle) }}>Book now</Link>
               </TableCell>
             </TableRow>
           ))}
