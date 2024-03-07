@@ -243,180 +243,30 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
       />
       <Divider />
       {currentStep === 0 && (
-        <>
-          <Flex
-            direction={'row'}
-            justify={'start'}
-            wrap={'nowrap'}
-            gap={'extra-large'}
-            align={'start'}
-            alignSelf={'start'}
-          >
-            <Flex
-              width={'auto'}
-            >
-              <Input
-                label="Zip Code"
-                name="zipCode"
-                tooltip="Please enter your zip code"
-                placeholder="12345"
-                value={zipCode}
-                required={true}
-                onChange={value => {
-                  setZipCode(value);
-                }}
-
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <NumberInput
-                label="Miles Radius"
-                name="miles"
-                min={25}
-                max={300}
-                tooltip="Please enter the number of miles you are willing to travel"
-                placeholder="250"
-                value={miles}
-                required={true}
-                onChange={value => {
-                  setMiles(value);
-                }}
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <DateInput
-                label="Pickup Date"
-                name="pickupDate"
-                value={pickupDate}
-                max={returnDate}
-                onChange={(value) => {
-                  setPickupDate(value);
-                }}
-                format="ll"
-              />
-            </Flex>
-            <Flex
-              width={'auto'}
-            >
-              <DateInput
-                label="Return Date"
-                name="returnDate"
-                value={returnDate}
-                min={pickupDate}
-                onChange={(value) => {
-                  setReturnDate(value);
-                }}
-                format="ll"
-              />
-            </Flex>
-            <Flex
-              width={'max'}
-            >
-              <MultiSelect
-                label="Vehicle Class"
-                name="vehicleClass"
-                variant="transparent"
-                options={[
-                  { label: "Touring", value: "Touring" },
-                  { label: "Sport", value: "Sport" },
-                  { label: "Base", value: "Base" },
-                ]}
-                onChange={(value) => {
-                  setVehicleClass(value);
-                }}
-              />
-            </Flex>
-
-          </Flex>
-
-          <Divider />
-
-          <Table
-            width={'max'}
-            paginated={true}
-            pageCount={locationCount / pageSize}
-            onPageChange={(page) => {
-              setLocationPage(page);
-            }}
-            page={locationPage}
-          >
-            <TableHead>
-              <TableRow>
-                <TableHeader width={'min'}>Address</TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => setSort(distanceSort === 'asc' ? 'desc' : 'asc', 'distance')}
-                  >
-                    Distance
-                  </Link>  {distanceSort === '' ? ' ' : distanceSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'}>
-                  <Link variant="dark"
-                    onClick={() => setSort(vehicleSort === 'asc' ? 'desc' : 'asc', 'vehicle')}
-                  >
-                    Availablity
-                  </Link>
-                  {vehicleSort === '' ? ' ' : vehicleSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-                <TableHeader width={'min'} >
-                  <Link variant="dark"
-                    onClick={() => setSort(vehicleMatchSort === 'asc' ? 'desc' : 'asc', 'vehicle_match')}
-                  >
-                    Vehicles that meet Filters
-                  </Link>
-                  {vehicleMatchSort === '' ? ' ' : vehicleMatchSort === 'asc' ? ' ↓' : ' ↑'}
-                </TableHeader>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-
-              {locationFetching === false && locationsOnPage.map((location) => (
-                <TableRow>
-                  <TableCell>
-                    <Text>{location.full_address}</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Text>{location.distance} miles</Text>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => { goToVehiclePage(location.associations.all_vehicles.items.map(x => x.hs_object_id)); setSelectedLocation(location) }}>{location.number_of_available_vehicles} Vehicles Available</Link>
-                  </TableCell>
-                  <TableCell>
-                    <Link onClick={() => {
-                      const vehicleClassArray = vehicleClass
-
-                      const filteredVehicles = vehicleClassArray.length === 0
-                        ? location.associations.all_vehicles.items
-                        : location.associations.all_vehicles.items.filter(vehicle =>
-                          vehicleClassArray.includes(vehicle.model.label)
-                        );
-
-                      const vehicleObjectIds = filteredVehicles.map(vehicle => vehicle.hs_object_id);
-
-                      goToVehiclePage(vehicleObjectIds);
-
-                      setSelectedLocation(location);
-                    }}>
-                      {
-                        location.associations.all_vehicles.items.filter(vehicle => {
-                          if (vehicleClass.length === 0) {
-                            return true; // If vehicleClass is empty, include all vehicles
-                          }
-                          const vehicleClassArray = vehicleClass;
-                          return vehicleClassArray.includes(vehicle.model.label);
-                        }).length
-                      } Vehicles
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </>
+        <StepZeroForm
+          distanceSort={distanceSort}
+          goToVehiclePage={goToVehiclePage}
+          locationCount={locationCount}
+          locationFetching={locationFetching}
+          locationsOnPage={locationsOnPage}
+          locationPage={locationPage}
+          miles={miles}
+          pageSize={pageSize}
+          pickupDate={pickupDate}
+          returnDate={returnDate}
+          setMiles={setMiles}
+          setLocationPage={setLocationPage}
+          setPickupDate={setPickupDate}
+          setReturnDate={setReturnDate}
+          setSelectedLocation={setSelectedLocation}
+          setSort={setSort}
+          setVehicleClass={setVehicleClass}
+          setZipCode={setZipCode}
+          vehicleClass={vehicleClass}
+          vehicleMatchSort={vehicleMatchSort}
+          vehicleSort={vehicleSort}
+          zipCode={zipCode}
+        />
       )}
       {currentStep === 1 && (
         <>
@@ -573,5 +423,207 @@ const StepperBar = ({
         }}
       />
     </Flex>
+  );
+};
+
+const StepZeroForm = ({
+  distanceSort,
+  goToVehiclePage,
+  locationCount,
+  locationFetching,
+  locationsOnPage,
+  locationPage,
+  miles,
+  pageSize,
+  pickupDate,
+  returnDate,
+  setMiles,
+  setLocationPage,
+  setPickupDate,
+  setReturnDate,
+  setSelectedLocation,
+  setSort,
+  setVehicleClass,
+  setZipCode,
+  vehicleClass,
+  vehicleMatchSort,
+  vehicleSort,
+  zipCode
+}) => {
+  return (
+    <>
+      <Flex
+        direction={'row'}
+        justify={'start'}
+        wrap={'nowrap'}
+        gap={'extra-large'}
+        align={'start'}
+        alignSelf={'start'}
+      >
+        <Flex
+          width={'auto'}
+        >
+          <Input
+            label="Zip Code"
+            name="zipCode"
+            tooltip="Please enter your zip code"
+            placeholder="12345"
+            value={zipCode}
+            required={true}
+            onChange={value => {
+              setZipCode(value);
+            }}
+
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <NumberInput
+            label="Miles Radius"
+            name="miles"
+            min={25}
+            max={300}
+            tooltip="Please enter the number of miles you are willing to travel"
+            placeholder="250"
+            value={miles}
+            required={true}
+            onChange={value => {
+              setMiles(value);
+            }}
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <DateInput
+            label="Pickup Date"
+            name="pickupDate"
+            value={pickupDate}
+            max={returnDate}
+            onChange={(value) => {
+              setPickupDate(value);
+            }}
+            format="ll"
+          />
+        </Flex>
+        <Flex
+          width={'auto'}
+        >
+          <DateInput
+            label="Return Date"
+            name="returnDate"
+            value={returnDate}
+            min={pickupDate}
+            onChange={(value) => {
+              setReturnDate(value);
+            }}
+            format="ll"
+          />
+        </Flex>
+        <Flex
+          width={'max'}
+        >
+          <MultiSelect
+            label="Vehicle Class"
+            name="vehicleClass"
+            variant="transparent"
+            options={[
+              { label: "Touring", value: "Touring" },
+              { label: "Sport", value: "Sport" },
+              { label: "Base", value: "Base" },
+            ]}
+            onChange={(value) => {
+              setVehicleClass(value);
+            }}
+          />
+        </Flex>
+
+      </Flex>
+
+      <Divider />
+
+      <Table
+        width={'max'}
+        paginated={true}
+        pageCount={locationCount / pageSize}
+        onPageChange={(page) => {
+          setLocationPage(page);
+        }}
+        page={locationPage}
+      >
+        <TableHead>
+          <TableRow>
+            <TableHeader width={'min'}>Address</TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => setSort(distanceSort === 'asc' ? 'desc' : 'asc', 'distance')}
+              >
+                Distance
+              </Link>  {distanceSort === '' ? ' ' : distanceSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'}>
+              <Link variant="dark"
+                onClick={() => setSort(vehicleSort === 'asc' ? 'desc' : 'asc', 'vehicle')}
+              >
+                Availablity
+              </Link>
+              {vehicleSort === '' ? ' ' : vehicleSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+            <TableHeader width={'min'} >
+              <Link variant="dark"
+                onClick={() => setSort(vehicleMatchSort === 'asc' ? 'desc' : 'asc', 'vehicle_match')}
+              >
+                Vehicles that meet Filters
+              </Link>
+              {vehicleMatchSort === '' ? ' ' : vehicleMatchSort === 'asc' ? ' ↓' : ' ↑'}
+            </TableHeader>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+          {locationFetching === false && locationsOnPage.map((location) => (
+            <TableRow>
+              <TableCell>
+                <Text>{location.full_address}</Text>
+              </TableCell>
+              <TableCell>
+                <Text>{location.distance} miles</Text>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => { goToVehiclePage(location.associations.all_vehicles.items.map(x => x.hs_object_id)); setSelectedLocation(location) }}>{location.number_of_available_vehicles} Vehicles Available</Link>
+              </TableCell>
+              <TableCell>
+                <Link onClick={() => {
+                  const vehicleClassArray = vehicleClass
+
+                  const filteredVehicles = vehicleClassArray.length === 0
+                    ? location.associations.all_vehicles.items
+                    : location.associations.all_vehicles.items.filter(vehicle =>
+                      vehicleClassArray.includes(vehicle.model.label)
+                    );
+
+                  const vehicleObjectIds = filteredVehicles.map(vehicle => vehicle.hs_object_id);
+
+                  goToVehiclePage(vehicleObjectIds);
+
+                  setSelectedLocation(location);
+                }}>
+                  {
+                    location.associations.all_vehicles.items.filter(vehicle => {
+                      if (vehicleClass.length === 0) {
+                        return true; // If vehicleClass is empty, include all vehicles
+                      }
+                      const vehicleClassArray = vehicleClass;
+                      return vehicleClassArray.includes(vehicle.model.label);
+                    }).length
+                  } Vehicles
+                </Link>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </>
   );
 };
