@@ -234,30 +234,13 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
 
   return (
     <>
-      <Flex
-        direction={'row'}
-        justify={'between'}
-      >
-        <StepIndicator
-          currentStep={currentStep}
-          stepNames={steps}
-          variant={"default"}
-          onClick={(step) => {
-            //make sure that the step is valid before allowing the user to go to the next step
-            if (step === 1) {
-              if (selectedLocation && selectedLocation.id) {
-                setCurrentStep(step);
-              }
-              else {
-                sendAlert({ message: "Please select a location", type: "danger" });
-              }
-            }
-            else {
-              setCurrentStep(step);
-            }
-          }}
-        />
-      </Flex>
+      <StepperBar
+        currentStep={currentStep}
+        setCurrentStep={setCurrentStep}
+        selectedLocation={selectedLocation}
+        sendAlert={sendAlert}
+        steps={steps}
+      />
       <Divider />
       {currentStep === 0 && (
         <>
@@ -555,5 +538,40 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
       }
       <Divider />
     </>
+  );
+};
+
+const StepperBar = ({
+  currentStep,
+  setCurrentStep,
+  selectedLocation,
+  sendAlert,
+  steps
+}) => {
+  return(
+    <Flex
+      direction={'row'}
+      justify={'between'}
+    >
+      <StepIndicator
+        currentStep={currentStep}
+        stepNames={steps}
+        variant={"default"}
+        onClick={(step) => {
+          //make sure that the step is valid before allowing the user to go to the next step
+          if (step === 1) {
+            if (selectedLocation && selectedLocation.id) {
+              setCurrentStep(step);
+            }
+            else {
+              sendAlert({ message: "Please select a location", type: "danger" });
+            }
+          }
+          else {
+            setCurrentStep(step);
+          }
+        }}
+      />
+    </Flex>
   );
 };
