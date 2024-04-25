@@ -10,7 +10,7 @@ If you found this REPO and you're interested in signing up for the bootcamp, you
 
 ## Help
 [HubSpot Developer Slack Community](https://developers.hubspot.com/slack)
-This will be your best friends and also an awesome place of community. 
+This will be your best friend and also an awesome place of community. 
 
 ## File Structure
 - data - All the data you need to import into your developer sandbox account.
