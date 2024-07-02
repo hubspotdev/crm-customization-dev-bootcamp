@@ -1,5 +1,30 @@
 {
 	"inputs": [
+        {
+            "name": "available",
+            "label": "Available",
+            "type": "enumeration",
+            "fieldType": "booleancheckbox",
+            "description": "",
+            "groupName": "vehicles_information",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "true",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "No",
+                    "value": "false",
+                    "displayOrder": 1,
+                    "hidden": false
+                }
+            ],
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
 		{
             "name": "make",
             "label": "Make",
@@ -375,24 +400,119 @@
             "groupName": "vehicles_information",
             "options": [
                 {
-                    "label": "Base",
-                    "value": "Base",
+                    "label": "Compact",
+                    "value": "Compact",
                     "displayOrder": 0,
                     "hidden": false
                 },
                 {
-                    "label": "Sport",
-                    "value": "Sport",
+                    "label": "Fullsize",
+                    "value": "Fullsize",
                     "displayOrder": 1,
                     "hidden": false
                 },
                 {
-                    "label": "Touring",
-                    "value": "Touring",
+                    "label": "Coupe",
+                    "value": "Coupe",
                     "displayOrder": 2,
+                    "hidden": false
+                },
+                {
+                    "label": "Van",
+                    "value": "Van",
+                    "displayOrder": 3,
+                    "hidden": false
+                },
+                {
+                    "label": "Truck",
+                    "value": "Truck",
+                    "displayOrder": 4,
+                    "hidden": false
+                },
+                {
+                    "label": "Premium",
+                    "value": "Premium",
+                    "displayOrder": 5,
+                    "hidden": false
+                },
+                {
+                    "label": "Convertible",
+                    "value": "Convertible",
+                    "displayOrder": 6,
+                    "hidden": false
+                },
+                {
+                    "label": "Midsize",
+                    "value": "Midsize",
+                    "displayOrder": 7,
+                    "hidden": false
+                },
+                {
+                    "label": "SUV",
+                    "value": "SUV",
+                    "displayOrder": 8,
+                    "hidden": false
+                },
+                {
+                    "label": "Luxury",
+                    "value": "Luxury",
+                    "displayOrder": 9,
+                    "hidden": false
+                },
+                {
+                    "label": "Standard",
+                    "value": "Standard",
+                    "displayOrder": 10,
                     "hidden": false
                 }
             ],
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "daily_price",
+            "label": "Daily Price",
+            "type": "number",
+            "fieldType": "number",
+            "description": "",
+            "groupName": "vehicles_information",
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "odometer_reading",
+            "label": "Odometer Reading",
+            "type": "number",
+            "fieldType": "number",
+            "description": "",
+            "groupName": "vehicles_information",
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "available",
+            "label": "Available",
+            "type": "enumeration",
+            "fieldType": "booleancheckbox",
+            "description": "",
+            "groupName": "vehicles_information",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "true",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "No",
+                    "value": "false",
+                    "displayOrder": 1,
+                    "hidden": false
+                }
+            ],
+            "hasUniqueValue": false,
             "hidden": false,
             "formField": false
         },

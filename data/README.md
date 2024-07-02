@@ -32,7 +32,7 @@ Within your HubSpot CRM Sandbox account, create the following associations.
 * *One to Many* :: Vehicles.
 
 ### Vehicles
-* Many to One* :: Location.
+* *Many to One* :: Location.
 * *Many to Many* :: Rental Agreements.
 
 ### Rental Agreements
@@ -43,9 +43,13 @@ Within your HubSpot CRM Sandbox account, create the following associations.
 
 ## Step 4 Import the Data
 
+If you do not creation the associations between the objects, then you won't be able to map the vehicles and locations.  
+
 Utilizing HubSpot's [Import Feature](https://app.hubspot.com/l/import/), and start importing your data.
 
-Repeat for each .csv file.
+Import order:
+1. Locations
+2. Vehicles
 
 ## Need help or have issues
 If you have any issues or questions, just message our on the Bootcamp Slack Channel

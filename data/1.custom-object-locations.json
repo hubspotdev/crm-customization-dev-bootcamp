@@ -13,7 +13,8 @@
     {
       "name": "full_address",
       "label": "Full Address",
-      "isPrimaryDisplayLabel": true
+      "isPrimaryDisplayLabel": true,
+      "hasUniqueValue": true
     }
   ],
   "labels": {
