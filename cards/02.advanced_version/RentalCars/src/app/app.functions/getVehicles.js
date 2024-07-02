@@ -1,11 +1,10 @@
 const axios = require('axios');
 
-
 exports.main = async (context, sendResponse) => {
 
-  let vehicleIds = context.parameters.vehicles;
+  const vehicleIds = context.parameters.vehicles;
 
-  let data = JSON.stringify({
+  const data = JSON.stringify({
     "inputs": vehicleIds.map((id) => {
       return {
         "id": id
@@ -20,12 +19,11 @@ exports.main = async (context, sendResponse) => {
     ]
   });
 
-  let config = {
+  const config = {
     method: 'post',
-    maxBodyLength: Infinity,
     url: 'https://api.hubapi.com/crm/v3/objects/vehicles/batch/read',
     headers: {
-      'Authorization': 'Bearer ' + process.env['PRIVATE_APP_ACCESS_TOKEN'],
+      'Authorization': `Bearer ${process.env['PRIVATE_APP_ACCESS_TOKEN']}`,
       'Content-Type': 'application/json'
     },
     data: data

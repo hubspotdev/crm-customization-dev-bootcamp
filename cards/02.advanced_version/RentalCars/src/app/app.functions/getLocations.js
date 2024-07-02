@@ -86,10 +86,9 @@ function fetchLocations({ lat_min, lat_max, lng_min, lng_max, pickupDate, return
     url: 'https://api.hubapi.com/collector/graphql',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + process.env['PRIVATE_APP_ACCESS_TOKEN'],
+      'Authorization': `Bearer ${process.env['PRIVATE_APP_ACCESS_TOKEN']}`,
     },
-    data: data,
-    maxBodyLength: Infinity
+    data: data
   };
 
   return axios.request(config);
