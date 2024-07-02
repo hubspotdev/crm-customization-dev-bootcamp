@@ -1,0 +1,23 @@
+{
+  "requiredProperties": [
+    "full_address"
+  ],
+  "searchableProperties": [
+    "full_address"
+  ],
+  "primaryDisplayProperty": "full_address",
+  "name": "locations",
+  "description": "CRM Bootcamp Custom Object: Locations",
+  "associatedObjects": [],
+  "properties": [
+    {
+      "name": "full_address",
+      "label": "Full Address",
+      "isPrimaryDisplayLabel": true
+    }
+  ],
+  "labels": {
+    "plural": "Locations",
+    "singular": "Location"
+  }
+}

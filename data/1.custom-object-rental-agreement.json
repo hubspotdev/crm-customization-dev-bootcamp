@@ -1,0 +1,23 @@
+{
+  "requiredProperties": [
+    "name"
+  ],
+  "searchableProperties": [
+    "name"
+  ],
+  "primaryDisplayProperty": "name",
+  "secondaryDisplayProperties": [],
+  "description": "CRM Bootcamp Custom Object: Rental Agreement",
+  "name": "rental_agreements",
+  "properties": [
+    {
+      "name": "name",
+      "label": "Name",
+      "isPrimaryDisplayLabel": true
+    }
+  ],
+  "labels": {
+    "singular": "Rental Agreement",
+    "plural": "Rental Agreements"
+  }
+}

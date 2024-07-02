@@ -1,0 +1,916 @@
+{
+	"inputs": [
+		{
+            "name": "make",
+            "label": "Make",
+            "type": "enumeration",
+            "fieldType": "select",
+            "description": "",
+            "groupName": "vehicles_information",
+            "options": [
+                {
+                    "label": "Acura",
+                    "value": "Acura",
+                    "displayOrder": 1,
+                    "hidden": false
+                },
+                {
+                    "label": "Alfa Romeo",
+                    "value": "Alfa Romeo",
+                    "displayOrder": 2,
+                    "hidden": false
+                },
+                {
+                    "label": "Aston Martin",
+                    "value": "Aston Martin",
+                    "displayOrder": 3,
+                    "hidden": false
+                },
+                {
+                    "label": "Audi",
+                    "value": "Audi",
+                    "displayOrder": 4,
+                    "hidden": false
+                },
+                {
+                    "label": "Bentley",
+                    "value": "Bentley",
+                    "displayOrder": 5,
+                    "hidden": false
+                },
+                {
+                    "label": "BMW",
+                    "value": "BMW",
+                    "displayOrder": 6,
+                    "hidden": false
+                },
+                {
+                    "label": "Bugatti",
+                    "value": "Bugatti",
+                    "displayOrder": 7,
+                    "hidden": false
+                },
+                {
+                    "label": "Buick",
+                    "value": "Buick",
+                    "displayOrder": 8,
+                    "hidden": false
+                },
+                {
+                    "label": "Cadillac",
+                    "value": "Cadillac",
+                    "displayOrder": 9,
+                    "hidden": false
+                },
+                {
+                    "label": "Chevrolet",
+                    "value": "Chevrolet",
+                    "displayOrder": 10,
+                    "hidden": false
+                },
+                {
+                    "label": "Chrysler",
+                    "value": "Chrysler",
+                    "displayOrder": 11,
+                    "hidden": false
+                },
+                {
+                    "label": "Citroen",
+                    "value": "Citroen",
+                    "displayOrder": 12,
+                    "hidden": false
+                },
+                {
+                    "label": "Daewoo",
+                    "value": "Daewoo",
+                    "displayOrder": 13,
+                    "hidden": false
+                },
+                {
+                    "label": "Dodge",
+                    "value": "Dodge",
+                    "displayOrder": 14,
+                    "hidden": false
+                },
+                {
+                    "label": "Ferrari",
+                    "value": "Ferrari",
+                    "displayOrder": 15,
+                    "hidden": false
+                },
+                {
+                    "label": "Fiat",
+                    "value": "Fiat",
+                    "displayOrder": 16,
+                    "hidden": false
+                },
+                {
+                    "label": "Ford",
+                    "value": "Ford",
+                    "displayOrder": 17,
+                    "hidden": false
+                },
+                {
+                    "label": "GEM",
+                    "value": "GEM",
+                    "displayOrder": 18,
+                    "hidden": false
+                },
+                {
+                    "label": "Genesis",
+                    "value": "Genesis",
+                    "displayOrder": 19,
+                    "hidden": false
+                },
+                {
+                    "label": "GMC",
+                    "value": "GMC",
+                    "displayOrder": 20,
+                    "hidden": false
+                },
+                {
+                    "label": "Honda",
+                    "value": "Honda",
+                    "displayOrder": 21,
+                    "hidden": false
+                },
+                {
+                    "label": "Hummer",
+                    "value": "Hummer",
+                    "displayOrder": 22,
+                    "hidden": false
+                },
+                {
+                    "label": "Hyundai",
+                    "value": "Hyundai",
+                    "displayOrder": 23,
+                    "hidden": false
+                },
+                {
+                    "label": "Infiniti",
+                    "value": "Infiniti",
+                    "displayOrder": 24,
+                    "hidden": false
+                },
+                {
+                    "label": "Isuzu",
+                    "value": "Isuzu",
+                    "displayOrder": 25,
+                    "hidden": false
+                },
+                {
+                    "label": "Jaguar",
+                    "value": "Jaguar",
+                    "displayOrder": 26,
+                    "hidden": false
+                },
+                {
+                    "label": "Jeep",
+                    "value": "Jeep",
+                    "displayOrder": 27,
+                    "hidden": false
+                },
+                {
+                    "label": "Kia",
+                    "value": "Kia",
+                    "displayOrder": 28,
+                    "hidden": false
+                },
+                {
+                    "label": "Lamborghini",
+                    "value": "Lamborghini",
+                    "displayOrder": 29,
+                    "hidden": false
+                },
+                {
+                    "label": "Land Rover",
+                    "value": "Land Rover",
+                    "displayOrder": 30,
+                    "hidden": false
+                },
+                {
+                    "label": "Lexus",
+                    "value": "Lexus",
+                    "displayOrder": 31,
+                    "hidden": false
+                },
+                {
+                    "label": "Lincoln",
+                    "value": "Lincoln",
+                    "displayOrder": 32,
+                    "hidden": false
+                },
+                {
+                    "label": "Lotus",
+                    "value": "Lotus",
+                    "displayOrder": 33,
+                    "hidden": false
+                },
+                {
+                    "label": "Maserati",
+                    "value": "Maserati",
+                    "displayOrder": 34,
+                    "hidden": false
+                },
+                {
+                    "label": "Mazda",
+                    "value": "Mazda",
+                    "displayOrder": 35,
+                    "hidden": false
+                },
+                {
+                    "label": "Mercedes-Benz",
+                    "value": "Mercedes-Benz",
+                    "displayOrder": 36,
+                    "hidden": false
+                },
+                {
+                    "label": "Mercury",
+                    "value": "Mercury",
+                    "displayOrder": 37,
+                    "hidden": false
+                },
+                {
+                    "label": "MG",
+                    "value": "MG",
+                    "displayOrder": 38,
+                    "hidden": false
+                },
+                {
+                    "label": "Mini",
+                    "value": "Mini",
+                    "displayOrder": 39,
+                    "hidden": false
+                },
+                {
+                    "label": "Mitsubishi",
+                    "value": "Mitsubishi",
+                    "displayOrder": 40,
+                    "hidden": false
+                },
+                {
+                    "label": "Nissan",
+                    "value": "Nissan",
+                    "displayOrder": 41,
+                    "hidden": false
+                },
+                {
+                    "label": "Nissian",
+                    "value": "Nissian",
+                    "displayOrder": 42,
+                    "hidden": false
+                },
+                {
+                    "label": "Oldsmobile",
+                    "value": "Oldsmobile",
+                    "displayOrder": 43,
+                    "hidden": false
+                },
+                {
+                    "label": "Pagani",
+                    "value": "Pagani",
+                    "displayOrder": 44,
+                    "hidden": false
+                },
+                {
+                    "label": "Peugeot",
+                    "value": "Peugeot",
+                    "displayOrder": 45,
+                    "hidden": false
+                },
+                {
+                    "label": "Pontiac",
+                    "value": "Pontiac",
+                    "displayOrder": 46,
+                    "hidden": false
+                },
+                {
+                    "label": "Porsche",
+                    "value": "Porsche",
+                    "displayOrder": 47,
+                    "hidden": false
+                },
+                {
+                    "label": "Ram",
+                    "value": "Ram",
+                    "displayOrder": 48,
+                    "hidden": false
+                },
+                {
+                    "label": "Regal",
+                    "value": "Regal",
+                    "displayOrder": 49,
+                    "hidden": false
+                },
+                {
+                    "label": "Renault",
+                    "value": "Renault",
+                    "displayOrder": 50,
+                    "hidden": false
+                },
+                {
+                    "label": "Saab",
+                    "value": "Saab",
+                    "displayOrder": 51,
+                    "hidden": false
+                },
+                {
+                    "label": "Saturn",
+                    "value": "Saturn",
+                    "displayOrder": 52,
+                    "hidden": false
+                },
+                {
+                    "label": "Studebaker",
+                    "value": "Studebaker",
+                    "displayOrder": 53,
+                    "hidden": false
+                },
+                {
+                    "label": "Subaru",
+                    "value": "Subaru",
+                    "displayOrder": 54,
+                    "hidden": false
+                },
+                {
+                    "label": "Suzuki",
+                    "value": "Suzuki",
+                    "displayOrder": 55,
+                    "hidden": false
+                },
+                {
+                    "label": "Tesla",
+                    "value": "Tesla",
+                    "displayOrder": 56,
+                    "hidden": false
+                },
+                {
+                    "label": "Toyota",
+                    "value": "Toyota",
+                    "displayOrder": 57,
+                    "hidden": false
+                },
+                {
+                    "label": "Volkswagen",
+                    "value": "Volkswagen",
+                    "displayOrder": 58,
+                    "hidden": false
+                },
+                {
+                    "label": "Volvo",
+                    "value": "Volvo",
+                    "displayOrder": 59,
+                    "hidden": false
+                }
+            ],
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "model",
+            "label": "Model",
+            "type": "enumeration",
+            "fieldType": "select",
+            "description": "",
+            "groupName": "vehicles_information",
+            "options": [
+                {
+                    "label": "Base",
+                    "value": "Base",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "Sport",
+                    "value": "Sport",
+                    "displayOrder": 1,
+                    "hidden": false
+                },
+                {
+                    "label": "Touring",
+                    "value": "Touring",
+                    "displayOrder": 2,
+                    "hidden": false
+                }
+            ],
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "year",
+            "label": "Year",
+            "type": "enumeration",
+            "fieldType": "select",
+            "description": "",
+            "groupName": "vehicles_information",
+            "options": [
+                {
+                    "label": "1940",
+                    "value": "1940",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "1941",
+                    "value": "1941",
+                    "displayOrder": 1,
+                    "hidden": false
+                },
+                {
+                    "label": "1942",
+                    "value": "1942",
+                    "displayOrder": 2,
+                    "hidden": false
+                },
+                {
+                    "label": "1943",
+                    "value": "1943",
+                    "displayOrder": 3,
+                    "hidden": false
+                },
+                {
+                    "label": "1944",
+                    "value": "1944",
+                    "displayOrder": 4,
+                    "hidden": false
+                },
+                {
+                    "label": "1945",
+                    "value": "1945",
+                    "displayOrder": 5,
+                    "hidden": false
+                },
+                {
+                    "label": "1946",
+                    "value": "1946",
+                    "displayOrder": 6,
+                    "hidden": false
+                },
+                {
+                    "label": "1947",
+                    "value": "1947",
+                    "displayOrder": 7,
+                    "hidden": false
+                },
+                {
+                    "label": "1948",
+                    "value": "1948",
+                    "displayOrder": 8,
+                    "hidden": false
+                },
+                {
+                    "label": "1949",
+                    "value": "1949",
+                    "displayOrder": 9,
+                    "hidden": false
+                },
+                {
+                    "label": "1950",
+                    "value": "1950",
+                    "displayOrder": 10,
+                    "hidden": false
+                },
+                {
+                    "label": "1951",
+                    "value": "1951",
+                    "displayOrder": 11,
+                    "hidden": false
+                },
+                {
+                    "label": "1952",
+                    "value": "1952",
+                    "displayOrder": 12,
+                    "hidden": false
+                },
+                {
+                    "label": "1953",
+                    "value": "1953",
+                    "displayOrder": 13,
+                    "hidden": false
+                },
+                {
+                    "label": "1954",
+                    "value": "1954",
+                    "displayOrder": 14,
+                    "hidden": false
+                },
+                {
+                    "label": "1955",
+                    "value": "1955",
+                    "displayOrder": 15,
+                    "hidden": false
+                },
+                {
+                    "label": "1956",
+                    "value": "1956",
+                    "displayOrder": 16,
+                    "hidden": false
+                },
+                {
+                    "label": "1957",
+                    "value": "1957",
+                    "displayOrder": 17,
+                    "hidden": false
+                },
+                {
+                    "label": "1958",
+                    "value": "1958",
+                    "displayOrder": 18,
+                    "hidden": false
+                },
+                {
+                    "label": "1959",
+                    "value": "1959",
+                    "displayOrder": 19,
+                    "hidden": false
+                },
+                {
+                    "label": "1960",
+                    "value": "1960",
+                    "displayOrder": 20,
+                    "hidden": false
+                },
+                {
+                    "label": "1961",
+                    "value": "1961",
+                    "displayOrder": 21,
+                    "hidden": false
+                },
+                {
+                    "label": "1962",
+                    "value": "1962",
+                    "displayOrder": 22,
+                    "hidden": false
+                },
+                {
+                    "label": "1963",
+                    "value": "1963",
+                    "displayOrder": 23,
+                    "hidden": false
+                },
+                {
+                    "label": "1964",
+                    "value": "1964",
+                    "displayOrder": 24,
+                    "hidden": false
+                },
+                {
+                    "label": "1965",
+                    "value": "1965",
+                    "displayOrder": 25,
+                    "hidden": false
+                },
+                {
+                    "label": "1966",
+                    "value": "1966",
+                    "displayOrder": 26,
+                    "hidden": false
+                },
+                {
+                    "label": "1967",
+                    "value": "1967",
+                    "displayOrder": 27,
+                    "hidden": false
+                },
+                {
+                    "label": "1968",
+                    "value": "1968",
+                    "displayOrder": 28,
+                    "hidden": false
+                },
+                {
+                    "label": "1969",
+                    "value": "1969",
+                    "displayOrder": 29,
+                    "hidden": false
+                },
+                {
+                    "label": "1970",
+                    "value": "1970",
+                    "displayOrder": 30,
+                    "hidden": false
+                },
+                {
+                    "label": "1971",
+                    "value": "1971",
+                    "displayOrder": 31,
+                    "hidden": false
+                },
+                {
+                    "label": "1972",
+                    "value": "1972",
+                    "displayOrder": 32,
+                    "hidden": false
+                },
+                {
+                    "label": "1973",
+                    "value": "1973",
+                    "displayOrder": 33,
+                    "hidden": false
+                },
+                {
+                    "label": "1974",
+                    "value": "1974",
+                    "displayOrder": 34,
+                    "hidden": false
+                },
+                {
+                    "label": "1975",
+                    "value": "1975",
+                    "displayOrder": 35,
+                    "hidden": false
+                },
+                {
+                    "label": "1976",
+                    "value": "1976",
+                    "displayOrder": 36,
+                    "hidden": false
+                },
+                {
+                    "label": "1977",
+                    "value": "1977",
+                    "displayOrder": 37,
+                    "hidden": false
+                },
+                {
+                    "label": "1978",
+                    "value": "1978",
+                    "displayOrder": 38,
+                    "hidden": false
+                },
+                {
+                    "label": "1979",
+                    "value": "1979",
+                    "displayOrder": 39,
+                    "hidden": false
+                },
+                {
+                    "label": "1980",
+                    "value": "1980",
+                    "displayOrder": 40,
+                    "hidden": false
+                },
+                {
+                    "label": "1981",
+                    "value": "1981",
+                    "displayOrder": 41,
+                    "hidden": false
+                },
+                {
+                    "label": "1982",
+                    "value": "1982",
+                    "displayOrder": 42,
+                    "hidden": false
+                },
+                {
+                    "label": "1983",
+                    "value": "1983",
+                    "displayOrder": 43,
+                    "hidden": false
+                },
+                {
+                    "label": "1984",
+                    "value": "1984",
+                    "displayOrder": 44,
+                    "hidden": false
+                },
+                {
+                    "label": "1985",
+                    "value": "1985",
+                    "displayOrder": 45,
+                    "hidden": false
+                },
+                {
+                    "label": "1986",
+                    "value": "1986",
+                    "displayOrder": 46,
+                    "hidden": false
+                },
+                {
+                    "label": "1987",
+                    "value": "1987",
+                    "displayOrder": 47,
+                    "hidden": false
+                },
+                {
+                    "label": "1988",
+                    "value": "1988",
+                    "displayOrder": 48,
+                    "hidden": false
+                },
+                {
+                    "label": "1989",
+                    "value": "1989",
+                    "displayOrder": 49,
+                    "hidden": false
+                },
+                {
+                    "label": "1990",
+                    "value": "1990",
+                    "displayOrder": 50,
+                    "hidden": false
+                },
+                {
+                    "label": "1991",
+                    "value": "1991",
+                    "displayOrder": 51,
+                    "hidden": false
+                },
+                {
+                    "label": "1992",
+                    "value": "1992",
+                    "displayOrder": 52,
+                    "hidden": false
+                },
+                {
+                    "label": "1993",
+                    "value": "1993",
+                    "displayOrder": 53,
+                    "hidden": false
+                },
+                {
+                    "label": "1994",
+                    "value": "1994",
+                    "displayOrder": 54,
+                    "hidden": false
+                },
+                {
+                    "label": "1995",
+                    "value": "1995",
+                    "displayOrder": 55,
+                    "hidden": false
+                },
+                {
+                    "label": "1996",
+                    "value": "1996",
+                    "displayOrder": 56,
+                    "hidden": false
+                },
+                {
+                    "label": "1997",
+                    "value": "1997",
+                    "displayOrder": 57,
+                    "hidden": false
+                },
+                {
+                    "label": "1998",
+                    "value": "1998",
+                    "displayOrder": 58,
+                    "hidden": false
+                },
+                {
+                    "label": "1999",
+                    "value": "1999",
+                    "displayOrder": 59,
+                    "hidden": false
+                },
+                {
+                    "label": "2000",
+                    "value": "2000",
+                    "displayOrder": 60,
+                    "hidden": false
+                },
+                {
+                    "label": "2001",
+                    "value": "2001",
+                    "displayOrder": 61,
+                    "hidden": false
+                },
+                {
+                    "label": "2002",
+                    "value": "2002",
+                    "displayOrder": 62,
+                    "hidden": false
+                },
+                {
+                    "label": "2003",
+                    "value": "2003",
+                    "displayOrder": 63,
+                    "hidden": false
+                },
+                {
+                    "label": "2004",
+                    "value": "2004",
+                    "displayOrder": 64,
+                    "hidden": false
+                },
+                {
+                    "label": "2005",
+                    "value": "2005",
+                    "displayOrder": 65,
+                    "hidden": false
+                },
+                {
+                    "label": "2006",
+                    "value": "2006",
+                    "displayOrder": 66,
+                    "hidden": false
+                },
+                {
+                    "label": "2007",
+                    "value": "2007",
+                    "displayOrder": 67,
+                    "hidden": false
+                },
+                {
+                    "label": "2008",
+                    "value": "2008",
+                    "displayOrder": 68,
+                    "hidden": false
+                },
+                {
+                    "label": "2009",
+                    "value": "2009",
+                    "displayOrder": 69,
+                    "hidden": false
+                },
+                {
+                    "label": "2010",
+                    "value": "2010",
+                    "displayOrder": 70,
+                    "hidden": false
+                },
+                {
+                    "label": "2011",
+                    "value": "2011",
+                    "displayOrder": 71,
+                    "hidden": false
+                },
+                {
+                    "label": "2012",
+                    "value": "2012",
+                    "displayOrder": 72,
+                    "hidden": false
+                },
+                {
+                    "label": "2013",
+                    "value": "2013",
+                    "displayOrder": 73,
+                    "hidden": false
+                },
+                {
+                    "label": "2014",
+                    "value": "2014",
+                    "displayOrder": 74,
+                    "hidden": false
+                },
+                {
+                    "label": "2015",
+                    "value": "2015",
+                    "displayOrder": 75,
+                    "hidden": false
+                },
+                {
+                    "label": "2016",
+                    "value": "2016",
+                    "displayOrder": 76,
+                    "hidden": false
+                },
+                {
+                    "label": "2017",
+                    "value": "2017",
+                    "displayOrder": 77,
+                    "hidden": false
+                },
+                {
+                    "label": "2018",
+                    "value": "2018",
+                    "displayOrder": 78,
+                    "hidden": false
+                },
+                {
+                    "label": "2019",
+                    "value": "2019",
+                    "displayOrder": 79,
+                    "hidden": false
+                },
+                {
+                    "label": "2020",
+                    "value": "2020",
+                    "displayOrder": 80,
+                    "hidden": false
+                },
+                {
+                    "label": "2021",
+                    "value": "2021",
+                    "displayOrder": 81,
+                    "hidden": false
+                },
+                {
+                    "label": "2022",
+                    "value": "2022",
+                    "displayOrder": 82,
+                    "hidden": false
+                },
+                {
+                    "label": "2023",
+                    "value": "2023",
+                    "displayOrder": 83,
+                    "hidden": false
+                }
+            ],
+            "hidden": false,
+            "formField": false
+        }
+    ]
+}

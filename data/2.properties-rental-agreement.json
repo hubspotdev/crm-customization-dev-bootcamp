@@ -1,0 +1,73 @@
+{
+	"inputs": [
+        {
+            "name": "cost_per_day",
+            "label": "Cost Per Day",
+            "type": "number",
+            "fieldType": "number",
+            "groupName": "rental_agreements_information",
+            "displayOrder": -1,
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "end_date",
+            "label": "End Date",
+            "type": "date",
+            "fieldType": "date",
+            "description": "",
+            "groupName": "rental_agreements_information",
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "insurance",
+            "label": "Insurance",
+            "type": "enumeration",
+            "fieldType": "booleancheckbox",
+            "description": "",
+            "groupName": "rental_agreements_information",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": "true",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "No",
+                    "value": "false",
+                    "displayOrder": 1,
+                    "hidden": false
+                }
+            ],
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "start_date",
+            "label": "Start Date",
+            "type": "date",
+            "fieldType": "date",
+            "description": "",
+            "groupName": "rental_agreements_information",
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        },
+        {
+            "name": "total_days",
+            "label": "Total Days",
+            "type": "number",
+            "fieldType": "number",
+            "description": "",
+            "groupName": "rental_agreements_information",
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        }
+    ]
+}

@@ -1,0 +1,367 @@
+{
+    "inputs": [
+        {
+            "fieldType": "text",
+            "groupName": "locations_information",
+            "name": "address_1",
+            "label": "Address 1",
+            "type": "string",
+            "description": "",
+            "hasUniqueValue": false,
+            "formField": false,
+            "hidden": false
+        },
+        {
+            "fieldType": "text",
+            "groupName": "locations_information",
+            "name": "address_2",
+            "label": "Address 2",
+            "type": "string",
+            "description": "",
+            "hasUniqueValue": false,
+            "formField": false,
+            "hidden": false
+        },
+        {
+            "fieldType": "text",
+            "groupName": "locations_information",
+            "name": "city",
+            "label": "City",
+            "type": "string",
+            "description": "",
+            "hasUniqueValue": false,
+            "formField": false,
+            "hidden": false
+        },
+        {
+            "fieldType": "number",
+            "groupName": "locations_information",
+            "name": "postal_code",
+            "label": "Postal Code",
+            "type": "number",
+            "description": "",
+            "hasUniqueValue": false,
+            "formField": false,
+            "hidden": false
+        },
+        {
+        	"type": "enumeration",
+            "fieldType": "select",
+            "description": "",
+            "name": "state",
+            "label": "State",
+            "groupName": "locations_information",
+        	"options": [
+                {
+                    "label": "",
+                    "value": "",
+                    "displayOrder": 0,
+                    "hidden": false
+                },
+                {
+                    "label": "Alabama",
+                    "value": "Alabama",
+                    "displayOrder": 1,
+                    "hidden": false
+                },
+                {
+                    "label": "Alaska",
+                    "value": "Alaska",
+                    "displayOrder": 2,
+                    "hidden": false
+                },
+                {
+                    "label": "Arizona",
+                    "value": "Arizona",
+                    "displayOrder": 3,
+                    "hidden": false
+                },
+                {
+                    "label": "Arkansas",
+                    "value": "Arkansas",
+                    "displayOrder": 4,
+                    "hidden": false
+                },
+                {
+                    "label": "California",
+                    "value": "California",
+                    "displayOrder": 5,
+                    "hidden": false
+                },
+                {
+                    "label": "Colorado",
+                    "value": "Colorado",
+                    "displayOrder": 6,
+                    "hidden": false
+                },
+                {
+                    "label": "Connecticut",
+                    "value": "Connecticut",
+                    "displayOrder": 7,
+                    "hidden": false
+                },
+                {
+                    "label": "Delaware",
+                    "value": "Delaware",
+                    "displayOrder": 8,
+                    "hidden": false
+                },
+                {
+                    "label": "Florida",
+                    "value": "Florida",
+                    "displayOrder": 9,
+                    "hidden": false
+                },
+                {
+                    "label": "Georgia",
+                    "value": "Georgia",
+                    "displayOrder": 10,
+                    "hidden": false
+                },
+                {
+                    "label": "Hawaii",
+                    "value": "Hawaii",
+                    "displayOrder": 11,
+                    "hidden": false
+                },
+                {
+                    "label": "Idaho",
+                    "value": "Idaho",
+                    "displayOrder": 12,
+                    "hidden": false
+                },
+                {
+                    "label": "Illinois",
+                    "value": "Illinois",
+                    "displayOrder": 13,
+                    "hidden": false
+                },
+                {
+                    "label": "Indiana",
+                    "value": "Indiana",
+                    "displayOrder": 14,
+                    "hidden": false
+                },
+                {
+                    "label": "Iowa",
+                    "value": "Iowa",
+                    "displayOrder": 15,
+                    "hidden": false
+                },
+                {
+                    "label": "Kansas",
+                    "value": "Kansas",
+                    "displayOrder": 16,
+                    "hidden": false
+                },
+                {
+                    "label": "Kentucky",
+                    "value": "Kentucky",
+                    "displayOrder": 17,
+                    "hidden": false
+                },
+                {
+                    "label": "Louisiana",
+                    "value": "Louisiana",
+                    "displayOrder": 18,
+                    "hidden": false
+                },
+                {
+                    "label": "Maine",
+                    "value": "Maine",
+                    "displayOrder": 19,
+                    "hidden": false
+                },
+                {
+                    "label": "Maryland",
+                    "value": "Maryland",
+                    "displayOrder": 20,
+                    "hidden": false
+                },
+                {
+                    "label": "Massachusetts",
+                    "value": "Massachusetts",
+                    "displayOrder": 21,
+                    "hidden": false
+                },
+                {
+                    "label": "Michigan",
+                    "value": "Michigan",
+                    "displayOrder": 22,
+                    "hidden": false
+                },
+                {
+                    "label": "Minnesota",
+                    "value": "Minnesota",
+                    "displayOrder": 23,
+                    "hidden": false
+                },
+                {
+                    "label": "Mississippi",
+                    "value": "Mississippi",
+                    "displayOrder": 24,
+                    "hidden": false
+                },
+                {
+                    "label": "Missouri",
+                    "value": "Missouri",
+                    "displayOrder": 25,
+                    "hidden": false
+                },
+                {
+                    "label": "Montana",
+                    "value": "Montana",
+                    "displayOrder": 26,
+                    "hidden": false
+                },
+                {
+                    "label": "Nebraska",
+                    "value": "Nebraska",
+                    "displayOrder": 27,
+                    "hidden": false
+                },
+                {
+                    "label": "Nevada",
+                    "value": "Nevada",
+                    "displayOrder": 28,
+                    "hidden": false
+                },
+                {
+                    "label": "New Hampshire",
+                    "value": "New Hampshire",
+                    "displayOrder": 29,
+                    "hidden": false
+                },
+                {
+                    "label": "New Jersey",
+                    "value": "New Jersey",
+                    "displayOrder": 30,
+                    "hidden": false
+                },
+                {
+                    "label": "New Mexico",
+                    "value": "New Mexico",
+                    "displayOrder": 31,
+                    "hidden": false
+                },
+                {
+                    "label": "New York",
+                    "value": "New York",
+                    "displayOrder": 32,
+                    "hidden": false
+                },
+                {
+                    "label": "North Carolina",
+                    "value": "North Carolina",
+                    "displayOrder": 33,
+                    "hidden": false
+                },
+                {
+                    "label": "North Dakota",
+                    "value": "North Dakota",
+                    "displayOrder": 34,
+                    "hidden": false
+                },
+                {
+                    "label": "Ohio",
+                    "value": "Ohio",
+                    "displayOrder": 35,
+                    "hidden": false
+                },
+                {
+                    "label": "Oklahoma",
+                    "value": "Oklahoma",
+                    "displayOrder": 36,
+                    "hidden": false
+                },
+                {
+                    "label": "Oregon",
+                    "value": "Oregon",
+                    "displayOrder": 37,
+                    "hidden": false
+                },
+                {
+                    "label": "Pennsylvania",
+                    "value": "Pennsylvania",
+                    "displayOrder": 38,
+                    "hidden": false
+                },
+                {
+                    "label": "Rhode Island",
+                    "value": "Rhode Island",
+                    "displayOrder": 39,
+                    "hidden": false
+                },
+                {
+                    "label": "South Carolina",
+                    "value": "South Carolina",
+                    "displayOrder": 40,
+                    "hidden": false
+                },
+                {
+                    "label": "South Dakota",
+                    "value": "South Dakota",
+                    "displayOrder": 41,
+                    "hidden": false
+                },
+                {
+                    "label": "Tennessee",
+                    "value": "Tennessee",
+                    "displayOrder": 42,
+                    "hidden": false
+                },
+                {
+                    "label": "Texas",
+                    "value": "Texas",
+                    "displayOrder": 43,
+                    "hidden": false
+                },
+                {
+                    "label": "Utah",
+                    "value": "Utah",
+                    "displayOrder": 44,
+                    "hidden": false
+                },
+                {
+                    "label": "Vermont",
+                    "value": "Vermont",
+                    "displayOrder": 45,
+                    "hidden": false
+                },
+                {
+                    "label": "Virginia",
+                    "value": "Virginia",
+                    "displayOrder": 46,
+                    "hidden": false
+                },
+                {
+                    "label": "Washington",
+                    "value": "Washington",
+                    "displayOrder": 47,
+                    "hidden": false
+                },
+                {
+                    "label": "West Virginia",
+                    "value": "West Virginia",
+                    "displayOrder": 48,
+                    "hidden": false
+                },
+                {
+                    "label": "Wisconsin",
+                    "value": "Wisconsin",
+                    "displayOrder": 49,
+                    "hidden": false
+                },
+                {
+                    "label": "Wyoming",
+                    "value": "Wyoming",
+                    "displayOrder": 50,
+                    "hidden": false
+                }
+            ],
+            "hasUniqueValue": false,
+            "hidden": false,
+            "formField": false
+        }
+    ]
+}

@@ -1,0 +1,23 @@
+{
+  "requiredProperties": [
+    "vin"
+  ],
+  "searchableProperties": [
+    "vin"
+  ],
+  "primaryDisplayProperty": "vin",
+  "name": "vehicles",
+  "description": "CRM Bootcamp Custom Object: Vehicles",
+  "associatedObjects": [],
+  "properties": [
+    {
+      "name": "vin",
+      "label": "VIN",
+      "isPrimaryDisplayLabel": true
+    }
+  ],
+  "labels": {
+    "singular": "Vehicle",
+    "plural": "Vehicles"
+  }
+}
