@@ -1,7 +1,7 @@
 # Custom Objects, Properties, and Sample Data 
 
 ## Getting started
-You need to have Postman setup and configured. If you aren't sure how to do that, check out 
+You need to have Postman setup and configured. If you aren't sure how to do that, [check out this video](https://www.youtube.com/watch?v=U67UTzT6Zn4).
 
 ## Step 1 Create the Custom Objects
 Utilizing the custom-object JSON files, and the `/crm-object-schemas/v3/schemas` [API Endpoint](https://developers.hubspot.com/docs/api/crm/crm-custom-objects).
