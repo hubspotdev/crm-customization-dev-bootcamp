@@ -24,6 +24,19 @@ Copy the data from the JSON files into the *BODY* of the **POST** request.
 2. Vehicles
 3. Rental Agreement
 
+### Create the Custom Rollup
+1. Name: Number of Available Vehicles
+2. Internal Name: number_of_available_vehicles
+3. Type: Rollup
+   4. Rollup Type: Count
+5. Number format: Formatted number
+6. Association Record Type: Vehicle
+   7. Record Property: Record ID
+8. Additional Conditions
+   9. Property: Available == Yes
+
+![alt text](https://github.com/hubspotdev/crm-customization-dev-bootcamp/blob/main/data/number_of_available_vehicles.png?raw=true)
+
 ## Step 3 Create the Associations
 
 Within your HubSpot CRM Sandbox account, create the following associations.
