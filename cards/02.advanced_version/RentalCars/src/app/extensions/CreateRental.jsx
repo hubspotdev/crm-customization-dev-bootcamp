@@ -95,7 +95,7 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
 
   const [currentStep, setCurrentStep] = useState(0);
   const [zipCode, setZipCode] = useState(37064);
-  const [miles, setMiles] = useState(250);
+  const [miles, setMiles] = useState(30);
 
   const [loading, setLoading] = useState(true);
   const [pickupDate, setPickupDate] = useState(null);
@@ -177,6 +177,8 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
     }
 
     if (locations.length > 0) {
+
+      setLocationCount(locations.length);
       let newLocations = sortAndPaginateLocations(locations, sort.name, sort.order, locationPage, pageSize)
       setLocationsOnPage(newLocations);
     }
@@ -185,6 +187,7 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
 
   useEffect(() => {
     if (vehicles.length > 0) {
+      setVehicleCount(vehicles.length);
       let newVehicles = sortAndPaginateVehicles(vehicles, vehicleYearSort, vehiclePage, pageSize)
       setVehiclesOnPage(newVehicles);
     }
@@ -434,9 +437,15 @@ const StepZeroForm = ({
             name="vehicleClass"
             variant="transparent"
             options={[
-              { label: "Touring", value: "Touring" },
-              { label: "Sport", value: "Sport" },
-              { label: "Base", value: "Base" },
+              { label: "Standard", value: "Standard" },
+              { label: "Compact", value: "Compact" },
+              { label: "Convertible", value: "Convertible" },
+              { label: "Coupe", value: "Coupe" },
+              { label: "Fullsize", value: "Fullsize" },
+              { label: "Midsize", value: "Midsize" },
+              { label: "Premium", value: "Premium" },
+              { label: "Truck", value: "Truck" },
+              { label: "Van", value: "Van" },
             ]}
             onChange={(value) => {
               setVehicleClass(value);
@@ -451,7 +460,7 @@ const StepZeroForm = ({
       <Table
         width={'max'}
         paginated={true}
-        pageCount={locationCount / pageSize}
+        pageCount={Math.ceil(locationCount / pageSize)}
         onPageChange={(page) => {
           setLocationPage(page);
         }}

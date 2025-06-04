@@ -48,7 +48,7 @@ function fetchLocations({ lat_min, lat_max, lng_min, lng_max, pickupDate, return
     operationName: "getLocations",
     query: `query getLocations($lat_min: Number, $lat_max: Number, $lng_min: Number, $lng_max: Number) {
       CRM {
-        p_locations_collection(filter: {lat__gt: $lat_min, lat__lt: $lat_max, lng__gt: $lng_min, lng__lt: $lng_max}, limit: 500) {
+        p_locations_collection(filter: {lat__gt: $lat_min, lat__lt: $lat_max, lng__gt: $lng_min, lng__lt: $lng_max}, limit: 100) {
           items {
             full_address
             postal_code
@@ -57,7 +57,7 @@ function fetchLocations({ lat_min, lat_max, lng_min, lng_max, pickupDate, return
             number_of_available_vehicles
             hs_object_id
             associations {
-              all_vehicles: p_vehicles_collection__vehicles_to_locations {
+              all_vehicles: p_vehicles_collection__locations_to_vehicles {
                 items {
                   hs_object_id
                   model
