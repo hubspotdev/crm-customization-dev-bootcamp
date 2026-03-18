@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
-import _ from 'lodash';
-import moment from 'moment';
+import { useState, useEffect, useMemo } from "react";
+import { debounce } from "lodash";
 import {
-  Divider,
+  Alert,
+  AutoGrid,
   Button,
+  Divider,
+  EmptyState,
   Flex,
   hubspot,
   DateInput,
   NumberInput,
   MultiSelect,
-  Select,
   Table,
   TableHead,
   TableRow,
@@ -20,105 +21,110 @@ import {
   Input,
   LoadingSpinner,
   StepIndicator,
-  Link,
-  DescriptionList,
-  DescriptionListItem,
-  ToggleGroup
 } from "@hubspot/ui-extensions";
 
-import {
-  CrmCardActions,
-  CrmActionLink,
-  CrmActionButton
-} from '@hubspot/ui-extensions/crm';
 
+// ── Constants ──────────────────────────────────────────────────────────
+const STEPS = ["Location", "Vehicle", "Confirm"];
+const PAGE_SIZE = 10;
+
+// ── Reusable Components ───────────────────────────────────────────────
+const SummaryRow = ({ label, value }) => (
+  <Flex direction="row" justify="between">
+    <Text variant="microcopy">{label}</Text>
+    <Text variant="microcopy" format={{ fontWeight: "demibold" }}>
+      {value || "-"}
+    </Text>
+  </Flex>
+);
+
+const SectionBreak = () => (
+  <>
+    <Divider />
+    <Text variant="microcopy">{" "}</Text>
+  </>
+);
+
+// ── Utilities ─────────────────────────────────────────────────────────
+function diffDays(dateA, dateB) {
+  return Math.round(
+    (new Date(dateA).getTime() - new Date(dateB).getTime()) / (1000 * 60 * 60 * 24)
+  );
+}
 
 function sortAndPaginateLocations(locations, sortBy, sortOrder, page, pageSize) {
+  const sorted = [...locations];
 
-  if (sortBy === 'distance') {
-    locations.sort((a, b) => a.distance - b.distance);
-  } else if (sortBy === 'available_vehicles') {
-    locations.sort((a, b) => b.number_of_available_vehicles - a.number_of_available_vehicles);
-  } else if (sortBy === 'vehicle_match') {
-    locations.sort((a, b) => b.associations.all_vehicles.total - a.associations.all_vehicles.total);
+  if (sortBy === "distance") {
+    sorted.sort((a, b) => a.distance - b.distance);
+  } else if (sortBy === "available_vehicles") {
+    sorted.sort((a, b) => b.number_of_available_vehicles - a.number_of_available_vehicles);
+  } else if (sortBy === "vehicle_match") {
+    sorted.sort((a, b) => b.associations.all_vehicles.total - a.associations.all_vehicles.total);
   }
 
-  if (sortOrder === 'desc') {
-    locations.reverse();
+  if (sortOrder === "desc") {
+    sorted.reverse();
   }
 
   const start = (page - 1) * pageSize;
   const end = page * pageSize;
-  return locations.slice(start, end);
-
+  return sorted.slice(start, end);
 }
 
 function sortAndPaginateVehicles(vehicles, vehicleYearSort, vehiclePage, pageSize) {
-  if (vehicleYearSort === 'asc') {
-    vehicles.sort((a, b) => a.properties.year - b.properties.year);
-  } else if (vehicleYearSort === 'desc') {
-    vehicles.sort((a, b) => b.properties.year - a.properties.year);
+  const sorted = [...vehicles];
+
+  if (vehicleYearSort === "asc") {
+    sorted.sort((a, b) => a.properties.year - b.properties.year);
+  } else if (vehicleYearSort === "desc") {
+    sorted.sort((a, b) => b.properties.year - a.properties.year);
   }
 
   const start = (vehiclePage - 1) * pageSize;
   const end = vehiclePage * pageSize;
-  return vehicles.slice(start, end);
+  return sorted.slice(start, end);
 }
 
 
-// Define the extension to be run within the Hubspot CRM
 hubspot.extend(({ context, runServerlessFunction, actions }) => (
   <Extension
     context={context}
     runServerless={runServerlessFunction}
     sendAlert={actions.addAlert}
     fetchProperties={actions.fetchCrmObjectProperties}
+    actions={actions}
   />
 ));
 
-const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
-
+const Extension = ({ context, runServerless, sendAlert, fetchProperties, actions }) => {
   const [locations, setLocations] = useState([]);
-  const [locationsOnPage, setLocationsOnPage] = useState([]);
   const [vehicles, setVehicles] = useState([]);
-  const [vehiclesOnPage, setVehiclesOnPage] = useState([]);
 
   const [selectedLocation, setSelectedLocation] = useState({});
   const [selectedVehicle, setSelectedVehicle] = useState({});
-
-
-  const [steps, setSteps] = useState([
-    "Location",
-    "Vehicle",
-    "Confirm"
-  ]);
 
   const [currentStep, setCurrentStep] = useState(0);
   const [zipCode, setZipCode] = useState(37064);
   const [miles, setMiles] = useState(30);
 
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [pickupDate, setPickupDate] = useState(null);
   const [returnDate, setReturnDate] = useState(null);
   const [vehicleClass, setVehicleClass] = useState("");
 
-  const [isValid, setIsValid] = useState(false);
-  const [validationMessage, setValidationMessage] = useState('');
+  const [distanceSort, setDistanceSort] = useState("asc");
+  const [vehicleSort, setVehicleSort] = useState("");
+  const [vehicleMatchSort, setVehicleMatchSort] = useState("");
 
-  const [distanceSort, setDistanceSort] = useState('asc'); //asc, desc, ''
-  const [vehicleSort, setVehicleSort] = useState(''); //asc, desc, ''
-  const [vehicleMatchSort, setVehicleMatchSort] = useState(''); //asc, desc, ''
-
-  const [vehicleYearSort, setVehicleYearSort] = useState('desc'); //asc, desc, ''
+  const [vehicleYearSort, setVehicleYearSort] = useState("desc");
 
   const [locationPage, setLocationPage] = useState(1);
   const [locationCount, setLocationCount] = useState(0);
   const [vehiclePage, setVehiclePage] = useState(1);
-  const [vehicleCount, setVehicleCount] = useState(6);
 
-  const [pageSize, setPageSize] = useState(10);
   const [locationFetching, setLocationFetching] = useState(false);
-  const [vehicleFetching, setVehicleFetching] = useState(false);
 
   const [geography, setGeography] = useState({ lat: 35.89872340000001, lng: -86.96240859999999 });
   const [geoCodeFetching, setGeoCodeFetching] = useState(false);
@@ -126,108 +132,104 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
   const [insurance, setInsurance] = useState(false);
   const [insuranceCost, setInsuranceCost] = useState(0);
 
-  const [days, setDays] = useState(0);
+  const days = useMemo(() => {
+    if (!pickupDate || !returnDate) return 0;
+    return diffDays(returnDate.formattedDate, pickupDate.formattedDate);
+  }, [pickupDate, returnDate]);
 
   function geoCode() {
     sendAlert({ message: "Geocoding...", type: "info" });
     setGeoCodeFetching(true);
-    runServerless({ name: "geoCode", parameters: { "zipCode": zipCode } }).then((resp) => {
-      setGeography(resp.response);
-      setGeoCodeFetching(false);
-    })
+    runServerless({ name: "geoCode", parameters: { zipCode } })
+      .then((resp) => {
+        setGeography(resp.response || geography);
+        setGeoCodeFetching(false);
+      })
+      .catch((err) => {
+        console.error("Geocode error:", err);
+        sendAlert({ message: "Failed to geocode zip code.", type: "danger" });
+        setGeoCodeFetching(false);
+      });
   }
 
   function fetchLocations() {
-    sendAlert({ message: "Fetching locations...", type: "info" });
     setLocationFetching(true);
-    runServerless({ name: "getLocations", parameters: { "miles": miles, "geography": geography, "pickupDate": pickupDate, "returnDate": returnDate, "vehicleClass": vehicleClass } }).then((resp) => {
-      setLocations(resp.response.results);
-      setLocationCount(resp.response.total);
-      setLocationFetching(false);
-      //reset the table
-      setLocationPage(1);
+    setError(null);
+    runServerless({
+      name: "getLocations",
+      parameters: { miles, geography, pickupDate, returnDate, vehicleClass },
     })
-
+      .then((resp) => {
+        const results = resp.response?.results || [];
+        setLocations(results);
+        setLocationCount(resp.response?.total || results.length);
+        setLocationFetching(false);
+        setLoading(false);
+        setLocationPage(1);
+      })
+      .catch((err) => {
+        console.error("Fetch locations error:", err);
+        setError("Failed to load locations. Please try again.");
+        setLocationFetching(false);
+        setLoading(false);
+      });
   }
 
-  const debouncedFetchLocations = _.debounce(fetchLocations, 500);
+  const debouncedFetchLocations = debounce(fetchLocations, 500);
+  const debouncedGeoCode = debounce(geoCode, 500);
 
-  const debounceGeoCode = _.debounce(geoCode, 500);
-
-  //run the fetchLocations, when the distanceSort or vehicleSort changes or when the page changes
   useEffect(() => {
     debouncedFetchLocations();
   }, [miles, geography]);
 
   useEffect(() => {
-    if (zipCode.length === 5 && !geoCodeFetching) {
-      debounceGeoCode();
+    if (String(zipCode).length === 5 && !geoCodeFetching) {
+      debouncedGeoCode();
     }
   }, [zipCode]);
 
-  useEffect(() => {
-    let sort = {};
-    if (distanceSort) {
-      sort = { "name": "distance", "order": distanceSort };
-    } else if (vehicleSort) {
-      sort = { "name": "available_vehicles", "order": vehicleSort };
-    }
-    else if (vehicleMatchSort) {
-      sort = { "name": "vehicle_match", "order": vehicleMatchSort };
-    }
+  const sortedLocationsOnPage = useMemo(() => {
+    if (locations.length === 0) return [];
+    let sortBy = "";
+    let sortOrder = "";
+    if (distanceSort) { sortBy = "distance"; sortOrder = distanceSort; }
+    else if (vehicleSort) { sortBy = "available_vehicles"; sortOrder = vehicleSort; }
+    else if (vehicleMatchSort) { sortBy = "vehicle_match"; sortOrder = vehicleMatchSort; }
+    return sortAndPaginateLocations(locations, sortBy, sortOrder, locationPage, PAGE_SIZE);
+  }, [distanceSort, vehicleSort, vehicleMatchSort, locationPage, locations]);
 
-    if (locations.length > 0) {
-
-      setLocationCount(locations.length);
-      let newLocations = sortAndPaginateLocations(locations, sort.name, sort.order, locationPage, pageSize)
-      setLocationsOnPage(newLocations);
-    }
-  }, [distanceSort, vehicleSort, vehicleMatchSort, locationPage, pageSize, locations]);
-
-
-  useEffect(() => {
-    if (vehicles.length > 0) {
-      setVehicleCount(vehicles.length);
-      let newVehicles = sortAndPaginateVehicles(vehicles, vehicleYearSort, vehiclePage, pageSize)
-      setVehiclesOnPage(newVehicles);
-    }
+  const sortedVehiclesOnPage = useMemo(() => {
+    if (vehicles.length === 0) return [];
+    return sortAndPaginateVehicles(vehicles, vehicleYearSort, vehiclePage, PAGE_SIZE);
   }, [vehicleYearSort, vehiclePage, vehicles]);
 
-
   function setSort(sort, type) {
-    if (type === 'distance') {
+    if (type === "distance") {
       setDistanceSort(sort);
-      setVehicleSort('');
-      setVehicleMatchSort('');
-    }
-    else if (type === 'vehicle_match') {
+      setVehicleSort("");
+      setVehicleMatchSort("");
+    } else if (type === "vehicle_match") {
       setVehicleMatchSort(sort);
-      setDistanceSort('');
-      setVehicleSort('');
-    }
-    else {
+      setDistanceSort("");
+      setVehicleSort("");
+    } else {
       setVehicleSort(sort);
-      setDistanceSort('');
-      setVehicleMatchSort('');
+      setDistanceSort("");
+      setVehicleMatchSort("");
     }
   }
 
-  useEffect(() => {
-    if (pickupDate && returnDate) {
-      let days = moment(returnDate.formattedDate).diff(moment(pickupDate.formattedDate), 'days');
-      setDays(days);
-    }
-  }, [pickupDate, returnDate]);
-
-
-  function goToVehiclePage(vehicles) {
-    setVehicleFetching(true)
-    runServerless({ name: "getVehicles", parameters: { "vehicles": vehicles } }).then((resp) => {
-      setVehicles(resp.response.results);
-      setVehicleCount(resp.response.results.length);
-      setCurrentStep(1);
-      setVehicleFetching(false);
-    })
+  function goToVehiclePage(vehicleIds) {
+    runServerless({ name: "getVehicles", parameters: { vehicles: vehicleIds } })
+      .then((resp) => {
+        const results = resp.response?.results || [];
+        setVehicles(results);
+        setCurrentStep(1);
+      })
+      .catch((err) => {
+        console.error("Fetch vehicles error:", err);
+        sendAlert({ message: "Failed to load vehicles.", type: "danger" });
+      });
   }
 
   function goToBookingPage(vehicle) {
@@ -235,26 +237,37 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
     setCurrentStep(2);
   }
 
+  if (loading) {
+    return (
+      <Flex align="center" justify="center">
+        <LoadingSpinner size="sm" />
+      </Flex>
+    );
+  }
+
   return (
-    <>
+    <Flex direction="column" gap="sm">
       <StepperBar
         currentStep={currentStep}
         setCurrentStep={setCurrentStep}
         selectedLocation={selectedLocation}
         sendAlert={sendAlert}
-        steps={steps}
       />
       <Divider />
+      {error && (
+        <Alert title="Error" variant="error">
+          {error}
+        </Alert>
+      )}
       {currentStep === 0 && (
         <StepZeroForm
           distanceSort={distanceSort}
           goToVehiclePage={goToVehiclePage}
           locationCount={locationCount}
           locationFetching={locationFetching}
-          locationsOnPage={locationsOnPage}
+          locationsOnPage={sortedLocationsOnPage}
           locationPage={locationPage}
           miles={miles}
-          pageSize={pageSize}
           pickupDate={pickupDate}
           returnDate={returnDate}
           setMiles={setMiles}
@@ -275,27 +288,25 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
         <StepOneForm
           goToBookingPage={goToBookingPage}
           setVehicleYearSort={setVehicleYearSort}
-          vehiclesOnPage={vehiclesOnPage}
+          vehiclesOnPage={sortedVehiclesOnPage}
           vehicleYearSort={vehicleYearSort}
         />
       )}
-      {
-        currentStep === 2 && (
-          <StepTwoForm
-            days={days}
-            insurance={insurance}
-            insuranceCost={insuranceCost}
-            pickupDate={pickupDate}
-            returnDate={returnDate}
-            selectedLocation={selectedLocation}
-            selectedVehicle={selectedVehicle}
-            setPickupDate={setPickupDate}
-            setReturnDate={setReturnDate}
-          />
-        )
-      }
-      <Divider />
-    </>
+      {currentStep === 2 && (
+        <StepTwoForm
+          days={days}
+          insurance={insurance}
+          insuranceCost={insuranceCost}
+          pickupDate={pickupDate}
+          returnDate={returnDate}
+          selectedLocation={selectedLocation}
+          selectedVehicle={selectedVehicle}
+          setPickupDate={setPickupDate}
+          setReturnDate={setReturnDate}
+          sendAlert={sendAlert}
+        />
+      )}
+    </Flex>
   );
 };
 
@@ -304,35 +315,34 @@ const StepperBar = ({
   setCurrentStep,
   selectedLocation,
   sendAlert,
-  steps
-}) => {
-  return(
-    <Flex
-      direction={'row'}
-      justify={'between'}
-    >
-      <StepIndicator
-        currentStep={currentStep}
-        stepNames={steps}
-        variant={"default"}
-        onClick={(step) => {
-          //make sure that the step is valid before allowing the user to go to the next step
-          if (step === 1) {
-            if (selectedLocation && selectedLocation.id) {
-              setCurrentStep(step);
-            }
-            else {
-              sendAlert({ message: "Please select a location", type: "danger" });
-            }
-          }
-          else {
-            setCurrentStep(step);
-          }
-        }}
-      />
-    </Flex>
-  );
-};
+}) => (
+  <Flex direction="row" justify="between">
+    <StepIndicator
+      currentStep={currentStep}
+      stepNames={STEPS}
+
+      onClick={(step) => {
+        if (step === 1 && !(selectedLocation && selectedLocation.id)) {
+          sendAlert({ message: "Please select a location", type: "danger" });
+          return;
+        }
+        setCurrentStep(step);
+      }}
+    />
+  </Flex>
+);
+
+const VEHICLE_CLASS_OPTIONS = [
+  { label: "Standard", value: "Standard" },
+  { label: "Compact", value: "Compact" },
+  { label: "Convertible", value: "Convertible" },
+  { label: "Coupe", value: "Coupe" },
+  { label: "Fullsize", value: "Fullsize" },
+  { label: "Midsize", value: "Midsize" },
+  { label: "Premium", value: "Premium" },
+  { label: "Truck", value: "Truck" },
+  { label: "Van", value: "Van" },
+];
 
 const StepZeroForm = ({
   distanceSort,
@@ -342,7 +352,6 @@ const StepZeroForm = ({
   locationsOnPage,
   locationPage,
   miles,
-  pageSize,
   pickupDate,
   returnDate,
   setMiles,
@@ -356,243 +365,210 @@ const StepZeroForm = ({
   vehicleClass,
   vehicleMatchSort,
   vehicleSort,
-  zipCode
-}) => {
-  return (
-    <>
-      <Flex
-        direction={'row'}
-        justify={'start'}
-        wrap={'nowrap'}
-        gap={'extra-large'}
-        align={'start'}
-        alignSelf={'start'}
-      >
-        <Flex
-          width={'auto'}
-        >
-          <Input
-            label="Zip Code"
-            name="zipCode"
-            tooltip="Please enter your zip code"
-            placeholder="12345"
-            value={zipCode}
-            required={true}
-            onChange={value => {
-              setZipCode(value);
-            }}
+  zipCode,
+}) => (
+  <Flex direction="column" gap="sm">
+    <AutoGrid columnWidth={250} flexible={true} gap="small">
+      <Input
+        label="Zip Code"
+        name="zipCode"
+        tooltip="Please enter your zip code"
+        placeholder="12345"
+        value={zipCode}
+        required={true}
+        onChange={(value) => setZipCode(value)}
+      />
+      <NumberInput
+        label="Miles Radius"
+        name="miles"
+        min={25}
+        max={300}
+        tooltip="Please enter the number of miles you are willing to travel"
+        placeholder="250"
+        value={miles}
+        required={true}
+        onChange={(value) => setMiles(value)}
+      />
+      <DateInput
+        label="Pickup Date"
+        name="pickupDate"
+        value={pickupDate}
+        max={returnDate}
+        onChange={(value) => setPickupDate(value)}
+        format="ll"
+      />
+      <DateInput
+        label="Return Date"
+        name="returnDate"
+        value={returnDate}
+        min={pickupDate}
+        onChange={(value) => setReturnDate(value)}
+        format="ll"
+      />
+      <MultiSelect
+        label="Vehicle Class"
+        name="vehicleClass"
+        variant="transparent"
+        options={VEHICLE_CLASS_OPTIONS}
+        onChange={(value) => setVehicleClass(value)}
+      />
+    </AutoGrid>
 
-          />
-        </Flex>
-        <Flex
-          width={'auto'}
-        >
-          <NumberInput
-            label="Miles Radius"
-            name="miles"
-            min={25}
-            max={300}
-            tooltip="Please enter the number of miles you are willing to travel"
-            placeholder="250"
-            value={miles}
-            required={true}
-            onChange={value => {
-              setMiles(value);
-            }}
-          />
-        </Flex>
-        <Flex
-          width={'auto'}
-        >
-          <DateInput
-            label="Pickup Date"
-            name="pickupDate"
-            value={pickupDate}
-            max={returnDate}
-            onChange={(value) => {
-              setPickupDate(value);
-            }}
-            format="ll"
-          />
-        </Flex>
-        <Flex
-          width={'auto'}
-        >
-          <DateInput
-            label="Return Date"
-            name="returnDate"
-            value={returnDate}
-            min={pickupDate}
-            onChange={(value) => {
-              setReturnDate(value);
-            }}
-            format="ll"
-          />
-        </Flex>
-        <Flex
-          width={'max'}
-        >
-          <MultiSelect
-            label="Vehicle Class"
-            name="vehicleClass"
-            variant="transparent"
-            options={[
-              { label: "Standard", value: "Standard" },
-              { label: "Compact", value: "Compact" },
-              { label: "Convertible", value: "Convertible" },
-              { label: "Coupe", value: "Coupe" },
-              { label: "Fullsize", value: "Fullsize" },
-              { label: "Midsize", value: "Midsize" },
-              { label: "Premium", value: "Premium" },
-              { label: "Truck", value: "Truck" },
-              { label: "Van", value: "Van" },
-            ]}
-            onChange={(value) => {
-              setVehicleClass(value);
-            }}
-          />
-        </Flex>
+    <SectionBreak />
 
+    {locationFetching && (
+      <Flex align="center" justify="center">
+        <LoadingSpinner size="sm" />
       </Flex>
+    )}
 
-      <Divider />
-
+    {!locationFetching && locationsOnPage.length === 0 ? (
+      <EmptyState title="No locations found">
+        <Text>Try adjusting your zip code or increasing the mile radius.</Text>
+      </EmptyState>
+    ) : (
       <Table
-        width={'max'}
+        bordered={true}
+        flush={true}
         paginated={true}
-        pageCount={Math.ceil(locationCount / pageSize)}
-        onPageChange={(page) => {
-          setLocationPage(page);
-        }}
+        pageCount={Math.ceil(locationCount / PAGE_SIZE)}
+        onPageChange={(page) => setLocationPage(page)}
         page={locationPage}
       >
         <TableHead>
           <TableRow>
-            <TableHeader width={'min'}>Address</TableHeader>
-            <TableHeader width={'min'}>
-              <Link variant="dark"
-                onClick={() => setSort(distanceSort === 'asc' ? 'desc' : 'asc', 'distance')}
-              >
-                Distance
-              </Link>  {distanceSort === '' ? ' ' : distanceSort === 'asc' ? ' ↓' : ' ↑'}
+            <TableHeader width="auto">Address</TableHeader>
+            <TableHeader
+              width="min"
+              sortDirection={distanceSort || "none"}
+              onSortChange={(dir) => setSort(dir, "distance")}
+            >
+              Distance
             </TableHeader>
-            <TableHeader width={'min'}>
-              <Link variant="dark"
-                onClick={() => setSort(vehicleSort === 'asc' ? 'desc' : 'asc', 'vehicle')}
-              >
-                Availablity
-              </Link>
-              {vehicleSort === '' ? ' ' : vehicleSort === 'asc' ? ' ↓' : ' ↑'}
+            <TableHeader
+              width="min"
+              sortDirection={vehicleSort || "none"}
+              onSortChange={(dir) => setSort(dir, "vehicle")}
+            >
+              Availability
             </TableHeader>
-            <TableHeader width={'min'} >
-              <Link variant="dark"
-                onClick={() => setSort(vehicleMatchSort === 'asc' ? 'desc' : 'asc', 'vehicle_match')}
-              >
-                Vehicles that meet Filters
-              </Link>
-              {vehicleMatchSort === '' ? ' ' : vehicleMatchSort === 'asc' ? ' ↓' : ' ↑'}
+            <TableHeader
+              width="min"
+              sortDirection={vehicleMatchSort || "none"}
+              onSortChange={(dir) => setSort(dir, "vehicle_match")}
+            >
+              Matching Vehicles
             </TableHeader>
           </TableRow>
         </TableHead>
         <TableBody>
+          {locationsOnPage.map((location) => {
+            const allVehicles = location.associations?.all_vehicles?.items || [];
+            const filteredVehicles =
+              vehicleClass.length === 0
+                ? allVehicles
+                : allVehicles.filter((v) => vehicleClass.includes(v.model?.label));
 
-          {locationFetching === false && locationsOnPage.map((location) => (
-            <TableRow>
-              <TableCell>
-                <Text>{location.full_address}</Text>
-              </TableCell>
-              <TableCell>
-                <Text>{location.distance} miles</Text>
-              </TableCell>
-              <TableCell>
-                <Link onClick={() => { goToVehiclePage(location.associations.all_vehicles.items.map(x => x.hs_object_id)); setSelectedLocation(location) }}>{location.number_of_available_vehicles} Vehicles Available</Link>
-              </TableCell>
-              <TableCell>
-                <Link onClick={() => {
-                  const vehicleClassArray = vehicleClass
-
-                  const filteredVehicles = vehicleClassArray.length === 0
-                    ? location.associations.all_vehicles.items
-                    : location.associations.all_vehicles.items.filter(vehicle =>
-                      vehicleClassArray.includes(vehicle.model.label)
-                    );
-
-                  const vehicleObjectIds = filteredVehicles.map(vehicle => vehicle.hs_object_id);
-
-                  goToVehiclePage(vehicleObjectIds);
-
-                  setSelectedLocation(location);
-                }}>
-                  {
-                    location.associations.all_vehicles.items.filter(vehicle => {
-                      if (vehicleClass.length === 0) {
-                        return true; // If vehicleClass is empty, include all vehicles
-                      }
-                      const vehicleClassArray = vehicleClass;
-                      return vehicleClassArray.includes(vehicle.model.label);
-                    }).length
-                  } Vehicles
-                </Link>
-              </TableCell>
-            </TableRow>
-          ))}
+            return (
+              <TableRow key={location.hs_object_id}>
+                <TableCell width="auto">
+                  <Text variant="microcopy">{location.full_address || "-"}</Text>
+                </TableCell>
+                <TableCell width="min">
+                  <Text variant="microcopy" format={{ fontWeight: "demibold" }}>
+                    {location.distance ? `${location.distance} mi` : "-"}
+                  </Text>
+                </TableCell>
+                <TableCell width="min">
+                  <Button
+                    size="extra-small"
+                    variant="secondary"
+                    onClick={() => {
+                      goToVehiclePage(allVehicles.map((x) => x.hs_object_id));
+                      setSelectedLocation(location);
+                    }}
+                  >
+                    {location.number_of_available_vehicles || 0} Available
+                  </Button>
+                </TableCell>
+                <TableCell width="min">
+                  <Button
+                    size="extra-small"
+                    variant="secondary"
+                    onClick={() => {
+                      goToVehiclePage(filteredVehicles.map((v) => v.hs_object_id));
+                      setSelectedLocation(location);
+                    }}
+                  >
+                    {filteredVehicles.length} Vehicles
+                  </Button>
+                </TableCell>
+              </TableRow>
+            );
+          })}
         </TableBody>
       </Table>
-    </>
-  );
-};
+    )}
+  </Flex>
+);
 
 const StepOneForm = ({
   goToBookingPage,
   setVehicleYearSort,
   vehiclesOnPage,
-  vehicleYearSort
+  vehicleYearSort,
 }) => {
-  return(
-    <>
-      <Table
-        width={'max'}
-        paginated={false}
-      >
-        <TableHead>
-          <TableRow>
-            <TableHeader width={'min'}>Make</TableHeader>
-            <TableHeader width={'min'}>
-              Model
-            </TableHeader>
-            <TableHeader width={'min'}>
-              <Link variant="dark"
-                onClick={() => { setVehicleYearSort(vehicleYearSort === 'asc' ? 'desc' : 'asc') }}
+  if (vehiclesOnPage.length === 0) {
+    return (
+      <EmptyState title="No vehicles found">
+        <Text>No vehicles are available at this location. Try a different location.</Text>
+      </EmptyState>
+    );
+  }
+
+  return (
+    <Table bordered={true} flush={true}>
+      <TableHead>
+        <TableRow>
+          <TableHeader width="auto">Make</TableHeader>
+          <TableHeader width="auto">Model</TableHeader>
+          <TableHeader
+            width="min"
+            sortDirection={vehicleYearSort || "none"}
+            onSortChange={(dir) => setVehicleYearSort(dir)}
+          >
+            Year
+          </TableHeader>
+          <TableHeader width="min">Book</TableHeader>
+        </TableRow>
+      </TableHead>
+      <TableBody>
+        {vehiclesOnPage.map((vehicle) => (
+          <TableRow key={vehicle.id}>
+            <TableCell width="auto">
+              <Text variant="microcopy">{vehicle.properties.make || "-"}</Text>
+            </TableCell>
+            <TableCell width="auto">
+              <Text variant="microcopy">{vehicle.properties.model || "-"}</Text>
+            </TableCell>
+            <TableCell width="min">
+              <Text variant="microcopy" format={{ fontWeight: "demibold" }}>
+                {vehicle.properties.year || "-"}
+              </Text>
+            </TableCell>
+            <TableCell width="min">
+              <Button
+                size="extra-small"
+                variant="primary"
+                onClick={() => goToBookingPage(vehicle)}
               >
-                Year
-              </Link>
-              {vehicleYearSort === '' ? ' ' : vehicleYearSort === 'asc' ? ' ↓' : ' ↑'}
-            </TableHeader>
-            <TableHeader width={'min'} >
-              Book
-            </TableHeader>
+                Book
+              </Button>
+            </TableCell>
           </TableRow>
-        </TableHead>
-        <TableBody>
-          {vehiclesOnPage.map((vehicle) => (
-            <TableRow>
-              <TableCell>
-                <Text>{vehicle.properties.make}</Text>
-              </TableCell>
-              <TableCell>
-                <Text>{vehicle.properties.model}</Text>
-              </TableCell>
-              <TableCell>
-                <Text>{vehicle.properties.year}</Text>
-              </TableCell>
-              <TableCell>
-                <Link onClick={() => { goToBookingPage(vehicle) }}>Book now</Link>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </>
+        ))}
+      </TableBody>
+    </Table>
   );
 };
 
@@ -605,74 +581,66 @@ const StepTwoForm = ({
   selectedLocation,
   selectedVehicle,
   setPickupDate,
-  setReturnDate
+  setReturnDate,
+  sendAlert,
 }) => {
-  return(
-    <Flex direction="column" gap="lg">
-      {/* First Row for Location and Vehicle */}
-      <Flex gap='lg' direction="row" wrap="nowrap">
-        {/* Pickup Location */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Pickup Location:</Text>
-          <Text>{selectedLocation.full_address}</Text>
-        </Flex>
-        {/* Vehicle Details */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Vehicle:</Text>
-          <Text>
-            {selectedVehicle.properties.year} {selectedVehicle.properties.make} {selectedVehicle.properties.model}
-          </Text>
-        </Flex>
-      </Flex>
+  const vehicleLabel = [
+    selectedVehicle.properties?.year,
+    selectedVehicle.properties?.make,
+    selectedVehicle.properties?.model,
+  ]
+    .filter(Boolean)
+    .join(" ") || "-";
 
-      {/* Second Row for Dates, Insurance, Rates, and Total */}
-      <Flex gap='lg' direction="row" wrap="nowrap">
-        {/* Pickup Date */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Pickup Date:</Text>
-          <DateInput
-            label=""
-            name="pickupDate"
-            value={pickupDate}
-            max={returnDate}
-            onChange={(value) => setPickupDate(value)}
-            format="ll"
-          />
+  const dailyRate = Number(selectedVehicle.properties?.daily_price) || 0;
+  const total = dailyRate * days + insuranceCost;
+
+  return (
+    <Flex direction="column" gap="sm">
+      <AutoGrid columnWidth={250} flexible={true} gap="small">
+        <Flex direction="column" gap="xs">
+          <SummaryRow label="Pickup Location" value={selectedLocation.full_address} />
+          <SummaryRow label="Vehicle" value={vehicleLabel} />
+          <SummaryRow label="Insurance" value={insurance ? "Yes" : "No"} />
         </Flex>
-        {/* Return Date */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Return Date:</Text>
-          <DateInput
-            label=""
-            name="returnDate"
-            value={returnDate}
-            min={pickupDate}
-            onChange={(value) => setReturnDate(value)}
-            format="ll"
-          />
+        <Flex direction="column" gap="xs">
+          <SummaryRow label="Daily Rate" value={dailyRate ? `$${dailyRate}` : "-"} />
+          <SummaryRow label="Days" value={days > 0 ? String(days) : "-"} />
+          <SummaryRow label="Total" value={total > 0 ? `$${total.toFixed(2)}` : "-"} />
         </Flex>
-      </Flex>
-      <Flex gap='lg' direction="row" wrap="nowrap">
-        {/* Insurance */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Insurance:</Text>
-          <Text>{insurance ? 'Yes' : 'No'}</Text>
-        </Flex>
-        {/* Daily Rate */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Daily Rate:</Text>
-          <Text>$ {selectedVehicle.properties.daily_price}</Text>
-        </Flex>
-        {/* Days */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Days:</Text>
-          <Text>{days}</Text>
-        </Flex>
-        {/* Total */}
-        <Flex direction="column" gap="sm">
-          <Text format={{ fontWeight: 'bold' }}>Total:</Text>
-          <Text>${(selectedVehicle.properties.daily_price * days) + insuranceCost}</Text>
-        </Flex>
+      </AutoGrid>
+
+      <SectionBreak />
+
+      <AutoGrid columnWidth={250} flexible={true} gap="small">
+        <DateInput
+          label="Pickup Date"
+          name="confirmPickupDate"
+          value={pickupDate}
+          max={returnDate}
+          onChange={(value) => setPickupDate(value)}
+          format="ll"
+        />
+        <DateInput
+          label="Return Date"
+          name="confirmReturnDate"
+          value={returnDate}
+          min={pickupDate}
+          onChange={(value) => setReturnDate(value)}
+          format="ll"
+        />
+      </AutoGrid>
+
+      <Flex direction="row" justify="end" gap="xs">
+        <Button
+          size="small"
+          variant="primary"
+          onClick={() => {
+            sendAlert({ message: "Booking confirmed!", type: "success" });
+          }}
+        >
+          Confirm Booking
+        </Button>
       </Flex>
     </Flex>
   );

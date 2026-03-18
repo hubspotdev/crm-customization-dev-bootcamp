@@ -1,16 +1,18 @@
-const axios = require("axios");
-
-const usZips = require('us-zips')
+const usZips = require("us-zips");
 
 exports.main = async (context, sendResponse) => {
-  const { zipCode } = context.parameters;
-  geoLocation = usZips[zipCode];
-  //swap out latitude and longitude for lat and lng
-  geoLocation.lat = geoLocation.latitude;
-  geoLocation.lng = geoLocation.longitude;
-  delete geoLocation.latitude;
-  delete geoLocation.longitude;
+  try {
+    const { zipCode } = context.parameters;
+    const entry = usZips[String(zipCode)];
 
-  console.log(geoLocation);
-  return geoLocation;
+    if (!entry) {
+      console.error("Zip code not found:", zipCode);
+      return { error: "Zip code not found" };
+    }
+
+    return { lat: entry.latitude, lng: entry.longitude };
+  } catch (err) {
+    console.error("geoCode error:", err);
+    return { error: err.message };
+  }
 };
