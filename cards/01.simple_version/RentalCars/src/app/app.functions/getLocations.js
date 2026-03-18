@@ -11,7 +11,7 @@ function searchLocations({ zipCode }) {
 
   const config = {
     method: 'post',
-    url: 'https://api.hubapi.com/crm/v3/objects/locations/search',
+    url: 'https://api.hubapi.com/crm/v3/objects/p_locations/search',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ' + process.env['PRIVATE_APP_ACCESS_TOKEN'],
@@ -25,11 +25,7 @@ function searchLocations({ zipCode }) {
 exports.main = async (context) => {
   try {
     const { zipCode } = context.parameters;
-
-    console.log(context.parameters);
-
     const response = await searchLocations({ zipCode });
-    console.log(JSON.stringify(response.data));
 
     return { results: response.data.results, total: response.data.total };
   } catch (error) {

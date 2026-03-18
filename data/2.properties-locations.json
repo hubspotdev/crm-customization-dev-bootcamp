@@ -39,6 +39,7 @@
       "name": "postal_code",
       "label": "Postal Code",
       "type": "number",
+      "numberDisplayHint": "unformatted",
       "description": "",
       "hasUniqueValue": false,
       "formField": false,
@@ -50,6 +51,7 @@
       "name": "lat",
       "label": "Lat",
       "type": "number",
+      "numberDisplayHint": "unformatted",
       "description": "",
       "hasUniqueValue": false,
       "formField": false,
@@ -61,6 +63,7 @@
       "name": "lng",
       "label": "Lng",
       "type": "number",
+      "numberDisplayHint": "unformatted",
       "description": "",
       "hasUniqueValue": false,
       "formField": false,
@@ -74,12 +77,6 @@
       "label": "State",
       "groupName": "locations_information",
       "options": [
-        {
-          "label": "",
-          "value": "",
-          "displayOrder": 0,
-          "hidden": false
-        },
         {
           "label": "Alabama",
           "value": "AL",

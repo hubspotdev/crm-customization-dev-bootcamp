@@ -1,17 +1,12 @@
+import React, { useState } from "react";
 import {
+  Alert,
   Button,
-  DateInput,
-  DescriptionList,
-  DescriptionListItem,
   Divider,
+  EmptyState,
   Flex,
   Input,
-  Link,
   LoadingSpinner,
-  MultiSelect,
-  NumberInput,
-  Select,
-  StepIndicator,
   Table,
   TableBody,
   TableCell,
@@ -19,150 +14,153 @@ import {
   TableHeader,
   TableRow,
   Text,
-  ToggleGroup,
-  hubspot
+  hubspot,
 } from "@hubspot/ui-extensions";
-import _ from 'lodash';
-import moment from 'moment';
-import React, { useEffect, useState } from "react";
-
-import {
-  CrmActionButton,
-  CrmActionLink,
-  CrmCardActions
-} from '@hubspot/ui-extensions/crm';
-
+import { CrmActionLink } from "@hubspot/ui-extensions/crm";
 
 const ITEMS_PER_PAGE = 10;
 
-// Define the extension to be run within the Hubspot CRM
+// Define the extension to be run within the HubSpot CRM
 hubspot.extend(({ context, runServerlessFunction, actions }) => (
   <Extension
     context={context}
     runServerless={runServerlessFunction}
     sendAlert={actions.addAlert}
     fetchProperties={actions.fetchCrmObjectProperties}
+    actions={actions}
   />
 ));
 
-const Extension = ({ context, runServerless, sendAlert, fetchProperties }) => {
-
+const Extension = ({
+  context,
+  runServerless,
+  sendAlert,
+  fetchProperties,
+  actions,
+}) => {
   const [locations, setLocations] = useState([]);
-  const [locationsOnPage, setLocationsOnPage] = useState([]);
-  const [vehicles, setVehicles] = useState([]);
-  const [vehiclesOnPage, setVehiclesOnPage] = useState([]);
-
   const [locationCount, setLocationCount] = useState(0);
-  const [vehicleCount, setVehicleCount] = useState(0);
   const [locationFetching, setLocationFetching] = useState(false);
-
-  const [locationPage, setLocationPage] = useState(1);
-
+  const [error, setError] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
   const [zipCode, setZipCode] = useState("");
 
+  const numPages = Math.ceil(locationCount / ITEMS_PER_PAGE);
 
-  const [currentPage, setCurrentPage] = useState(1); // For controlling current page
-  const [numPages, setNumPages] = useState(0); // For storing the total number of pages
-
-  // Function to change the current page
   const changePage = (newPage) => {
     if (newPage >= 1 && newPage <= numPages) {
       setCurrentPage(newPage);
     }
   };
 
-  // Whenever the locationCount or locations change, reset the paging
-  useEffect(() => {
-    setNumPages(Math.ceil(locationCount / ITEMS_PER_PAGE));
-    setCurrentPage(1);
-  }, [locationCount, locations]);
-
-  // Calculate the slice of locations for the current page
   const locationsOnCurrentPage = locations.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
 
-
-
   function fetchLocations() {
     sendAlert({ message: "Fetching locations...", type: "info" });
     setLocationFetching(true);
-    runServerless({ name: "getLocations", parameters: { "zipCode": zipCode } }).then((resp) => {
-      setLocations(resp.response.results);
-      setLocationCount(resp.response.total);
-      setLocationFetching(false);
-      //reset the table
-      setLocationPage(1);
-    })
+    setError(null);
 
+    runServerless({ name: "getLocations", parameters: { zipCode } })
+      .then((resp) => {
+        setLocations(resp.response.results || []);
+        setLocationCount(resp.response.total || 0);
+        setCurrentPage(1);
+      })
+      .catch((err) => {
+        console.error("Error fetching locations:", err);
+        setError("Failed to fetch locations. Please try again.");
+        setLocations([]);
+        setLocationCount(0);
+      })
+      .finally(() => {
+        setLocationFetching(false);
+      });
   }
 
-  const debouncedFetchLocations = _.debounce(fetchLocations, 500);
-
-
   return (
-    <>
-      <Flex direction="column" gap="sm">
-        <Flex direction="row" justify="start" gap="sm" align="end">
-          <Input
-            name="zipCode"
-            label="Zip Code"
-            value={zipCode}
-            onChange={(e) => setZipCode(e)}
-          />
-          <Button
-            onClick={() => {
-              fetchLocations();
-            }}
-            variant="primary"
-            size="md"
-            type="button"
-          >
-            Search!
-          </Button>
-        </Flex>
-        <Divider />
-        <Text>
-          {locationFetching && <LoadingSpinner />}
-        </Text>
+    <Flex direction="column" gap="sm">
+      <Flex direction="row" justify="start" gap="sm" align="end">
+        <Input
+          name="zipCode"
+          label="Zip Code"
+          value={zipCode}
+          onChange={(e) => setZipCode(e)}
+        />
+        <Button
+          onClick={fetchLocations}
+          variant="primary"
+          size="sm"
+          type="button"
+        >
+          Search!
+        </Button>
       </Flex>
-      <Table
-        bordered={true}
-        paginated={true}
-        pageCount={numPages}
-        onPageChange={(newPage) => changePage(newPage)}
-      >
-        <TableHead>
-          <TableRow>
-            <TableHeader>Zip</TableHeader>
-            <TableHeader>Address</TableHeader>
-            <TableHeader>Available Vehicles</TableHeader>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {locationsOnCurrentPage.map((location, index) => {
-            return (
-              <TableRow>
-                <TableCell>
+      <Divider />
+      {error && (
+        <Alert title="Error" variant="error">
+          {error}
+        </Alert>
+      )}
+      {locationFetching ? (
+        <Flex align="center" justify="center">
+          <LoadingSpinner size="sm" />
+        </Flex>
+      ) : locations.length === 0 ? (
+        <EmptyState title="No locations found">
+          <Text>
+            Enter a zip code and click Search to find rental locations.
+          </Text>
+        </EmptyState>
+      ) : (
+        <Table
+          bordered={true}
+          flush={true}
+          paginated={true}
+          page={currentPage}
+          pageCount={numPages}
+          onPageChange={(newPage) => changePage(newPage)}
+        >
+          <TableHead>
+            <TableRow>
+              <TableHeader width="min">Zip</TableHeader>
+              <TableHeader width="auto">Address</TableHeader>
+              <TableHeader width="min">Available Vehicles</TableHeader>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {locationsOnCurrentPage.map((location) => (
+              <TableRow key={location.id}>
+                <TableCell width="min">
                   <CrmActionLink
                     actionType="PREVIEW_OBJECT"
                     actionContext={{
-                      objectTypeId: "2-19860301",
-                      objectId: location.id
+                      objectTypeId: "p_locations",
+                      objectId: location.id,
                     }}
-                    variant="secondary"
                   >
                     {location.properties.postal_code}
                   </CrmActionLink>
                 </TableCell>
-                <TableCell>{location.properties.address_1 + " " + location.properties.city + ", " + location.properties.state}</TableCell>
-                <TableCell>{location.properties.number_of_available_vehicles}</TableCell>
+                <TableCell width="auto">
+                  {[
+                    location.properties.address_1,
+                    location.properties.city,
+                    location.properties.state,
+                  ]
+                    .filter(Boolean)
+                    .join(", ") || "-"}
+                </TableCell>
+                <TableCell width="min">
+                  {location.properties.number_of_available_vehicles || "-"}
+                </TableCell>
               </TableRow>
-            );
-          })}
-        </TableBody>
-      </Table>
-    </>
+            ))}
+          </TableBody>
+        </Table>
+      )}
+    </Flex>
   );
 };

@@ -4,36 +4,59 @@
 You need to have Postman setup and configured. If you aren't sure how to do that, [check out this video](https://www.youtube.com/watch?v=U67UTzT6Zn4).
 
 ## Step 1 Create the Custom Objects
-Utilizing the custom-object JSON files, and the `/crm-object-schemas/v3/schemas` [API Endpoint](https://developers.hubspot.com/docs/api/crm/crm-custom-objects).
+Using the custom-object JSON files, make a **POST** request to:
 
-Copy the data in the custom-object into the *BODY* of the **POST** request.
+```
+POST https://api.hubapi.com/crm/v3/schemas
+```
 
-### Repeat for each Custom Object
-1. Locations
-2. Vehicles
-3. Rental Agreement
+[API Docs: Custom Objects](https://developers.hubspot.com/docs/api/crm/crm-custom-objects)
+
+Copy the contents of each JSON file into the **Body** of the request.
+
+> **Important:** Create them in this order. Later steps depend on these objects existing first.
+
+1. `1.custom-object-locations.json`
+2. `1.custom-object-vehicles.json`
+3. `1.custom-object-rental-agreement.json`
+
+After each request succeeds, note the `objectTypeId` in the response (e.g. `2-12345678`). You will need these IDs for Step 2.
 
 ## Step 2 Import the Properties
 
-Utilizing the properties JSON files, and the `/crm/v3/properties/{objectType}/batch/create` [API Endpoint](https://developers.hubspot.com/docs/api/crm/properties).
+Using the properties JSON files, make a **POST** request to:
 
-Copy the data from the JSON files into the *BODY* of the **POST** request.
+```
+POST https://api.hubapi.com/crm/v3/properties/{objectTypeId}/batch/create
+```
 
-### Repeat for each Custom Object
-1. Locations
-2. Vehicles
-3. Rental Agreement
+[API Docs: Properties](https://developers.hubspot.com/docs/api/crm/properties)
+
+Replace `{objectTypeId}` with the ID you got from Step 1 for each object. Copy the contents of the matching JSON file into the **Body** of the request.
+
+1. `2.properties-locations.json` -> use the Locations `objectTypeId`
+2. `2.properties-vehicles.json` -> use the Vehicles `objectTypeId`
+3. `2.properties-rental-agreement.json` -> use the Rental Agreements `objectTypeId`
+
+### A note about number formatting
+
+Some number properties need to be set to **unformatted** in HubSpot, otherwise they display with comma separators (e.g. `06040` becomes `6,040`) which can break CRM cards and look wrong to users. The JSON files in this repo already have `"numberDisplayHint": "unformatted"` set where needed, but if you create properties manually, watch out for:
+
+- **Postal Code** — zip codes like `06040` will display as `6,040` if formatted
+- **Lat / Lng** — geographic coordinates should never have comma separators
+
+If you already created the properties and need to fix this, go to **Settings > Properties**, find the property, and change the **Number Format** to **Unformatted**.
 
 ### Create the Custom Rollup
 - *Name*: Number of Available Vehicles
 - *Internal Name*: number_of_available_vehicles
 - *Type*: Rollup
-- - *Rollup Type*: Count
+  - *Rollup Type*: Count
 - *Number Format*: Formatted number
 - *Association Record Type*: Vehicle
-- - *Record Property*: Record ID
+  - *Record Property*: Record ID
 - *Additional Conditions*
-- - *Property*: Available == Yes
+  - *Property*: Available == Yes
 
 ![alt text](https://github.com/hubspotdev/crm-customization-dev-bootcamp/blob/main/data/number_of_available_vehicles.png?raw=true)
 
@@ -56,13 +79,12 @@ Within your HubSpot CRM Sandbox account, create the following associations.
 
 ## Step 4 Import the Data
 
-If you do not creation the associations between the objects, then you won't be able to map the vehicles and locations.  
+> **Important:** You must create the associations in Step 3 **before** importing data. Otherwise you won't be able to map relationships between vehicles and locations during the import.
 
-Utilizing HubSpot's [Import Feature](https://app.hubspot.com/l/import/), and start importing your data.
+Using HubSpot's [Import Feature](https://app.hubspot.com/l/import/), import your data in this order:
 
-Import order:
-1. Locations
-2. Vehicles
+1. `3.crm-bootcamp-locations.csv`
+2. `3.crm-bootcamp-vehicles.csv`
 
 ## Need help or have issues
-If you have any issues or questions, just message our on the Bootcamp Slack Channel
+If you have any issues or questions, message us on the Bootcamp Slack Channel.

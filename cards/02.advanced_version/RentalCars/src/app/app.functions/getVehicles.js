@@ -21,7 +21,7 @@ exports.main = async (context, sendResponse) => {
 
   const config = {
     method: 'post',
-    url: 'https://api.hubapi.com/crm/v3/objects/vehicles/batch/read',
+    url: 'https://api.hubapi.com/crm/v3/objects/p_vehicles/batch/read',
     headers: {
       'Authorization': `Bearer ${process.env['PRIVATE_APP_ACCESS_TOKEN']}`,
       'Content-Type': 'application/json'

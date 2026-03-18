@@ -2,6 +2,9 @@
   "appFunctions": {
     "getLocations": {
       "file": "getLocations.js"
+    },
+    "getVehicles": {
+      "file": "getVehicles.js"
     }
   }
 }

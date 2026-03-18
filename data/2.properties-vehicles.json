@@ -492,31 +492,6 @@
             "formField": false
         },
         {
-            "name": "available",
-            "label": "Available",
-            "type": "enumeration",
-            "fieldType": "booleancheckbox",
-            "description": "",
-            "groupName": "vehicles_information",
-            "options": [
-                {
-                    "label": "Yes",
-                    "value": "true",
-                    "displayOrder": 0,
-                    "hidden": false
-                },
-                {
-                    "label": "No",
-                    "value": "false",
-                    "displayOrder": 1,
-                    "hidden": false
-                }
-            ],
-            "hasUniqueValue": false,
-            "hidden": false,
-            "formField": false
-        },
-        {
             "name": "year",
             "label": "Year",
             "type": "enumeration",

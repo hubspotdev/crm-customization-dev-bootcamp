@@ -5,8 +5,6 @@
   "license": "MIT",
   "dependencies": {
     "@hubspot/ui-extensions": "latest",
-    "react": "^18.2.0",
-    "lodash": "^4.17.21",
-    "moment": "^2.29.1"
+    "react": "^18.2.0"
   }
 }
