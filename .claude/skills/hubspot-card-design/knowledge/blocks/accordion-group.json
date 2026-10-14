@@ -1,0 +1,62 @@
+{
+  "name": "accordion-group",
+  "description": "Section header plus an iterated Accordion per group. Each Accordion is titled by group name with a right-aligned count/summary; its children render the group's rows. Use as the Grouped Detail archetype skeleton — e.g. 'Open tickets' → accordion per priority level, each listing the tickets in that level.",
+  "componentsUsed": [
+    "Flex",
+    "Text",
+    "Accordion"
+  ],
+  "dataShape": {
+    "groups": [
+      {
+        "id": "g1",
+        "title": "High priority",
+        "summary": "3 open",
+        "items": []
+      },
+      {
+        "id": "g2",
+        "title": "Medium priority",
+        "summary": "5 open",
+        "items": []
+      }
+    ]
+  },
+  "node": {
+    "root": "accordion-group",
+    "elements": {
+      "text": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "Grouped details"
+      },
+      "text-1": {
+        "type": "Text",
+        "variant": "microcopy",
+        "children": "$group.summary"
+      },
+      "accordion-group": {
+        "type": "Flex",
+        "name": "accordion-group",
+        "direction": "column",
+        "gap": "sm",
+        "children": [
+          "text",
+          {
+            "$forEach": "$data.groups",
+            "as": "group",
+            "render": {
+              "type": "Accordion",
+              "title": "$group.title",
+              "children": [
+                "text-1"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

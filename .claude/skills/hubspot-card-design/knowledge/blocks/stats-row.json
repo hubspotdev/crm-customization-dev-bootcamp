@@ -1,0 +1,35 @@
+{
+  "name": "stats-row",
+  "description": "Statistics bar with up to 3 KPI items. Use as the hero of KPI Snapshot archetype. Each item expects a pre-computed label and number in data.",
+  "componentsUsed": [
+    "Statistics",
+    "StatisticsItem"
+  ],
+  "dataShape": {
+    "stats": [
+      {
+        "label": "string",
+        "number": "string"
+      }
+    ]
+  },
+  "node": {
+    "root": "root",
+    "elements": {
+      "root": {
+        "type": "Statistics",
+        "children": [
+          {
+            "$forEach": "$data.stats",
+            "as": "stat",
+            "render": {
+              "type": "StatisticsItem",
+              "label": "$stat.label",
+              "number": "$stat.number"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

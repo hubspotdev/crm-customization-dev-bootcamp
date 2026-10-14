@@ -1,0 +1,26 @@
+{
+  "name": "service-alert-triad",
+  "description": "Single Alert that conveys urgency for a time-sensitive event (overdue / due-soon / on-schedule). Pre-compute the variant ('warning'|'info'|'success'), title, and body into data.urgencyAlert — DO NOT use $if chains or render three separate conditional Alerts. Drop this anywhere a single status banner fits. Why one node, not three: makes the spec smaller, keeps copy editable in one place, and matches the derivation policy (variants live in data).",
+  "componentsUsed": [
+    "Alert"
+  ],
+  "dataShape": {
+    "urgencyAlert": {
+      "variant": "warning",
+      "title": "Service overdue",
+      "body": "Oil change was due Mar 15, 2026. Schedule service as soon as possible."
+    }
+  },
+  "node": {
+    "root": "urgency-alert",
+    "elements": {
+      "urgency-alert": {
+        "type": "Alert",
+        "name": "urgency-alert",
+        "variant": "$data.urgencyAlert.variant",
+        "title": "$data.urgencyAlert.title",
+        "children": "$data.urgencyAlert.body"
+      }
+    }
+  }
+}

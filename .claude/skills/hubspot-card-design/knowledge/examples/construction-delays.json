@@ -1,0 +1,477 @@
+{
+  "meta": {
+    "name": "Construction Delays",
+    "tagline": "Schedule slippage at a glance \u2014 delay causes, planned vs. actual progress, and per-cause detail.",
+    "description": "Shows project managers exactly where a construction deal is slipping \u2014 planned vs. actual progress, which delay causes are driving it, and detail on each one. Clear enough to flag risk to a client or leadership without opening the full schedule. \u2014 Grouped Detail + Progress archetype: ProgressBar hero over an Accordion per delay cause.",
+    "surface": "crm.record.tab",
+    "object": "deal"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "totalDelayDaysLabel": "7 days",
+    "completionPercentLabel": "68%",
+    "isDelayed": true,
+    "trackingStatusLabel": "Behind schedule",
+    "trackingStatusVariant": "error",
+    "originalCompletion": "Apr 15, 2026",
+    "projectedCompletion": "Apr 22, 2026",
+    "chartData": [
+      {
+        "Date": "Mar 1",
+        "Progress": 3.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 1",
+        "Progress": 3.3,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 4",
+        "Progress": 13.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 4",
+        "Progress": 13.3,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 7",
+        "Progress": 23.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 7",
+        "Progress": 23.3,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 10",
+        "Progress": 33.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 10",
+        "Progress": 33.3,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 13",
+        "Progress": 43.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 13",
+        "Progress": 36.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 16",
+        "Progress": 53.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 16",
+        "Progress": 46.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 19",
+        "Progress": 63.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 19",
+        "Progress": 46.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 22",
+        "Progress": 73.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 22",
+        "Progress": 56.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 25",
+        "Progress": 83.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 25",
+        "Progress": 66.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 28",
+        "Progress": 93.3,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 28",
+        "Progress": 76.7,
+        "Series": "Actual"
+      },
+      {
+        "Date": "Mar 30",
+        "Progress": 100,
+        "Series": "Planned"
+      },
+      {
+        "Date": "Mar 30",
+        "Progress": 83.3,
+        "Series": "Actual"
+      }
+    ],
+    "delayCauses": [
+      {
+        "rank": 1,
+        "cause": "Weather",
+        "daysLabel": "3 days",
+        "detail": "Rain and wind delays on exterior framing"
+      },
+      {
+        "rank": 2,
+        "cause": "Permits",
+        "daysLabel": "2.5 days",
+        "detail": "Electrical permit resubmission required"
+      },
+      {
+        "rank": 3,
+        "cause": "Materials",
+        "daysLabel": "1.5 days",
+        "detail": "Steel beam delivery delayed from supplier"
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading schedule data...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load schedule data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve construction progress. Please check the project integration and try again."
+    },
+    "text": {
+      "type": "Text",
+      "children": "This deal does not have a construction schedule linked yet. Connect a project schedule to begin tracking progress."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No schedule data available",
+      "layout": "vertical",
+      "imageName": "emptyStateCharts",
+      "imageWidth": 120,
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "statisticstrend": {
+      "type": "StatisticsTrend",
+      "direction": "increase",
+      "value": "3 days",
+      "color": "red"
+    },
+    "statisticsitem": {
+      "type": "StatisticsItem",
+      "label": "Current delay",
+      "number": "$data.totalDelayDaysLabel",
+      "children": [
+        "statisticstrend"
+      ]
+    },
+    "tag": {
+      "type": "Tag",
+      "variant": "$data.trackingStatusVariant",
+      "children": "$data.trackingStatusLabel"
+    },
+    "statisticsitem-1": {
+      "type": "StatisticsItem",
+      "label": "Schedule status",
+      "number": "$data.trackingStatusLabel",
+      "children": [
+        "tag"
+      ]
+    },
+    "statisticstrend-1": {
+      "type": "StatisticsTrend",
+      "direction": "decrease",
+      "value": "5%",
+      "color": "red"
+    },
+    "statisticsitem-2": {
+      "type": "StatisticsItem",
+      "label": "Completion",
+      "number": "$data.completionPercentLabel",
+      "children": [
+        "statisticstrend-1"
+      ]
+    },
+    "statistics": {
+      "type": "Statistics",
+      "children": [
+        "statisticsitem",
+        "statisticsitem-1",
+        "statisticsitem-2"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "inline": true,
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.originalCompletion"
+    },
+    "text-3": {
+      "type": "Text",
+      "inline": true,
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.projectedCompletion"
+    },
+    "text-1": {
+      "type": "Text",
+      "children": [
+        "Original completion was ",
+        "text-2",
+        ". Projected new completion date: ",
+        "text-3",
+        "."
+      ]
+    },
+    "alert-1": {
+      "type": "Alert",
+      "variant": "warning",
+      "title": "Schedule impact detected",
+      "visible": "$data.isDelayed",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "bold"
+      },
+      "children": "Planned vs actual progress"
+    },
+    "text-5": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "Mar 1 \u2013 Mar 30, 2026 | Daily"
+    },
+    "linechart": {
+      "type": "LineChart",
+      "data": "$data.chartData",
+      "axes": {
+        "x": {
+          "field": "Date",
+          "fieldType": "category"
+        },
+        "y": {
+          "field": "Progress",
+          "fieldType": "linear",
+          "label": "Progress (%)"
+        },
+        "options": {
+          "groupFieldByColor": "Series"
+        }
+      },
+      "options": {
+        "showLegend": true,
+        "showTooltips": true
+      }
+    },
+    "chart-section": {
+      "type": "Flex",
+      "name": "chart-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "text-4",
+        "text-5",
+        "linechart"
+      ]
+    },
+    "tile": {
+      "type": "Tile",
+      "children": [
+        "chart-section"
+      ]
+    },
+    "text-6": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "bold"
+      },
+      "children": "Top delay causes"
+    },
+    "text-7": {
+      "type": "Text",
+      "variant": "default",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "#{{item.rank}}"
+    },
+    "text-8": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$item.cause"
+    },
+    "text-9": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$item.detail"
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "flush",
+      "children": [
+        "text-8",
+        "text-9"
+      ]
+    },
+    "flex": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "text-7",
+        "flex-1"
+      ]
+    },
+    "text-10": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$item.daysLabel"
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "end",
+      "children": [
+        "text-10"
+      ]
+    },
+    "delay-causes-section": {
+      "type": "Flex",
+      "name": "delay-causes-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "text-6",
+        {
+          "$forEach": "$data.delayCauses",
+          "as": "item",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "justify": "between",
+            "align": "center",
+            "children": [
+              "flex",
+              "flex-2"
+            ]
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "statistics",
+        "alert-1",
+        "tile",
+        "delay-causes-section"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

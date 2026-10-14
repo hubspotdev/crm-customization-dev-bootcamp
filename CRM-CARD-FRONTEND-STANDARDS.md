@@ -49,42 +49,36 @@ This document captures hard-won rules, patterns, and gotchas from building CRM c
 ### Standard Extension Pattern
 
 ```jsx
-import React, { useState, useEffect } from "react";
-import { Flex, LoadingSpinner, hubspot } from "@hubspot/ui-extensions";
+import React from "react";
+import { Alert, Flex, LoadingSpinner, hubspot } from "@hubspot/ui-extensions";
+import { useCrmProperties } from "@hubspot/ui-extensions/crm";
 
-hubspot.extend(({ context, runServerlessFunction, actions }) => (
+const PROPERTIES_LIST = ["firstname", "lastname", "email"];
+
+hubspot.extend(({ context, actions }) => (
   <Extension
     context={context}
-    runServerless={runServerlessFunction}
     sendAlert={actions.addAlert}
-    fetchProperties={actions.fetchCrmObjectProperties}
     actions={actions}
   />
 ));
 
-const Extension = ({ context, runServerless, sendAlert, fetchProperties, actions }) => {
-  const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
+const Extension = ({ context, sendAlert, actions }) => {
+  const { properties, isLoading, error } = useCrmProperties(PROPERTIES_LIST);
 
-  useEffect(() => {
-    const load = async () => {
-      try {
-        const props = await fetchProperties(PROPERTIES_LIST);
-        setData(props || {});
-      } catch (err) {
-        console.error("Error loading data:", err);
-      } finally {
-        setLoading(false);
-      }
-    };
-    load();
-  }, []);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <Flex align="center" justify="center">
         <LoadingSpinner size="sm" />
       </Flex>
+    );
+  }
+
+  if (error) {
+    return (
+      <Alert title="Error" variant="error">
+        Couldn't load this record's properties.
+      </Alert>
     );
   }
 
@@ -100,7 +94,7 @@ const Extension = ({ context, runServerless, sendAlert, fetchProperties, actions
 
 1. **Always destructure `actions`** from `hubspot.extend()` — you'll need `closeOverlay`, `addAlert`, `copyTextToClipboard`, `openIframeModal`, etc.
 2. **Define properties arrays as constants** outside the component. This prevents re-renders and makes the data contract explicit.
-3. **Always guard with `|| {}`** when setting state from fetched data to prevent null reference errors.
+3. **Always guard with `|| {}`** when reading fetched data to prevent null reference errors.
 4. **Root wrapper is always `Flex direction="column" gap="sm"`** — this is the standard card container.
 
 ---
@@ -1210,25 +1204,15 @@ const UI_PROPERTIES = [
   // ... always list explicitly
 ];
 
-// Fetch in useEffect
-useEffect(() => {
-  const load = async () => {
-    try {
-      const props = await fetchProperties(UI_PROPERTIES);
-      setProps(props || {});
-    } finally {
-      setLoading(false);
-    }
-  };
-  load();
-}, []);
+// useCrmProperties handles loading and refetches when the record changes
+const { properties, isLoading, error } = useCrmProperties(UI_PROPERTIES);
 ```
 
 ### Serverless Function Calls
 
 ```jsx
-const { response } = await runServerless({
-  name: "functionName",
+// First argument is the function's uid from its *-hsmeta.json (not the file name)
+const result = await hubspot.serverless("functionName", {
   parameters: { objectId: context.crm.objectId },
 });
 ```

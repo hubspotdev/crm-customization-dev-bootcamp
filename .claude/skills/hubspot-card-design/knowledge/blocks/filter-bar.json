@@ -1,0 +1,96 @@
+{
+  "name": "filter-bar",
+  "description": "Canonical List Manager filter row: SearchInput on the left, one or more transparent-variant Selects next to it, and a right-aligned record count label in a flex=1 Box. Wire each control to a $state key via { $action: 'setState', key: '...' }. Pair with active-filter-chips when filters are applied.",
+  "componentsUsed": [
+    "Flex",
+    "SearchInput",
+    "Select",
+    "Box",
+    "Text"
+  ],
+  "dataShape": {
+    "typeFilterOptions": [
+      {
+        "label": "All types",
+        "value": ""
+      }
+    ],
+    "timePeriodOptions": [
+      {
+        "label": "All time",
+        "value": ""
+      }
+    ],
+    "recordCountLabel": "8 records"
+  },
+  "node": {
+    "root": "filter-bar",
+    "elements": {
+      "searchinput": {
+        "type": "SearchInput",
+        "placeholder": "Search...",
+        "value": "$state.searchTerm",
+        "onChange": {
+          "$action": "setState",
+          "key": "searchTerm"
+        }
+      },
+      "select": {
+        "type": "Select",
+        "variant": "transparent",
+        "placeholder": "All types",
+        "value": "$state.typeFilter",
+        "onChange": {
+          "$action": "setState",
+          "key": "typeFilter"
+        },
+        "options": "$data.typeFilterOptions"
+      },
+      "select-1": {
+        "type": "Select",
+        "variant": "transparent",
+        "placeholder": "All time",
+        "value": "$state.timePeriod",
+        "onChange": {
+          "$action": "setState",
+          "key": "timePeriod"
+        },
+        "options": "$data.timePeriodOptions"
+      },
+      "text": {
+        "type": "Text",
+        "variant": "microcopy",
+        "children": "$data.recordCountLabel"
+      },
+      "flex": {
+        "type": "Flex",
+        "direction": "row",
+        "justify": "end",
+        "children": [
+          "text"
+        ]
+      },
+      "box": {
+        "type": "Box",
+        "flex": 1,
+        "children": [
+          "flex"
+        ]
+      },
+      "filter-bar": {
+        "type": "Flex",
+        "name": "filter-bar",
+        "direction": "row",
+        "align": "center",
+        "gap": "sm",
+        "wrap": "wrap",
+        "children": [
+          "searchinput",
+          "select",
+          "select-1",
+          "box"
+        ]
+      }
+    }
+  }
+}

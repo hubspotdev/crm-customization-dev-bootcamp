@@ -1,0 +1,23 @@
+{
+  "uid": "vehicle_recommendation_mock",
+  "type": "app",
+  "config": {
+    "name": "Vehicle Recommendation (Mock)",
+    "description": "Week 2 mockup: a static card with hardcoded data, used to test the design with a rep before building any functionality.",
+    "distribution": "private",
+    "auth": {
+      "type": "static",
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read"
+      ],
+      "optionalScopes": [],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [],
+      "iframe": [],
+      "img": []
+    }
+  }
+}

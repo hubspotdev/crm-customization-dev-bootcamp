@@ -1,0 +1,923 @@
+{
+  "meta": {
+    "name": "Property Showings",
+    "tagline": "Property identity above a searchable, filterable showings table with inline feedback-logging panels.",
+    "description": "Lets a listing agent manage showings for a property from the deal record: who's coming, who toured already, and who left strong interest. Completed showings expose a panel to log feedback in one click. \u2014 List Manager: DescriptionList of property details + DataTable with search/filter/sort + inline feedback Panel.",
+    "surface": "crm.record.tab",
+    "object": "deal"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "deal": {
+      "dealname": "4827 Oakridge Dr - Colonial",
+      "dealstage": "Showings in Progress",
+      "amount": "$625,000"
+    },
+    "property": {
+      "address": "4827 Oakridge Dr, Westfield, NJ 07090",
+      "listPrice": "$625,000",
+      "mlsNumber": "MLS-2026-48271",
+      "listingAgent": "Karen Whitfield, Berkshire Hathaway",
+      "daysOnMarket": "18"
+    },
+    "statusFilterOptions": [
+      {
+        "label": "Confirmed",
+        "value": "confirmed"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      },
+      {
+        "label": "Completed",
+        "value": "completed"
+      },
+      {
+        "label": "Cancelled",
+        "value": "cancelled"
+      }
+    ],
+    "interestOptions": [
+      {
+        "label": "Very interested",
+        "value": "very_interested"
+      },
+      {
+        "label": "Somewhat interested",
+        "value": "somewhat_interested"
+      },
+      {
+        "label": "Not interested",
+        "value": "not_interested"
+      }
+    ],
+    "followUpOptions": [
+      {
+        "label": "Yes",
+        "value": "yes",
+        "initialIsChecked": false
+      },
+      {
+        "label": "No",
+        "value": "no",
+        "initialIsChecked": false
+      }
+    ],
+    "showings": [
+      {
+        "id": "sh-001",
+        "buyerName": "Rachel Nguyen",
+        "agentName": "Tom Breslin",
+        "status": "confirmed",
+        "statusLabel": "Confirmed",
+        "statusVariant": "success",
+        "dateTimeLabel": "Apr 2, 2026, 10:00 AM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      },
+      {
+        "id": "sh-002",
+        "buyerName": "Marcus & Elaine Webb",
+        "agentName": "Sarah Kowalski",
+        "status": "confirmed",
+        "statusLabel": "Confirmed",
+        "statusVariant": "success",
+        "dateTimeLabel": "Apr 2, 2026, 2:30 PM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      },
+      {
+        "id": "sh-003",
+        "buyerName": "David Park",
+        "agentName": "Jessica Morales",
+        "status": "pending",
+        "statusLabel": "Pending",
+        "statusVariant": "warning",
+        "dateTimeLabel": "Apr 3, 2026, 11:00 AM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      },
+      {
+        "id": "sh-004",
+        "buyerName": "Anya Petrov",
+        "agentName": "Tom Breslin",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 28, 2026, 9:00 AM",
+        "followUpLabel": "Yes",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "very_interested",
+        "feedbackFollowUp": "yes",
+        "feedbackNotes": "Loved the open floor plan and backyard. Wants to bring her partner for a second look this weekend."
+      },
+      {
+        "id": "sh-005",
+        "buyerName": "James & Linda Hartwell",
+        "agentName": "Derek Wu",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 27, 2026, 4:00 PM",
+        "followUpLabel": "Yes",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "somewhat_interested",
+        "feedbackFollowUp": "yes",
+        "feedbackNotes": "Concerned about the age of the roof. Requested a home inspection estimate before proceeding."
+      },
+      {
+        "id": "sh-006",
+        "buyerName": "Camille Rousseau",
+        "agentName": "Sarah Kowalski",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 26, 2026, 1:00 PM",
+        "followUpLabel": "No",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "not_interested",
+        "feedbackFollowUp": "no",
+        "feedbackNotes": "Felt the kitchen was too small for her needs. Prefers a newer build."
+      },
+      {
+        "id": "sh-007",
+        "buyerName": "Brian O'Malley",
+        "agentName": "Jessica Morales",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 25, 2026, 10:30 AM",
+        "followUpLabel": "Yes",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "very_interested",
+        "feedbackFollowUp": "yes",
+        "feedbackNotes": "Very enthusiastic. Mentioned he is pre-approved and ready to make an offer if the price is right."
+      },
+      {
+        "id": "sh-008",
+        "buyerName": "Mei-Ling Chen",
+        "agentName": "Derek Wu",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 24, 2026, 3:00 PM",
+        "followUpLabel": "No",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "somewhat_interested",
+        "feedbackFollowUp": "no",
+        "feedbackNotes": "Liked the neighborhood but wants a larger lot. Will keep it as a backup option."
+      },
+      {
+        "id": "sh-009",
+        "buyerName": "Carlos Gutierrez",
+        "agentName": "Tom Breslin",
+        "status": "cancelled",
+        "statusLabel": "Cancelled",
+        "statusVariant": "error",
+        "dateTimeLabel": "Mar 29, 2026, 12:00 PM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      },
+      {
+        "id": "sh-010",
+        "buyerName": "Sofia Andersson",
+        "agentName": "Sarah Kowalski",
+        "status": "pending",
+        "statusLabel": "Pending",
+        "statusVariant": "warning",
+        "dateTimeLabel": "Apr 4, 2026, 9:30 AM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      },
+      {
+        "id": "sh-011",
+        "buyerName": "Tyler & Keisha Washington",
+        "agentName": "Derek Wu",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "dateTimeLabel": "Mar 22, 2026, 11:00 AM",
+        "followUpLabel": "Yes",
+        "hasFeedback": true,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": true,
+        "feedbackPanelTitle": "Showing feedback",
+        "feedbackInterest": "very_interested",
+        "feedbackFollowUp": "yes",
+        "feedbackNotes": "Loved everything about the property. Want to schedule a second showing with their parents."
+      },
+      {
+        "id": "sh-012",
+        "buyerName": "Hannah Fitzgerald",
+        "agentName": "Jessica Morales",
+        "status": "confirmed",
+        "statusLabel": "Confirmed",
+        "statusVariant": "success",
+        "dateTimeLabel": "Apr 5, 2026, 2:00 PM",
+        "followUpLabel": "--",
+        "hasFeedback": false,
+        "showLogFeedbackButton": false,
+        "isClickableBuyer": false,
+        "feedbackPanelTitle": "Log showing feedback",
+        "feedbackInterest": "",
+        "feedbackFollowUp": "",
+        "feedbackNotes": ""
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load showings",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "There was a problem retrieving the showing schedule for this property. Please try again in a few moments."
+    },
+    "empty-deal-name-text": {
+      "type": "Text",
+      "children": "$data.deal.dealname"
+    },
+    "empty-deal-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Property",
+      "children": [
+        "empty-deal-name-text"
+      ]
+    },
+    "empty-deal-stage-text": {
+      "type": "Text",
+      "children": "$data.deal.dealstage"
+    },
+    "empty-deal-stage-item": {
+      "type": "DescriptionListItem",
+      "label": "Stage",
+      "children": [
+        "empty-deal-stage-text"
+      ]
+    },
+    "empty-deal-amount-text": {
+      "type": "Text",
+      "children": "$data.deal.amount"
+    },
+    "empty-deal-amount-item": {
+      "type": "DescriptionListItem",
+      "label": "List Price",
+      "children": [
+        "empty-deal-amount-text"
+      ]
+    },
+    "empty-identity": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-deal-name-item",
+        "empty-deal-stage-item",
+        "empty-deal-amount-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "No showing appointments have been created for this property yet. Schedule the first showing to start tracking buyer interest."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No showings scheduled",
+      "layout": "vertical",
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "address-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.property.address"
+    },
+    "address-item": {
+      "type": "DescriptionListItem",
+      "label": "Address",
+      "children": [
+        "address-text"
+      ]
+    },
+    "list-price-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.property.listPrice"
+    },
+    "list-price-item": {
+      "type": "DescriptionListItem",
+      "label": "List price",
+      "children": [
+        "list-price-text"
+      ]
+    },
+    "mls-text": {
+      "type": "Text",
+      "children": "$data.property.mlsNumber"
+    },
+    "mls-item": {
+      "type": "DescriptionListItem",
+      "label": "MLS #",
+      "children": [
+        "mls-text"
+      ]
+    },
+    "listing-agent-text": {
+      "type": "Text",
+      "children": "$data.property.listingAgent"
+    },
+    "listing-agent-item": {
+      "type": "DescriptionListItem",
+      "label": "Listing agent",
+      "children": [
+        "listing-agent-text"
+      ]
+    },
+    "dom-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.property.daysOnMarket"
+    },
+    "dom-item": {
+      "type": "DescriptionListItem",
+      "label": "Days on market",
+      "children": [
+        "dom-text"
+      ]
+    },
+    "property-details": {
+      "type": "DescriptionList",
+      "name": "property-details",
+      "direction": "row",
+      "children": [
+        "address-item",
+        "list-price-item",
+        "mls-item",
+        "listing-agent-item",
+        "dom-item"
+      ]
+    },
+    "section-header-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Showing schedule"
+    },
+    "schedule-showing-button": {
+      "type": "Button",
+      "variant": "primary",
+      "children": "Schedule showing"
+    },
+    "section-header": {
+      "type": "Flex",
+      "name": "section-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "section-header-text",
+        "schedule-showing-button"
+      ]
+    },
+    "showings-table": {
+      "type": "DataTable",
+      "name": "showings-table",
+      "data": "$data.showings",
+      "searchFields": [
+        "buyerName",
+        "agentName"
+      ],
+      "searchPlaceholder": "Search by buyer or agent...",
+      "pageSize": 10,
+      "defaultSort": {
+        "dateTime": "descending"
+      },
+      "filters": [
+        {
+          "type": "select",
+          "name": "status",
+          "placeholder": "All statuses",
+          "options": "$data.statusFilterOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "buyerName",
+          "label": "Buyer",
+          "width": "auto",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Flex",
+              "direction": "column",
+              "children": [
+                {
+                  "type": "Link",
+                  "visible": "$row.isClickableBuyer",
+                  "overlay": {
+                    "type": "Panel",
+                    "id": "feedback-panel-{{row.id}}",
+                    "title": "$row.feedbackPanelTitle",
+                    "width": "small",
+                    "variant": "modal",
+                    "flush": true,
+                    "children": [
+                      {
+                        "type": "PanelBody",
+                        "children": [
+                          {
+                            "type": "PanelSection",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "column",
+                                "gap": "sm",
+                                "children": [
+                                  {
+                                    "type": "DescriptionList",
+                                    "direction": "row",
+                                    "children": [
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Buyer",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.buyerName"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Agent",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.agentName"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Date",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.dateTimeLabel"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Divider"
+                                  },
+                                  {
+                                    "type": "Select",
+                                    "label": "Interest level",
+                                    "name": "feedback-interest",
+                                    "required": true,
+                                    "placeholder": "Select interest level",
+                                    "value": "$row.feedbackInterest",
+                                    "options": "$data.interestOptions"
+                                  },
+                                  {
+                                    "type": "ToggleGroup",
+                                    "label": "Follow-up requested?",
+                                    "name": "feedback-followup",
+                                    "toggleType": "radioButtonList",
+                                    "inline": true,
+                                    "value": "$row.feedbackFollowUp",
+                                    "options": "$data.followUpOptions"
+                                  },
+                                  {
+                                    "type": "TextArea",
+                                    "label": "Agent notes",
+                                    "name": "feedback-notes",
+                                    "placeholder": "How did the showing go? Any specific concerns or highlights...",
+                                    "value": "$row.feedbackNotes",
+                                    "resize": "vertical",
+                                    "rows": 4
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelFooter",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "row",
+                                "justify": "between",
+                                "children": [
+                                  {
+                                    "type": "Button",
+                                    "variant": "secondary",
+                                    "onClick": {
+                                      "$action": "closeOverlay",
+                                      "id": "feedback-panel-{{row.id}}"
+                                    },
+                                    "children": "Cancel"
+                                  },
+                                  {
+                                    "type": "LoadingButton",
+                                    "variant": "primary",
+                                    "children": "Save feedback"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "children": [
+                    {
+                      "type": "Text",
+                      "format": {
+                        "fontWeight": "demibold"
+                      },
+                      "truncate": true,
+                      "children": "$value"
+                    }
+                  ]
+                },
+                {
+                  "type": "Text",
+                  "visible": {
+                    "$eq": [
+                      "$row.isClickableBuyer",
+                      false
+                    ]
+                  },
+                  "format": {
+                    "fontWeight": "demibold"
+                  },
+                  "truncate": true,
+                  "children": "$value"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "agentName",
+          "label": "Buyer's Agent",
+          "width": "min",
+          "sortable": true
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "width": "min",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.statusVariant",
+              "children": "$row.statusLabel"
+            }
+          }
+        },
+        {
+          "field": "followUp",
+          "label": "Follow-up",
+          "width": "min",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Flex",
+              "direction": "column",
+              "children": [
+                {
+                  "type": "Button",
+                  "visible": "$row.showLogFeedbackButton",
+                  "size": "extra-small",
+                  "variant": "secondary",
+                  "overlay": {
+                    "type": "Panel",
+                    "id": "feedback-panel-{{row.id}}",
+                    "title": "$row.feedbackPanelTitle",
+                    "width": "small",
+                    "variant": "modal",
+                    "flush": true,
+                    "children": [
+                      {
+                        "type": "PanelBody",
+                        "children": [
+                          {
+                            "type": "PanelSection",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "column",
+                                "gap": "sm",
+                                "children": [
+                                  {
+                                    "type": "DescriptionList",
+                                    "direction": "row",
+                                    "children": [
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Buyer",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.buyerName"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Agent",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.agentName"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Date",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.dateTimeLabel"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Divider"
+                                  },
+                                  {
+                                    "type": "Select",
+                                    "label": "Interest level",
+                                    "name": "feedback-interest",
+                                    "required": true,
+                                    "placeholder": "Select interest level",
+                                    "options": "$data.interestOptions"
+                                  },
+                                  {
+                                    "type": "ToggleGroup",
+                                    "label": "Follow-up requested?",
+                                    "name": "feedback-followup",
+                                    "toggleType": "radioButtonList",
+                                    "inline": true,
+                                    "options": "$data.followUpOptions"
+                                  },
+                                  {
+                                    "type": "TextArea",
+                                    "label": "Agent notes",
+                                    "name": "feedback-notes",
+                                    "placeholder": "How did the showing go? Any specific concerns or highlights...",
+                                    "resize": "vertical",
+                                    "rows": 4
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelFooter",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "row",
+                                "justify": "between",
+                                "children": [
+                                  {
+                                    "type": "Button",
+                                    "variant": "secondary",
+                                    "onClick": {
+                                      "$action": "closeOverlay",
+                                      "id": "feedback-panel-{{row.id}}"
+                                    },
+                                    "children": "Cancel"
+                                  },
+                                  {
+                                    "type": "LoadingButton",
+                                    "variant": "primary",
+                                    "children": "Save feedback"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "children": "Log feedback"
+                },
+                {
+                  "type": "Text",
+                  "visible": {
+                    "$eq": [
+                      "$row.showLogFeedbackButton",
+                      false
+                    ]
+                  },
+                  "children": "$row.followUpLabel"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "dateTime",
+          "label": "Date / Time",
+          "width": "min",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Text",
+              "children": "$row.dateTimeLabel"
+            }
+          }
+        }
+      ],
+      "emptyTitle": "No results found",
+      "emptyMessage": "No showings match your search or filter criteria."
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "property-details",
+        "section-header",
+        "showings-table"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

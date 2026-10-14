@@ -1,0 +1,18 @@
+{
+  "uid": "vehicle_recommender_app",
+  "type": "app",
+  "config": {
+    "name": "Vehicle Recommender",
+    "description": "Recommends rental vehicles from current inventory for a contact's nearest rental location.",
+    "distribution": "private",
+    "auth": {
+      "type": "static",
+      "requiredScopes": ["crm.objects.custom.read"]
+    },
+    "permittedUrls": {
+      "fetch": [],
+      "iframe": [],
+      "img": []
+    }
+  }
+}

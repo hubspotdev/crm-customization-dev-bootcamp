@@ -1,0 +1,102 @@
+{
+  "name": "datatable-filtered",
+  "description": "DataTable with filters + custom cells. `filters` adds select/dateRange controls above the table wired by `name`. Custom cells use the $render operator: `renderCell: { $render: 'value', node: ... }` — inside the node, `$value` is the cell value and `$row` is the whole record. Shown here: a demibold company name, a StatusTag status cell, and a right-aligned amount with pre-formatted currency string. `defaultSort` sets the initial sort order. Use this over datatable-basic whenever the list needs filters, status badges, clickable cells, or row-bound overlays.",
+  "componentsUsed": [
+    "DataTable",
+    "Text",
+    "StatusTag"
+  ],
+  "dataShape": {
+    "deals": [
+      {
+        "id": "d1",
+        "company": "Atlas Cloud",
+        "status": "active",
+        "statusLabel": "Active",
+        "statusVariant": "success",
+        "amountLabel": "$42,000"
+      }
+    ],
+    "statusOptions": [
+      {
+        "label": "Active",
+        "value": "active"
+      },
+      {
+        "label": "Churned",
+        "value": "churned"
+      }
+    ]
+  },
+  "node": {
+    "root": "deals-table",
+    "elements": {
+      "deals-table": {
+        "type": "DataTable",
+        "name": "deals-table",
+        "data": "$data.deals",
+        "searchFields": [
+          "company"
+        ],
+        "pageSize": 10,
+        "defaultSort": {
+          "company": "ascending"
+        },
+        "filters": [
+          {
+            "type": "select",
+            "name": "status",
+            "placeholder": "All statuses",
+            "options": "$data.statusOptions"
+          }
+        ],
+        "columns": [
+          {
+            "field": "company",
+            "label": "Company",
+            "sortable": true,
+            "renderCell": {
+              "$render": "value",
+              "node": {
+                "type": "Text",
+                "format": {
+                  "fontWeight": "demibold"
+                },
+                "children": "$value"
+              }
+            }
+          },
+          {
+            "field": "status",
+            "label": "Status",
+            "sortable": true,
+            "renderCell": {
+              "$render": [
+                "value",
+                "row"
+              ],
+              "node": {
+                "type": "StatusTag",
+                "variant": "$row.statusVariant",
+                "children": "$row.statusLabel"
+              }
+            }
+          },
+          {
+            "field": "amountLabel",
+            "label": "Amount",
+            "sortable": true,
+            "align": "right",
+            "renderCell": {
+              "$render": "value",
+              "node": {
+                "type": "Text",
+                "children": "$value"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

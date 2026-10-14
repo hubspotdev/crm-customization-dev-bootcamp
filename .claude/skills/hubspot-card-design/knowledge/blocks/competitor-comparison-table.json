@@ -1,0 +1,144 @@
+{
+  "name": "competitor-comparison-table",
+  "description": "Head-to-head competitor comparison: a transparent Select bound to $state.competitor lets the user pick which competitor to view, driving BOTH the swapped comparison rows AND dynamic column header and KPI stats via $if chains. Rows are criteria (onboarding, pricing, integrations, support), columns are Criteria / Us (HubSpot) / Them, with pre-computed StatusTag variants in each cell signaling advantage/parity/disadvantage. Because the renderer has no dynamic data-key lookup, each competitor's row array and KPI array is stored under its own key in data (e.g. salesforceRows, pipedriveRows) and the correct one is selected with $if. Use on a Deal battlecard tab.",
+  "componentsUsed": [
+    "Flex",
+    "Text",
+    "Select",
+    "DataTable",
+    "TableRow",
+    "TableCell",
+    "StatusTag"
+  ],
+  "state": {
+    "competitor": "salesforce"
+  },
+  "dataShape": {
+    "competitorOptions": [
+      { "label": "Salesforce", "value": "salesforce" },
+      { "label": "Microsoft Dynamics", "value": "dynamics" },
+      { "label": "Pipedrive", "value": "pipedrive" },
+      { "label": "Zoho CRM", "value": "zoho" }
+    ],
+    "salesforceRows": [
+      {
+        "criteria": "Onboarding speed",
+        "us": "2-4 weeks",
+        "usVariant": "success",
+        "them": "3-6 months",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "Transparent tiers",
+        "usVariant": "success",
+        "them": "Per-seat + add-ons",
+        "themVariant": "warning"
+      }
+    ],
+    "pipedriveRows": [
+      {
+        "criteria": "Onboarding speed",
+        "us": "2-4 weeks",
+        "usVariant": "warning",
+        "them": "1-2 weeks",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Enterprise scale",
+        "us": "Full enterprise",
+        "usVariant": "success",
+        "them": "SMB only",
+        "themVariant": "danger"
+      }
+    ]
+  },
+  "node": {
+    "root": "comparison-block",
+    "elements": {
+      "switcher-label": {
+        "type": "Text",
+        "format": { "fontWeight": "demibold" },
+        "children": "Competing against"
+      },
+      "competitor-select": {
+        "type": "Select",
+        "variant": "transparent",
+        "options": "$data.competitorOptions",
+        "$bindState": "competitor"
+      },
+      "switcher-row": {
+        "type": "Flex",
+        "direction": "row",
+        "align": "center",
+        "gap": "sm",
+        "children": ["switcher-label", "competitor-select"]
+      },
+      "them-header-salesforce": {
+        "type": "TableHeader",
+        "visible": { "$eq": ["$state.competitor", "salesforce"] },
+        "children": "Salesforce"
+      },
+      "them-header-pipedrive": {
+        "type": "TableHeader",
+        "visible": { "$eq": ["$state.competitor", "pipedrive"] },
+        "children": "Pipedrive"
+      },
+      "comparison-row-forEach-salesforce": {
+        "type": "Flex",
+        "visible": { "$eq": ["$state.competitor", "salesforce"] },
+        "direction": "column",
+        "gap": "xs",
+        "children": [
+          {
+            "$forEach": "$data.salesforceRows",
+            "as": "row",
+            "render": {
+              "type": "Flex",
+              "direction": "row",
+              "gap": "sm",
+              "children": [
+                { "type": "Text", "children": "$row.criteria" },
+                { "type": "StatusTag", "variant": "$row.usVariant", "children": "$row.us" },
+                { "type": "StatusTag", "variant": "$row.themVariant", "children": "$row.them" }
+              ]
+            }
+          }
+        ]
+      },
+      "comparison-row-forEach-pipedrive": {
+        "type": "Flex",
+        "visible": { "$eq": ["$state.competitor", "pipedrive"] },
+        "direction": "column",
+        "gap": "xs",
+        "children": [
+          {
+            "$forEach": "$data.pipedriveRows",
+            "as": "row",
+            "render": {
+              "type": "Flex",
+              "direction": "row",
+              "gap": "sm",
+              "children": [
+                { "type": "Text", "children": "$row.criteria" },
+                { "type": "StatusTag", "variant": "$row.usVariant", "children": "$row.us" },
+                { "type": "StatusTag", "variant": "$row.themVariant", "children": "$row.them" }
+              ]
+            }
+          }
+        ]
+      },
+      "comparison-block": {
+        "type": "Flex",
+        "name": "comparison-block",
+        "direction": "column",
+        "gap": "md",
+        "children": [
+          "switcher-row",
+          "comparison-row-forEach-salesforce",
+          "comparison-row-forEach-pipedrive"
+        ]
+      }
+    }
+  }
+}

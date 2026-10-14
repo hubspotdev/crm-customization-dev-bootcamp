@@ -1,0 +1,24 @@
+{
+  "name": "icon-button",
+  "description": "Canonical icon-with-label Button. Icon and plain string sit as direct sibling children inside Button — no Flex wrapper, no Text wrapper, no size prop on the Icon. This is the one and only correct pattern for icon-labelled buttons; don't overthink it. Replace the icon name and label for your use case.",
+  "componentsUsed": [
+    "Button",
+    "Icon"
+  ],
+  "node": {
+    "root": "root",
+    "elements": {
+      "icon": {
+        "type": "Icon"
+      },
+      "root": {
+        "type": "Button",
+        "variant": "secondary",
+        "children": [
+          "icon",
+          "Log delay"
+        ]
+      }
+    }
+  }
+}

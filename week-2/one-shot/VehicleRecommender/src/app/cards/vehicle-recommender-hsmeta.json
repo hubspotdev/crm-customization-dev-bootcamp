@@ -1,0 +1,11 @@
+{
+  "uid": "vehicle_recommender_card",
+  "type": "card",
+  "config": {
+    "name": "Vehicle Recommender",
+    "description": "Suggests the best-fit available rental vehicles for this contact.",
+    "entrypoint": "/app/cards/VehicleRecommender.jsx",
+    "location": "RIGHT_SIDEBAR",
+    "objectTypes": ["0-1"]
+  }
+}

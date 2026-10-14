@@ -1,0 +1,11 @@
+{
+  "uid": "create_rental",
+  "type": "card",
+  "config": {
+    "name": "Create Rental",
+    "description": "Find nearby locations, pick a vehicle, and book a rental from a contact record.",
+    "location": "crm.record.tab",
+    "entrypoint": "/app/cards/CreateRental.jsx",
+    "objectTypes": ["contacts"]
+  }
+}

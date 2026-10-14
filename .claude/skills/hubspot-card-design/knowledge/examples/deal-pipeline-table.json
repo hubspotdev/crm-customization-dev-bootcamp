@@ -1,0 +1,655 @@
+{
+  "meta": {
+    "name": "Deal Pipeline Table",
+    "tagline": "Full-featured pipeline list with filters, custom cells, totals, row actions, and bulk selection.",
+    "description": "Canonical DataTable example. The header tile surfaces pipeline KPIs and a primary 'Log new deal' button that opens a hs-uix FormBuilder in a Modal. Below, a single DataTable presents every deal — searchable across name/company/owner with `fuzzySearch`, filterable by stage (multiselect), owner (multiselect), and segment (select). Custom cells use `$render` to: link the deal name to its record, render a `StatusTag` for stage with pre-computed variant, right-align the amount with a column footer total, show a `ScoreCircle` for win probability, render an avatar+name for owner. `groupBy: 'stage'` collapses rows by pipeline stage with per-stage subtotals. `selectable: true` enables bulk actions (move stage, reassign owner, archive). Per-row 'Edit' opens a modal with another FormBuilder pre-filled from row data. Reach for this whenever the surface is a list of records with mixed value types (currency, dates, status, owner) needing search + filter + per-row actions.",
+    "surface": "crm.record.tab",
+    "object": "deal"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "kpis": [
+      { "label": "Open pipeline", "value": "$1.46M" },
+      { "label": "Weighted forecast", "value": "$612K" },
+      { "label": "Avg deal size", "value": "$72K" },
+      { "label": "Closing this month", "value": "9 deals" }
+    ],
+    "deals": [
+      {
+        "id": "d-1001",
+        "name": "Atlas Cloud — Platform expansion",
+        "company": "Atlas Cloud",
+        "stage": "qualified",
+        "stageLabel": "Qualified",
+        "stageVariant": "info",
+        "amount": 84000,
+        "amountLabel": "$84,000",
+        "probability": 0.35,
+        "probabilityLabel": "35%",
+        "closeDate": "2026-05-30",
+        "closeDateLabel": "May 30, 2026",
+        "owner": "Sarah Chen",
+        "ownerInitials": "SC",
+        "segment": "Enterprise",
+        "segmentVariant": "info"
+      },
+      {
+        "id": "d-1002",
+        "name": "Brightline Energy — Annual renewal",
+        "company": "Brightline Energy",
+        "stage": "negotiation",
+        "stageLabel": "Negotiation",
+        "stageVariant": "warning",
+        "amount": 142000,
+        "amountLabel": "$142,000",
+        "probability": 0.7,
+        "probabilityLabel": "70%",
+        "closeDate": "2026-05-12",
+        "closeDateLabel": "May 12, 2026",
+        "owner": "Marcus Webb",
+        "ownerInitials": "MW",
+        "segment": "Enterprise",
+        "segmentVariant": "info"
+      },
+      {
+        "id": "d-1003",
+        "name": "Cascade Audio — Pro tier",
+        "company": "Cascade Audio",
+        "stage": "proposal",
+        "stageLabel": "Proposal",
+        "stageVariant": "info",
+        "amount": 38000,
+        "amountLabel": "$38,000",
+        "probability": 0.5,
+        "probabilityLabel": "50%",
+        "closeDate": "2026-06-08",
+        "closeDateLabel": "Jun 8, 2026",
+        "owner": "Priya Nair",
+        "ownerInitials": "PN",
+        "segment": "Mid-market",
+        "segmentVariant": "default"
+      },
+      {
+        "id": "d-1004",
+        "name": "Coastal Optics — Add-on seats",
+        "company": "Coastal Optics",
+        "stage": "qualified",
+        "stageLabel": "Qualified",
+        "stageVariant": "info",
+        "amount": 22000,
+        "amountLabel": "$22,000",
+        "probability": 0.4,
+        "probabilityLabel": "40%",
+        "closeDate": "2026-06-22",
+        "closeDateLabel": "Jun 22, 2026",
+        "owner": "Sarah Chen",
+        "ownerInitials": "SC",
+        "segment": "Mid-market",
+        "segmentVariant": "default"
+      },
+      {
+        "id": "d-1005",
+        "name": "Greenline Foods — Pilot",
+        "company": "Greenline Foods",
+        "stage": "discovery",
+        "stageLabel": "Discovery",
+        "stageVariant": "default",
+        "amount": 18000,
+        "amountLabel": "$18,000",
+        "probability": 0.2,
+        "probabilityLabel": "20%",
+        "closeDate": "2026-07-15",
+        "closeDateLabel": "Jul 15, 2026",
+        "owner": "Jordan Park",
+        "ownerInitials": "JP",
+        "segment": "SMB",
+        "segmentVariant": "default"
+      },
+      {
+        "id": "d-1006",
+        "name": "Lumen Health — Compliance package",
+        "company": "Lumen Health",
+        "stage": "negotiation",
+        "stageLabel": "Negotiation",
+        "stageVariant": "warning",
+        "amount": 215000,
+        "amountLabel": "$215,000",
+        "probability": 0.8,
+        "probabilityLabel": "80%",
+        "closeDate": "2026-04-30",
+        "closeDateLabel": "Apr 30, 2026",
+        "owner": "Marcus Webb",
+        "ownerInitials": "MW",
+        "segment": "Enterprise",
+        "segmentVariant": "info"
+      },
+      {
+        "id": "d-1007",
+        "name": "Marlin Logistics — API access",
+        "company": "Marlin Logistics",
+        "stage": "proposal",
+        "stageLabel": "Proposal",
+        "stageVariant": "info",
+        "amount": 48000,
+        "amountLabel": "$48,000",
+        "probability": 0.55,
+        "probabilityLabel": "55%",
+        "closeDate": "2026-05-19",
+        "closeDateLabel": "May 19, 2026",
+        "owner": "Priya Nair",
+        "ownerInitials": "PN",
+        "segment": "Mid-market",
+        "segmentVariant": "default"
+      },
+      {
+        "id": "d-1008",
+        "name": "Northshore Logistics — Multi-site",
+        "company": "Northshore Logistics",
+        "stage": "qualified",
+        "stageLabel": "Qualified",
+        "stageVariant": "info",
+        "amount": 96000,
+        "amountLabel": "$96,000",
+        "probability": 0.3,
+        "probabilityLabel": "30%",
+        "closeDate": "2026-07-01",
+        "closeDateLabel": "Jul 1, 2026",
+        "owner": "Jordan Park",
+        "ownerInitials": "JP",
+        "segment": "Enterprise",
+        "segmentVariant": "info"
+      },
+      {
+        "id": "d-1009",
+        "name": "Northwind Robotics — SSO upgrade",
+        "company": "Northwind Robotics",
+        "stage": "discovery",
+        "stageLabel": "Discovery",
+        "stageVariant": "default",
+        "amount": 12000,
+        "amountLabel": "$12,000",
+        "probability": 0.15,
+        "probabilityLabel": "15%",
+        "closeDate": "2026-08-10",
+        "closeDateLabel": "Aug 10, 2026",
+        "owner": "Sarah Chen",
+        "ownerInitials": "SC",
+        "segment": "SMB",
+        "segmentVariant": "default"
+      },
+      {
+        "id": "d-1010",
+        "name": "Veridian Air — Premium support",
+        "company": "Veridian Air",
+        "stage": "negotiation",
+        "stageLabel": "Negotiation",
+        "stageVariant": "warning",
+        "amount": 64000,
+        "amountLabel": "$64,000",
+        "probability": 0.65,
+        "probabilityLabel": "65%",
+        "closeDate": "2026-05-05",
+        "closeDateLabel": "May 5, 2026",
+        "owner": "Marcus Webb",
+        "ownerInitials": "MW",
+        "segment": "Mid-market",
+        "segmentVariant": "default"
+      }
+    ],
+    "totalLabel": "$739,000",
+    "stageOptions": [
+      { "label": "Discovery", "value": "discovery" },
+      { "label": "Qualified", "value": "qualified" },
+      { "label": "Proposal", "value": "proposal" },
+      { "label": "Negotiation", "value": "negotiation" }
+    ],
+    "ownerOptions": [
+      { "label": "Sarah Chen", "value": "Sarah Chen" },
+      { "label": "Marcus Webb", "value": "Marcus Webb" },
+      { "label": "Priya Nair", "value": "Priya Nair" },
+      { "label": "Jordan Park", "value": "Jordan Park" }
+    ],
+    "segmentOptions": [
+      { "label": "Enterprise", "value": "Enterprise" },
+      { "label": "Mid-market", "value": "Mid-market" },
+      { "label": "SMB", "value": "SMB" }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "md",
+      "children": [
+        "header-row",
+        "deals-table"
+      ]
+    },
+    "header-row": {
+      "type": "Flex",
+      "name": "header-row",
+      "direction": "row",
+      "justify": "between",
+      "align": "end",
+      "gap": "md",
+      "children": [
+        {
+          "type": "Statistics",
+          "children": {
+            "$forEach": "$data.kpis",
+            "as": "kpi",
+            "render": {
+              "type": "StatisticsItem",
+              "label": "$kpi.label",
+              "number": "$kpi.value"
+            }
+          }
+        },
+        "log-deal-button"
+      ]
+    },
+    "log-deal-button": {
+      "type": "Button",
+      "variant": "primary",
+      "size": "small",
+      "overlay": {
+        "type": "Modal",
+        "id": "log-deal-modal",
+        "title": "Log new deal",
+        "width": "large",
+        "children": [
+          {
+            "type": "ModalBody",
+            "children": [
+              {
+                "type": "FormBuilder",
+                "name": "log-deal-form",
+                "columns": 2,
+                "submitAlign": "between",
+                "labels": {
+                  "submit": "Save deal",
+                  "cancel": "Cancel"
+                },
+                "onCancel": {
+                  "$action": "closeOverlay",
+                  "id": "log-deal-modal"
+                },
+                "onSubmit": {
+                  "$action": "batch",
+                  "actions": [
+                    {
+                      "$action": "closeOverlay",
+                      "id": "log-deal-modal"
+                    },
+                    {
+                      "$action": "addAlert",
+                      "type": "success",
+                      "title": "Deal saved",
+                      "message": "Owner notified and forecast refreshed."
+                    }
+                  ]
+                },
+                "fields": [
+                  {
+                    "type": "text",
+                    "name": "name",
+                    "label": "Deal name",
+                    "required": true,
+                    "colSpan": 2,
+                    "placeholder": "e.g. Atlas Cloud — Platform expansion"
+                  },
+                  {
+                    "type": "text",
+                    "name": "company",
+                    "label": "Company",
+                    "required": true
+                  },
+                  {
+                    "type": "select",
+                    "name": "segment",
+                    "label": "Segment",
+                    "required": true,
+                    "options": "$data.segmentOptions"
+                  },
+                  {
+                    "type": "select",
+                    "name": "stage",
+                    "label": "Stage",
+                    "required": true,
+                    "options": "$data.stageOptions",
+                    "defaultValue": "discovery"
+                  },
+                  {
+                    "type": "select",
+                    "name": "owner",
+                    "label": "Owner",
+                    "required": true,
+                    "options": "$data.ownerOptions"
+                  },
+                  {
+                    "type": "currency",
+                    "name": "amount",
+                    "label": "Amount",
+                    "currency": "USD",
+                    "required": true
+                  },
+                  {
+                    "type": "number",
+                    "name": "probability",
+                    "label": "Win probability (%)",
+                    "min": 0,
+                    "max": 100
+                  },
+                  {
+                    "type": "date",
+                    "name": "closeDate",
+                    "label": "Expected close date",
+                    "format": "long",
+                    "colSpan": 2
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "+ Log new deal"
+    },
+    "deals-table": {
+      "type": "DataTable",
+      "name": "deals-table",
+      "data": "$data.deals",
+      "title": "Open deals",
+      "searchFields": ["name", "company", "owner"],
+      "fuzzySearch": true,
+      "pageSize": 15,
+      "defaultSort": { "closeDate": "ascending" },
+      "groupBy": "stageLabel",
+      "selectable": true,
+      "recordLabel": { "singular": "deal", "plural": "deals" },
+      "selectionActions": [
+        {
+          "label": "Reassign owner",
+          "icon": "user",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "info",
+            "title": "Reassign owner",
+            "message": "Would open the owner picker for the selected deals."
+          }
+        },
+        {
+          "label": "Move stage",
+          "icon": "moveTo",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "info",
+            "title": "Move stage",
+            "message": "Would open the stage picker for the selected deals."
+          }
+        },
+        {
+          "label": "Archive",
+          "icon": "delete",
+          "variant": "destructive",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "warning",
+            "title": "Archive",
+            "message": "Selected deals would be archived (recoverable for 30 days)."
+          }
+        }
+      ],
+      "filters": [
+        {
+          "type": "multiselect",
+          "name": "stage",
+          "placeholder": "All stages",
+          "options": "$data.stageOptions"
+        },
+        {
+          "type": "multiselect",
+          "name": "owner",
+          "placeholder": "All owners",
+          "options": "$data.ownerOptions"
+        },
+        {
+          "type": "select",
+          "name": "segment",
+          "placeholder": "All segments",
+          "options": "$data.segmentOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "name",
+          "label": "Deal",
+          "sortable": true,
+          "width": 260,
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Flex",
+              "direction": "column",
+              "gap": "flush",
+              "children": [
+                {
+                  "type": "Link",
+                  "onClick": {
+                    "$action": "addAlert",
+                    "type": "info",
+                    "title": "Open deal",
+                    "message": "Would navigate to {{row.id}}."
+                  },
+                  "children": "$value"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "{{row.company}}"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "stageLabel",
+          "label": "Stage",
+          "sortable": true,
+          "width": 130,
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.stageVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "segment",
+          "label": "Segment",
+          "sortable": true,
+          "width": 120,
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.segmentVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "amount",
+          "label": "Amount",
+          "sortable": true,
+          "align": "right",
+          "width": 120,
+          "footer": "$data.totalLabel",
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Text",
+              "format": { "fontWeight": "demibold" },
+              "children": "$row.amountLabel"
+            }
+          }
+        },
+        {
+          "field": "probability",
+          "label": "Win %",
+          "sortable": true,
+          "align": "center",
+          "width": 100,
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "{{row.probabilityLabel}}"
+            }
+          }
+        },
+        {
+          "field": "closeDate",
+          "label": "Close date",
+          "sortable": true,
+          "width": 130,
+          "footer": "Total",
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Text",
+              "children": "{{row.closeDateLabel}}"
+            }
+          }
+        },
+        {
+          "field": "owner",
+          "label": "Owner",
+          "sortable": true,
+          "width": 150,
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "id",
+          "label": "",
+          "width": 60,
+          "align": "right",
+          "renderCell": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Link",
+              "overlay": {
+                "type": "Modal",
+                "id": "edit-deal-{{row.id}}",
+                "title": "Edit {{row.name}}",
+                "width": "large",
+                "children": [
+                  {
+                    "type": "ModalBody",
+                    "children": [
+                      {
+                        "type": "FormBuilder",
+                        "name": "edit-deal-form",
+                        "columns": 2,
+                        "submitAlign": "between",
+                        "values": "$row",
+                        "labels": {
+                          "submit": "Save changes",
+                          "cancel": "Cancel"
+                        },
+                        "onCancel": {
+                          "$action": "closeOverlay",
+                          "id": "edit-deal-{{row.id}}"
+                        },
+                        "onSubmit": {
+                          "$action": "batch",
+                          "actions": [
+                            {
+                              "$action": "closeOverlay",
+                              "id": "edit-deal-{{row.id}}"
+                            },
+                            {
+                              "$action": "addAlert",
+                              "type": "success",
+                              "title": "Deal updated",
+                              "message": "Saved changes to {{row.name}}."
+                            }
+                          ]
+                        },
+                        "fields": [
+                          {
+                            "type": "text",
+                            "name": "name",
+                            "label": "Deal name",
+                            "required": true,
+                            "colSpan": 2
+                          },
+                          {
+                            "type": "select",
+                            "name": "stage",
+                            "label": "Stage",
+                            "required": true,
+                            "options": "$data.stageOptions"
+                          },
+                          {
+                            "type": "select",
+                            "name": "owner",
+                            "label": "Owner",
+                            "required": true,
+                            "options": "$data.ownerOptions"
+                          },
+                          {
+                            "type": "currency",
+                            "name": "amount",
+                            "label": "Amount",
+                            "currency": "USD",
+                            "required": true
+                          },
+                          {
+                            "type": "number",
+                            "name": "probability",
+                            "label": "Win probability (%)",
+                            "min": 0,
+                            "max": 100
+                          },
+                          {
+                            "type": "date",
+                            "name": "closeDate",
+                            "label": "Expected close date",
+                            "format": "long",
+                            "colSpan": 2
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "edit",
+                  "screenReaderText": "Edit deal"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

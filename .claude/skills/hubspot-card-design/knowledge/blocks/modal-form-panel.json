@@ -1,0 +1,100 @@
+{
+  "name": "modal-form-panel",
+  "description": "A Panel with variant='modal' hosting a form: PanelBody > PanelSection > Flex(direction=column, gap=sm) of inputs, and a PanelFooter with Cancel (secondary, left) + Save (LoadingButton primary, right) in a justify=between Flex. Drop this as the `overlay` value on a trigger Button/Link. The Cancel button uses { $action: 'closeOverlay', id: '<same-panel-id>' } — match the id to the Panel's id. This is the canonical 'Log X' / 'Edit X' / 'Create X' pattern.",
+  "componentsUsed": [
+    "Panel",
+    "PanelBody",
+    "PanelSection",
+    "PanelFooter",
+    "Flex",
+    "Input",
+    "Select",
+    "TextArea",
+    "Button",
+    "LoadingButton"
+  ],
+  "node": {
+    "root": "root",
+    "elements": {
+      "input": {
+        "type": "Input",
+        "label": "Title",
+        "required": true
+      },
+      "select": {
+        "type": "Select",
+        "label": "Category",
+        "options": "$data.categoryOptions"
+      },
+      "textarea": {
+        "type": "TextArea",
+        "label": "Notes",
+        "rows": 3,
+        "resize": "vertical"
+      },
+      "flex": {
+        "type": "Flex",
+        "direction": "column",
+        "gap": "sm",
+        "children": [
+          "input",
+          "select",
+          "textarea"
+        ]
+      },
+      "panelsection": {
+        "type": "PanelSection",
+        "children": [
+          "flex"
+        ]
+      },
+      "panelbody": {
+        "type": "PanelBody",
+        "children": [
+          "panelsection"
+        ]
+      },
+      "button": {
+        "type": "Button",
+        "variant": "secondary",
+        "onClick": {
+          "$action": "closeOverlay",
+          "id": "form-panel"
+        },
+        "children": "Cancel"
+      },
+      "loadingbutton": {
+        "type": "LoadingButton",
+        "variant": "primary",
+        "children": "Save"
+      },
+      "flex-1": {
+        "type": "Flex",
+        "direction": "row",
+        "justify": "between",
+        "children": [
+          "button",
+          "loadingbutton"
+        ]
+      },
+      "panelfooter": {
+        "type": "PanelFooter",
+        "children": [
+          "flex-1"
+        ]
+      },
+      "root": {
+        "type": "Panel",
+        "id": "form-panel",
+        "title": "Log something",
+        "width": "small",
+        "variant": "modal",
+        "flush": true,
+        "children": [
+          "panelbody",
+          "panelfooter"
+        ]
+      }
+    }
+  }
+}

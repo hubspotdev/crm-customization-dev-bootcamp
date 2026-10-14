@@ -1,0 +1,25 @@
+{
+  "name": "crm-lookup-select",
+  "description": "CRM-backed lookup field (hs-uix CrmLookupSelect from common-components) — a Select that searches live CRM records as the user types (debounced, paginated). Point it at an `objectType` + `properties`; map the option shape with `labelProperty` / `valueProperty` / `descriptionProperty` (string property names). Bind the picked value with the `$bindState` sibling key — do NOT hand-wire value + onChange. Add `multiple: true` for a MultiSelect. Use this instead of a static Select whenever the choices ARE CRM records (pick a company, contact, deal). For a fixed option list, use a plain Select.",
+  "componentsUsed": [
+    "CrmLookupSelect"
+  ],
+  "dataShape": {},
+  "node": {
+    "root": "company-lookup",
+    "elements": {
+      "company-lookup": {
+        "type": "CrmLookupSelect",
+        "name": "company-lookup",
+        "label": "Associated company",
+        "placeholder": "Search companies…",
+        "objectType": "company",
+        "properties": ["name", "domain"],
+        "labelProperty": "name",
+        "valueProperty": "hs_object_id",
+        "descriptionProperty": "domain",
+        "$bindState": "selectedCompany"
+      }
+    }
+  }
+}

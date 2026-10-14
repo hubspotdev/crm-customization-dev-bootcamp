@@ -1,0 +1,26 @@
+{
+  "name": "preview-overlay-button",
+  "description": "Studio-specific dev affordance. The Tweaks panel can't open Panels/Modals — it only flips state values. To let the user preview an overlay without clicking a real row-level button, add a small 'Preview: …' Button inside the card's visible content (typically at the bottom) whose `overlay` prop points at the same Panel/Modal node the real trigger uses. Keeps visual fidelity honest in the preview without polluting the production card design.",
+  "componentsUsed": [
+    "Button"
+  ],
+  "node": {
+    "root": "root",
+    "elements": {
+      "root": {
+        "type": "Button",
+        "variant": "transparent",
+        "size": "extra-small",
+        "overlay": {
+          "type": "Panel",
+          "id": "form-panel",
+          "title": "Log something",
+          "width": "small",
+          "variant": "modal",
+          "children": []
+        },
+        "children": "Preview: log service"
+      }
+    }
+  }
+}

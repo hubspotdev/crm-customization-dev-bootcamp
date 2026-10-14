@@ -1,0 +1,27 @@
+{
+  "name": "empty-state",
+  "description": "Standard empty state for cards with no data yet. Vertical layout, idea illustration, body copy explains the next step the user should take. Gate with visible={ $eq: ['$state.viewMode', 'empty'] }.",
+  "componentsUsed": [
+    "EmptyState",
+    "Text"
+  ],
+  "node": {
+    "root": "root",
+    "elements": {
+      "text": {
+        "type": "Text",
+        "children": "No data yet for this record. Once it's populated, your summary will appear here."
+      },
+      "root": {
+        "type": "EmptyState",
+        "title": "Nothing here yet",
+        "layout": "vertical",
+        "imageName": "idea",
+        "imageWidth": 150,
+        "children": [
+          "text"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,704 @@
+{
+  "meta": {
+    "name": "Health Inspection Readiness",
+    "tagline": "Triage checklist for a restaurant with an overall readiness score and per-category accordions of pass/fail items.",
+    "description": "Gives a restaurant manager a running readiness score before the next health inspection, with failing or unchecked items called out category by category. They update an item's status and last-checked date from a side panel. \u2014 Triage + Checklist: ProgressBar hero, conditional error Alert, and per-category Accordions with a side Panel edit flow.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "restaurant": {
+      "name": "The Golden Ladle",
+      "location": "Austin, TX",
+      "manager": "Marco Reyes",
+      "lastInspection": "Feb 14, 2026"
+    },
+    "statusOptions": [
+      {
+        "label": "Pass",
+        "value": "pass"
+      },
+      {
+        "label": "Fail",
+        "value": "fail"
+      },
+      {
+        "label": "Not inspected",
+        "value": "not_inspected"
+      }
+    ],
+    "overallScore": 84,
+    "overallScoreVariant": "warning",
+    "overallValueDescription": "21 of 25 inspected items passing",
+    "alertVisible": true,
+    "alertTitle": "3 items failing",
+    "alertMessage": "Resolve all failing items before the next scheduled inspection. Failing items are highlighted in each section below.",
+    "categories": [
+      {
+        "id": "food-safety",
+        "name": "Food Safety",
+        "needsAttention": true,
+        "categoryScoreLabel": "5 of 6 inspected passing",
+        "items": [
+          {
+            "id": "fs-1",
+            "name": "Cold holding temperatures",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Walk-in cooler at 38\u00b0F, prep line units at 40\u00b0F",
+            "notesVisible": true
+          },
+          {
+            "id": "fs-2",
+            "name": "Hot holding temperatures",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Soup station at 165\u00b0F, steam table at 145\u00b0F",
+            "notesVisible": true
+          },
+          {
+            "id": "fs-3",
+            "name": "Cross-contamination prevention",
+            "status": "fail",
+            "statusVariant": "error",
+            "statusLabel": "Fail",
+            "statusIcon": "xCircle",
+            "lastChecked": "Mar 27, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Raw chicken stored above ready-to-eat salad greens in walk-in",
+            "notesVisible": true
+          },
+          {
+            "id": "fs-4",
+            "name": "Food storage dating & labeling",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "All prep containers labeled with date and contents",
+            "notesVisible": true
+          },
+          {
+            "id": "fs-5",
+            "name": "Cooking temperature verification",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Chicken breast temped at 172\u00b0F, hamburgers at 160\u00b0F",
+            "notesVisible": true
+          },
+          {
+            "id": "fs-6",
+            "name": "Thawing procedures",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 26, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Shrimp thawing under running cold water in approved sink",
+            "notesVisible": true
+          }
+        ]
+      },
+      {
+        "id": "cleanliness",
+        "name": "Cleanliness",
+        "needsAttention": true,
+        "categoryScoreLabel": "4 of 5 inspected passing",
+        "items": [
+          {
+            "id": "cl-1",
+            "name": "Kitchen surfaces & prep areas",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "All cutting boards sanitized, stainless steel wiped down",
+            "notesVisible": true
+          },
+          {
+            "id": "cl-2",
+            "name": "Restroom sanitation",
+            "status": "fail",
+            "statusVariant": "error",
+            "statusLabel": "Fail",
+            "statusIcon": "xCircle",
+            "lastChecked": "Mar 27, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Soap dispenser empty in men's restroom, floor drain needs cleaning",
+            "notesVisible": true
+          },
+          {
+            "id": "cl-3",
+            "name": "Dining area cleanliness",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Tables sanitized between seatings, floors swept and mopped",
+            "notesVisible": true
+          },
+          {
+            "id": "cl-4",
+            "name": "Waste disposal & dumpster area",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 27, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Dumpster lids closed, no overflow, grease trap maintained",
+            "notesVisible": true
+          },
+          {
+            "id": "cl-5",
+            "name": "Handwashing stations",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "All three stations stocked with soap, towels, and signage",
+            "notesVisible": true
+          }
+        ]
+      },
+      {
+        "id": "equipment",
+        "name": "Equipment",
+        "needsAttention": true,
+        "categoryScoreLabel": "3 of 4 inspected passing",
+        "items": [
+          {
+            "id": "eq-1",
+            "name": "Refrigerator temperature logs",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Walk-in at 36\u00b0F, line coolers at 38-40\u00b0F, logs up to date",
+            "notesVisible": true
+          },
+          {
+            "id": "eq-2",
+            "name": "Dishwasher sanitizer concentration",
+            "status": "fail",
+            "statusVariant": "error",
+            "statusLabel": "Fail",
+            "statusIcon": "xCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Chlorine concentration at 25 ppm \u2014 below required 50 ppm minimum",
+            "notesVisible": true
+          },
+          {
+            "id": "eq-3",
+            "name": "Hood ventilation & filters",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 25, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Filters cleaned on schedule, airflow within spec",
+            "notesVisible": true
+          },
+          {
+            "id": "eq-4",
+            "name": "Thermometer calibration",
+            "status": "not_inspected",
+            "statusVariant": "default",
+            "statusLabel": "Not inspected",
+            "statusIcon": "circleHollow",
+            "lastChecked": "--",
+            "lastCheckedVisible": false,
+            "notes": "",
+            "notesVisible": false
+          },
+          {
+            "id": "eq-5",
+            "name": "Ice machine sanitation",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 26, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Interior cleaned, no biofilm, water filter replaced",
+            "notesVisible": true
+          }
+        ]
+      },
+      {
+        "id": "documentation",
+        "name": "Documentation",
+        "needsAttention": true,
+        "categoryScoreLabel": "4 of 4 inspected passing",
+        "items": [
+          {
+            "id": "dc-1",
+            "name": "Food handler certifications",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 20, 2026",
+            "lastCheckedVisible": true,
+            "notes": "All 14 staff certs current, next renewal Aug 2026",
+            "notesVisible": true
+          },
+          {
+            "id": "dc-2",
+            "name": "Pest control service records",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 15, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Monthly service by Orkin, last visit Mar 12 \u2014 no findings",
+            "notesVisible": true
+          },
+          {
+            "id": "dc-3",
+            "name": "Allergen menu & signage",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 22, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Updated allergen matrix posted in kitchen and printed on menus",
+            "notesVisible": true
+          },
+          {
+            "id": "dc-4",
+            "name": "HACCP plan documentation",
+            "status": "not_inspected",
+            "statusVariant": "default",
+            "statusLabel": "Not inspected",
+            "statusIcon": "circleHollow",
+            "lastChecked": "--",
+            "lastCheckedVisible": false,
+            "notes": "",
+            "notesVisible": false
+          },
+          {
+            "id": "dc-5",
+            "name": "Employee illness log",
+            "status": "pass",
+            "statusVariant": "success",
+            "statusLabel": "Pass",
+            "statusIcon": "checkCircle",
+            "lastChecked": "Mar 28, 2026",
+            "lastCheckedVisible": true,
+            "notes": "Log current, no reportable illnesses in past 30 days",
+            "notesVisible": true
+          }
+        ]
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading inspection data...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "error-alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load inspection data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "There was a problem retrieving the health inspection checklist. Please try again or contact your administrator."
+    },
+    "restaurant-name-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.restaurant.name"
+    },
+    "restaurant-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Restaurant",
+      "children": [
+        "restaurant-name-text"
+      ]
+    },
+    "restaurant-location-text": {
+      "type": "Text",
+      "children": "$data.restaurant.location"
+    },
+    "restaurant-location-item": {
+      "type": "DescriptionListItem",
+      "label": "Location",
+      "children": [
+        "restaurant-location-text"
+      ]
+    },
+    "restaurant-manager-text": {
+      "type": "Text",
+      "children": "$data.restaurant.manager"
+    },
+    "restaurant-manager-item": {
+      "type": "DescriptionListItem",
+      "label": "Manager",
+      "children": [
+        "restaurant-manager-text"
+      ]
+    },
+    "restaurant-lastinspection-text": {
+      "type": "Text",
+      "children": "$data.restaurant.lastInspection"
+    },
+    "restaurant-lastinspection-item": {
+      "type": "DescriptionListItem",
+      "label": "Last inspection",
+      "children": [
+        "restaurant-lastinspection-text"
+      ]
+    },
+    "restaurant-header": {
+      "type": "DescriptionList",
+      "name": "restaurant-header",
+      "direction": "row",
+      "children": [
+        "restaurant-name-item",
+        "restaurant-location-item",
+        "restaurant-manager-item",
+        "restaurant-lastinspection-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider",
+      "size": "medium"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "No health inspection checklist has been configured for this restaurant. Create a checklist to start tracking readiness."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No inspection checklist",
+      "layout": "vertical",
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "restaurant-header",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "failing-alert": {
+      "type": "Alert",
+      "name": "failing-alert",
+      "variant": "error",
+      "title": "$data.alertTitle",
+      "visible": "$data.alertVisible",
+      "children": "$data.alertMessage"
+    },
+    "overall-progress": {
+      "type": "ProgressBar",
+      "name": "overall-progress",
+      "title": "Overall readiness",
+      "value": "$data.overallScore",
+      "maxValue": 100,
+      "showPercentage": true,
+      "valueDescription": "$data.overallValueDescription",
+      "variant": "$data.overallScoreVariant"
+    },
+    "loaded-divider": {
+      "type": "Divider",
+      "size": "medium"
+    },
+    "categories-grid": {
+      "type": "AutoGrid",
+      "name": "categories-grid",
+      "columnWidth": 350,
+      "flexible": true,
+      "gap": "small",
+      "children": [
+        {
+          "$forEach": "$data.categories",
+          "as": "category",
+          "render": {
+            "type": "Accordion",
+            "title": "$category.name",
+            "defaultOpen": "$category.needsAttention",
+            "size": "sm",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "flush",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$category.categoryScoreLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Divider",
+                    "size": "large"
+                  },
+                  {
+                    "$forEach": "$category.items",
+                    "as": "item",
+                    "render": {
+                      "type": "Flex",
+                      "direction": "row",
+                      "align": "center",
+                      "gap": "xs",
+                      "children": [
+                        {
+                          "type": "Icon",
+                          "name": "$item.statusIcon",
+                          "size": "sm"
+                        },
+                        {
+                          "type": "Flex",
+                          "direction": "column",
+                          "gap": "flush",
+                          "children": [
+                            {
+                              "type": "Flex",
+                              "direction": "row",
+                              "align": "center",
+                              "gap": "xs",
+                              "wrap": "nowrap",
+                              "children": [
+                                {
+                                  "type": "Link",
+                                  "overlay": {
+                                    "type": "Panel",
+                                    "id": "update-panel-{{item.id}}",
+                                    "title": "Update: {{item.name}}",
+                                    "width": "small",
+                                    "flush": true,
+                                    "variant": "modal",
+                                    "children": [
+                                      {
+                                        "type": "PanelBody",
+                                        "children": [
+                                          {
+                                            "type": "PanelSection",
+                                            "children": [
+                                              {
+                                                "type": "Flex",
+                                                "direction": "column",
+                                                "gap": "sm",
+                                                "children": [
+                                                  {
+                                                    "type": "Text",
+                                                    "variant": "microcopy",
+                                                    "children": "Category: {{category.name}}"
+                                                  },
+                                                  {
+                                                    "type": "Select",
+                                                    "label": "Inspection status",
+                                                    "name": "status-{{item.id}}",
+                                                    "required": true,
+                                                    "value": "$item.status",
+                                                    "options": "$data.statusOptions"
+                                                  },
+                                                  {
+                                                    "type": "DateInput",
+                                                    "label": "Last checked date",
+                                                    "name": "date-{{item.id}}",
+                                                    "format": "medium"
+                                                  },
+                                                  {
+                                                    "type": "Flex",
+                                                    "direction": "column",
+                                                    "gap": "flush",
+                                                    "visible": "$item.notesVisible",
+                                                    "children": [
+                                                      {
+                                                        "type": "Text",
+                                                        "variant": "microcopy",
+                                                        "children": "Current notes"
+                                                      },
+                                                      {
+                                                        "type": "Text",
+                                                        "children": "$item.notes"
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "PanelFooter",
+                                        "children": [
+                                          {
+                                            "type": "Flex",
+                                            "direction": "column",
+                                            "children": [
+                                              {
+                                                "type": "Flex",
+                                                "direction": "row",
+                                                "justify": "end",
+                                                "children": [
+                                                  {
+                                                    "type": "LoadingButton",
+                                                    "variant": "primary",
+                                                    "children": "Save"
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  "children": "$item.name"
+                                },
+                                {
+                                  "type": "Tag",
+                                  "variant": "$item.statusVariant",
+                                  "children": "$item.statusLabel"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "Text",
+                              "variant": "microcopy",
+                              "visible": "$item.lastCheckedVisible",
+                              "children": "$item.lastChecked"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "restaurant-header",
+        "failing-alert",
+        "overall-progress",
+        "loaded-divider",
+        "categories-grid"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "error-alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

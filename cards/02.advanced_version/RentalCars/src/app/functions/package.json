@@ -1,0 +1,10 @@
+{
+  "name": "hubspot-example-function",
+  "version": "0.1.0",
+  "author": "HubSpot",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "us-zips": "^2022.9.1"
+  }
+}

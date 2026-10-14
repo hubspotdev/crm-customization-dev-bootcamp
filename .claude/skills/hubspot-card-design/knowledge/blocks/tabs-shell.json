@@ -1,0 +1,59 @@
+{
+  "name": "tabs-shell",
+  "description": "Tabs container with N tabs iterated from $data.tabs. Each tab has a title and tabId and its content is a single Flex slot you replace with the real view. The selected tabId lives in $state.activeTab so the tabs panel stays in sync with the Tweaks panel toggle. Use as the root of the Multi-View archetype.",
+  "componentsUsed": [
+    "Tabs",
+    "Tab",
+    "Flex"
+  ],
+  "dataShape": {
+    "tabs": [
+      {
+        "id": "overview",
+        "title": "Overview"
+      },
+      {
+        "id": "details",
+        "title": "Details"
+      },
+      {
+        "id": "history",
+        "title": "History"
+      }
+    ]
+  },
+  "node": {
+    "root": "view-tabs",
+    "elements": {
+      "flex": {
+        "type": "Flex",
+        "direction": "column",
+        "gap": "sm",
+        "children": []
+      },
+      "view-tabs": {
+        "type": "Tabs",
+        "name": "view-tabs",
+        "selected": "$state.activeTab",
+        "onSelectedChange": {
+          "$action": "setState",
+          "key": "activeTab"
+        },
+        "children": [
+          {
+            "$forEach": "$data.tabs",
+            "as": "tab",
+            "render": {
+              "type": "Tab",
+              "title": "$tab.title",
+              "tabId": "$tab.id",
+              "children": [
+                "flex"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

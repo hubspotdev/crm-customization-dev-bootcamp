@@ -1,0 +1,1656 @@
+{
+  "meta": {
+    "name": "QuickBooks Sync Overview",
+    "tagline": "Sync health KPIs with an activity log and a swap-in field-mappings configurator, both sliced by object type.",
+    "description": "Shows ops teams the state of their QuickBooks sync for this customer \u2014 what's synced, what failed, and exactly why. They can flip to a mapping view to configure how QB fields line up with HubSpot properties. \u2014 Multi-View: aggregate Statistics + dual-mode (activity \u2194 mappings) DataTable sliced by object type.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded",
+    "cardView": "activity",
+    "objectTab": "invoices"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "connection": {
+      "lastSyncLabel": "--",
+      "frequencyLabel": "Every 15 minutes"
+    },
+    "totals": {
+      "syncedLabel": "197",
+      "failedLabel": "28",
+      "pendingLabel": "14"
+    },
+    "failureSummary": {
+      "visible": true,
+      "title": "Sync failures detected",
+      "message": "28 invoices syncs failed. Review errors and retry."
+    },
+    "sectionHeaderActivityLabel": "Recent sync activity",
+    "sectionHeaderMappingsLabel": "Field mappings",
+    "objectTabsActivity": [
+      {
+        "key": "invoices",
+        "tabLabel": "Invoices (158)",
+        "entries": [
+          {
+            "id": "inv-1",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1488",
+            "qbId": "543785261890",
+            "date": "2026-03-30T16:45:00",
+            "dateLabel": "Mar 30, 2026, 4:45 PM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Amount",
+            "oldValue": "$1,200.00",
+            "newValue": "$1,350.00",
+            "detailsLabel": "Amount: $1,200.00 \u2192 $1,350.00",
+            "error": ""
+          },
+          {
+            "id": "inv-2",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1487",
+            "qbId": "543784067496",
+            "date": "2026-03-30T11:24:00",
+            "dateLabel": "Mar 30, 2026, 11:24 AM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Status",
+            "oldValue": "Draft",
+            "newValue": "Sent",
+            "detailsLabel": "Status: Draft \u2192 Sent",
+            "error": ""
+          },
+          {
+            "id": "inv-3",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1486",
+            "qbId": "543784708189",
+            "date": "2026-03-30T11:08:00",
+            "dateLabel": "Mar 30, 2026, 11:08 AM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Line Items",
+            "oldValue": "2 items",
+            "newValue": "3 items",
+            "detailsLabel": "Line Items: 2 items \u2192 3 items",
+            "error": ""
+          },
+          {
+            "id": "inv-4",
+            "status": "failed",
+            "statusLabel": "Failed",
+            "statusVariant": "danger",
+            "object": "QB #HS-1485",
+            "qbId": "543783921045",
+            "date": "2026-03-30T10:55:00",
+            "dateLabel": "Mar 30, 2026, 10:55 AM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Customer",
+            "oldValue": "--",
+            "newValue": "Acme Corp",
+            "detailsLabel": "Customer: -- \u2192 Acme Corp",
+            "error": "QuickBooks customer not found. The linked customer may have been deleted in QuickBooks."
+          },
+          {
+            "id": "inv-5",
+            "status": "failed",
+            "statusLabel": "Failed",
+            "statusVariant": "danger",
+            "object": "QB #HS-1484",
+            "qbId": "543783810234",
+            "date": "2026-03-30T10:42:00",
+            "dateLabel": "Mar 30, 2026, 10:42 AM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Amount",
+            "oldValue": "$0.00",
+            "newValue": "$2,500.00",
+            "detailsLabel": "Amount: $0.00 \u2192 $2,500.00",
+            "error": "Currency mismatch. Invoice currency (EUR) does not match QuickBooks home currency (USD)."
+          },
+          {
+            "id": "inv-6",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1483",
+            "qbId": "543783654321",
+            "date": "2026-03-30T09:30:00",
+            "dateLabel": "Mar 30, 2026, 9:30 AM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Payment Status",
+            "oldValue": "Unpaid",
+            "newValue": "Paid",
+            "detailsLabel": "Payment Status: Unpaid \u2192 Paid",
+            "error": ""
+          },
+          {
+            "id": "inv-7",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1482",
+            "qbId": "543783543210",
+            "date": "2026-03-30T09:15:00",
+            "dateLabel": "Mar 30, 2026, 9:15 AM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Due Date",
+            "oldValue": "Apr 15, 2026",
+            "newValue": "Apr 30, 2026",
+            "detailsLabel": "Due Date: Apr 15, 2026 \u2192 Apr 30, 2026",
+            "error": ""
+          },
+          {
+            "id": "inv-8",
+            "status": "failed",
+            "statusLabel": "Failed",
+            "statusVariant": "danger",
+            "object": "QB #HS-1481",
+            "qbId": "543783432109",
+            "date": "2026-03-29T17:20:00",
+            "dateLabel": "Mar 29, 2026, 5:20 PM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Tax Rate",
+            "oldValue": "0%",
+            "newValue": "8.25%",
+            "detailsLabel": "Tax Rate: 0% \u2192 8.25%",
+            "error": "Tax code not found in QuickBooks. Verify tax settings in QuickBooks company preferences."
+          },
+          {
+            "id": "inv-9",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1480",
+            "qbId": "543783321098",
+            "date": "2026-03-29T16:45:00",
+            "dateLabel": "Mar 29, 2026, 4:45 PM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Amount",
+            "oldValue": "$3,400.00",
+            "newValue": "$3,400.00",
+            "detailsLabel": "Amount: $3,400.00 \u2192 $3,400.00",
+            "error": ""
+          },
+          {
+            "id": "inv-10",
+            "status": "pending",
+            "statusLabel": "Pending",
+            "statusVariant": "warning",
+            "object": "QB #HS-1479",
+            "qbId": "543783210987",
+            "date": "2026-03-29T16:30:00",
+            "dateLabel": "Mar 29, 2026, 4:30 PM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Line Items",
+            "oldValue": "1 item",
+            "newValue": "4 items",
+            "detailsLabel": "Line Items: 1 item \u2192 4 items",
+            "error": ""
+          },
+          {
+            "id": "inv-11",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1478",
+            "qbId": "543783109876",
+            "date": "2026-03-29T15:55:00",
+            "dateLabel": "Mar 29, 2026, 3:55 PM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Customer",
+            "oldValue": "Beta LLC",
+            "newValue": "Beta Industries LLC",
+            "detailsLabel": "Customer: Beta LLC \u2192 Beta Industries LLC",
+            "error": ""
+          },
+          {
+            "id": "inv-12",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #HS-1477",
+            "qbId": "543782998765",
+            "date": "2026-03-29T14:40:00",
+            "dateLabel": "Mar 29, 2026, 2:40 PM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Status",
+            "oldValue": "Sent",
+            "newValue": "Overdue",
+            "detailsLabel": "Status: Sent \u2192 Overdue",
+            "error": ""
+          }
+        ]
+      },
+      {
+        "key": "payments",
+        "tabLabel": "Payments (81)",
+        "entries": [
+          {
+            "id": "pay-1",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #PMT-0412",
+            "qbId": "987654321001",
+            "date": "2026-03-30T15:30:00",
+            "dateLabel": "Mar 30, 2026, 3:30 PM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Amount",
+            "oldValue": "--",
+            "newValue": "$4,200.00",
+            "detailsLabel": "Amount: -- \u2192 $4,200.00",
+            "error": ""
+          },
+          {
+            "id": "pay-2",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #PMT-0411",
+            "qbId": "987654321002",
+            "date": "2026-03-30T14:15:00",
+            "dateLabel": "Mar 30, 2026, 2:15 PM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Payment Method",
+            "oldValue": "--",
+            "newValue": "ACH Transfer",
+            "detailsLabel": "Payment Method: -- \u2192 ACH Transfer",
+            "error": ""
+          },
+          {
+            "id": "pay-3",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #PMT-0410",
+            "qbId": "987654321003",
+            "date": "2026-03-30T11:00:00",
+            "dateLabel": "Mar 30, 2026, 11:00 AM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Amount",
+            "oldValue": "--",
+            "newValue": "$1,850.00",
+            "detailsLabel": "Amount: -- \u2192 $1,850.00",
+            "error": ""
+          },
+          {
+            "id": "pay-4",
+            "status": "pending",
+            "statusLabel": "Pending",
+            "statusVariant": "warning",
+            "object": "QB #PMT-0409",
+            "qbId": "987654321004",
+            "date": "2026-03-30T10:30:00",
+            "dateLabel": "Mar 30, 2026, 10:30 AM",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "field": "Reference",
+            "oldValue": "--",
+            "newValue": "INV-1486",
+            "detailsLabel": "Reference: -- \u2192 INV-1486",
+            "error": ""
+          },
+          {
+            "id": "pay-5",
+            "status": "success",
+            "statusLabel": "Synced",
+            "statusVariant": "success",
+            "object": "QB #PMT-0408",
+            "qbId": "987654321005",
+            "date": "2026-03-29T16:20:00",
+            "dateLabel": "Mar 29, 2026, 4:20 PM",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "field": "Amount",
+            "oldValue": "--",
+            "newValue": "$6,750.00",
+            "detailsLabel": "Amount: -- \u2192 $6,750.00",
+            "error": ""
+          }
+        ]
+      },
+      {
+        "key": "products",
+        "tabLabel": "Products",
+        "entries": []
+      },
+      {
+        "key": "quotes",
+        "tabLabel": "Quotes",
+        "entries": []
+      }
+    ],
+    "objectTabsMappings": [
+      {
+        "key": "invoices",
+        "tabLabel": "Invoices (8)",
+        "mappings": [
+          {
+            "id": "map-inv-1",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Invoice Number",
+            "hsField": "Invoice number",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Unique invoice identifier synced as read-only default mapping."
+          },
+          {
+            "id": "map-inv-2",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Customer",
+            "hsField": "Company name",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Maps QuickBooks customer to HubSpot associated company."
+          },
+          {
+            "id": "map-inv-3",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Amount",
+            "hsField": "Amount",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Invoice total amount, synced bidirectionally."
+          },
+          {
+            "id": "map-inv-4",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Due Date",
+            "hsField": "Close date",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "QuickBooks due date mapped to HubSpot deal close date property."
+          },
+          {
+            "id": "map-inv-5",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Status",
+            "hsField": "Invoice status",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Open/Sent/Paid/Overdue status synced as custom property."
+          },
+          {
+            "id": "map-inv-6",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Tax Rate",
+            "hsField": "Tax rate",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "directionArrow": "\u2190",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Tax percentage applied to invoice line items."
+          },
+          {
+            "id": "map-inv-7",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Line Items",
+            "hsField": "Line items",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Product/service line items with quantities and prices."
+          },
+          {
+            "id": "map-inv-8",
+            "active": false,
+            "activeIcon": "circleHollow",
+            "activeLabel": "Inactive",
+            "qbField": "Memo",
+            "hsField": "Description",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Internal memo field mapped to HubSpot description. Currently disabled."
+          }
+        ]
+      },
+      {
+        "key": "payments",
+        "tabLabel": "Payments (5)",
+        "mappings": [
+          {
+            "id": "map-pay-1",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Payment ID",
+            "hsField": "Payment ID",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Unique payment identifier."
+          },
+          {
+            "id": "map-pay-2",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Amount",
+            "hsField": "Amount",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Payment amount in home currency."
+          },
+          {
+            "id": "map-pay-3",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Payment Method",
+            "hsField": "Payment method",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "ACH, Credit Card, Check, etc."
+          },
+          {
+            "id": "map-pay-4",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Date",
+            "hsField": "Payment date",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Date payment was received."
+          },
+          {
+            "id": "map-pay-5",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Reference",
+            "hsField": "Invoice number",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "association",
+            "typeLabel": "Association",
+            "description": "Links payment to its associated invoice record."
+          }
+        ]
+      },
+      {
+        "key": "products",
+        "tabLabel": "Products (4)",
+        "mappings": [
+          {
+            "id": "map-prod-1",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Product Name",
+            "hsField": "Name",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Product display name."
+          },
+          {
+            "id": "map-prod-2",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "SKU",
+            "hsField": "SKU",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Stock keeping unit identifier."
+          },
+          {
+            "id": "map-prod-3",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Price",
+            "hsField": "Unit price",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Product unit price in home currency."
+          },
+          {
+            "id": "map-prod-4",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Description",
+            "hsField": "Description",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "directionArrow": "\u2190",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Product description text."
+          }
+        ]
+      },
+      {
+        "key": "quotes",
+        "tabLabel": "Quotes (4)",
+        "mappings": [
+          {
+            "id": "map-quote-1",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Estimate Number",
+            "hsField": "Quote number",
+            "direction": "both",
+            "directionLabel": "HS \u2194 QB",
+            "directionArrow": "\u2194",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Unique quote/estimate identifier."
+          },
+          {
+            "id": "map-quote-2",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Total",
+            "hsField": "Amount",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "default",
+            "typeLabel": "Default",
+            "description": "Quote total amount."
+          },
+          {
+            "id": "map-quote-3",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Expiry Date",
+            "hsField": "Expiration date",
+            "direction": "hs_to_qb",
+            "directionLabel": "HS \u2192 QB",
+            "directionArrow": "\u2190",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Date the quote expires."
+          },
+          {
+            "id": "map-quote-4",
+            "active": true,
+            "activeIcon": "checkCircle",
+            "activeLabel": "Active",
+            "qbField": "Status",
+            "hsField": "Quote status",
+            "direction": "qb_to_hs",
+            "directionLabel": "QB \u2192 HS",
+            "directionArrow": "\u2192",
+            "type": "custom",
+            "typeLabel": "Custom",
+            "description": "Pending/Accepted/Rejected/Expired status."
+          }
+        ]
+      }
+    ],
+    "statusFilterOptions": [
+      {
+        "label": "Synced",
+        "value": "success"
+      },
+      {
+        "label": "Failed",
+        "value": "failed"
+      },
+      {
+        "label": "Pending",
+        "value": "pending"
+      }
+    ],
+    "directionFilterOptions": [
+      {
+        "label": "HS \u2192 QB",
+        "value": "hs_to_qb"
+      },
+      {
+        "label": "QB \u2192 HS",
+        "value": "qb_to_hs"
+      }
+    ],
+    "mappingTypeFilterOptions": [
+      {
+        "label": "Default",
+        "value": "default"
+      },
+      {
+        "label": "Custom",
+        "value": "custom"
+      },
+      {
+        "label": "Association",
+        "value": "association"
+      }
+    ],
+    "mappingDirectionFilterOptions": [
+      {
+        "label": "QB \u2192 HS",
+        "value": "qb_to_hs"
+      },
+      {
+        "label": "HS \u2192 QB",
+        "value": "hs_to_qb"
+      },
+      {
+        "label": "Bidirectional",
+        "value": "both"
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading sync data...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert-error": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load sync data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not connect to QuickBooks. Check your integration settings or try again in a few minutes."
+    },
+    "empty-connection-tag": {
+      "type": "Tag",
+      "variant": "success",
+      "children": "Connected"
+    },
+    "empty-connection-item": {
+      "type": "DescriptionListItem",
+      "label": "Connection",
+      "children": [
+        "empty-connection-tag"
+      ]
+    },
+    "empty-lastsync-text": {
+      "type": "Text",
+      "children": "$data.connection.lastSyncLabel"
+    },
+    "empty-lastsync-item": {
+      "type": "DescriptionListItem",
+      "label": "Last sync",
+      "children": [
+        "empty-lastsync-text"
+      ]
+    },
+    "empty-frequency-text": {
+      "type": "Text",
+      "children": "$data.connection.frequencyLabel"
+    },
+    "empty-frequency-item": {
+      "type": "DescriptionListItem",
+      "label": "Sync frequency",
+      "children": [
+        "empty-frequency-text"
+      ]
+    },
+    "empty-connection-list": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-connection-item",
+        "empty-lastsync-item",
+        "empty-frequency-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "QuickBooks is connected but no objects have been synced. Configure your sync settings to begin syncing invoices, payments, products, and quotes."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No sync activity yet",
+      "layout": "vertical",
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-connection-list",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "failure-alert": {
+      "type": "Alert",
+      "variant": "warning",
+      "title": "$data.failureSummary.title",
+      "visible": "$data.failureSummary.visible",
+      "children": "$data.failureSummary.message"
+    },
+    "stat-synced": {
+      "type": "StatisticsItem",
+      "label": "Synced",
+      "number": "$data.totals.syncedLabel"
+    },
+    "stat-failed": {
+      "type": "StatisticsItem",
+      "label": "Failed",
+      "number": "$data.totals.failedLabel"
+    },
+    "stat-pending": {
+      "type": "StatisticsItem",
+      "label": "Pending",
+      "number": "$data.totals.pendingLabel"
+    },
+    "kpi-stats": {
+      "type": "Statistics",
+      "name": "kpi-stats",
+      "children": [
+        "stat-synced",
+        "stat-failed",
+        "stat-pending"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "back-button-icon": {
+      "type": "Icon",
+      "name": "left",
+      "size": "sm"
+    },
+    "back-button": {
+      "type": "Button",
+      "variant": "transparent",
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "mappings"
+        ]
+      },
+      "onClick": {
+        "$action": "setState",
+        "key": "cardView",
+        "value": "activity"
+      },
+      "children": [
+        "back-button-icon"
+      ]
+    },
+    "section-header-icon": {
+      "type": "Icon",
+      "name": "dataSync"
+    },
+    "section-header-text-activity": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "activity"
+        ]
+      },
+      "children": "$data.sectionHeaderActivityLabel"
+    },
+    "section-header-text-mappings": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "mappings"
+        ]
+      },
+      "children": "$data.sectionHeaderMappingsLabel"
+    },
+    "section-header-left": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "back-button",
+        "section-header-icon",
+        "section-header-text-activity",
+        "section-header-text-mappings"
+      ]
+    },
+    "settings-button-icon": {
+      "type": "Icon",
+      "name": "settings",
+      "size": "sm"
+    },
+    "settings-button": {
+      "type": "Button",
+      "variant": "transparent",
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "activity"
+        ]
+      },
+      "onClick": {
+        "$action": "setState",
+        "key": "cardView",
+        "value": "mappings"
+      },
+      "children": [
+        "settings-button-icon"
+      ]
+    },
+    "section-header": {
+      "type": "Flex",
+      "name": "section-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "section-header-left",
+        "settings-button"
+      ]
+    },
+    "activity-tabs": {
+      "type": "Tabs",
+      "name": "activity-tabs",
+      "selected": "$state.objectTab",
+      "onSelectedChange": {
+        "$action": "setState",
+        "key": "objectTab",
+        "value": "$event"
+      },
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "activity"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.objectTabsActivity",
+          "as": "tab",
+          "render": {
+            "type": "Tab",
+            "tabId": "$tab.key",
+            "title": "$tab.tabLabel",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "sm",
+                "children": [
+                  {
+                    "type": "DataTable",
+                    "data": "$tab.entries",
+                    "searchFields": [
+                      "object",
+                      "qbId",
+                      "field"
+                    ],
+                    "searchPlaceholder": "Search by object, ID, or field...",
+                    "pageSize": 10,
+                    "filters": [
+                      {
+                        "type": "select",
+                        "name": "status",
+                        "placeholder": "All statuses",
+                        "options": "$data.statusFilterOptions"
+                      },
+                      {
+                        "type": "select",
+                        "name": "direction",
+                        "placeholder": "All directions",
+                        "options": "$data.directionFilterOptions"
+                      }
+                    ],
+                    "columns": [
+                      {
+                        "field": "status",
+                        "label": "Status",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "StatusTag",
+                            "variant": "$row.statusVariant",
+                            "children": "$row.statusLabel"
+                          }
+                        }
+                      },
+                      {
+                        "field": "direction",
+                        "label": "Direction",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Flex",
+                            "direction": "row",
+                            "align": "center",
+                            "gap": "xs",
+                            "children": [
+                              {
+                                "type": "Icon",
+                                "name": "dataSync"
+                              },
+                              {
+                                "type": "Text",
+                                "variant": "microcopy",
+                                "children": "$row.directionLabel"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      {
+                        "field": "object",
+                        "label": "Object",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Link",
+                            "overlay": {
+                              "type": "Panel",
+                              "id": "sync-detail-{{row.id}}",
+                              "title": "$row.object",
+                              "width": "small",
+                              "variant": "modal",
+                              "children": [
+                                {
+                                  "type": "PanelBody",
+                                  "children": [
+                                    {
+                                      "type": "PanelSection",
+                                      "children": [
+                                        {
+                                          "type": "Flex",
+                                          "direction": "column",
+                                          "gap": "sm",
+                                          "children": [
+                                            {
+                                              "type": "DescriptionList",
+                                              "direction": "column",
+                                              "children": [
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Status",
+                                                  "children": [
+                                                    {
+                                                      "type": "StatusTag",
+                                                      "variant": "$row.statusVariant",
+                                                      "children": "$row.statusLabel"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Object",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "format": {
+                                                        "fontWeight": "demibold"
+                                                      },
+                                                      "children": "$row.object"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "QuickBooks ID",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.qbId"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Direction",
+                                                  "children": [
+                                                    {
+                                                      "type": "Flex",
+                                                      "direction": "row",
+                                                      "align": "center",
+                                                      "gap": "xs",
+                                                      "children": [
+                                                        {
+                                                          "type": "Icon",
+                                                          "name": "dataSync"
+                                                        },
+                                                        {
+                                                          "type": "Text",
+                                                          "children": "$row.directionLabel"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Field changed",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.field"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Previous value",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.oldValue"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "New value",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "format": {
+                                                        "fontWeight": "demibold"
+                                                      },
+                                                      "children": "$row.newValue"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Synced at",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.dateLabel"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "Alert",
+                                              "variant": "error",
+                                              "title": "Sync error",
+                                              "visible": {
+                                                "$eq": [
+                                                  "$row.status",
+                                                  "failed"
+                                                ]
+                                              },
+                                              "children": "$row.error"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "PanelFooter",
+                                  "children": [
+                                    {
+                                      "type": "Flex",
+                                      "direction": "column",
+                                      "children": [
+                                        {
+                                          "type": "Flex",
+                                          "direction": "row",
+                                          "justify": "end",
+                                          "children": [
+                                            {
+                                              "type": "Button",
+                                              "variant": "primary",
+                                              "visible": {
+                                                "$eq": [
+                                                  "$row.status",
+                                                  "failed"
+                                                ]
+                                              },
+                                              "children": "Retry sync"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            "children": "$row.object"
+                          }
+                        }
+                      },
+                      {
+                        "field": "details",
+                        "label": "Details",
+                        "width": "auto",
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Text",
+                            "children": "$row.detailsLabel"
+                          }
+                        }
+                      },
+                      {
+                        "field": "date",
+                        "label": "Date",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Text",
+                            "children": "$row.dateLabel"
+                          }
+                        }
+                      }
+                    ],
+                    "defaultSort": {
+                      "date": "descending"
+                    },
+                    "emptyTitle": "No sync activity",
+                    "emptyMessage": "No records have been synced for this object type yet."
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "mappings-tabs": {
+      "type": "Tabs",
+      "name": "mappings-tabs",
+      "selected": "$state.objectTab",
+      "onSelectedChange": {
+        "$action": "setState",
+        "key": "objectTab",
+        "value": "$event"
+      },
+      "visible": {
+        "$eq": [
+          "$state.cardView",
+          "mappings"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.objectTabsMappings",
+          "as": "tab",
+          "render": {
+            "type": "Tab",
+            "tabId": "$tab.key",
+            "title": "$tab.tabLabel",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "sm",
+                "children": [
+                  {
+                    "type": "DataTable",
+                    "data": "$tab.mappings",
+                    "searchFields": [
+                      "qbField",
+                      "hsField"
+                    ],
+                    "searchPlaceholder": "Search fields...",
+                    "pageSize": 10,
+                    "filters": [
+                      {
+                        "type": "select",
+                        "name": "type",
+                        "placeholder": "All types",
+                        "options": "$data.mappingTypeFilterOptions"
+                      },
+                      {
+                        "type": "select",
+                        "name": "direction",
+                        "placeholder": "All directions",
+                        "options": "$data.mappingDirectionFilterOptions"
+                      }
+                    ],
+                    "columns": [
+                      {
+                        "field": "active",
+                        "label": "Status",
+                        "width": "min",
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Icon",
+                            "name": "$row.activeIcon",
+                            "size": "md"
+                          }
+                        }
+                      },
+                      {
+                        "field": "qbField",
+                        "label": "QuickBooks",
+                        "width": "min",
+                        "sortable": true
+                      },
+                      {
+                        "field": "direction",
+                        "label": "",
+                        "width": "min",
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Text",
+                            "format": {
+                              "fontWeight": "demibold"
+                            },
+                            "children": "$row.directionArrow"
+                          }
+                        }
+                      },
+                      {
+                        "field": "hsField",
+                        "label": "HubSpot",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Link",
+                            "overlay": {
+                              "type": "Panel",
+                              "id": "mapping-detail-{{row.id}}",
+                              "title": "Field mapping",
+                              "width": "small",
+                              "variant": "modal",
+                              "flush": true,
+                              "children": [
+                                {
+                                  "type": "PanelBody",
+                                  "children": [
+                                    {
+                                      "type": "PanelSection",
+                                      "children": [
+                                        {
+                                          "type": "Flex",
+                                          "direction": "column",
+                                          "gap": "sm",
+                                          "children": [
+                                            {
+                                              "type": "DescriptionList",
+                                              "direction": "column",
+                                              "children": [
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Status",
+                                                  "children": [
+                                                    {
+                                                      "type": "Flex",
+                                                      "direction": "row",
+                                                      "align": "center",
+                                                      "gap": "xs",
+                                                      "children": [
+                                                        {
+                                                          "type": "Icon",
+                                                          "name": "$row.activeIcon"
+                                                        },
+                                                        {
+                                                          "type": "Text",
+                                                          "format": {
+                                                            "fontWeight": "demibold"
+                                                          },
+                                                          "children": "$row.activeLabel"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "QuickBooks field",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "format": {
+                                                        "fontWeight": "demibold"
+                                                      },
+                                                      "children": "$row.qbField"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Direction",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.directionLabel"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "HubSpot field",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "format": {
+                                                        "fontWeight": "demibold"
+                                                      },
+                                                      "children": "$row.hsField"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Mapping type",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.typeLabel"
+                                                    }
+                                                  ]
+                                                },
+                                                {
+                                                  "type": "DescriptionListItem",
+                                                  "label": "Description",
+                                                  "children": [
+                                                    {
+                                                      "type": "Text",
+                                                      "children": "$row.description"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "PanelFooter",
+                                  "children": [
+                                    {
+                                      "type": "Flex",
+                                      "direction": "column",
+                                      "children": [
+                                        {
+                                          "type": "Flex",
+                                          "direction": "row",
+                                          "justify": "end",
+                                          "children": [
+                                            {
+                                              "type": "Button",
+                                              "variant": "primary",
+                                              "children": "Edit mapping"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            "children": "$row.hsField"
+                          }
+                        }
+                      },
+                      {
+                        "field": "type",
+                        "label": "Type",
+                        "width": "min",
+                        "sortable": true,
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Text",
+                            "children": "$row.typeLabel"
+                          }
+                        }
+                      },
+                      {
+                        "field": "actions",
+                        "label": "",
+                        "width": "min",
+                        "renderCell": {
+                          "$render": [
+                            "value",
+                            "row"
+                          ],
+                          "node": {
+                            "type": "Flex",
+                            "direction": "row",
+                            "align": "center",
+                            "gap": "xs",
+                            "justify": "end",
+                            "children": [
+                              {
+                                "type": "Button",
+                                "variant": "secondary",
+                                "children": "Actions"
+                              },
+                              {
+                                "type": "Toggle",
+                                "name": "toggle-{{row.id}}",
+                                "size": "sm",
+                                "labelDisplay": "hidden",
+                                "label": "Toggle mapping",
+                                "checked": "$row.active"
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ],
+                    "emptyTitle": "No field mappings",
+                    "emptyMessage": "No field mappings have been configured for this object type."
+                  },
+                  {
+                    "type": "Button",
+                    "variant": "transparent",
+                    "children": "+ Add a mapping"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "failure-alert",
+        "kpi-stats",
+        "divider",
+        "section-header",
+        "activity-tabs",
+        "mappings-tabs"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert-error",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

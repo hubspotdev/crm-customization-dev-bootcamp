@@ -1,0 +1,82 @@
+{
+  "name": "feed-activity-timeline",
+  "description": "Activity feed / timeline (hs-uix Feed) using the standard item shape — the default for any chronological stream (notes, emails, calls, audit log, recent events). Items carry `type` + precomputed `typeVariant` (StatusTag color), `iconName`, `title`, `actor`, `timestamp`, `body`, and inline `meta`. `groupByDate` buckets into Today / Yesterday / older. Toolbar mirrors DataTable: `searchFields` + `filters` (select/multiselect/dateRange) on the left, `sortOptions` + count on the right. `pageSize` adds a 'View more' button. PROP is `items` (not `data`). Precompute `typeVariant` in data — never `$if` it in the spec.",
+  "componentsUsed": [
+    "Feed"
+  ],
+  "dataShape": {
+    "activity": [
+      {
+        "id": "a1",
+        "type": "Email",
+        "typeVariant": "info",
+        "iconName": "email",
+        "title": "Sent: Q2 proposal recap",
+        "actor": "Avery Reed",
+        "timestamp": "2026-06-03T13:41:00Z",
+        "body": "Recapped pricing and implementation timeline; awaiting sign-off.",
+        "meta": ["Sales", "High intent"]
+      },
+      {
+        "id": "a2",
+        "type": "Call",
+        "typeVariant": "success",
+        "iconName": "calling",
+        "title": "Discovery call",
+        "actor": "Jordan Kim",
+        "timestamp": "2026-06-02T16:05:00Z",
+        "body": "30-minute intro; confirmed budget and decision date.",
+        "meta": ["Connected"]
+      },
+      {
+        "id": "a3",
+        "type": "Note",
+        "typeVariant": "default",
+        "iconName": "comment",
+        "title": "Note added",
+        "actor": "Sam Patel",
+        "timestamp": "2026-05-28T09:12:00Z",
+        "body": "Customer prefers a phased rollout starting in Q3.",
+        "meta": []
+      }
+    ],
+    "activityTypeOptions": [
+      { "label": "Emails", "value": "Email" },
+      { "label": "Calls", "value": "Call" },
+      { "label": "Notes", "value": "Note" }
+    ]
+  },
+  "node": {
+    "root": "activity-feed",
+    "elements": {
+      "activity-feed": {
+        "type": "Feed",
+        "name": "activity-feed",
+        "title": "Activity",
+        "description": "Latest timeline events for this record.",
+        "items": "$data.activity",
+        "searchFields": ["title", "body", "type", "actor"],
+        "filters": [
+          {
+            "name": "type",
+            "type": "multiselect",
+            "label": "Activity type",
+            "options": "$data.activityTypeOptions"
+          },
+          {
+            "name": "timestamp",
+            "type": "dateRange",
+            "label": "Date"
+          }
+        ],
+        "sortOptions": [
+          { "value": "newest", "label": "Newest first", "field": "timestamp", "direction": "desc" },
+          { "value": "oldest", "label": "Oldest first", "field": "timestamp", "direction": "asc" }
+        ],
+        "defaultSort": "newest",
+        "groupByDate": true,
+        "pageSize": 10
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "stats-with-trend",
+  "description": "Statistics row where each item carries a StatisticsTrend child showing direction (increase/decrease) and a percent label. Pre-compute the trend direction and label per KPI in data — do NOT compute deltas in the spec. Iterates $data.kpis. Use as the KPI hero of Chart-Forward or Triage Dashboard cards.",
+  "componentsUsed": [
+    "Statistics",
+    "StatisticsItem",
+    "StatisticsTrend"
+  ],
+  "dataShape": {
+    "kpis": [
+      {
+        "label": "Impressions",
+        "value": "4.2M",
+        "trendLabel": "+12.4%",
+        "trendDirection": "increase"
+      }
+    ]
+  },
+  "node": {
+    "root": "kpis-with-trend",
+    "elements": {
+      "statisticstrend": {
+        "type": "StatisticsTrend",
+        "direction": "$kpi.trendDirection",
+        "children": "$kpi.trendLabel"
+      },
+      "kpis-with-trend": {
+        "type": "Statistics",
+        "name": "kpis-with-trend",
+        "children": [
+          {
+            "$forEach": "$data.kpis",
+            "as": "kpi",
+            "render": {
+              "type": "StatisticsItem",
+              "label": "$kpi.label",
+              "number": "$kpi.value",
+              "children": [
+                "statisticstrend"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,2031 @@
+{
+  "meta": {
+    "name": "Deal Battlecard",
+    "description": "Three-tab deal card: health pulse, activity timeline, and competitive battlecard. Built with Flex columns + per-type $forEach blocks instead of DataTable + Tile — useful as a comparison reference against deal-intelligence.json for layout trade-offs.",
+    "surface": "crm.record.tab",
+    "object": "deal",
+    "tagline": "Pulse · Timeline · Battlecard"
+  },
+  "state": {
+    "activeTab": "health",
+    "typeFilter": "all",
+    "competitor": "salesforce",
+    "competitorLabel": "Salesforce"
+  },
+  "data": {
+    "dealName": "Acme Corp — Enterprise",
+    "dealStage": "Proposal Sent",
+    "dealStageVariant": "warning",
+    "dealAmount": "$84,000",
+    "closeDate": "May 30, 2025",
+    "daysUntilClose": 22,
+    "owner": "Jordan Lee",
+    "healthScore": 72,
+    "healthLabel": "Moderate risk",
+    "urgencySignals": [
+      {
+        "id": "u1",
+        "icon": "warning",
+        "variant": "warning",
+        "label": "No activity in 9 days",
+        "detail": "Last touch was an email on Apr 14"
+      },
+      {
+        "id": "u2",
+        "icon": "xCircle",
+        "variant": "danger",
+        "label": "Champion went dark",
+        "detail": "Marcus Chen hasn't opened last 3 emails"
+      },
+      {
+        "id": "u3",
+        "icon": "info",
+        "variant": "info",
+        "label": "Legal review pending",
+        "detail": "Contract sent to legal on Apr 18 — no response"
+      }
+    ],
+    "healthStats": [
+      {
+        "label": "Deal health",
+        "number": "72"
+      },
+      {
+        "label": "Days to close",
+        "number": "22"
+      },
+      {
+        "label": "Engagement score",
+        "number": "61"
+      }
+    ],
+    "activityTypeOptions": [
+      {
+        "label": "All types",
+        "value": "all"
+      },
+      {
+        "label": "Emails",
+        "value": "email"
+      },
+      {
+        "label": "Calls",
+        "value": "call"
+      },
+      {
+        "label": "Meetings",
+        "value": "meeting"
+      },
+      {
+        "label": "Notes",
+        "value": "note"
+      }
+    ],
+    "timelineItems": [
+      {
+        "id": "t1",
+        "icon": "email",
+        "type": "Email",
+        "typeVariant": "info",
+        "date": "Apr 23, 2025",
+        "title": "Sent revised proposal — v3 with CFO discount",
+        "preview": "Attached updated pricing sheet with 15% annual-prepay discount and revised SLA terms.",
+        "notes": "Proposal included 3 pricing tiers. CFO had asked for annual prepay option in the Apr 17 meeting. Followed up with security questionnaire attachment.",
+        "contact": "Sarah Bloom (CFO)",
+        "duration": "--"
+      },
+      {
+        "id": "t2",
+        "icon": "calling",
+        "type": "Call",
+        "typeVariant": "success",
+        "date": "Apr 20, 2025",
+        "title": "Discovery call — Marcus Chen (CTO)",
+        "preview": "Confirmed SSO is table-stakes. Flagged concern about SAML provider compatibility.",
+        "notes": "Marcus confirmed SSO via SAML is a hard requirement. Their current IdP is Okta. He flagged a past bad experience with Dynamics 365 migration. Open to a technical deep-dive call with our SA team.",
+        "contact": "Marcus Chen (CTO)",
+        "duration": "38 min"
+      },
+      {
+        "id": "t3",
+        "icon": "appointment",
+        "type": "Meeting",
+        "typeVariant": "warning",
+        "date": "Apr 17, 2025",
+        "title": "Executive alignment — Sarah Bloom (CFO)",
+        "preview": "CFO requested annual-prepay option. Positive on value; wants legal to review DPA.",
+        "notes": "CFO was receptive to pricing. Requested we add an annual-prepay discount tier. She confirmed budget is approved contingent on legal sign-off. DPA sent same day.",
+        "contact": "Sarah Bloom (CFO)",
+        "duration": "45 min"
+      },
+      {
+        "id": "t4",
+        "icon": "email",
+        "type": "Email",
+        "typeVariant": "info",
+        "date": "Apr 14, 2025",
+        "title": "Sent security questionnaire response",
+        "preview": "Completed InfoSec questionnaire attached. SOC 2 Type II report available on request.",
+        "notes": "Completed all 47 questions in their vendor security questionnaire. Highlighted our SOC 2 Type II, GDPR compliance, and 99.99% uptime SLA. No reply received yet.",
+        "contact": "Marcus Chen (CTO)",
+        "duration": "--"
+      },
+      {
+        "id": "t5",
+        "icon": "note",
+        "type": "Note",
+        "typeVariant": "default",
+        "date": "Apr 11, 2025",
+        "title": "Internal note — competitive intel update",
+        "preview": "Buyer mentioned Salesforce pitched last week. Key objection: implementation timeline.",
+        "notes": "Per a conversation with the economic buyer's assistant, Salesforce pitched on Apr 9. Key concern raised: 6-month implementation. Our 2-4 week timeline is a strong differentiator. Need to reinforce in next touchpoint.",
+        "contact": "--",
+        "duration": "--"
+      }
+    ],
+    "competitorOptions": [
+      {
+        "label": "Salesforce",
+        "value": "salesforce"
+      },
+      {
+        "label": "Microsoft Dynamics",
+        "value": "dynamics"
+      },
+      {
+        "label": "Pipedrive",
+        "value": "pipedrive"
+      },
+      {
+        "label": "Zoho CRM",
+        "value": "zoho"
+      }
+    ],
+    "salesforceStats": [
+      {
+        "label": "Win rate vs. Salesforce",
+        "number": "68%"
+      },
+      {
+        "label": "Avg deal cycle",
+        "number": "47 days"
+      },
+      {
+        "label": "Deals competed",
+        "number": "134"
+      }
+    ],
+    "dynamicsStats": [
+      {
+        "label": "Win rate vs. Dynamics",
+        "number": "74%"
+      },
+      {
+        "label": "Avg deal cycle",
+        "number": "41 days"
+      },
+      {
+        "label": "Deals competed",
+        "number": "58"
+      }
+    ],
+    "pipedriveStats": [
+      {
+        "label": "Win rate vs. Pipedrive",
+        "number": "82%"
+      },
+      {
+        "label": "Avg deal cycle",
+        "number": "38 days"
+      },
+      {
+        "label": "Deals competed",
+        "number": "91"
+      }
+    ],
+    "zohoStats": [
+      {
+        "label": "Win rate vs. Zoho",
+        "number": "89%"
+      },
+      {
+        "label": "Avg deal cycle",
+        "number": "34 days"
+      },
+      {
+        "label": "Deals competed",
+        "number": "47"
+      }
+    ],
+    "salesforceRows": [
+      {
+        "criteria": "Onboarding speed",
+        "us": "2–4 weeks",
+        "usVariant": "success",
+        "them": "3–6 months",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing transparency",
+        "us": "Flat tiers, no surprises",
+        "usVariant": "success",
+        "them": "Per-seat + required add-ons",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Ease of use",
+        "us": "#1 ease-of-use (G2)",
+        "usVariant": "success",
+        "them": "Requires admin certification",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Native marketing suite",
+        "us": "Fully integrated",
+        "usVariant": "success",
+        "them": "Requires Pardot add-on",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Support SLA",
+        "us": "24/7 all tiers",
+        "usVariant": "success",
+        "them": "Phone: Premier only",
+        "themVariant": "warning"
+      }
+    ],
+    "dynamicsRows": [
+      {
+        "criteria": "Onboarding speed",
+        "us": "2–4 weeks",
+        "usVariant": "success",
+        "them": "2–4 months",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Microsoft 365 integration",
+        "us": "Deep via native connector",
+        "usVariant": "success",
+        "them": "Native, best-in-class",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Ease of use",
+        "us": "#1 ease-of-use (G2)",
+        "usVariant": "success",
+        "them": "Complex UI, high training cost",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "Transparent tiers",
+        "usVariant": "success",
+        "them": "Module-based, hard to predict",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Marketing automation",
+        "us": "Native Marketing Hub",
+        "usVariant": "success",
+        "them": "Separate license required",
+        "themVariant": "danger"
+      }
+    ],
+    "pipedriveRows": [
+      {
+        "criteria": "Pipeline management",
+        "us": "Visual + multi-pipeline",
+        "usVariant": "success",
+        "them": "Visual, sales-focused",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Marketing automation",
+        "us": "Full Marketing Hub suite",
+        "usVariant": "success",
+        "them": "Campaigns add-on only",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Enterprise features",
+        "us": "SSO, audit logs, permissions",
+        "usVariant": "success",
+        "them": "Limited enterprise controls",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Reporting depth",
+        "us": "Custom objects + advanced reports",
+        "usVariant": "success",
+        "them": "Basic dashboards",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Support SLA",
+        "us": "24/7 all tiers",
+        "usVariant": "success",
+        "them": "Email + chat, no phone",
+        "themVariant": "warning"
+      }
+    ],
+    "zohoRows": [
+      {
+        "criteria": "Ease of use",
+        "us": "#1 ease-of-use (G2)",
+        "usVariant": "success",
+        "them": "Steep learning curve",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing",
+        "us": "Transparent, predictable",
+        "usVariant": "success",
+        "them": "Low entry, add-ons inflate TCO",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Integration ecosystem",
+        "us": "1,000+ native integrations",
+        "usVariant": "success",
+        "them": "Zoho suite only",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Enterprise security",
+        "us": "SOC 2, GDPR, HIPAA",
+        "usVariant": "success",
+        "them": "SOC 2 only",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Support quality",
+        "us": "24/7 + dedicated CSM",
+        "usVariant": "success",
+        "them": "Inconsistent, long response times",
+        "themVariant": "danger"
+      }
+    ],
+    "competitorLabels": {
+      "salesforce": "Salesforce",
+      "dynamics": "Microsoft Dynamics",
+      "pipedrive": "Pipedrive",
+      "zoho": "Zoho CRM"
+    },
+    "competitorLabel": "Salesforce"
+  },
+  "root": "card-root",
+  "elements": {
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "tabs-shell"
+      ]
+    },
+    "tabs-shell": {
+      "type": "Tabs",
+      "name": "tabs-shell",
+      "selected": "$state.activeTab",
+      "onSelectedChange": {
+        "$action": "setState",
+        "key": "activeTab",
+        "value": "$value"
+      },
+      "variant": "default",
+      "children": [
+        "tab-health",
+        "tab-activity",
+        "tab-battlecard"
+      ]
+    },
+    "tab-health": {
+      "type": "Tab",
+      "tabId": "health",
+      "title": "Health Pulse",
+      "children": [
+        "health-content"
+      ]
+    },
+    "health-content": {
+      "type": "Flex",
+      "name": "health-content",
+      "direction": "column",
+      "gap": "md",
+      "children": [
+        "health-stats-row",
+        "health-divider-1",
+        "urgency-section",
+        "health-divider-2",
+        "deal-meta-section"
+      ]
+    },
+    "health-stats-row": {
+      "type": "Statistics",
+      "children": [
+        {
+          "$forEach": "$data.healthStats",
+          "as": "stat",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$stat.label",
+            "number": "$stat.number"
+          }
+        }
+      ]
+    },
+    "health-divider-1": {
+      "type": "Divider"
+    },
+    "urgency-section": {
+      "type": "Flex",
+      "name": "urgency-section",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "urgency-header",
+        "urgency-signals-list"
+      ]
+    },
+    "urgency-header": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "urgency-title",
+        "log-note-btn"
+      ]
+    },
+    "urgency-title": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Urgency signals"
+    },
+    "log-note-btn": {
+      "type": "Button",
+      "variant": "primary",
+      "size": "small",
+      "overlay": {
+        "type": "Panel",
+        "id": "log-activity-panel",
+        "title": "Log activity",
+        "width": "medium",
+        "variant": "modal",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "column",
+                    "gap": "sm",
+                    "children": [
+                      {
+                        "type": "Select",
+                        "label": "Activity type",
+                        "name": "activityType",
+                        "options": [
+                          {
+                            "label": "Call",
+                            "value": "call"
+                          },
+                          {
+                            "label": "Email",
+                            "value": "email"
+                          },
+                          {
+                            "label": "Meeting",
+                            "value": "meeting"
+                          },
+                          {
+                            "label": "Note",
+                            "value": "note"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Input",
+                        "label": "Title",
+                        "name": "activityTitle",
+                        "placeholder": "e.g. Follow-up call with Marcus"
+                      },
+                      {
+                        "type": "TextArea",
+                        "label": "Notes",
+                        "name": "activityNotes",
+                        "placeholder": "Key takeaways, next steps, objections raised…"
+                      },
+                      {
+                        "type": "DateInput",
+                        "label": "Date",
+                        "name": "activityDate"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "justify": "between",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "log-activity-panel"
+                        },
+                        "children": "Cancel"
+                      },
+                      {
+                        "type": "Button",
+                        "variant": "primary",
+                        "onClick": {
+                          "$action": "batch",
+                          "actions": [
+                            {
+                              "$action": "closeOverlay",
+                              "id": "log-activity-panel"
+                            },
+                            {
+                              "$action": "addAlert",
+                              "type": "success",
+                              "message": "Activity logged successfully"
+                            }
+                          ]
+                        },
+                        "children": "Save activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "Log activity"
+    },
+    "urgency-signals-list": {
+      "type": "Flex",
+      "name": "urgency-signals-list",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        {
+          "$forEach": "$data.urgencySignals",
+          "as": "signal",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$signal.variant",
+                    "children": "$signal.label"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$signal.detail"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "health-divider-2": {
+      "type": "Divider"
+    },
+    "deal-meta-section": {
+      "type": "Flex",
+      "name": "deal-meta-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "deal-meta-title",
+        "deal-meta-list"
+      ]
+    },
+    "deal-meta-title": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Deal details"
+    },
+    "deal-meta-list": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        {
+          "type": "DescriptionListItem",
+          "label": "Stage",
+          "children": [
+            {
+              "type": "StatusTag",
+              "variant": "$data.dealStageVariant",
+              "children": "$data.dealStage"
+            }
+          ]
+        },
+        {
+          "type": "DescriptionListItem",
+          "label": "Amount",
+          "children": [
+            {
+              "type": "Text",
+              "children": "$data.dealAmount"
+            }
+          ]
+        },
+        {
+          "type": "DescriptionListItem",
+          "label": "Close date",
+          "children": [
+            {
+              "type": "Text",
+              "children": "$data.closeDate"
+            }
+          ]
+        },
+        {
+          "type": "DescriptionListItem",
+          "label": "Owner",
+          "children": [
+            {
+              "type": "Text",
+              "children": "$data.owner"
+            }
+          ]
+        }
+      ]
+    },
+    "tab-activity": {
+      "type": "Tab",
+      "tabId": "activity",
+      "title": "Activity",
+      "children": [
+        "activity-content"
+      ]
+    },
+    "activity-content": {
+      "type": "Flex",
+      "name": "activity-content",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "activity-header",
+        "activity-feed"
+      ]
+    },
+    "activity-header": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "align": "end",
+      "gap": "sm",
+      "children": [
+        "activity-type-filter",
+        "log-activity-btn-2"
+      ]
+    },
+    "activity-type-filter": {
+      "type": "Select",
+      "name": "typeFilter",
+      "label": "Filter by type",
+      "options": "$data.activityTypeOptions",
+      "value": {
+        "$bindState": "typeFilter"
+      },
+      "variant": "transparent"
+    },
+    "log-activity-btn-2": {
+      "type": "Button",
+      "variant": "primary",
+      "size": "small",
+      "overlay": {
+        "type": "Panel",
+        "id": "log-activity-panel-2",
+        "title": "Log activity",
+        "width": "medium",
+        "variant": "modal",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "column",
+                    "gap": "sm",
+                    "children": [
+                      {
+                        "type": "Select",
+                        "label": "Activity type",
+                        "name": "activityType2",
+                        "options": [
+                          {
+                            "label": "Call",
+                            "value": "call"
+                          },
+                          {
+                            "label": "Email",
+                            "value": "email"
+                          },
+                          {
+                            "label": "Meeting",
+                            "value": "meeting"
+                          },
+                          {
+                            "label": "Note",
+                            "value": "note"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Input",
+                        "label": "Title",
+                        "name": "activityTitle2",
+                        "placeholder": "e.g. Follow-up call with Marcus"
+                      },
+                      {
+                        "type": "TextArea",
+                        "label": "Notes",
+                        "name": "activityNotes2",
+                        "placeholder": "Key takeaways, next steps, objections raised…"
+                      },
+                      {
+                        "type": "DateInput",
+                        "label": "Date",
+                        "name": "activityDate2"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "justify": "between",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "log-activity-panel-2"
+                        },
+                        "children": "Cancel"
+                      },
+                      {
+                        "type": "Button",
+                        "variant": "primary",
+                        "onClick": {
+                          "$action": "batch",
+                          "actions": [
+                            {
+                              "$action": "closeOverlay",
+                              "id": "log-activity-panel-2"
+                            },
+                            {
+                              "$action": "addAlert",
+                              "type": "success",
+                              "message": "Activity logged successfully"
+                            }
+                          ]
+                        },
+                        "children": "Save activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "Log activity"
+    },
+    "activity-feed": {
+      "type": "Flex",
+      "name": "activity-feed",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        {
+          "$forEach": "$data.timelineItems",
+          "as": "item",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "visible": {
+              "$and": [
+                {
+                  "$eq": [
+                    "$item.type",
+                    "Email"
+                  ]
+                },
+                {
+                  "$or": [
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "all"
+                      ]
+                    },
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "email"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "name": "email",
+                        "screenReaderText": "Email"
+                      },
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$item.type"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "·"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$item.date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Link",
+                    "overlay": {
+                      "type": "Panel",
+                      "id": "activity-detail-email",
+                      "title": "$item.title",
+                      "width": "medium",
+                      "variant": "modal",
+                      "children": [
+                        {
+                          "type": "PanelBody",
+                          "children": [
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "DescriptionList",
+                                  "direction": "column",
+                                  "children": [
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Type",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.type"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Date",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.date"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Contact",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.contact"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Duration",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.duration"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "format": {
+                                    "fontWeight": "demibold"
+                                  },
+                                  "children": "Notes"
+                                },
+                                {
+                                  "type": "Text",
+                                  "children": "$item.notes"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "children": "$item.title"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "truncate": true,
+                    "children": "$item.preview"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "$forEach": "$data.timelineItems",
+          "as": "item",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "visible": {
+              "$and": [
+                {
+                  "$eq": [
+                    "$item.type",
+                    "Call"
+                  ]
+                },
+                {
+                  "$or": [
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "all"
+                      ]
+                    },
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "call"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "name": "calling",
+                        "screenReaderText": "Call"
+                      },
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$item.type"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "·"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$item.date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Link",
+                    "overlay": {
+                      "type": "Panel",
+                      "id": "activity-detail-call",
+                      "title": "$item.title",
+                      "width": "medium",
+                      "variant": "modal",
+                      "children": [
+                        {
+                          "type": "PanelBody",
+                          "children": [
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "DescriptionList",
+                                  "direction": "column",
+                                  "children": [
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Type",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.type"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Date",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.date"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Contact",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.contact"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Duration",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.duration"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "format": {
+                                    "fontWeight": "demibold"
+                                  },
+                                  "children": "Notes"
+                                },
+                                {
+                                  "type": "Text",
+                                  "children": "$item.notes"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "children": "$item.title"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "truncate": true,
+                    "children": "$item.preview"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "$forEach": "$data.timelineItems",
+          "as": "item",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "visible": {
+              "$and": [
+                {
+                  "$eq": [
+                    "$item.type",
+                    "Meeting"
+                  ]
+                },
+                {
+                  "$or": [
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "all"
+                      ]
+                    },
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "meeting"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "name": "appointment",
+                        "screenReaderText": "Meeting"
+                      },
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$item.type"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "·"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$item.date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Link",
+                    "overlay": {
+                      "type": "Panel",
+                      "id": "activity-detail-meeting",
+                      "title": "$item.title",
+                      "width": "medium",
+                      "variant": "modal",
+                      "children": [
+                        {
+                          "type": "PanelBody",
+                          "children": [
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "DescriptionList",
+                                  "direction": "column",
+                                  "children": [
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Type",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.type"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Date",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.date"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Contact",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.contact"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Duration",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.duration"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "format": {
+                                    "fontWeight": "demibold"
+                                  },
+                                  "children": "Notes"
+                                },
+                                {
+                                  "type": "Text",
+                                  "children": "$item.notes"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "children": "$item.title"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "truncate": true,
+                    "children": "$item.preview"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "$forEach": "$data.timelineItems",
+          "as": "item",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "visible": {
+              "$and": [
+                {
+                  "$eq": [
+                    "$item.type",
+                    "Note"
+                  ]
+                },
+                {
+                  "$or": [
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "all"
+                      ]
+                    },
+                    {
+                      "$eq": [
+                        "$state.typeFilter",
+                        "note"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "name": "description",
+                        "screenReaderText": "Note"
+                      },
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$item.type"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "·"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$item.date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Link",
+                    "overlay": {
+                      "type": "Panel",
+                      "id": "activity-detail-note",
+                      "title": "$item.title",
+                      "width": "medium",
+                      "variant": "modal",
+                      "children": [
+                        {
+                          "type": "PanelBody",
+                          "children": [
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "DescriptionList",
+                                  "direction": "column",
+                                  "children": [
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Type",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.type"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Date",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.date"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Contact",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.contact"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionListItem",
+                                      "label": "Duration",
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.duration"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "PanelSection",
+                              "children": [
+                                {
+                                  "type": "Text",
+                                  "format": {
+                                    "fontWeight": "demibold"
+                                  },
+                                  "children": "Notes"
+                                },
+                                {
+                                  "type": "Text",
+                                  "children": "$item.notes"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    "children": "$item.title"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "truncate": true,
+                    "children": "$item.preview"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "tab-battlecard": {
+      "type": "Tab",
+      "tabId": "battlecard",
+      "title": "Battlecard",
+      "children": [
+        "battlecard-content"
+      ]
+    },
+    "battlecard-content": {
+      "type": "Flex",
+      "name": "battlecard-content",
+      "direction": "column",
+      "gap": "md",
+      "children": [
+        "battlecard-header",
+        "battlecard-stats",
+        "battlecard-divider",
+        "battlecard-table-section"
+      ]
+    },
+    "battlecard-header": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "sm",
+      "children": [
+        "competing-label",
+        "competitor-select"
+      ]
+    },
+    "competing-label": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Competing against"
+    },
+    "competitor-select": {
+      "type": "Select",
+      "name": "competitor",
+      "variant": "transparent",
+      "options": "$data.competitorOptions",
+      "value": {
+        "$bindState": "competitor"
+      }
+    },
+    "battlecard-stats": {
+      "type": "Statistics",
+      "children": [
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "salesforce"
+            ]
+          },
+          "label": "$data.salesforceStats.0.label",
+          "number": "$data.salesforceStats.0.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "salesforce"
+            ]
+          },
+          "label": "$data.salesforceStats.1.label",
+          "number": "$data.salesforceStats.1.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "salesforce"
+            ]
+          },
+          "label": "$data.salesforceStats.2.label",
+          "number": "$data.salesforceStats.2.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "dynamics"
+            ]
+          },
+          "label": "$data.dynamicsStats.0.label",
+          "number": "$data.dynamicsStats.0.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "dynamics"
+            ]
+          },
+          "label": "$data.dynamicsStats.1.label",
+          "number": "$data.dynamicsStats.1.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "dynamics"
+            ]
+          },
+          "label": "$data.dynamicsStats.2.label",
+          "number": "$data.dynamicsStats.2.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "pipedrive"
+            ]
+          },
+          "label": "$data.pipedriveStats.0.label",
+          "number": "$data.pipedriveStats.0.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "pipedrive"
+            ]
+          },
+          "label": "$data.pipedriveStats.1.label",
+          "number": "$data.pipedriveStats.1.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "pipedrive"
+            ]
+          },
+          "label": "$data.pipedriveStats.2.label",
+          "number": "$data.pipedriveStats.2.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "zoho"
+            ]
+          },
+          "label": "$data.zohoStats.0.label",
+          "number": "$data.zohoStats.0.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "zoho"
+            ]
+          },
+          "label": "$data.zohoStats.1.label",
+          "number": "$data.zohoStats.1.number"
+        },
+        {
+          "type": "StatisticsItem",
+          "visible": {
+            "$eq": [
+              "$state.competitor",
+              "zoho"
+            ]
+          },
+          "label": "$data.zohoStats.2.label",
+          "number": "$data.zohoStats.2.number"
+        }
+      ]
+    },
+    "battlecard-divider": {
+      "type": "Divider"
+    },
+    "battlecard-table-section": {
+      "type": "Flex",
+      "name": "battlecard-table-section",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "battlecard-table-header",
+        "battlecard-header-divider",
+        "battlecard-rows-salesforce",
+        "battlecard-rows-dynamics",
+        "battlecard-rows-pipedrive",
+        "battlecard-rows-zoho"
+      ]
+    },
+    "battlecard-table-header": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "sm",
+      "children": [
+        "battlecard-col-criteria",
+        "battlecard-col-us",
+        "battlecard-col-them"
+      ],
+      "align": "start"
+    },
+    "battlecard-col-criteria": {
+      "type": "Box",
+      "flex": 1,
+      "children": [
+        {
+          "type": "Text",
+          "format": {
+            "fontWeight": "demibold"
+          },
+          "children": "Criteria"
+        }
+      ]
+    },
+    "battlecard-col-us": {
+      "type": "Box",
+      "flex": 1,
+      "children": [
+        {
+          "type": "Text",
+          "format": {
+            "fontWeight": "demibold"
+          },
+          "children": "HubSpot"
+        }
+      ]
+    },
+    "battlecard-col-them": {
+      "type": "Box",
+      "flex": 1,
+      "children": [
+        {
+          "type": "Text",
+          "format": {
+            "fontWeight": "demibold"
+          },
+          "children": "$state.competitorLabel"
+        }
+      ]
+    },
+    "battlecard-rows-salesforce": {
+      "type": "Flex",
+      "name": "battlecard-rows-salesforce",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "salesforce"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.salesforceRows",
+          "as": "row",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "gap": "sm",
+            "align": "start",
+            "children": [
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "Text",
+                    "children": "$row.criteria"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.usVariant",
+                    "children": "$row.us"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.themVariant",
+                    "children": "$row.them"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "battlecard-rows-dynamics": {
+      "type": "Flex",
+      "name": "battlecard-rows-dynamics",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "dynamics"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.dynamicsRows",
+          "as": "row",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "gap": "sm",
+            "align": "start",
+            "children": [
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "Text",
+                    "children": "$row.criteria"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.usVariant",
+                    "children": "$row.us"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.themVariant",
+                    "children": "$row.them"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "battlecard-rows-pipedrive": {
+      "type": "Flex",
+      "name": "battlecard-rows-pipedrive",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "pipedrive"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.pipedriveRows",
+          "as": "row",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "gap": "sm",
+            "align": "start",
+            "children": [
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "Text",
+                    "children": "$row.criteria"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.usVariant",
+                    "children": "$row.us"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.themVariant",
+                    "children": "$row.them"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "battlecard-rows-zoho": {
+      "type": "Flex",
+      "name": "battlecard-rows-zoho",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "zoho"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.zohoRows",
+          "as": "row",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "gap": "sm",
+            "align": "start",
+            "children": [
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "Text",
+                    "children": "$row.criteria"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.usVariant",
+                    "children": "$row.us"
+                  }
+                ]
+              },
+              {
+                "type": "Box",
+                "flex": 1,
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$row.themVariant",
+                    "children": "$row.them"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "battlecard-header-divider": {
+      "type": "Divider"
+    }
+  },
+  "watch": {
+    "competitor": [
+      {
+        "$action": "setState",
+        "key": "competitorLabel",
+        "value": {
+          "$if": {
+            "$eq": [
+              "$state.competitor",
+              "salesforce"
+            ]
+          },
+          "$then": "Salesforce",
+          "$else": {
+            "$if": {
+              "$eq": [
+                "$state.competitor",
+                "dynamics"
+              ]
+            },
+            "$then": "Microsoft Dynamics",
+            "$else": {
+              "$if": {
+                "$eq": [
+                  "$state.competitor",
+                  "pipedrive"
+                ]
+              },
+              "$then": "Pipedrive",
+              "$else": "Zoho CRM"
+            }
+          }
+        }
+      }
+    ]
+  }
+}

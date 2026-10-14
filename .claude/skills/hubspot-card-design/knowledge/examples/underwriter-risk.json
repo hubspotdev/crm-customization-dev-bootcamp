@@ -1,0 +1,493 @@
+{
+  "meta": {
+    "name": "Underwriter Risk",
+    "tagline": "Overall risk score with a breakdown of contributing factors and detail drill-downs.",
+    "description": "Gives an underwriter the single risk number for an applicant and the contributing factors behind it, so they can defend the decision. Drilling into a factor opens the detail view with the underlying data. \u2014 KPI Snapshot + Drill-down: headline score + factor breakdown with per-factor detail.",
+    "surface": "crm.record.tab",
+    "object": "contact"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "hasHighRisk": true,
+    "applicant": {
+      "name": "Marcus Holloway",
+      "email": "m.holloway@bayside-realty.com",
+      "phone": "(415) 555-0184"
+    },
+    "overall": {
+      "score": 58,
+      "label": "Moderate risk",
+      "variant": "warning"
+    },
+    "factors": [
+      {
+        "id": "credit",
+        "name": "Credit history",
+        "score": 72,
+        "scoreVariant": "success",
+        "trendDirection": "increase",
+        "trendIcon": "trending-up",
+        "trendVariant": "success",
+        "diffLabel": "+4 since last review",
+        "detail": {
+          "summary": "Credit score 742, strong repayment history over 7 years.",
+          "breakdown": [
+            {
+              "label": "Credit score",
+              "value": "742"
+            },
+            {
+              "label": "Open accounts",
+              "value": "6"
+            },
+            {
+              "label": "Late payments (24mo)",
+              "value": "0"
+            }
+          ]
+        }
+      },
+      {
+        "id": "income",
+        "name": "Income stability",
+        "score": 65,
+        "scoreVariant": "warning",
+        "trendDirection": "decrease",
+        "trendIcon": "trending-down",
+        "trendVariant": "warning",
+        "diffLabel": "-3 since last review",
+        "detail": {
+          "summary": "Self-employed, income variable but trending positive over 24 months.",
+          "breakdown": [
+            {
+              "label": "Avg monthly income",
+              "value": "$11,400"
+            },
+            {
+              "label": "Variance (12mo)",
+              "value": "18%"
+            },
+            {
+              "label": "Tenure",
+              "value": "3.2 years"
+            }
+          ]
+        }
+      },
+      {
+        "id": "ltv",
+        "name": "Loan-to-value ratio",
+        "score": 81,
+        "scoreVariant": "success",
+        "trendDirection": "flat",
+        "trendIcon": "minus",
+        "trendVariant": "default",
+        "diffLabel": "No change",
+        "detail": {
+          "summary": "LTV 0.68 \u2014 comfortable margin against appraised value.",
+          "breakdown": [
+            {
+              "label": "Loan amount",
+              "value": "$612,000"
+            },
+            {
+              "label": "Appraised value",
+              "value": "$900,000"
+            },
+            {
+              "label": "LTV",
+              "value": "0.68"
+            }
+          ]
+        }
+      },
+      {
+        "id": "collateral",
+        "name": "Collateral condition",
+        "score": 28,
+        "scoreVariant": "error",
+        "trendDirection": "decrease",
+        "trendIcon": "trending-down",
+        "trendVariant": "error",
+        "diffLabel": "-12 since inspection",
+        "detail": {
+          "summary": "Inspection flagged roof and HVAC concerns. Repairs estimated $24K.",
+          "breakdown": [
+            {
+              "label": "Inspection date",
+              "value": "Mar 12, 2026"
+            },
+            {
+              "label": "Open issues",
+              "value": "5"
+            },
+            {
+              "label": "Est. repair cost",
+              "value": "$24,000"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading risk profile...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "flex": {
+      "type": "Flex",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load risk profile",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Refresh to retry."
+    },
+    "text": {
+      "type": "Text",
+      "children": "Pick an applicant to see their risk profile."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No applicant selected",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "high-risk-alert": {
+      "type": "Alert",
+      "name": "high-risk-alert",
+      "variant": "warning",
+      "title": "Risk factors require attention",
+      "visible": "$data.hasHighRisk",
+      "children": "One or more factors scored below 33. Review the breakdown before approving."
+    },
+    "scorecircle": {
+      "type": "ScoreCircle",
+      "score": "$data.overall.score"
+    },
+    "text-1": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "Overall risk"
+    },
+    "statustag": {
+      "type": "StatusTag",
+      "variant": "$data.overall.variant",
+      "children": "$data.overall.label"
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "text-1",
+        "statustag"
+      ]
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "md",
+      "children": [
+        "scorecircle",
+        "flex-2"
+      ]
+    },
+    "score-hero": {
+      "type": "Box",
+      "name": "score-hero",
+      "flex": 1,
+      "children": [
+        "flex-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.applicant.name"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Applicant",
+      "children": [
+        "text-2"
+      ]
+    },
+    "text-3": {
+      "type": "Text",
+      "children": "$data.applicant.email"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Email",
+      "children": [
+        "text-3"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "children": "$data.applicant.phone"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "Phone",
+      "children": [
+        "text-4"
+      ]
+    },
+    "applicant-identity": {
+      "type": "DescriptionList",
+      "name": "applicant-identity",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2"
+      ]
+    },
+    "applicant-identity-wrap": {
+      "type": "Box",
+      "name": "applicant-identity-wrap",
+      "flex": 3,
+      "children": [
+        "applicant-identity"
+      ]
+    },
+    "top-section": {
+      "type": "Flex",
+      "name": "top-section",
+      "direction": "row",
+      "gap": "lg",
+      "align": "center",
+      "children": [
+        "score-hero",
+        "applicant-identity-wrap"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-5": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Risk factors"
+    },
+    "statustag-1": {
+      "type": "StatusTag",
+      "variant": "$factor.scoreVariant",
+      "children": "{{factor.score}}"
+    },
+    "link": {
+      "type": "Link",
+      "overlay": {
+        "type": "Panel",
+        "id": "factor-detail",
+        "title": "$factor.name",
+        "width": "small",
+        "variant": "modal",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "md",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "md",
+                    "children": [
+                      {
+                        "type": "ScoreCircle",
+                        "score": "$factor.score"
+                      },
+                      {
+                        "type": "Text",
+                        "children": "$factor.detail.summary"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "DescriptionList",
+                    "direction": "column",
+                    "children": [
+                      {
+                        "$forEach": "$factor.detail.breakdown",
+                        "as": "row",
+                        "render": {
+                          "type": "DescriptionListItem",
+                          "label": "$row.label",
+                          "children": [
+                            {
+                              "type": "Text",
+                              "children": "$row.value"
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Button",
+                "variant": "secondary",
+                "onClick": {
+                  "$action": "closeOverlay",
+                  "id": "factor-detail"
+                },
+                "children": "Close"
+              }
+            ]
+          }
+        ]
+      },
+      "children": "$factor.name"
+    },
+    "flex-3": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "sm",
+      "children": [
+        "statustag-1",
+        "link"
+      ]
+    },
+    "icon": {
+      "type": "Icon"
+    },
+    "text-6": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$factor.diffLabel"
+    },
+    "flex-4": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "icon",
+        "text-6"
+      ]
+    },
+    "risk-factors-list": {
+      "type": "Flex",
+      "name": "risk-factors-list",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        {
+          "$forEach": "$data.factors",
+          "as": "factor",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "align": "center",
+            "gap": "sm",
+            "justify": "between",
+            "children": [
+              "flex-3",
+              "flex-4"
+            ]
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "high-risk-alert",
+        "top-section",
+        "divider",
+        "text-5",
+        "risk-factors-list"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "flex",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

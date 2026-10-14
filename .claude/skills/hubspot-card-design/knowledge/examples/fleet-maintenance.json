@@ -1,0 +1,628 @@
+{
+  "meta": {
+    "name": "Fleet Maintenance",
+    "tagline": "Vehicle identity, service alerts, and a searchable maintenance log with a Log-service form.",
+    "description": "Lets a fleet manager check a vehicle's health in seconds: who drives it, what service it needs soon, and everything that's been done to it. Logging a new service happens inline, no second screen. \u2014 Identity + List Manager: DescriptionList + service-alert Tiles + searchable DataTable with an inline log-service form.",
+    "surface": "crm.record.tab",
+    "object": "custom"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "vehicle": {
+      "displayName": "2022 Ford Transit 250",
+      "currentMileage": "67,482 mi",
+      "vin": "1FTBW2CM3NKA12847",
+      "licensePlate": "NJ-K42-7FM",
+      "assignedDriver": "Marcus Rivera",
+      "fleetRegion": "Northeast \u2014 NJ/NY",
+      "nextServiceDate": "Mar 15, 2026"
+    },
+    "serviceAlert": {
+      "variant": "warning",
+      "title": "Service overdue",
+      "body": "Oil change was due Mar 15, 2026. Schedule service as soon as possible."
+    },
+    "typeFilterOptions": [
+      {
+        "label": "Oil change",
+        "value": "Oil change"
+      },
+      {
+        "label": "Tire rotation",
+        "value": "Tire rotation"
+      },
+      {
+        "label": "Brake inspection",
+        "value": "Brake inspection"
+      },
+      {
+        "label": "Brake pad replacement",
+        "value": "Brake pad replacement"
+      },
+      {
+        "label": "Coolant flush",
+        "value": "Coolant flush"
+      },
+      {
+        "label": "Tire replacement",
+        "value": "Tire replacement"
+      },
+      {
+        "label": "Alignment",
+        "value": "Alignment"
+      },
+      {
+        "label": "Battery replacement",
+        "value": "Battery replacement"
+      },
+      {
+        "label": "State inspection",
+        "value": "State inspection"
+      }
+    ],
+    "timePeriodOptions": [
+      {
+        "label": "Last 30 days",
+        "value": "30"
+      },
+      {
+        "label": "Last 90 days",
+        "value": "90"
+      },
+      {
+        "label": "This year",
+        "value": "this_year"
+      },
+      {
+        "label": "Last year",
+        "value": "last_year"
+      }
+    ],
+    "serviceTypeFormOptions": [
+      {
+        "label": "Oil change",
+        "value": "Oil change"
+      },
+      {
+        "label": "Tire rotation",
+        "value": "Tire rotation"
+      },
+      {
+        "label": "Brake inspection",
+        "value": "Brake inspection"
+      },
+      {
+        "label": "Brake pad replacement",
+        "value": "Brake pad replacement"
+      },
+      {
+        "label": "Coolant flush",
+        "value": "Coolant flush"
+      },
+      {
+        "label": "Tire replacement",
+        "value": "Tire replacement"
+      },
+      {
+        "label": "Alignment",
+        "value": "Alignment"
+      },
+      {
+        "label": "Battery replacement",
+        "value": "Battery replacement"
+      },
+      {
+        "label": "State inspection",
+        "value": "State inspection"
+      }
+    ],
+    "records": [
+      {
+        "id": "m-001",
+        "date": "Mar 1, 2026",
+        "serviceType": "Tire rotation",
+        "tagVariant": "info",
+        "shop": "Pep Boys \u2014 Westfield",
+        "cost": 89.99,
+        "costLabel": "$89.99",
+        "mileageLabel": "66,200 mi"
+      },
+      {
+        "id": "m-002",
+        "date": "Feb 10, 2026",
+        "serviceType": "Brake inspection",
+        "tagVariant": "warning",
+        "shop": "Meineke \u2014 Route 22",
+        "cost": 0,
+        "costLabel": "No charge",
+        "mileageLabel": "65,100 mi"
+      },
+      {
+        "id": "m-003",
+        "date": "Jan 18, 2026",
+        "serviceType": "Oil change",
+        "tagVariant": "default",
+        "shop": "Jiffy Lube \u2014 Springfield",
+        "cost": 74.5,
+        "costLabel": "$74.50",
+        "mileageLabel": "63,800 mi"
+      },
+      {
+        "id": "m-004",
+        "date": "Dec 5, 2025",
+        "serviceType": "Coolant flush",
+        "tagVariant": "default",
+        "shop": "Meineke \u2014 Route 22",
+        "cost": 149,
+        "costLabel": "$149.00",
+        "mileageLabel": "61,500 mi"
+      },
+      {
+        "id": "m-005",
+        "date": "Nov 14, 2025",
+        "serviceType": "Tire replacement",
+        "tagVariant": "info",
+        "shop": "Discount Tire \u2014 Union",
+        "cost": 687.96,
+        "costLabel": "$687.96",
+        "mileageLabel": "60,200 mi"
+      },
+      {
+        "id": "m-006",
+        "date": "Oct 22, 2025",
+        "serviceType": "Brake pad replacement",
+        "tagVariant": "warning",
+        "shop": "Pep Boys \u2014 Westfield",
+        "cost": 342,
+        "costLabel": "$342.00",
+        "mileageLabel": "58,900 mi"
+      },
+      {
+        "id": "m-007",
+        "date": "Sep 8, 2025",
+        "serviceType": "Oil change",
+        "tagVariant": "default",
+        "shop": "Jiffy Lube \u2014 Springfield",
+        "cost": 74.5,
+        "costLabel": "$74.50",
+        "mileageLabel": "56,400 mi"
+      },
+      {
+        "id": "m-008",
+        "date": "Aug 15, 2025",
+        "serviceType": "State inspection",
+        "tagVariant": "success",
+        "shop": "Meineke \u2014 Route 22",
+        "cost": 45,
+        "costLabel": "$45.00",
+        "mileageLabel": "55,100 mi"
+      }
+    ],
+    "totalSpendLabel": "$1,462.95"
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading vehicle data...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load maintenance data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Something went wrong while fetching vehicle records. Please try again in a few moments."
+    },
+    "text": {
+      "type": "Text",
+      "children": "This vehicle has no logged maintenance events yet. Log the first service to start tracking."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No maintenance records",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "text-1": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.displayName"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Vehicle",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.currentMileage"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Current mileage",
+      "children": [
+        "text-2"
+      ]
+    },
+    "text-3": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.vin"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "VIN",
+      "children": [
+        "text-3"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.licensePlate"
+    },
+    "descriptionlistitem-3": {
+      "type": "DescriptionListItem",
+      "label": "License plate",
+      "children": [
+        "text-4"
+      ]
+    },
+    "text-5": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.assignedDriver"
+    },
+    "descriptionlistitem-4": {
+      "type": "DescriptionListItem",
+      "label": "Assigned driver",
+      "children": [
+        "text-5"
+      ]
+    },
+    "text-6": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.fleetRegion"
+    },
+    "descriptionlistitem-5": {
+      "type": "DescriptionListItem",
+      "label": "Fleet region",
+      "children": [
+        "text-6"
+      ]
+    },
+    "text-7": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vehicle.nextServiceDate"
+    },
+    "descriptionlistitem-6": {
+      "type": "DescriptionListItem",
+      "label": "Next service",
+      "children": [
+        "text-7"
+      ]
+    },
+    "vehicle-identity": {
+      "type": "DescriptionList",
+      "name": "vehicle-identity",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2",
+        "descriptionlistitem-3",
+        "descriptionlistitem-4",
+        "descriptionlistitem-5",
+        "descriptionlistitem-6"
+      ]
+    },
+    "service-status-alert": {
+      "type": "Alert",
+      "name": "service-status-alert",
+      "variant": "$data.serviceAlert.variant",
+      "title": "$data.serviceAlert.title",
+      "children": "$data.serviceAlert.body"
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-8": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Maintenance log"
+    },
+    "button": {
+      "type": "Button",
+      "variant": "primary",
+      "overlay": {
+        "type": "Panel",
+        "id": "log-service-panel",
+        "title": "Log maintenance service",
+        "width": "small",
+        "variant": "modal",
+        "flush": true,
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "column",
+                    "gap": "sm",
+                    "children": [
+                      {
+                        "type": "DateInput",
+                        "label": "Service date",
+                        "required": true,
+                        "format": "medium",
+                        "todayButtonLabel": "Today"
+                      },
+                      {
+                        "type": "Select",
+                        "label": "Service type",
+                        "required": true,
+                        "placeholder": "Select a service type",
+                        "options": "$data.serviceTypeFormOptions"
+                      },
+                      {
+                        "type": "Input",
+                        "label": "Shop / provider",
+                        "required": true,
+                        "placeholder": "e.g. Jiffy Lube \u2014 Springfield"
+                      },
+                      {
+                        "type": "NumberInput",
+                        "label": "Cost ($)",
+                        "placeholder": "0.00",
+                        "min": 0,
+                        "precision": 2
+                      },
+                      {
+                        "type": "NumberInput",
+                        "label": "Mileage at service",
+                        "placeholder": "e.g. 67500",
+                        "min": 0
+                      },
+                      {
+                        "type": "TextArea",
+                        "label": "Notes",
+                        "placeholder": "What was done? Any findings or recommendations?",
+                        "resize": "vertical",
+                        "rows": 3
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "row",
+                "justify": "between",
+                "children": [
+                  {
+                    "type": "Button",
+                    "variant": "secondary",
+                    "onClick": {
+                      "$action": "closeOverlay",
+                      "id": "log-service-panel"
+                    },
+                    "children": "Cancel"
+                  },
+                  {
+                    "type": "LoadingButton",
+                    "variant": "primary",
+                    "children": "Save record"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "Log service"
+    },
+    "log-header": {
+      "type": "Flex",
+      "name": "log-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "text-8",
+        "button"
+      ]
+    },
+    "maintenance-table": {
+      "type": "DataTable",
+      "name": "maintenance-table",
+      "data": "$data.records",
+      "searchFields": [
+        "serviceType",
+        "shop"
+      ],
+      "pageSize": 8,
+      "defaultSort": {
+        "date": "descending"
+      },
+      "rowCountText": {
+        "$render": [
+          "shown",
+          "total"
+        ],
+        "node": "{{total}} records"
+      },
+      "filters": [
+        {
+          "type": "select",
+          "name": "serviceType",
+          "placeholder": "All types",
+          "options": "$data.typeFilterOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "date",
+          "label": "Date",
+          "sortable": true,
+          "footer": "Total"
+        },
+        {
+          "field": "serviceType",
+          "label": "Type",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.tagVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "shop",
+          "label": "Shop",
+          "sortable": true
+        },
+        {
+          "field": "cost",
+          "label": "Cost",
+          "sortable": true,
+          "align": "right",
+          "footer": "$data.totalSpendLabel",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Text",
+              "format": {
+                "fontWeight": "demibold"
+              },
+              "children": "$row.costLabel"
+            }
+          }
+        },
+        {
+          "field": "mileageLabel",
+          "label": "Mileage",
+          "align": "right"
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "vehicle-identity",
+        "service-status-alert",
+        "divider",
+        "log-header",
+        "maintenance-table"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

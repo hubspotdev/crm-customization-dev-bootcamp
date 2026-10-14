@@ -1,5 +1,5 @@
 src/app/.vite
-src/app/app.functions/.env
+src/app/functions/.env
 *node_modules
 *package-lock.json
 src/app/dist

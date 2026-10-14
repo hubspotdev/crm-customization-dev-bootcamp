@@ -1,0 +1,99 @@
+{
+  "meta": {
+    "name": "Claim Company Owner",
+    "description": "Single-button card on a company record. Clicking 'Claim this company' opens a confirmation modal, then fires an alert simulating the owner-reassignment action hook.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {},
+  "data": {
+    "currentOwner": "Sarah Mitchell",
+    "companyName": "Acme Corp"
+  },
+  "root": "card-root",
+  "elements": {
+    "text": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "Reassign ownership of this company to yourself without editing the owner property directly."
+    },
+    "text-1": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "Current owner: {{data.currentOwner}}"
+    },
+    "button": {
+      "type": "Button",
+      "variant": "primary",
+      "overlay": {
+        "type": "Modal",
+        "id": "confirm-claim-modal",
+        "title": "Claim this company?",
+        "children": [
+          {
+            "type": "ModalBody",
+            "children": [
+              {
+                "type": "Text",
+                "children": "You'll be set as the owner of {{data.companyName}}. The previous owner, {{data.currentOwner}}, will be notified."
+              }
+            ]
+          },
+          {
+            "type": "ModalFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "name": "modal-actions",
+                "direction": "row",
+                "gap": "sm",
+                "children": [
+                  {
+                    "type": "Button",
+                    "variant": "primary",
+                    "onClick": {
+                      "$action": "batch",
+                      "actions": [
+                        {
+                          "$action": "closeOverlay",
+                          "id": "confirm-claim-modal"
+                        },
+                        {
+                          "type": "success",
+                          "$action": "addAlert",
+                          "message": "You're now the owner of {{data.companyName}}"
+                        }
+                      ]
+                    },
+                    "children": "Claim this company"
+                  },
+                  {
+                    "type": "Button",
+                    "variant": "secondary",
+                    "onClick": {
+                      "$action": "closeOverlay",
+                      "id": "confirm-claim-modal"
+                    },
+                    "children": "Cancel"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "Claim this company"
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "text",
+        "text-1",
+        "button"
+      ]
+    }
+  }
+}

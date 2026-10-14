@@ -1,0 +1,58 @@
+{
+  "name": "datatable-with-totals",
+  "description": "DataTable with a total-row footer. Use the column `footer` prop — a pre-computed string like '$2,252.41' — instead of reaching for raw Table + TableFooter. A column's `footer` renders directly under its column, so put the 'Total' label on the first column and the sum on the amount column. Pre-compute totals into data (e.g. data.totalSpendLabel) — do not sum in the spec. This replaces the 'raw Table with TableFooter' pattern: DataTable can express everything a raw Table can, and you should never introduce raw Table primitives in a card.",
+  "componentsUsed": [
+    "DataTable",
+    "Text"
+  ],
+  "dataShape": {
+    "records": [
+      {
+        "id": "r1",
+        "label": "Tire rotation",
+        "amount": 89.99,
+        "amountLabel": "$89.99"
+      }
+    ],
+    "totalLabel": "$1,462.95"
+  },
+  "node": {
+    "root": "totals-table",
+    "elements": {
+      "totals-table": {
+        "type": "DataTable",
+        "name": "totals-table",
+        "data": "$data.records",
+        "pageSize": 10,
+        "columns": [
+          {
+            "field": "label",
+            "label": "Item",
+            "sortable": true,
+            "footer": "Total"
+          },
+          {
+            "field": "amount",
+            "label": "Amount",
+            "sortable": true,
+            "align": "right",
+            "footer": "$data.totalLabel",
+            "renderCell": {
+              "$render": [
+                "value",
+                "row"
+              ],
+              "node": {
+                "type": "Text",
+                "format": {
+                  "fontWeight": "demibold"
+                },
+                "children": "$row.amountLabel"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

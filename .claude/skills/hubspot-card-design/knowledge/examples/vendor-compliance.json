@@ -1,0 +1,972 @@
+{
+  "meta": {
+    "name": "Vendor Compliance",
+    "tagline": "Compliance health hero, triage alert, and an actionable requirements table with a detail/update panel.",
+    "description": "Shows procurement whether a vendor is ready to be worked with \u2014 overall compliance score, an alert bar for anything urgent, and an actionable table of requirements with a side panel to update each one. \u2014 Triage + List Manager: ProgressBar hero, conditional Alert, and DataTable with a detail/update Panel.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "vendor": {
+      "name": "Meridian Industrial Supply Co.",
+      "domain": "meridiansupply.com",
+      "industry": "Industrial Distribution",
+      "city": "Durham",
+      "state": "NC",
+      "vendorId": "VND-2024-0847",
+      "contractStart": "2024-06-01",
+      "contractStartLabel": "Jun 1, 2024",
+      "primaryContact": "Rachel Whitfield"
+    },
+    "compliance": {
+      "score": 57,
+      "currentCount": 4,
+      "totalCount": 7,
+      "valueDescription": "4 of 7 requirements current",
+      "progressVariant": "warning"
+    },
+    "alert": {
+      "variant": "warning",
+      "title": "2 items need attention",
+      "body": "Certificate of insurance, Diversity certification -- review and update immediately to maintain vendor qualification."
+    },
+    "statusOptions": [
+      {
+        "label": "Current",
+        "value": "current"
+      },
+      {
+        "label": "Expired",
+        "value": "expired"
+      },
+      {
+        "label": "Expiring soon",
+        "value": "expiring_soon"
+      },
+      {
+        "label": "Missing",
+        "value": "missing"
+      }
+    ],
+    "statusFilterOptions": [
+      {
+        "label": "Current",
+        "value": "current"
+      },
+      {
+        "label": "Expired",
+        "value": "expired"
+      },
+      {
+        "label": "Expiring soon",
+        "value": "expiring_soon"
+      },
+      {
+        "label": "Missing",
+        "value": "missing"
+      }
+    ],
+    "requirements": [
+      {
+        "id": "insurance",
+        "requirement": "Certificate of insurance",
+        "category": "Insurance",
+        "recurring": true,
+        "renewalCadence": "Annual",
+        "recurringLabel": "Annual",
+        "status": "expired",
+        "statusLabel": "Expired",
+        "statusVariant": "error",
+        "statusTagVariant": "danger",
+        "dateReceived": "2024-11-01",
+        "dateReceivedLabel": "Nov 1, 2024",
+        "expirationDate": "2025-11-01",
+        "expirationLabel": "Nov 1, 2025",
+        "notes": "General liability and workers comp. Policy through Hartford."
+      },
+      {
+        "id": "diversity",
+        "requirement": "Diversity certification",
+        "category": "Compliance",
+        "recurring": true,
+        "renewalCadence": "Biennial",
+        "recurringLabel": "Biennial",
+        "status": "missing",
+        "statusLabel": "Missing",
+        "statusVariant": "error",
+        "statusTagVariant": "danger",
+        "dateReceived": null,
+        "dateReceivedLabel": "--",
+        "expirationDate": null,
+        "expirationLabel": "--",
+        "notes": ""
+      },
+      {
+        "id": "safety",
+        "requirement": "Safety audit",
+        "category": "Safety",
+        "recurring": true,
+        "renewalCadence": "Annual",
+        "recurringLabel": "Annual",
+        "status": "expiring_soon",
+        "statusLabel": "Expiring soon",
+        "statusVariant": "warning",
+        "statusTagVariant": "warning",
+        "dateReceived": "2025-05-15",
+        "dateReceivedLabel": "May 15, 2025",
+        "expirationDate": "2026-05-15",
+        "expirationLabel": "May 15, 2026",
+        "notes": "OSHA-compliant. Minor corrective actions completed Q3 2025."
+      },
+      {
+        "id": "w9",
+        "requirement": "W-9 tax form",
+        "category": "Tax",
+        "recurring": false,
+        "renewalCadence": null,
+        "recurringLabel": "One-time",
+        "status": "current",
+        "statusLabel": "Current",
+        "statusVariant": "success",
+        "statusTagVariant": "success",
+        "dateReceived": "2025-08-14",
+        "dateReceivedLabel": "Aug 14, 2025",
+        "expirationDate": null,
+        "expirationLabel": "--",
+        "notes": "Filed with accounts payable. EIN verified against IRS database."
+      },
+      {
+        "id": "background",
+        "requirement": "Background check",
+        "category": "Security",
+        "recurring": false,
+        "renewalCadence": null,
+        "recurringLabel": "One-time",
+        "status": "current",
+        "statusLabel": "Current",
+        "statusVariant": "success",
+        "statusTagVariant": "success",
+        "dateReceived": "2025-06-20",
+        "dateReceivedLabel": "Jun 20, 2025",
+        "expirationDate": null,
+        "expirationLabel": "--",
+        "notes": "Cleared all counties. Conducted via Sterling."
+      },
+      {
+        "id": "nda",
+        "requirement": "Non-disclosure agreement",
+        "category": "Legal",
+        "recurring": false,
+        "renewalCadence": null,
+        "recurringLabel": "One-time",
+        "status": "current",
+        "statusLabel": "Current",
+        "statusVariant": "success",
+        "statusTagVariant": "success",
+        "dateReceived": "2025-03-10",
+        "dateReceivedLabel": "Mar 10, 2025",
+        "expirationDate": null,
+        "expirationLabel": "--",
+        "notes": "Mutual NDA. Two-year term from signing date."
+      },
+      {
+        "id": "epa",
+        "requirement": "EPA environmental permit",
+        "category": "Environmental",
+        "recurring": true,
+        "renewalCadence": "Annual",
+        "recurringLabel": "Annual",
+        "status": "current",
+        "statusLabel": "Current",
+        "statusVariant": "success",
+        "statusTagVariant": "success",
+        "dateReceived": "2026-01-12",
+        "dateReceivedLabel": "Jan 12, 2026",
+        "expirationDate": "2027-01-12",
+        "expirationLabel": "Jan 12, 2027",
+        "notes": "Covers all hazardous materials handling at the Durham facility."
+      }
+    ],
+    "activity": [
+      {
+        "dateLabel": "Jan 12, 2026",
+        "icon": "success",
+        "text": "EPA environmental permit renewed"
+      },
+      {
+        "dateLabel": "Nov 1, 2025",
+        "icon": "xCircle",
+        "text": "Certificate of insurance expired"
+      },
+      {
+        "dateLabel": "Aug 14, 2025",
+        "icon": "success",
+        "text": "W-9 tax form received and verified"
+      },
+      {
+        "dateLabel": "Jun 20, 2025",
+        "icon": "success",
+        "text": "Background check cleared"
+      },
+      {
+        "dateLabel": "May 15, 2025",
+        "icon": "success",
+        "text": "Safety audit completed with minor findings"
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading compliance data...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "error-alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load compliance data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "An error occurred while retrieving compliance requirements. Please try again or contact your administrator if the issue persists."
+    },
+    "empty-vendor-text": {
+      "type": "Text",
+      "children": "$data.vendor.name"
+    },
+    "empty-vendor-item": {
+      "type": "DescriptionListItem",
+      "label": "Vendor",
+      "children": [
+        "empty-vendor-text"
+      ]
+    },
+    "empty-domain-text": {
+      "type": "Text",
+      "children": "$data.vendor.domain"
+    },
+    "empty-domain-item": {
+      "type": "DescriptionListItem",
+      "label": "Domain",
+      "children": [
+        "empty-domain-text"
+      ]
+    },
+    "empty-vendorid-text": {
+      "type": "Text",
+      "children": "$data.vendor.vendorId"
+    },
+    "empty-vendorid-item": {
+      "type": "DescriptionListItem",
+      "label": "Vendor ID",
+      "children": [
+        "empty-vendorid-text"
+      ]
+    },
+    "empty-identity": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-vendor-item",
+        "empty-domain-item",
+        "empty-vendorid-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "No compliance requirements have been configured for this vendor. Add requirements to begin tracking W-9 forms, insurance certificates, and other documentation."
+    },
+    "empty-add-button": {
+      "type": "Button",
+      "variant": "primary",
+      "children": "Add requirements"
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No compliance requirements",
+      "layout": "vertical",
+      "imageName": "forms",
+      "imageWidth": 120,
+      "children": [
+        "empty-body-text",
+        "empty-add-button"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "compliance-alert": {
+      "type": "Alert",
+      "name": "compliance-alert",
+      "variant": "$data.alert.variant",
+      "title": "$data.alert.title",
+      "children": "$data.alert.body"
+    },
+    "compliance-progress": {
+      "type": "ProgressBar",
+      "name": "compliance-progress",
+      "title": "Overall compliance",
+      "value": "$data.compliance.score",
+      "maxValue": 100,
+      "showPercentage": true,
+      "valueDescription": "$data.compliance.valueDescription",
+      "variant": "$data.compliance.progressVariant"
+    },
+    "vendor-name-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.vendor.name"
+    },
+    "vendor-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Vendor",
+      "children": [
+        "vendor-name-text"
+      ]
+    },
+    "vendor-id-text": {
+      "type": "Text",
+      "children": "$data.vendor.vendorId"
+    },
+    "vendor-id-item": {
+      "type": "DescriptionListItem",
+      "label": "Vendor ID",
+      "children": [
+        "vendor-id-text"
+      ]
+    },
+    "contract-start-text": {
+      "type": "Text",
+      "children": "$data.vendor.contractStartLabel"
+    },
+    "contract-start-item": {
+      "type": "DescriptionListItem",
+      "label": "Contract start",
+      "children": [
+        "contract-start-text"
+      ]
+    },
+    "primary-contact-text": {
+      "type": "Text",
+      "children": "$data.vendor.primaryContact"
+    },
+    "primary-contact-item": {
+      "type": "DescriptionListItem",
+      "label": "Primary contact",
+      "children": [
+        "primary-contact-text"
+      ]
+    },
+    "vendor-identity": {
+      "type": "DescriptionList",
+      "name": "vendor-identity",
+      "direction": "row",
+      "children": [
+        "vendor-name-item",
+        "vendor-id-item",
+        "contract-start-item",
+        "primary-contact-item"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "requirements-header-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Requirements"
+    },
+    "requirements-header": {
+      "type": "Flex",
+      "name": "requirements-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "requirements-header-text"
+      ]
+    },
+    "requirements-table": {
+      "type": "DataTable",
+      "name": "requirements-table",
+      "data": "$data.requirements",
+      "searchFields": [
+        "requirement",
+        "category"
+      ],
+      "searchPlaceholder": "Search requirements...",
+      "pageSize": 10,
+      "filters": [
+        {
+          "type": "select",
+          "name": "status",
+          "placeholder": "All statuses",
+          "options": "$data.statusFilterOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "requirement",
+          "label": "Requirement",
+          "width": "auto",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "StatusTag",
+                  "variant": "$row.statusTagVariant"
+                },
+                {
+                  "type": "Link",
+                  "overlay": {
+                    "type": "Panel",
+                    "id": "compliance-detail-{{row.id}}",
+                    "title": "$row.requirement",
+                    "width": "small",
+                    "variant": "modal",
+                    "flush": true,
+                    "children": [
+                      {
+                        "type": "PanelBody",
+                        "children": [
+                          {
+                            "type": "PanelSection",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "column",
+                                "gap": "sm",
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "gap": "xs",
+                                    "align": "center",
+                                    "children": [
+                                      {
+                                        "type": "StatusTag",
+                                        "variant": "$row.statusTagVariant",
+                                        "children": "$row.statusLabel"
+                                      },
+                                      {
+                                        "type": "Tag",
+                                        "variant": "info",
+                                        "visible": "$row.recurring",
+                                        "children": "$row.recurringLabel"
+                                      },
+                                      {
+                                        "type": "Tag",
+                                        "visible": {
+                                          "$eq": [
+                                            "$row.recurring",
+                                            false
+                                          ]
+                                        },
+                                        "children": "One-time"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionList",
+                                    "direction": "column",
+                                    "children": [
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Category",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.category"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Last received",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.dateReceivedLabel"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "DescriptionListItem",
+                                        "label": "Expiration",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "children": "$row.expirationLabel"
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "Divider"
+                                  },
+                                  {
+                                    "type": "Text",
+                                    "format": {
+                                      "fontWeight": "demibold"
+                                    },
+                                    "children": "Update compliance status"
+                                  },
+                                  {
+                                    "type": "Select",
+                                    "label": "Status",
+                                    "name": "status-{{row.id}}",
+                                    "required": true,
+                                    "options": "$data.statusOptions"
+                                  },
+                                  {
+                                    "type": "DateInput",
+                                    "label": "Date received",
+                                    "name": "date-received-{{row.id}}",
+                                    "format": "medium"
+                                  },
+                                  {
+                                    "type": "DateInput",
+                                    "label": "Expiration date",
+                                    "name": "expiration-{{row.id}}",
+                                    "format": "medium",
+                                    "visible": "$row.recurring"
+                                  },
+                                  {
+                                    "type": "TextArea",
+                                    "label": "Notes",
+                                    "name": "notes-{{row.id}}",
+                                    "placeholder": "Add documentation notes, policy numbers, or file references...",
+                                    "resize": "vertical",
+                                    "rows": 3
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelFooter",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "row",
+                                "justify": "between",
+                                "children": [
+                                  {
+                                    "type": "Button",
+                                    "variant": "secondary",
+                                    "onClick": {
+                                      "$action": "closeOverlay",
+                                      "id": "compliance-detail-{{row.id}}"
+                                    },
+                                    "children": "Cancel"
+                                  },
+                                  {
+                                    "type": "LoadingButton",
+                                    "variant": "primary",
+                                    "children": "Save changes"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "children": {
+                    "type": "Text",
+                    "format": {
+                      "fontWeight": "demibold"
+                    },
+                    "children": "$value"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "category",
+          "label": "Category",
+          "width": "min",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "statusLabel",
+          "label": "Status",
+          "width": "min",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.statusVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "expirationLabel",
+          "label": "Expiration",
+          "width": "min",
+          "sortable": true
+        },
+        {
+          "field": "recurringLabel",
+          "label": "Type",
+          "width": "min",
+          "sortable": false
+        },
+        {
+          "field": "actions",
+          "label": "Actions",
+          "width": "min",
+          "sortable": false,
+          "align": "right",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Button",
+              "size": "extra-small",
+              "variant": "secondary",
+              "overlay": {
+                "type": "Panel",
+                "id": "compliance-update-{{row.id}}",
+                "title": "$row.requirement",
+                "width": "small",
+                "variant": "modal",
+                "flush": true,
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "gap": "sm",
+                            "children": [
+                              {
+                                "type": "Flex",
+                                "direction": "row",
+                                "gap": "xs",
+                                "align": "center",
+                                "children": [
+                                  {
+                                    "type": "StatusTag",
+                                    "variant": "$row.statusTagVariant",
+                                    "children": "$row.statusLabel"
+                                  },
+                                  {
+                                    "type": "Tag",
+                                    "variant": "info",
+                                    "visible": "$row.recurring",
+                                    "children": "$row.recurringLabel"
+                                  },
+                                  {
+                                    "type": "Tag",
+                                    "visible": {
+                                      "$eq": [
+                                        "$row.recurring",
+                                        false
+                                      ]
+                                    },
+                                    "children": "One-time"
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "DescriptionList",
+                                "direction": "column",
+                                "children": [
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Category",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.category"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Last received",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.dateReceivedLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Expiration",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.expirationLabel"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Divider"
+                              },
+                              {
+                                "type": "Text",
+                                "format": {
+                                  "fontWeight": "demibold"
+                                },
+                                "children": "Update compliance status"
+                              },
+                              {
+                                "type": "Select",
+                                "label": "Status",
+                                "name": "status-btn-{{row.id}}",
+                                "required": true,
+                                "options": "$data.statusOptions"
+                              },
+                              {
+                                "type": "DateInput",
+                                "label": "Date received",
+                                "name": "date-received-btn-{{row.id}}",
+                                "format": "medium"
+                              },
+                              {
+                                "type": "DateInput",
+                                "label": "Expiration date",
+                                "name": "expiration-btn-{{row.id}}",
+                                "format": "medium",
+                                "visible": "$row.recurring"
+                              },
+                              {
+                                "type": "TextArea",
+                                "label": "Notes",
+                                "name": "notes-btn-{{row.id}}",
+                                "placeholder": "Add documentation notes, policy numbers, or file references...",
+                                "resize": "vertical",
+                                "rows": 3
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "row",
+                            "justify": "between",
+                            "children": [
+                              {
+                                "type": "Button",
+                                "variant": "secondary",
+                                "onClick": {
+                                  "$action": "closeOverlay",
+                                  "id": "compliance-update-{{row.id}}"
+                                },
+                                "children": "Cancel"
+                              },
+                              {
+                                "type": "LoadingButton",
+                                "variant": "primary",
+                                "children": "Save changes"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Update"
+            }
+          }
+        }
+      ],
+      "emptyTitle": "No matching requirements",
+      "emptyMessage": "No compliance requirements match your search criteria. Try adjusting your filters."
+    },
+    "activity-accordion": {
+      "type": "Accordion",
+      "name": "activity-accordion",
+      "title": "Recent compliance activity",
+      "size": "sm",
+      "defaultOpen": false,
+      "children": [
+        {
+          "type": "DescriptionList",
+          "direction": "column",
+          "children": [
+            {
+              "$forEach": "$data.activity",
+              "as": "entry",
+              "render": {
+                "type": "DescriptionListItem",
+                "label": "$entry.dateLabel",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "children": [
+                      {
+                        "type": "Icon",
+                        "name": "$entry.icon"
+                      },
+                      {
+                        "type": "Text",
+                        "children": "$entry.text"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "compliance-alert",
+        "compliance-progress",
+        "vendor-identity",
+        "divider",
+        "requirements-header",
+        "requirements-table",
+        "activity-accordion"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "error-alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

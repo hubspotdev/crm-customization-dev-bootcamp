@@ -1,0 +1,957 @@
+{
+  "meta": {
+    "name": "Restaurant Inventory",
+    "tagline": "Inventory health, urgent reorder tiles, and a searchable ingredient table.",
+    "description": "Lets a kitchen manager see inventory health at a glance, with anything that needs reordering elevated to the top and out-of-stock items called out. One-click adjust flow updates a count without leaving the page. \u2014 Triage + List Manager: ProgressBar hero, urgency Tile grid, and DataTable with filters + adjust Modal.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "restaurant": {
+      "name": "The Golden Ladle",
+      "location": "Austin, TX",
+      "kitchenManager": "Marco Reyes"
+    },
+    "inventoryHealth": {
+      "healthyCount": 11,
+      "totalCount": 22,
+      "valueDescription": "11 of 22 items at or above par",
+      "variant": "warning"
+    },
+    "reorderSummary": {
+      "count": 11,
+      "tagVariant": "warning",
+      "showSortedByUrgency": true
+    },
+    "categoryFilterOptions": [
+      {
+        "label": "Produce",
+        "value": "produce"
+      },
+      {
+        "label": "Protein",
+        "value": "protein"
+      },
+      {
+        "label": "Dairy",
+        "value": "dairy"
+      },
+      {
+        "label": "Dry goods",
+        "value": "dry_goods"
+      }
+    ],
+    "statusFilterOptions": [
+      {
+        "label": "Out of stock",
+        "value": "out"
+      },
+      {
+        "label": "Low",
+        "value": "low"
+      },
+      {
+        "label": "At par",
+        "value": "at_par"
+      },
+      {
+        "label": "Above par",
+        "value": "above_par"
+      }
+    ],
+    "reorderItems": [
+      {
+        "id": "inv-005",
+        "name": "Russet potatoes",
+        "quantity": 0,
+        "par": 50,
+        "unit": "lbs",
+        "quantityVsParLabel": "0 / 50 lbs",
+        "supplier": "Pacific Produce Co.",
+        "isOutOfStock": true,
+        "triageTagLabel": "Out of stock",
+        "triageTagVariant": "error"
+      },
+      {
+        "id": "inv-010",
+        "name": "Shrimp 16/20",
+        "quantity": 0,
+        "par": 12,
+        "unit": "lbs",
+        "quantityVsParLabel": "0 / 12 lbs",
+        "supplier": "Ocean Catch Seafood",
+        "isOutOfStock": true,
+        "triageTagLabel": "Out of stock",
+        "triageTagVariant": "error"
+      },
+      {
+        "id": "inv-003",
+        "name": "Fresh basil",
+        "quantity": 2,
+        "par": 5,
+        "unit": "lbs",
+        "quantityVsParLabel": "2 / 5 lbs",
+        "supplier": "Fresh Farms Co.",
+        "isOutOfStock": false,
+        "triageTagLabel": "Produce",
+        "triageTagVariant": "success"
+      },
+      {
+        "id": "inv-013",
+        "name": "Parmesan wheel",
+        "quantity": 2,
+        "par": 5,
+        "unit": "lbs",
+        "quantityVsParLabel": "2 / 5 lbs",
+        "supplier": "Artisan Cheese Co.",
+        "isOutOfStock": false,
+        "triageTagLabel": "Dairy",
+        "triageTagVariant": "info"
+      },
+      {
+        "id": "inv-018",
+        "name": "Olive oil EVOO",
+        "quantity": 3,
+        "par": 5,
+        "unit": "gallons",
+        "quantityVsParLabel": "3 / 5 gallons",
+        "supplier": "Mediterranean Imports",
+        "isOutOfStock": false,
+        "triageTagLabel": "Dry goods",
+        "triageTagVariant": "default"
+      },
+      {
+        "id": "inv-012",
+        "name": "Unsalted butter",
+        "quantity": 3,
+        "par": 10,
+        "unit": "lbs",
+        "quantityVsParLabel": "3 / 10 lbs",
+        "supplier": "Creamery Direct",
+        "isOutOfStock": false,
+        "triageTagLabel": "Dairy",
+        "triageTagVariant": "info"
+      },
+      {
+        "id": "inv-008",
+        "name": "Atlantic salmon",
+        "quantity": 4,
+        "par": 15,
+        "unit": "lbs",
+        "quantityVsParLabel": "4 / 15 lbs",
+        "supplier": "Ocean Catch Seafood",
+        "isOutOfStock": false,
+        "triageTagLabel": "Protein",
+        "triageTagVariant": "warning"
+      },
+      {
+        "id": "inv-017",
+        "name": "Arborio rice",
+        "quantity": 5,
+        "par": 10,
+        "unit": "lbs",
+        "quantityVsParLabel": "5 / 10 lbs",
+        "supplier": "BakersPlus Supply",
+        "isOutOfStock": false,
+        "triageTagLabel": "Dry goods",
+        "triageTagVariant": "default"
+      },
+      {
+        "id": "inv-022",
+        "name": "Red bell peppers",
+        "quantity": 6,
+        "par": 12,
+        "unit": "lbs",
+        "quantityVsParLabel": "6 / 12 lbs",
+        "supplier": "Pacific Produce Co.",
+        "isOutOfStock": false,
+        "triageTagLabel": "Produce",
+        "triageTagVariant": "success"
+      },
+      {
+        "id": "inv-006",
+        "name": "Chicken breast",
+        "quantity": 18,
+        "par": 30,
+        "unit": "lbs",
+        "quantityVsParLabel": "18 / 30 lbs",
+        "supplier": "Heritage Meats",
+        "isOutOfStock": false,
+        "triageTagLabel": "Protein",
+        "triageTagVariant": "warning"
+      },
+      {
+        "id": "inv-020",
+        "name": "Panko breadcrumbs",
+        "quantity": 2,
+        "par": 3,
+        "unit": "cases",
+        "quantityVsParLabel": "2 / 3 cases",
+        "supplier": "BakersPlus Supply",
+        "isOutOfStock": false,
+        "triageTagLabel": "Dry goods",
+        "triageTagVariant": "default"
+      }
+    ],
+    "inventoryRows": [
+      {
+        "id": "inv-013",
+        "name": "Parmesan wheel",
+        "supplier": "Artisan Cheese Co.",
+        "category": "Dairy",
+        "categoryKey": "dairy",
+        "categoryVariant": "info",
+        "onHand": "2 lbs",
+        "par": "5 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-015",
+        "name": "Mozzarella",
+        "supplier": "Artisan Cheese Co.",
+        "category": "Dairy",
+        "categoryKey": "dairy",
+        "categoryVariant": "info",
+        "onHand": "7 lbs",
+        "par": "8 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-017",
+        "name": "Arborio rice",
+        "supplier": "BakersPlus Supply",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "5 lbs",
+        "par": "10 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-020",
+        "name": "Panko breadcrumbs",
+        "supplier": "BakersPlus Supply",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "2 cases",
+        "par": "3 cases",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-016",
+        "name": "AP flour",
+        "supplier": "BakersPlus Supply",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "40 lbs",
+        "par": "25 lbs",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-021",
+        "name": "Spaghetti",
+        "supplier": "BakersPlus Supply",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "15 cases",
+        "par": "10 cases",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-012",
+        "name": "Unsalted butter",
+        "supplier": "Creamery Direct",
+        "category": "Dairy",
+        "categoryKey": "dairy",
+        "categoryVariant": "info",
+        "onHand": "3 lbs",
+        "par": "10 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-011",
+        "name": "Heavy cream",
+        "supplier": "Creamery Direct",
+        "category": "Dairy",
+        "categoryKey": "dairy",
+        "categoryVariant": "info",
+        "onHand": "6 gallons",
+        "par": "4 gallons",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-014",
+        "name": "Whole eggs",
+        "supplier": "Creamery Direct",
+        "category": "Dairy",
+        "categoryKey": "dairy",
+        "categoryVariant": "info",
+        "onHand": "8 cases",
+        "par": "6 cases",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-003",
+        "name": "Fresh basil",
+        "supplier": "Fresh Farms Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "2 lbs",
+        "par": "5 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-001",
+        "name": "Roma tomatoes",
+        "supplier": "Fresh Farms Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "12 lbs",
+        "par": "20 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-004",
+        "name": "Garlic bulbs",
+        "supplier": "Fresh Farms Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "8 lbs",
+        "par": "6 lbs",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-002",
+        "name": "Yellow onions",
+        "supplier": "Fresh Farms Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "25 lbs",
+        "par": "15 lbs",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-006",
+        "name": "Chicken breast",
+        "supplier": "Heritage Meats",
+        "category": "Protein",
+        "categoryKey": "protein",
+        "categoryVariant": "warning",
+        "onHand": "18 lbs",
+        "par": "30 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-009",
+        "name": "Pork tenderloin",
+        "supplier": "Heritage Meats",
+        "category": "Protein",
+        "categoryKey": "protein",
+        "categoryVariant": "warning",
+        "onHand": "10 lbs",
+        "par": "10 lbs",
+        "status": "At par",
+        "statusKey": "at_par",
+        "statusVariant": "default"
+      },
+      {
+        "id": "inv-007",
+        "name": "Ground beef 80/20",
+        "supplier": "Heritage Meats",
+        "category": "Protein",
+        "categoryKey": "protein",
+        "categoryVariant": "warning",
+        "onHand": "35 lbs",
+        "par": "25 lbs",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-018",
+        "name": "Olive oil EVOO",
+        "supplier": "Mediterranean Imports",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "3 gallons",
+        "par": "5 gallons",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-019",
+        "name": "San Marzano tomatoes",
+        "supplier": "Mediterranean Imports",
+        "category": "Dry goods",
+        "categoryKey": "dry_goods",
+        "categoryVariant": "default",
+        "onHand": "12 cases",
+        "par": "8 cases",
+        "status": "Above par",
+        "statusKey": "above_par",
+        "statusVariant": "success"
+      },
+      {
+        "id": "inv-010",
+        "name": "Shrimp 16/20",
+        "supplier": "Ocean Catch Seafood",
+        "category": "Protein",
+        "categoryKey": "protein",
+        "categoryVariant": "warning",
+        "onHand": "0 lbs",
+        "par": "12 lbs",
+        "status": "Out of stock",
+        "statusKey": "out",
+        "statusVariant": "error"
+      },
+      {
+        "id": "inv-008",
+        "name": "Atlantic salmon",
+        "supplier": "Ocean Catch Seafood",
+        "category": "Protein",
+        "categoryKey": "protein",
+        "categoryVariant": "warning",
+        "onHand": "4 lbs",
+        "par": "15 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      },
+      {
+        "id": "inv-005",
+        "name": "Russet potatoes",
+        "supplier": "Pacific Produce Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "0 lbs",
+        "par": "50 lbs",
+        "status": "Out of stock",
+        "statusKey": "out",
+        "statusVariant": "error"
+      },
+      {
+        "id": "inv-022",
+        "name": "Red bell peppers",
+        "supplier": "Pacific Produce Co.",
+        "category": "Produce",
+        "categoryKey": "produce",
+        "categoryVariant": "success",
+        "onHand": "6 lbs",
+        "par": "12 lbs",
+        "status": "Low",
+        "statusKey": "low",
+        "statusVariant": "warning"
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading inventory...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Failed to load inventory",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve inventory data from the server. Please try again."
+    },
+    "text": {
+      "type": "Text",
+      "children": "$data.restaurant.name"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Restaurant",
+      "children": [
+        "text"
+      ]
+    },
+    "text-1": {
+      "type": "Text",
+      "children": "$data.restaurant.location"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Location",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "children": "$data.restaurant.kitchenManager"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "Kitchen manager",
+      "children": [
+        "text-2"
+      ]
+    },
+    "restaurant-identity": {
+      "type": "DescriptionList",
+      "name": "restaurant-identity",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-3": {
+      "type": "Text",
+      "children": "Add ingredients to start tracking your kitchen inventory and par levels."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No inventory items",
+      "layout": "vertical",
+      "children": [
+        "text-3"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "restaurant-identity",
+        "divider",
+        "emptystate"
+      ]
+    },
+    "inventory-health": {
+      "type": "ProgressBar",
+      "name": "inventory-health",
+      "title": "Inventory health",
+      "value": "$data.inventoryHealth.healthyCount",
+      "maxValue": "$data.inventoryHealth.totalCount",
+      "showPercentage": true,
+      "valueDescription": "$data.inventoryHealth.valueDescription",
+      "variant": "$data.inventoryHealth.variant"
+    },
+    "text-4": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Needs reorder"
+    },
+    "tag": {
+      "type": "Tag",
+      "variant": "$data.reorderSummary.tagVariant",
+      "children": "{{data.reorderSummary.count}}"
+    },
+    "text-5": {
+      "type": "Text",
+      "variant": "microcopy",
+      "visible": "$data.reorderSummary.showSortedByUrgency",
+      "children": "Sorted by urgency"
+    },
+    "needs-reorder-header": {
+      "type": "Flex",
+      "name": "needs-reorder-header",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "text-4",
+        "tag",
+        "text-5"
+      ]
+    },
+    "text-6": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$item.name"
+    },
+    "tag-1": {
+      "type": "Tag",
+      "variant": "$item.triageTagVariant",
+      "children": "$item.triageTagLabel"
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "text-6",
+        "tag-1"
+      ]
+    },
+    "text-7": {
+      "type": "Text",
+      "children": "$item.quantityVsParLabel"
+    },
+    "text-8": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$item.supplier"
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "text-7",
+        "text-8"
+      ]
+    },
+    "button": {
+      "type": "Button",
+      "size": "extra-small",
+      "variant": "secondary",
+      "overlay": {
+        "type": "Modal",
+        "id": "adjust-modal-{{item.id}}",
+        "title": "Adjust \u2014 {{item.name}}",
+        "width": "small",
+        "children": [
+          {
+            "type": "ModalBody",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "sm",
+                "children": [
+                  {
+                    "type": "DescriptionList",
+                    "direction": "column",
+                    "children": [
+                      {
+                        "type": "DescriptionListItem",
+                        "label": "Current stock",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "{{item.quantity}} {{item.unit}}"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "DescriptionListItem",
+                        "label": "Par level",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "{{item.par}} {{item.unit}}"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "NumberInput",
+                    "label": "New quantity ({{item.unit}})",
+                    "required": true,
+                    "min": 0,
+                    "placeholder": "Enter updated quantity"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "ModalFooter",
+            "children": [
+              {
+                "type": "Button",
+                "variant": "secondary",
+                "onClick": {
+                  "$action": "closeOverlay",
+                  "id": "adjust-modal-{{item.id}}"
+                },
+                "children": "Cancel"
+              },
+              {
+                "type": "LoadingButton",
+                "variant": "primary",
+                "children": "Save"
+              }
+            ]
+          }
+        ]
+      },
+      "children": "Adjust"
+    },
+    "flex": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "flex-1",
+        "flex-2",
+        "button"
+      ]
+    },
+    "reorder-grid": {
+      "type": "AutoGrid",
+      "name": "reorder-grid",
+      "columnWidth": 250,
+      "flexible": true,
+      "gap": "small",
+      "children": [
+        {
+          "$forEach": "$data.reorderItems",
+          "as": "item",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "children": [
+              "flex"
+            ]
+          }
+        }
+      ]
+    },
+    "needs-reorder-section": {
+      "type": "Flex",
+      "name": "needs-reorder-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "needs-reorder-header",
+        "reorder-grid"
+      ]
+    },
+    "divider-1": {
+      "type": "Divider"
+    },
+    "text-9": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "All inventory"
+    },
+    "inventory-table": {
+      "type": "DataTable",
+      "name": "inventory-table",
+      "data": "$data.inventoryRows",
+      "searchFields": [
+        "name",
+        "supplier"
+      ],
+      "searchPlaceholder": "Search ingredients...",
+      "pageSize": 7,
+      "filters": [
+        {
+          "type": "select",
+          "name": "categoryKey",
+          "placeholder": "All categories",
+          "options": "$data.categoryFilterOptions"
+        },
+        {
+          "type": "select",
+          "name": "statusKey",
+          "placeholder": "All statuses",
+          "options": "$data.statusFilterOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "name",
+          "label": "Item",
+          "sortable": true
+        },
+        {
+          "field": "supplier",
+          "label": "Supplier",
+          "sortable": true
+        },
+        {
+          "field": "category",
+          "label": "Category",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.categoryVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "onHand",
+          "label": "On hand",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Text",
+              "format": {
+                "fontWeight": "demibold"
+              },
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "par",
+          "label": "Par"
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.statusVariant",
+              "children": "$value"
+            }
+          }
+        }
+      ],
+      "emptyTitle": "No results found",
+      "emptyMessage": "No ingredients match your current filters."
+    },
+    "inventory-table-section": {
+      "type": "Flex",
+      "name": "inventory-table-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "text-9",
+        "inventory-table"
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "inventory-health",
+        "needs-reorder-section",
+        "divider-1",
+        "inventory-table-section"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "uid": "vehicle_recommendation",
+  "type": "card",
+  "config": {
+    "name": "Vehicle Recommendation",
+    "description": "Which vehicle to offer this customer, from the nearest location.",
+    "location": "crm.record.tab",
+    "entrypoint": "/app/cards/VehicleRecommendation.jsx",
+    "objectTypes": ["contacts"]
+  }
+}

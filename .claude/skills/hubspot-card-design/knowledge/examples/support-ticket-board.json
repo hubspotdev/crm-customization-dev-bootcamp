@@ -1,0 +1,328 @@
+{
+  "meta": {
+    "name": "Support Ticket Board",
+    "tagline": "Live support pipeline as a Kanban — triage, work, escalate, and close tickets in one view.",
+    "description": "Canonical Kanban example, modelled on the hs-uix demos. Compact card density (`cardDensity: 'compact'`) packs more tickets per column; `columnWidth: 320` keeps columns predictable across viewports; `countDisplay: 'tag'` shows per-stage counts as muted Tags in the headers. Body fields use `label` (description-list rows) instead of custom `$render` layouts — let the component own the layout, only reach for `$render` when you need a real custom cell (StatusTag for priority, Link for the title). Stage transitions use `stageControl: 'menu'` (transparent Dropdown) with `labels: { moveTo: 'Move' }` so the affordance stays out of the way until you reach for it. Top-of-board `metrics` surface the three numbers reps glance at; `recordLabel` controls the row-count + selection-bar copy. `selectable: true` + `selectionActions` is the bulk-action pattern — don't stuff bulk actions into per-card `KanbanCardActions`, those are for single-card moves. Search across multiple fields with `fuzzySearch`; multiselect filters for assignee + priority. Reach for this whenever a list of records flows through stages and reps need to see WIP at a glance.",
+    "surface": "crm.record.tab",
+    "object": "ticket"
+  },
+  "state": {},
+  "data": {
+    "boardMetrics": [
+      { "id": "open", "label": "Open tickets", "number": "27" },
+      { "id": "breaching", "label": "Breaching SLA", "number": "4" },
+      { "id": "resolved", "label": "Resolved this week", "number": "38" }
+    ],
+    "stages": [
+      { "value": "triage", "label": "Triage", "shortLabel": "Triage", "variant": "default" },
+      { "value": "in_progress", "label": "In progress", "shortLabel": "In progress", "variant": "info" },
+      { "value": "waiting_customer", "label": "Waiting on customer", "shortLabel": "Waiting", "variant": "warning" },
+      { "value": "resolved", "label": "Resolved", "shortLabel": "Resolved", "variant": "success", "terminal": true },
+      { "value": "closed", "label": "Closed", "shortLabel": "Closed", "variant": "default", "terminal": true }
+    ],
+    "tickets": [
+      {
+        "id": "t-1042",
+        "subject": "SSO redirect loop on Okta tile",
+        "customer": "Marlena Reyes",
+        "company": "Brightline Energy",
+        "stage": "triage",
+        "priorityLabel": "Urgent",
+        "priorityVariant": "danger",
+        "assignee": "Jordan Park",
+        "ageLabel": "Opened 14m ago",
+        "preview": "Customer cannot complete login — IdP returns to /sign-in after callback."
+      },
+      {
+        "id": "t-1041",
+        "subject": "Bulk import skips rows with em-dash",
+        "customer": "Devon Liu",
+        "company": "Cascade Audio",
+        "stage": "triage",
+        "priorityLabel": "High",
+        "priorityVariant": "warning",
+        "assignee": "Unassigned",
+        "ageLabel": "Opened 38m ago",
+        "preview": "CSV import errors on any row containing — (em-dash). 4k rows blocked."
+      },
+      {
+        "id": "t-1037",
+        "subject": "Webhook 5xx burst at 02:14 UTC",
+        "customer": "Priya Iyer",
+        "company": "Northwind Robotics",
+        "stage": "in_progress",
+        "priorityLabel": "Urgent",
+        "priorityVariant": "danger",
+        "assignee": "Sam Okafor",
+        "ageLabel": "Opened 2h ago",
+        "preview": "Burst of 503s during scheduled deploy. Mostly recovered, root-causing."
+      },
+      {
+        "id": "t-1035",
+        "subject": "Calendar sync drops recurring events",
+        "customer": "Tom Russo",
+        "company": "Atlas Cloud",
+        "stage": "in_progress",
+        "priorityLabel": "Medium",
+        "priorityVariant": "info",
+        "assignee": "Avery Chen",
+        "ageLabel": "Opened 6h ago",
+        "preview": "Recurring weekly events not appearing on second sync after rule edit."
+      },
+      {
+        "id": "t-1033",
+        "subject": "Export to CSV truncates wide tables",
+        "customer": "Sarah Chen",
+        "company": "Lumen Health",
+        "stage": "in_progress",
+        "priorityLabel": "Low",
+        "priorityVariant": "default",
+        "assignee": "Avery Chen",
+        "ageLabel": "Opened 1d ago",
+        "preview": "Tables wider than 32 columns lose trailing data on export."
+      },
+      {
+        "id": "t-1029",
+        "subject": "Need diagnostic logs from last deploy",
+        "customer": "Marcus Webb",
+        "company": "Veridian Air",
+        "stage": "waiting_customer",
+        "priorityLabel": "High",
+        "priorityVariant": "warning",
+        "assignee": "Jordan Park",
+        "ageLabel": "Waiting 4h",
+        "preview": "Asked customer to upload har + console logs from the failing session."
+      },
+      {
+        "id": "t-1024",
+        "subject": "Confirm intended audit-log retention",
+        "customer": "Hannah Voss",
+        "company": "Greenline Foods",
+        "stage": "waiting_customer",
+        "priorityLabel": "Low",
+        "priorityVariant": "default",
+        "assignee": "Sam Okafor",
+        "ageLabel": "Waiting 2d",
+        "preview": "Customer requested 18mo retention; verifying plan tier supports it."
+      },
+      {
+        "id": "t-1018",
+        "subject": "API rate-limit headers missing on /v3",
+        "customer": "Priya Nair",
+        "company": "Marlin Logistics",
+        "stage": "resolved",
+        "priorityLabel": "Medium",
+        "priorityVariant": "info",
+        "assignee": "Sam Okafor",
+        "ageLabel": "Resolved 3h ago",
+        "preview": "Shipped fix in 3.42.0 — RateLimit-* headers now on every response."
+      },
+      {
+        "id": "t-1011",
+        "subject": "Billing portal shows stale plan",
+        "customer": "Ben Park",
+        "company": "Coastal Optics",
+        "stage": "closed",
+        "priorityLabel": "Medium",
+        "priorityVariant": "info",
+        "assignee": "Avery Chen",
+        "ageLabel": "Closed yesterday",
+        "preview": "Cache TTL was wrong; cleared and customer confirmed."
+      }
+    ],
+    "assigneeOptions": [
+      { "label": "Avery Chen", "value": "Avery Chen" },
+      { "label": "Jordan Park", "value": "Jordan Park" },
+      { "label": "Sam Okafor", "value": "Sam Okafor" },
+      { "label": "Unassigned", "value": "Unassigned" }
+    ],
+    "priorityOptions": [
+      { "label": "Urgent", "value": "Urgent" },
+      { "label": "High", "value": "High" },
+      { "label": "Medium", "value": "Medium" },
+      { "label": "Low", "value": "Low" }
+    ]
+  },
+  "root": "ticket-board",
+  "elements": {
+    "ticket-board": {
+      "type": "Kanban",
+      "name": "ticket-board",
+      "data": "$data.tickets",
+      "rowIdField": "id",
+      "stages": "$data.stages",
+      "groupBy": "stage",
+      "cardDensity": "compact",
+      "columnWidth": 320,
+      "countDisplay": "tag",
+      "filterInlineLimit": 2,
+      "maxCardsPerColumn": 12,
+      "stageControl": "menu",
+      "labels": { "moveTo": "Move" },
+      "metrics": "$data.boardMetrics",
+      "recordLabel": { "singular": "ticket", "plural": "tickets" },
+      "searchFields": ["subject", "customer", "company", "id"],
+      "fuzzySearch": true,
+      "showFilterBadges": true,
+      "showClearFiltersButton": true,
+      "selectable": true,
+      "selectionActions": [
+        {
+          "label": "Reassign",
+          "icon": "user",
+          "variant": "secondary",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "info",
+            "title": "Reassign",
+            "message": "Would open the owner picker for the selected tickets."
+          }
+        },
+        {
+          "label": "Escalate to Tier-2",
+          "icon": "alert",
+          "variant": "secondary",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "warning",
+            "title": "Escalated",
+            "message": "Tier-2 paged for the selected tickets."
+          }
+        },
+        {
+          "label": "Snooze 24h",
+          "icon": "clock",
+          "variant": "secondary",
+          "onClick": {
+            "$action": "addAlert",
+            "type": "success",
+            "title": "Snoozed",
+            "message": "Selected tickets hidden for 24h."
+          }
+        }
+      ],
+      "filters": [
+        {
+          "name": "assignee",
+          "type": "multiselect",
+          "placeholder": "All assignees",
+          "chipLabel": "Assignee",
+          "options": "$data.assigneeOptions"
+        },
+        {
+          "name": "priorityLabel",
+          "type": "multiselect",
+          "placeholder": "All priorities",
+          "chipLabel": "Priority",
+          "options": "$data.priorityOptions"
+        }
+      ],
+      "onStageChange": {
+        "$action": "addAlert",
+        "type": "success",
+        "title": "Stage updated",
+        "message": "Ticket moved. Customers are auto-notified for resolved/closed transitions."
+      },
+      "cardFields": [
+        {
+          "field": "subject",
+          "placement": "title",
+          "render": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Link",
+              "onClick": {
+                "$action": "addAlert",
+                "type": "info",
+                "title": "Open ticket",
+                "message": "Would navigate to {{row.id}}."
+              },
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "priorityLabel",
+          "placement": "body",
+          "label": "Priority",
+          "render": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.priorityVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "customer",
+          "placement": "body",
+          "label": "Customer",
+          "render": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "Text",
+              "children": "{{value}} · {{row.company}}"
+            }
+          }
+        },
+        {
+          "field": "assignee",
+          "placement": "body",
+          "label": "Assigned to"
+        },
+        {
+          "field": "ageLabel",
+          "placement": "body",
+          "label": "Age"
+        },
+        {
+          "key": "actions",
+          "placement": "footer",
+          "render": {
+            "$render": ["value", "row"],
+            "node": {
+              "type": "KanbanCardActions",
+              "display": "icon",
+              "actions": [
+                {
+                  "key": "comment",
+                  "label": "Add note",
+                  "icon": "comment",
+                  "onClick": {
+                    "$action": "addAlert",
+                    "type": "info",
+                    "title": "Add note",
+                    "message": "Would open the note composer for {{row.id}}."
+                  }
+                },
+                {
+                  "key": "email",
+                  "label": "Reply to customer",
+                  "icon": "email",
+                  "onClick": {
+                    "$action": "addAlert",
+                    "type": "info",
+                    "title": "Reply",
+                    "message": "Would open the email composer for {{row.id}}."
+                  }
+                },
+                {
+                  "key": "task",
+                  "label": "Create follow-up task",
+                  "icon": "tasks",
+                  "onClick": {
+                    "$action": "addAlert",
+                    "type": "info",
+                    "title": "Task",
+                    "message": "Would open the task composer for {{row.id}}."
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

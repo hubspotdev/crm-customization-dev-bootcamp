@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "name": "Account Activity Feed",
+    "tagline": "Chronological interaction history for a record, led by a small KPI header.",
+    "description": "Canonical hs-uix Feed example (the Activity Feed archetype). A compact Statistics header surfaces two precomputed KPIs (interactions in the last 90 days, time since last touch), then a single Feed renders the full timeline from one `items` array. Items use Feed's standard shape — `type` + precomputed `typeVariant` (StatusTag color), `iconName` (verified HubSpot glyph), `title`, `actor`, `timestamp`, `body`, and inline `meta`. The Feed toolbar mirrors DataTable: `searchFields` + a multiselect type filter + a dateRange filter on the left, `sortOptions` + count on the right. `groupByDate` buckets entries into Today / Yesterday / older; `pageSize` adds a 'View more' button. Every display value (typeVariant, iconName, the KPI strings) is precomputed in `data` — no `$if` chains in the spec. Reach for this whenever the surface answers 'what happened on this record, and when?' rather than 'compare these records side by side' (DataTable) or 'where are they by stage' (Kanban).",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "summary": [
+      { "label": "Interactions (90 days)", "number": "47" },
+      { "label": "Last touch", "number": "2h ago" }
+    ],
+    "activity": [
+      {
+        "id": "a1",
+        "type": "Email",
+        "typeVariant": "info",
+        "iconName": "email",
+        "title": "Sent: Q3 renewal recap & pricing",
+        "actor": "Avery Reed",
+        "timestamp": "2026-06-03T13:41:00Z",
+        "body": "Recapped the renewal terms and the phased-rollout option; awaiting sign-off from procurement.",
+        "meta": ["Renewal", "High intent"]
+      },
+      {
+        "id": "a2",
+        "type": "Meeting",
+        "typeVariant": "success",
+        "iconName": "appointment",
+        "title": "Quarterly business review",
+        "actor": "Jordan Kim",
+        "timestamp": "2026-06-03T09:15:00Z",
+        "body": "Reviewed adoption metrics and expansion roadmap with the buying committee.",
+        "meta": ["QBR", "5 attendees"]
+      },
+      {
+        "id": "a3",
+        "type": "Call",
+        "typeVariant": "success",
+        "iconName": "calling",
+        "title": "Check-in call with champion",
+        "actor": "Sam Patel",
+        "timestamp": "2026-06-02T16:05:00Z",
+        "body": "Confirmed budget is approved; decision expected by end of month.",
+        "meta": ["Connected"]
+      },
+      {
+        "id": "a4",
+        "type": "Note",
+        "typeVariant": "default",
+        "iconName": "comment",
+        "title": "Note added",
+        "actor": "Avery Reed",
+        "timestamp": "2026-05-28T11:20:00Z",
+        "body": "Customer prefers a phased rollout starting in Q3 to align with their fiscal year.",
+        "meta": []
+      },
+      {
+        "id": "a5",
+        "type": "Task",
+        "typeVariant": "warning",
+        "iconName": "tasks",
+        "title": "Follow up on security questionnaire",
+        "actor": "Jordan Kim",
+        "timestamp": "2026-05-26T08:00:00Z",
+        "body": "Security review is the last blocker before signature — chase the completed questionnaire.",
+        "meta": ["Due Jun 5"]
+      }
+    ],
+    "activityTypeOptions": [
+      { "label": "Emails", "value": "Email" },
+      { "label": "Calls", "value": "Call" },
+      { "label": "Meetings", "value": "Meeting" },
+      { "label": "Notes", "value": "Note" },
+      { "label": "Tasks", "value": "Task" }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "md",
+      "children": ["activity-summary", "activity-feed"]
+    },
+    "activity-summary": {
+      "type": "Statistics",
+      "name": "activity-summary",
+      "children": [
+        {
+          "$forEach": "$data.summary",
+          "as": "stat",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$stat.label",
+            "number": "$stat.number"
+          }
+        }
+      ]
+    },
+    "activity-feed": {
+      "type": "Feed",
+      "name": "activity-feed",
+      "title": "Activity",
+      "description": "Every interaction logged against this account.",
+      "items": "$data.activity",
+      "searchFields": ["title", "body", "type", "actor"],
+      "filters": [
+        {
+          "name": "type",
+          "type": "multiselect",
+          "label": "Activity type",
+          "options": "$data.activityTypeOptions"
+        },
+        {
+          "name": "timestamp",
+          "type": "dateRange",
+          "label": "Date"
+        }
+      ],
+      "sortOptions": [
+        { "value": "newest", "label": "Newest first", "field": "timestamp", "direction": "desc" },
+        { "value": "oldest", "label": "Oldest first", "field": "timestamp", "direction": "asc" }
+      ],
+      "defaultSort": "newest",
+      "groupByDate": true,
+      "pageSize": 10
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "uid": "getVehicles",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/getVehicles.js",
+    "secretKeys": []
+  }
+}

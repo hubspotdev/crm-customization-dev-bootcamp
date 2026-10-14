@@ -1,0 +1,49 @@
+{
+  "name": "datatable-basic",
+  "description": "Minimal DataTable (hs-uix) — the default list-card primitive. Prop is `data` not `rows`. Column key is `field` not `name`. `searchFields` lists which fields the built-in search input searches. Set `sortable: true` per column to enable header sort. This is the shape you should reach for first for any list — raw Table is only for cases DataTable can't express.",
+  "componentsUsed": [
+    "DataTable"
+  ],
+  "dataShape": {
+    "rows": [
+      {
+        "id": "r1",
+        "name": "Avery Chen",
+        "email": "avery@acme.io",
+        "role": "Admin"
+      }
+    ]
+  },
+  "node": {
+    "root": "records-table",
+    "elements": {
+      "records-table": {
+        "type": "DataTable",
+        "name": "records-table",
+        "data": "$data.rows",
+        "searchFields": [
+          "name",
+          "email"
+        ],
+        "pageSize": 10,
+        "columns": [
+          {
+            "field": "name",
+            "label": "Name",
+            "sortable": true
+          },
+          {
+            "field": "email",
+            "label": "Email",
+            "sortable": true
+          },
+          {
+            "field": "role",
+            "label": "Role",
+            "sortable": true
+          }
+        ]
+      }
+    }
+  }
+}

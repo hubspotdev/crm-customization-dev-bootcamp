@@ -1,0 +1,486 @@
+{
+  "meta": {
+    "name": "Donor Cultivation",
+    "tagline": "KPI spotlight for a donor plus urgency-sorted cultivation-opportunity tiles with a log-action modal.",
+    "description": "Gives gift officers a single pane on a donor: giving history at a glance plus a prioritized set of cultivation moves they should make next, like outreach nudges and birthday flags. They dismiss a tile or log an action without leaving the card. \u2014 Triage Dashboard: KPI Statistics + DescriptionList context + urgency-sorted Tile grid with a log-action Modal.",
+    "surface": "crm.record.tab",
+    "object": "contact"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "contact": {
+      "firstname": "Margaret",
+      "lastname": "Whitfield",
+      "fullName": "Margaret Whitfield",
+      "email": "margaret.whitfield@example.com",
+      "phone": "+1 (617) 555-3820"
+    },
+    "donor": {
+      "lifetimeGivingLabel": "$287,450",
+      "lifetimeGivingTrendDirection": "increase",
+      "lifetimeGivingTrendValue": "14%",
+      "lifetimeGivingTrendColor": "green",
+      "largestGiftLabel": "$50,000",
+      "giftsThisYearLabel": "3 ($22,500)",
+      "givingFrequency": "Annual",
+      "frequencyVariant": "info",
+      "engagementLevel": "Lapsing",
+      "engagementVariant": "warning",
+      "lastGiftDateLabel": "Sep 28, 2025",
+      "donorSinceLabel": "Mar 12, 2018"
+    },
+    "actionOptions": [
+      {
+        "label": "Called",
+        "value": "called"
+      },
+      {
+        "label": "Emailed",
+        "value": "emailed"
+      },
+      {
+        "label": "Sent gift",
+        "value": "sent_gift"
+      },
+      {
+        "label": "Sent handwritten note",
+        "value": "sent_note"
+      },
+      {
+        "label": "Scheduled meeting",
+        "value": "scheduled_meeting"
+      }
+    ],
+    "opportunities": [
+      {
+        "id": "opp-1",
+        "title": "Birthday in 12 days",
+        "detail": "Margaret turns 68 on Apr 11. Last year you sent a handwritten note \u2014 she called to thank you personally.",
+        "priorityLabel": "High priority",
+        "priorityVariant": "error"
+      },
+      {
+        "id": "opp-2",
+        "title": "Not contacted in 94 days",
+        "detail": "Last touchpoint was a thank-you email on Dec 27. She typically hears from you quarterly.",
+        "priorityLabel": "High priority",
+        "priorityVariant": "error"
+      },
+      {
+        "id": "opp-3",
+        "title": "Gave last year, not yet this year",
+        "detail": "Donated $10,000 in Sep 2025 to the scholarship fund. No gifts recorded in 2026.",
+        "priorityLabel": "Medium priority",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "opp-4",
+        "title": "Attended gala but was not thanked",
+        "detail": "Attended the Spring Fundraiser Gala on Mar 8 with two guests. No follow-up acknowledgment sent.",
+        "priorityLabel": "Medium priority",
+        "priorityVariant": "warning"
+      }
+    ],
+    "opportunityCountLabel": "Cultivation opportunities (4)"
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading donor data...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load donor data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "There was a problem retrieving cultivation data for this contact. Please try again in a few moments."
+    },
+    "empty-name-text": {
+      "type": "Text",
+      "children": "$data.contact.fullName"
+    },
+    "empty-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Name",
+      "children": [
+        "empty-name-text"
+      ]
+    },
+    "empty-email-text": {
+      "type": "Text",
+      "children": "$data.contact.email"
+    },
+    "empty-email-item": {
+      "type": "DescriptionListItem",
+      "label": "Email",
+      "children": [
+        "empty-email-text"
+      ]
+    },
+    "empty-phone-text": {
+      "type": "Text",
+      "children": "$data.contact.phone"
+    },
+    "empty-phone-item": {
+      "type": "DescriptionListItem",
+      "label": "Phone",
+      "children": [
+        "empty-phone-text"
+      ]
+    },
+    "empty-identity": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-name-item",
+        "empty-email-item",
+        "empty-phone-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "This contact has no recorded gifts or donor activity. Once a gift is logged, cultivation insights will appear here."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No donor history",
+      "layout": "vertical",
+      "imageName": "contacts",
+      "imageWidth": 120,
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "lifetime-trend": {
+      "type": "StatisticsTrend",
+      "direction": "$data.donor.lifetimeGivingTrendDirection",
+      "value": "$data.donor.lifetimeGivingTrendValue",
+      "color": "$data.donor.lifetimeGivingTrendColor"
+    },
+    "lifetime-item": {
+      "type": "StatisticsItem",
+      "label": "Lifetime giving",
+      "number": "$data.donor.lifetimeGivingLabel",
+      "children": [
+        "lifetime-trend"
+      ]
+    },
+    "largest-item": {
+      "type": "StatisticsItem",
+      "label": "Largest single gift",
+      "number": "$data.donor.largestGiftLabel"
+    },
+    "gifts-year-item": {
+      "type": "StatisticsItem",
+      "label": "Gifts this year",
+      "number": "$data.donor.giftsThisYearLabel"
+    },
+    "kpi-stats": {
+      "type": "Statistics",
+      "name": "kpi-stats",
+      "children": [
+        "lifetime-item",
+        "largest-item",
+        "gifts-year-item"
+      ]
+    },
+    "frequency-tag": {
+      "type": "StatusTag",
+      "variant": "$data.donor.frequencyVariant",
+      "children": "$data.donor.givingFrequency"
+    },
+    "frequency-item": {
+      "type": "DescriptionListItem",
+      "label": "Frequency",
+      "children": [
+        "frequency-tag"
+      ]
+    },
+    "engagement-tag": {
+      "type": "StatusTag",
+      "variant": "$data.donor.engagementVariant",
+      "children": "$data.donor.engagementLevel"
+    },
+    "engagement-item": {
+      "type": "DescriptionListItem",
+      "label": "Engagement",
+      "children": [
+        "engagement-tag"
+      ]
+    },
+    "last-gift-text": {
+      "type": "Text",
+      "children": "$data.donor.lastGiftDateLabel"
+    },
+    "last-gift-item": {
+      "type": "DescriptionListItem",
+      "label": "Last gift",
+      "children": [
+        "last-gift-text"
+      ]
+    },
+    "donor-since-text": {
+      "type": "Text",
+      "children": "$data.donor.donorSinceLabel"
+    },
+    "donor-since-item": {
+      "type": "DescriptionListItem",
+      "label": "Donor since",
+      "children": [
+        "donor-since-text"
+      ]
+    },
+    "donor-context": {
+      "type": "DescriptionList",
+      "name": "donor-context",
+      "direction": "row",
+      "children": [
+        "frequency-item",
+        "engagement-item",
+        "last-gift-item",
+        "donor-since-item"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "opportunities-header-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.opportunityCountLabel"
+    },
+    "opportunities-header": {
+      "type": "Flex",
+      "name": "opportunities-header",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "opportunities-header-text"
+      ]
+    },
+    "opportunities-grid": {
+      "type": "AutoGrid",
+      "name": "opportunities-grid",
+      "columnWidth": 250,
+      "flexible": true,
+      "gap": "small",
+      "children": [
+        {
+          "$forEach": "$data.opportunities",
+          "as": "opp",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "children": [
+                      {
+                        "type": "Tag",
+                        "variant": "$opp.priorityVariant",
+                        "children": "$opp.priorityLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "format": {
+                      "fontWeight": "demibold"
+                    },
+                    "children": "$opp.title"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$opp.detail"
+                  },
+                  {
+                    "type": "ButtonRow",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "size": "extra-small",
+                        "variant": "secondary",
+                        "children": "Dismiss"
+                      },
+                      {
+                        "type": "Button",
+                        "size": "extra-small",
+                        "variant": "secondary",
+                        "overlay": {
+                          "type": "Modal",
+                          "id": "log-action-{{opp.id}}",
+                          "title": "Log action",
+                          "width": "small",
+                          "children": [
+                            {
+                              "type": "ModalBody",
+                              "children": [
+                                {
+                                  "type": "Flex",
+                                  "direction": "column",
+                                  "gap": "sm",
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "format": {
+                                        "fontWeight": "demibold"
+                                      },
+                                      "children": "$opp.title"
+                                    },
+                                    {
+                                      "type": "Select",
+                                      "label": "Action taken",
+                                      "name": "actionType",
+                                      "placeholder": "Select action...",
+                                      "required": true,
+                                      "options": "$data.actionOptions"
+                                    },
+                                    {
+                                      "type": "TextArea",
+                                      "label": "Notes",
+                                      "name": "notes",
+                                      "placeholder": "Add any context about this interaction..."
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ModalFooter",
+                              "children": [
+                                {
+                                  "type": "Button",
+                                  "variant": "secondary",
+                                  "onClick": {
+                                    "$action": "closeOverlay",
+                                    "id": "log-action-{{opp.id}}"
+                                  },
+                                  "children": "Cancel"
+                                },
+                                {
+                                  "type": "LoadingButton",
+                                  "variant": "primary",
+                                  "children": "Log action"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "children": "Log action"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "kpi-stats",
+        "donor-context",
+        "divider",
+        "opportunities-header",
+        "opportunities-grid"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

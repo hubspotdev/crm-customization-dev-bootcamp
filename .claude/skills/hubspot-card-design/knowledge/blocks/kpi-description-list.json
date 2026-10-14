@@ -1,0 +1,55 @@
+{
+  "name": "kpi-description-list",
+  "description": "Compact KPI display using a column-direction DescriptionList — labels on the left, big bold values on the right. Use as the at-a-glance hero of a KPI Snapshot card when you want labels visible (vs. Statistics which de-emphasizes labels). Each value is pre-computed and formatted in data.",
+  "componentsUsed": [
+    "DescriptionList",
+    "DescriptionListItem",
+    "Text"
+  ],
+  "dataShape": {
+    "kpis": [
+      {
+        "label": "Total spend",
+        "value": "$1,462.95"
+      },
+      {
+        "label": "Avg. per visit",
+        "value": "$182.87"
+      },
+      {
+        "label": "Last service",
+        "value": "Mar 1, 2026"
+      }
+    ]
+  },
+  "node": {
+    "root": "kpi-list",
+    "elements": {
+      "text": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "$kpi.value"
+      },
+      "kpi-list": {
+        "type": "DescriptionList",
+        "name": "kpi-list",
+        "direction": "column",
+        "children": [
+          {
+            "$forEach": "$data.kpis",
+            "as": "kpi",
+            "render": {
+              "type": "DescriptionListItem",
+              "label": "$kpi.label",
+              "children": [
+                "text"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "uid": "geoCode",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/geoCode.js",
+    "secretKeys": []
+  }
+}

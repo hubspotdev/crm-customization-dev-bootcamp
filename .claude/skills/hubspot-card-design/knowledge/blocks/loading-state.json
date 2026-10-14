@@ -1,0 +1,29 @@
+{
+  "name": "loading-state",
+  "description": "Standard centered LoadingSpinner block. Gate with visible={ $eq: ['$state.viewMode', 'loading'] }.",
+  "componentsUsed": [
+    "Flex",
+    "LoadingSpinner"
+  ],
+  "node": {
+    "root": "loading-state",
+    "elements": {
+      "loadingspinner": {
+        "type": "LoadingSpinner",
+        "size": "sm",
+        "label": "Loading...",
+        "showLabel": true,
+        "layout": "centered"
+      },
+      "loading-state": {
+        "type": "Flex",
+        "name": "loading-state",
+        "align": "center",
+        "justify": "center",
+        "children": [
+          "loadingspinner"
+        ]
+      }
+    }
+  }
+}

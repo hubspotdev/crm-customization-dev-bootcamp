@@ -1,0 +1,502 @@
+{
+  "meta": {
+    "name": "Media Campaign Performance",
+    "tagline": "Campaign KPIs with trends, budget pacing, and daily/channel performance charts.",
+    "description": "Lets a media planner see how a campaign is doing at a glance \u2014 KPI trends, budget pacing, and how each day or channel compares. Enough context to decide whether to adjust spend without opening the reporting tool. \u2014 KPI Snapshot + Charts: Statistics with trends, ProgressBar for pacing, and daily/channel visualizations.",
+    "surface": "crm.record.tab",
+    "object": "custom"
+  },
+  "state": {
+    "viewMode": "loaded",
+    "trendMetric": "impressions"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "campaign": {
+      "name": "Q2 Enterprise Awareness",
+      "advertiser": "Atlas Cloud",
+      "flight": "Apr 1 \u2013 Jun 30, 2026",
+      "statusLabel": "Active",
+      "statusVariant": "success"
+    },
+    "kpis": [
+      {
+        "label": "Impressions",
+        "value": "4.2M",
+        "trendLabel": "+12.4%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Clicks",
+        "value": "68,412",
+        "trendLabel": "+8.1%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "CTR",
+        "value": "1.63%",
+        "trendLabel": "-0.3%",
+        "trendDirection": "decrease"
+      },
+      {
+        "label": "Avg. CPC",
+        "value": "$1.84",
+        "trendLabel": "+2.2%",
+        "trendDirection": "decrease"
+      }
+    ],
+    "budget": {
+      "label": "Budget pacing",
+      "spent": "$184,200",
+      "total": "$250,000",
+      "percent": 73,
+      "variant": "success"
+    },
+    "trendRangeMicrocopy": "Last 30 days",
+    "dailyData": [
+      {
+        "Date": "Apr 1",
+        "Impressions": 112000,
+        "Clicks": 1920
+      },
+      {
+        "Date": "Apr 4",
+        "Impressions": 121400,
+        "Clicks": 2064
+      },
+      {
+        "Date": "Apr 7",
+        "Impressions": 128400,
+        "Clicks": 2180
+      },
+      {
+        "Date": "Apr 10",
+        "Impressions": 141200,
+        "Clicks": 2464
+      },
+      {
+        "Date": "Apr 13",
+        "Impressions": 132900,
+        "Clicks": 2216
+      },
+      {
+        "Date": "Apr 16",
+        "Impressions": 147600,
+        "Clicks": 2533
+      },
+      {
+        "Date": "Apr 19",
+        "Impressions": 152300,
+        "Clicks": 2624
+      },
+      {
+        "Date": "Apr 22",
+        "Impressions": 149800,
+        "Clicks": 2498
+      },
+      {
+        "Date": "Apr 25",
+        "Impressions": 158200,
+        "Clicks": 2790
+      },
+      {
+        "Date": "Apr 28",
+        "Impressions": 164500,
+        "Clicks": 2902
+      }
+    ],
+    "channelData": [
+      {
+        "Channel": "Social",
+        "Impressions": 1680000
+      },
+      {
+        "Channel": "Search",
+        "Impressions": 1120000
+      },
+      {
+        "Channel": "Display",
+        "Impressions": 890000
+      },
+      {
+        "Channel": "Video",
+        "Impressions": 510000
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading campaign...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "flex": {
+      "type": "Flex",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load campaign",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Refresh to retry."
+    },
+    "text": {
+      "type": "Text",
+      "children": "Pick a campaign to see performance."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No campaign selected",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "text-1": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.campaign.name"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Campaign",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.campaign.advertiser"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Advertiser",
+      "children": [
+        "text-2"
+      ]
+    },
+    "text-3": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.campaign.flight"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "Flight",
+      "children": [
+        "text-3"
+      ]
+    },
+    "statustag": {
+      "type": "StatusTag",
+      "variant": "$data.campaign.statusVariant",
+      "children": "$data.campaign.statusLabel"
+    },
+    "descriptionlistitem-3": {
+      "type": "DescriptionListItem",
+      "label": "Status",
+      "children": [
+        "statustag"
+      ]
+    },
+    "campaign-identity": {
+      "type": "DescriptionList",
+      "name": "campaign-identity",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2",
+        "descriptionlistitem-3"
+      ]
+    },
+    "statisticstrend": {
+      "type": "StatisticsTrend",
+      "direction": "$kpi.trendDirection",
+      "children": "$kpi.trendLabel"
+    },
+    "campaign-kpis": {
+      "type": "Statistics",
+      "name": "campaign-kpis",
+      "children": [
+        {
+          "$forEach": "$data.kpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              "statisticstrend"
+            ]
+          }
+        }
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.budget.label"
+    },
+    "text-5": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "{{data.budget.spent}} of {{data.budget.total}}"
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "children": [
+        "text-4",
+        "text-5"
+      ]
+    },
+    "progressbar": {
+      "type": "ProgressBar",
+      "value": "$data.budget.percent",
+      "variant": "$data.budget.variant"
+    },
+    "budget-pacing": {
+      "type": "Flex",
+      "name": "budget-pacing",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "flex-1",
+        "progressbar"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-6": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Daily performance"
+    },
+    "text-7": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.trendRangeMicrocopy"
+    },
+    "flex-3": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "text-6",
+        "text-7"
+      ]
+    },
+    "linechart": {
+      "type": "LineChart",
+      "data": "$data.dailyData",
+      "axes": {
+        "x": {
+          "field": "Date",
+          "fieldType": "category"
+        },
+        "y": {
+          "field": "Impressions",
+          "fieldType": "linear",
+          "label": "Impressions"
+        }
+      },
+      "options": {
+        "showTooltips": true
+      }
+    },
+    "tab": {
+      "type": "Tab",
+      "title": "Impressions",
+      "tabId": "impressions",
+      "children": [
+        "linechart"
+      ]
+    },
+    "linechart-1": {
+      "type": "LineChart",
+      "data": "$data.dailyData",
+      "axes": {
+        "x": {
+          "field": "Date",
+          "fieldType": "category"
+        },
+        "y": {
+          "field": "Clicks",
+          "fieldType": "linear",
+          "label": "Clicks"
+        }
+      },
+      "options": {
+        "showTooltips": true
+      }
+    },
+    "tab-1": {
+      "type": "Tab",
+      "title": "Clicks",
+      "tabId": "clicks",
+      "children": [
+        "linechart-1"
+      ]
+    },
+    "tabs": {
+      "type": "Tabs",
+      "selected": "$state.trendMetric",
+      "onSelectedChange": {
+        "$action": "setState",
+        "key": "trendMetric"
+      },
+      "children": [
+        "tab",
+        "tab-1"
+      ]
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "flex-3",
+        "tabs"
+      ]
+    },
+    "daily-trend-tile": {
+      "type": "Tile",
+      "name": "daily-trend-tile",
+      "children": [
+        "flex-2"
+      ]
+    },
+    "text-8": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Channel breakdown"
+    },
+    "barchart": {
+      "type": "BarChart",
+      "data": "$data.channelData",
+      "axes": {
+        "x": {
+          "field": "Channel",
+          "fieldType": "category"
+        },
+        "y": {
+          "field": "Impressions",
+          "fieldType": "linear",
+          "label": "Impressions"
+        }
+      },
+      "options": {
+        "groupFieldByColor": "Channel",
+        "showLegend": true,
+        "showTooltips": true
+      }
+    },
+    "flex-4": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "text-8",
+        "barchart"
+      ]
+    },
+    "channel-breakdown-tile": {
+      "type": "Tile",
+      "name": "channel-breakdown-tile",
+      "children": [
+        "flex-4"
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "campaign-identity",
+        "campaign-kpis",
+        "budget-pacing",
+        "divider",
+        "daily-trend-tile",
+        "channel-breakdown-tile"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "flex",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

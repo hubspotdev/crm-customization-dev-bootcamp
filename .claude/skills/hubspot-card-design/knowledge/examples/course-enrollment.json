@@ -1,0 +1,610 @@
+{
+  "meta": {
+    "name": "Course Enrollment",
+    "tagline": "Student enrollment summary with a searchable course table and per-course module checklist.",
+    "description": "Tells program managers what a student is enrolled in and how far they've made it through each course. They can search the course list, expand any course to see module completion, and spot who's falling behind. \u2014 List Manager with an enrollment summary hero and a DataTable whose rows expand into a module checklist.",
+    "surface": "crm.record.tab",
+    "object": "contact"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "isInactive": false,
+    "kpis": {
+      "enrolled": "5",
+      "completed": "2",
+      "avgProgress": "61%"
+    },
+    "student": {
+      "program": "B.S. Computer Science",
+      "studentId": "CS-2024-1842",
+      "cohort": "Fall 2024",
+      "advisor": "Dr. Priya Raman",
+      "enrolledSince": "Aug 26, 2024",
+      "lastActive": "Yesterday"
+    },
+    "statusOptions": [
+      {
+        "label": "Active",
+        "value": "active"
+      },
+      {
+        "label": "Completed",
+        "value": "completed"
+      },
+      {
+        "label": "Paused",
+        "value": "paused"
+      },
+      {
+        "label": "Dropped",
+        "value": "dropped"
+      }
+    ],
+    "courses": [
+      {
+        "id": "c1",
+        "name": "CS 101 \u2014 Intro to Programming",
+        "enrolledDate": "Aug 26, 2024",
+        "progress": 100,
+        "progressLabel": "100% (12/12 modules)",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "modules": [
+          {
+            "id": "m1",
+            "name": "Variables & types",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m2",
+            "name": "Control flow",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m3",
+            "name": "Functions",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m4",
+            "name": "Final project",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          }
+        ]
+      },
+      {
+        "id": "c2",
+        "name": "CS 201 \u2014 Data Structures",
+        "enrolledDate": "Jan 14, 2025",
+        "progress": 100,
+        "progressLabel": "100% (6/6 modules)",
+        "status": "completed",
+        "statusLabel": "Completed",
+        "statusVariant": "info",
+        "modules": [
+          {
+            "id": "m1",
+            "name": "Arrays & lists",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m2",
+            "name": "Hash maps",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m3",
+            "name": "Trees",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m4",
+            "name": "Graphs",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m5",
+            "name": "Heaps & priority queues",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m6",
+            "name": "Final project",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          }
+        ]
+      },
+      {
+        "id": "c3",
+        "name": "CS 301 \u2014 Algorithms",
+        "enrolledDate": "Aug 25, 2025",
+        "progress": 60,
+        "progressLabel": "60% (3/5 modules)",
+        "status": "active",
+        "statusLabel": "Active",
+        "statusVariant": "success",
+        "modules": [
+          {
+            "id": "m1",
+            "name": "Sorting",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m2",
+            "name": "Searching",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m3",
+            "name": "Recursion & divide-and-conquer",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m4",
+            "name": "Dynamic programming",
+            "statusLabel": "In progress",
+            "statusVariant": "warning"
+          },
+          {
+            "id": "m5",
+            "name": "Greedy algorithms",
+            "statusLabel": "Not started",
+            "statusVariant": "default"
+          }
+        ]
+      },
+      {
+        "id": "c4",
+        "name": "CS 320 \u2014 Operating Systems",
+        "enrolledDate": "Aug 25, 2025",
+        "progress": 40,
+        "progressLabel": "40% (2/5 modules)",
+        "status": "active",
+        "statusLabel": "Active",
+        "statusVariant": "success",
+        "modules": [
+          {
+            "id": "m1",
+            "name": "Processes & threads",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m2",
+            "name": "Synchronization",
+            "statusLabel": "Done",
+            "statusVariant": "success"
+          },
+          {
+            "id": "m3",
+            "name": "Memory management",
+            "statusLabel": "In progress",
+            "statusVariant": "warning"
+          },
+          {
+            "id": "m4",
+            "name": "File systems",
+            "statusLabel": "Not started",
+            "statusVariant": "default"
+          },
+          {
+            "id": "m5",
+            "name": "I/O & devices",
+            "statusLabel": "Not started",
+            "statusVariant": "default"
+          }
+        ]
+      },
+      {
+        "id": "c5",
+        "name": "CS 350 \u2014 Networks",
+        "enrolledDate": "Aug 25, 2025",
+        "progress": 0,
+        "progressLabel": "Not started",
+        "status": "paused",
+        "statusLabel": "Paused",
+        "statusVariant": "warning",
+        "modules": []
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading enrollment...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "flex": {
+      "type": "Flex",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load enrollment",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Refresh to retry."
+    },
+    "text": {
+      "type": "Text",
+      "children": "Pick a student to see enrollment."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No student selected",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "inactivity-alert": {
+      "type": "Alert",
+      "name": "inactivity-alert",
+      "variant": "warning",
+      "title": "Inactive for 14+ days",
+      "visible": "$data.isInactive",
+      "children": "Reach out to check in."
+    },
+    "statisticsitem": {
+      "type": "StatisticsItem",
+      "label": "Enrolled",
+      "number": "$data.kpis.enrolled"
+    },
+    "statisticsitem-1": {
+      "type": "StatisticsItem",
+      "label": "Completed",
+      "number": "$data.kpis.completed"
+    },
+    "statisticsitem-2": {
+      "type": "StatisticsItem",
+      "label": "Avg progress",
+      "number": "$data.kpis.avgProgress"
+    },
+    "enrollment-kpis": {
+      "type": "Statistics",
+      "name": "enrollment-kpis",
+      "children": [
+        "statisticsitem",
+        "statisticsitem-1",
+        "statisticsitem-2"
+      ]
+    },
+    "text-1": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.student.program"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Program",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "children": "$data.student.studentId"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Student ID",
+      "children": [
+        "text-2"
+      ]
+    },
+    "text-3": {
+      "type": "Text",
+      "children": "$data.student.cohort"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "Cohort",
+      "children": [
+        "text-3"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "children": "$data.student.advisor"
+    },
+    "descriptionlistitem-3": {
+      "type": "DescriptionListItem",
+      "label": "Advisor",
+      "children": [
+        "text-4"
+      ]
+    },
+    "text-5": {
+      "type": "Text",
+      "children": "$data.student.enrolledSince"
+    },
+    "descriptionlistitem-4": {
+      "type": "DescriptionListItem",
+      "label": "Enrolled since",
+      "children": [
+        "text-5"
+      ]
+    },
+    "text-6": {
+      "type": "Text",
+      "children": "$data.student.lastActive"
+    },
+    "descriptionlistitem-5": {
+      "type": "DescriptionListItem",
+      "label": "Last active",
+      "children": [
+        "text-6"
+      ]
+    },
+    "student-identity": {
+      "type": "DescriptionList",
+      "name": "student-identity",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2",
+        "descriptionlistitem-3",
+        "descriptionlistitem-4",
+        "descriptionlistitem-5"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-7": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Enrolled courses"
+    },
+    "courses-table": {
+      "type": "DataTable",
+      "name": "courses-table",
+      "data": "$data.courses",
+      "searchFields": [
+        "name"
+      ],
+      "pageSize": 10,
+      "filters": [
+        {
+          "type": "select",
+          "name": "status",
+          "placeholder": "All statuses",
+          "options": "$data.statusOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "name",
+          "label": "Course",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "course-detail",
+                "title": "$row.name",
+                "width": "small",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "gap": "md",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "gap": "xs",
+                            "children": [
+                              {
+                                "type": "Text",
+                                "variant": "microcopy",
+                                "children": "Progress"
+                              },
+                              {
+                                "type": "ProgressBar",
+                                "value": "$row.progress"
+                              },
+                              {
+                                "type": "Text",
+                                "variant": "microcopy",
+                                "children": "$row.progressLabel"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "Divider"
+                          },
+                          {
+                            "type": "Text",
+                            "format": {
+                              "fontWeight": "demibold"
+                            },
+                            "children": "Modules"
+                          },
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "gap": "xs",
+                            "children": [
+                              {
+                                "$forEach": "$row.modules",
+                                "as": "mod",
+                                "render": {
+                                  "type": "Flex",
+                                  "direction": "row",
+                                  "align": "center",
+                                  "justify": "between",
+                                  "gap": "sm",
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "children": "$mod.name"
+                                    },
+                                    {
+                                      "type": "StatusTag",
+                                      "variant": "$mod.statusVariant",
+                                      "children": "$mod.statusLabel"
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "course-detail"
+                        },
+                        "children": "Close"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "enrolledDate",
+          "label": "Enrolled",
+          "sortable": true
+        },
+        {
+          "field": "progressLabel",
+          "label": "Progress",
+          "sortable": false
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.statusVariant",
+              "children": "$row.statusLabel"
+            }
+          }
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "inactivity-alert",
+        "enrollment-kpis",
+        "student-identity",
+        "divider",
+        "text-7",
+        "courses-table"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "flex",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

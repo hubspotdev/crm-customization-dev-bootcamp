@@ -1,0 +1,77 @@
+{
+  "name": "formbuilder-basic",
+  "description": "FormBuilder (hs-uix) — the declarative form primitive. Prefer this over hand-rolling an Input stack when the form has more than ~2 fields or needs validation. `columns` sets the grid; `colSpan: 2` or `width: 'full'` makes a field span both columns. Field `type` is one of: text, textarea, number, currency, date, time, datetime, select, multiselect, toggle, checkbox, checkboxGroup, radioGroup. `submitAlign` (hs-uix 1.6.4+) places the Submit/Cancel row: 'start' | 'end' | 'between'. Use 'end' to right-align a lone Submit in a modal — no Flex wrapper needed. Submit position defaults to 'bottom'; set 'none' and drive via ref when embedding in a modal footer.",
+  "componentsUsed": [
+    "FormBuilder"
+  ],
+  "dataShape": {
+    "countries": [
+      {
+        "label": "United States",
+        "value": "US"
+      },
+      {
+        "label": "Canada",
+        "value": "CA"
+      }
+    ]
+  },
+  "node": {
+    "root": "contact-form",
+    "elements": {
+      "contact-form": {
+        "type": "FormBuilder",
+        "name": "contact-form",
+        "columns": 2,
+        "submitAlign": "end",
+        "fields": [
+          {
+            "type": "text",
+            "name": "firstName",
+            "label": "First name",
+            "required": true
+          },
+          {
+            "type": "text",
+            "name": "lastName",
+            "label": "Last name",
+            "required": true
+          },
+          {
+            "type": "text",
+            "name": "email",
+            "label": "Email",
+            "required": true,
+            "colSpan": 2
+          },
+          {
+            "type": "select",
+            "name": "country",
+            "label": "Country",
+            "options": "$data.countries"
+          },
+          {
+            "type": "toggle",
+            "name": "notify",
+            "label": "Email notifications",
+            "size": "sm",
+            "textChecked": "On",
+            "textUnchecked": "Off"
+          },
+          {
+            "type": "date",
+            "name": "startDate",
+            "label": "Start date",
+            "format": "long"
+          },
+          {
+            "type": "textarea",
+            "name": "bio",
+            "label": "Bio",
+            "colSpan": 2
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,1371 @@
+{
+  "meta": {
+    "name": "Freight Load Board",
+    "tagline": "Carrier utilization hero, today-hot tiles, tomorrow table, and a collapsed searchable upcoming-loads table.",
+    "description": "Helps a dispatcher work through today's and tomorrow's loads for a carrier. Urgent shipments surface as tiles, tomorrow's board is right there, and everything further out is one searchable table away. \u2014 Triage Dashboard + List Manager: utilization hero, urgency Tile grid, near-term Table, plus a collapsed full DataTable.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "carrier": {
+      "name": "Midwest Express Freight",
+      "mcNumber": "MC-784512",
+      "dotNumber": "DOT-3291847",
+      "baseCity": "Chicago, IL",
+      "fleetSize": 10
+    },
+    "utilization": {
+      "activeTrucks": 6,
+      "totalTrucks": 10,
+      "valueDescription": "6 of 10 trucks active",
+      "variant": "warning"
+    },
+    "truckOptions": [
+      {
+        "label": "Unassigned",
+        "value": ""
+      },
+      {
+        "label": "T-101 (Flatbed)",
+        "value": "T-101"
+      },
+      {
+        "label": "T-103 (Reefer)",
+        "value": "T-103"
+      },
+      {
+        "label": "T-106 (Reefer)",
+        "value": "T-106"
+      },
+      {
+        "label": "T-108 (Flatbed)",
+        "value": "T-108"
+      }
+    ],
+    "todayHeader": {
+      "label": "Departing today",
+      "hotCountLabel": "4 hot"
+    },
+    "tomorrowHeader": {
+      "label": "Departing tomorrow",
+      "countLabel": "(3)"
+    },
+    "upcomingHeader": {
+      "label": "Upcoming loads",
+      "totalLabel": "7 loads"
+    },
+    "todayLoads": [
+      {
+        "id": "LD-4401",
+        "origin": "Chicago, IL",
+        "destination": "Detroit, MI",
+        "weight": 38200,
+        "pickupWindow": "06:00 - 08:00",
+        "pickupDate": "2026-03-30",
+        "rate": 2850,
+        "miles": 282,
+        "commodity": "Auto parts",
+        "broker": "FreightWave Logistics",
+        "notes": "Receiver requires appointment. Dock 14 only.",
+        "routeLabel": "Chicago, IL \u2192 Detroit, MI",
+        "weightLabel": "38.2k lbs",
+        "rateLabel": "$2,850",
+        "ratePerMileLabel": "$10.11/mi",
+        "pickupDateLabel": "Mar 30",
+        "milesLabel": "282",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4402",
+        "origin": "Memphis, TN",
+        "destination": "Nashville, TN",
+        "weight": 24500,
+        "pickupWindow": "07:00 - 09:00",
+        "pickupDate": "2026-03-30",
+        "rate": 1400,
+        "miles": 212,
+        "commodity": "Consumer electronics",
+        "broker": "National Load Board",
+        "notes": "Temperature-sensitive \u2014 keep below 85\u00b0F.",
+        "routeLabel": "Memphis, TN \u2192 Nashville, TN",
+        "weightLabel": "24.5k lbs",
+        "rateLabel": "$1,400",
+        "ratePerMileLabel": "$6.60/mi",
+        "pickupDateLabel": "Mar 30",
+        "milesLabel": "212",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4403",
+        "origin": "Dallas, TX",
+        "destination": "Houston, TX",
+        "weight": 41000,
+        "pickupWindow": "10:00 - 12:00",
+        "pickupDate": "2026-03-30",
+        "rate": 1750,
+        "miles": 239,
+        "commodity": "Building materials",
+        "broker": "Echo Global Logistics",
+        "notes": "Flatbed required. Tarps provided at origin.",
+        "routeLabel": "Dallas, TX \u2192 Houston, TX",
+        "weightLabel": "41.0k lbs",
+        "rateLabel": "$1,750",
+        "ratePerMileLabel": "$7.32/mi",
+        "pickupDateLabel": "Mar 30",
+        "milesLabel": "239",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4404",
+        "origin": "Atlanta, GA",
+        "destination": "Jacksonville, FL",
+        "weight": 29800,
+        "pickupWindow": "11:00 - 13:00",
+        "pickupDate": "2026-03-30",
+        "rate": 2200,
+        "miles": 346,
+        "commodity": "Retail goods",
+        "broker": "CH Robinson",
+        "notes": "",
+        "routeLabel": "Atlanta, GA \u2192 Jacksonville, FL",
+        "weightLabel": "29.8k lbs",
+        "rateLabel": "$2,200",
+        "ratePerMileLabel": "$6.36/mi",
+        "pickupDateLabel": "Mar 30",
+        "milesLabel": "346",
+        "hasNotes": false
+      }
+    ],
+    "tomorrowLoads": [
+      {
+        "id": "LD-4405",
+        "origin": "Louisville, KY",
+        "destination": "Indianapolis, IN",
+        "weight": 33600,
+        "pickupWindow": "06:00 - 08:00",
+        "pickupDate": "2026-03-31",
+        "rate": 1650,
+        "miles": 114,
+        "commodity": "Beverage pallets",
+        "broker": "XPO Logistics",
+        "notes": "Driver assist unload required.",
+        "routeLabel": "Louisville, KY \u2192 Indianapolis, IN",
+        "weightLabel": "33.6k lbs",
+        "rateLabel": "$1,650",
+        "ratePerMileLabel": "$14.47/mi",
+        "pickupDateLabel": "Mar 31",
+        "milesLabel": "114",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4406",
+        "origin": "Kansas City, MO",
+        "destination": "St. Louis, MO",
+        "weight": 27400,
+        "pickupWindow": "08:00 - 10:00",
+        "pickupDate": "2026-03-31",
+        "rate": 1200,
+        "miles": 248,
+        "commodity": "Agricultural products",
+        "broker": "Coyote Logistics",
+        "notes": "",
+        "routeLabel": "Kansas City, MO \u2192 St. Louis, MO",
+        "weightLabel": "27.4k lbs",
+        "rateLabel": "$1,200",
+        "ratePerMileLabel": "$4.84/mi",
+        "pickupDateLabel": "Mar 31",
+        "milesLabel": "248",
+        "hasNotes": false
+      },
+      {
+        "id": "LD-4407",
+        "origin": "Phoenix, AZ",
+        "destination": "Los Angeles, CA",
+        "weight": 44000,
+        "pickupWindow": "07:00 - 09:00",
+        "pickupDate": "2026-03-31",
+        "rate": 3100,
+        "miles": 373,
+        "commodity": "Industrial machinery",
+        "broker": "Total Quality Logistics",
+        "notes": "Overweight \u2014 requires oversize permits for AZ.",
+        "routeLabel": "Phoenix, AZ \u2192 Los Angeles, CA",
+        "weightLabel": "44.0k lbs",
+        "rateLabel": "$3,100",
+        "ratePerMileLabel": "$8.31/mi",
+        "pickupDateLabel": "Mar 31",
+        "milesLabel": "373",
+        "hasNotes": true
+      }
+    ],
+    "upcomingLoads": [
+      {
+        "id": "LD-4408",
+        "origin": "Denver, CO",
+        "destination": "Salt Lake City, UT",
+        "weight": 36500,
+        "pickupWindow": "06:00 - 08:00",
+        "pickupDate": "2026-04-01",
+        "rate": 2600,
+        "miles": 525,
+        "commodity": "Electronics",
+        "broker": "Transplace",
+        "notes": "",
+        "routeLabel": "Denver, CO \u2192 Salt Lake City, UT",
+        "weightLabel": "36.5k lbs",
+        "rateLabel": "$2,600",
+        "ratePerMileLabel": "$4.95/mi",
+        "pickupDateLabel": "Apr 1",
+        "milesLabel": "525",
+        "hasNotes": false
+      },
+      {
+        "id": "LD-4409",
+        "origin": "Seattle, WA",
+        "destination": "Portland, OR",
+        "weight": 19800,
+        "pickupWindow": "09:00 - 11:00",
+        "pickupDate": "2026-04-01",
+        "rate": 950,
+        "miles": 174,
+        "commodity": "Paper products",
+        "broker": "Uber Freight",
+        "notes": "",
+        "routeLabel": "Seattle, WA \u2192 Portland, OR",
+        "weightLabel": "19.8k lbs",
+        "rateLabel": "$950",
+        "ratePerMileLabel": "$5.46/mi",
+        "pickupDateLabel": "Apr 1",
+        "milesLabel": "174",
+        "hasNotes": false
+      },
+      {
+        "id": "LD-4410",
+        "origin": "Minneapolis, MN",
+        "destination": "Milwaukee, WI",
+        "weight": 31200,
+        "pickupWindow": "07:00 - 09:00",
+        "pickupDate": "2026-04-02",
+        "rate": 1550,
+        "miles": 337,
+        "commodity": "Packaged food",
+        "broker": "Convoy",
+        "notes": "Reefer required \u2014 34\u00b0F.",
+        "routeLabel": "Minneapolis, MN \u2192 Milwaukee, WI",
+        "weightLabel": "31.2k lbs",
+        "rateLabel": "$1,550",
+        "ratePerMileLabel": "$4.60/mi",
+        "pickupDateLabel": "Apr 2",
+        "milesLabel": "337",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4411",
+        "origin": "Charlotte, NC",
+        "destination": "Raleigh, NC",
+        "weight": 22100,
+        "pickupWindow": "10:00 - 12:00",
+        "pickupDate": "2026-04-02",
+        "rate": 875,
+        "miles": 167,
+        "commodity": "Textiles",
+        "broker": "National Load Board",
+        "notes": "",
+        "routeLabel": "Charlotte, NC \u2192 Raleigh, NC",
+        "weightLabel": "22.1k lbs",
+        "rateLabel": "$875",
+        "ratePerMileLabel": "$5.24/mi",
+        "pickupDateLabel": "Apr 2",
+        "milesLabel": "167",
+        "hasNotes": false
+      },
+      {
+        "id": "LD-4412",
+        "origin": "San Antonio, TX",
+        "destination": "El Paso, TX",
+        "weight": 40200,
+        "pickupWindow": "05:00 - 07:00",
+        "pickupDate": "2026-04-03",
+        "rate": 3450,
+        "miles": 554,
+        "commodity": "Construction equipment",
+        "broker": "Echo Global Logistics",
+        "notes": "Flatbed \u2014 must chain down.",
+        "routeLabel": "San Antonio, TX \u2192 El Paso, TX",
+        "weightLabel": "40.2k lbs",
+        "rateLabel": "$3,450",
+        "ratePerMileLabel": "$6.23/mi",
+        "pickupDateLabel": "Apr 3",
+        "milesLabel": "554",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4413",
+        "origin": "Columbus, OH",
+        "destination": "Pittsburgh, PA",
+        "weight": 28900,
+        "pickupWindow": "08:00 - 10:00",
+        "pickupDate": "2026-04-03",
+        "rate": 1800,
+        "miles": 185,
+        "commodity": "Automotive glass",
+        "broker": "FreightWave Logistics",
+        "notes": "Fragile \u2014 no double stacking.",
+        "routeLabel": "Columbus, OH \u2192 Pittsburgh, PA",
+        "weightLabel": "28.9k lbs",
+        "rateLabel": "$1,800",
+        "ratePerMileLabel": "$9.73/mi",
+        "pickupDateLabel": "Apr 3",
+        "milesLabel": "185",
+        "hasNotes": true
+      },
+      {
+        "id": "LD-4414",
+        "origin": "Tampa, FL",
+        "destination": "Orlando, FL",
+        "weight": 17500,
+        "pickupWindow": "11:00 - 13:00",
+        "pickupDate": "2026-04-04",
+        "rate": 650,
+        "miles": 84,
+        "commodity": "Office furniture",
+        "broker": "Coyote Logistics",
+        "notes": "",
+        "routeLabel": "Tampa, FL \u2192 Orlando, FL",
+        "weightLabel": "17.5k lbs",
+        "rateLabel": "$650",
+        "ratePerMileLabel": "$7.74/mi",
+        "pickupDateLabel": "Apr 4",
+        "milesLabel": "84",
+        "hasNotes": false
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading load board...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Failed to load freight data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve load board data from the TMS. Please check your API connection and try again."
+    },
+    "carrier-name-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.carrier.name"
+    },
+    "carrier-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Carrier",
+      "children": [
+        "carrier-name-text"
+      ]
+    },
+    "carrier-mc-text": {
+      "type": "Text",
+      "children": "$data.carrier.mcNumber"
+    },
+    "carrier-mc-item": {
+      "type": "DescriptionListItem",
+      "label": "MC #",
+      "children": [
+        "carrier-mc-text"
+      ]
+    },
+    "carrier-dot-text": {
+      "type": "Text",
+      "children": "$data.carrier.dotNumber"
+    },
+    "carrier-dot-item": {
+      "type": "DescriptionListItem",
+      "label": "DOT #",
+      "children": [
+        "carrier-dot-text"
+      ]
+    },
+    "carrier-base-text": {
+      "type": "Text",
+      "children": "$data.carrier.baseCity"
+    },
+    "carrier-base-item": {
+      "type": "DescriptionListItem",
+      "label": "Base",
+      "children": [
+        "carrier-base-text"
+      ]
+    },
+    "carrier-identity": {
+      "type": "DescriptionList",
+      "name": "carrier-identity",
+      "direction": "row",
+      "children": [
+        "carrier-name-item",
+        "carrier-mc-item",
+        "carrier-dot-item",
+        "carrier-base-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "There are no loads currently assigned to this carrier. New loads will appear here as they are posted to the board."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No loads available",
+      "layout": "vertical",
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "carrier-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "utilization-bar": {
+      "type": "ProgressBar",
+      "name": "utilization-bar",
+      "title": "Carrier utilization",
+      "value": "$data.utilization.activeTrucks",
+      "maxValue": "$data.utilization.totalTrucks",
+      "showPercentage": true,
+      "valueDescription": "$data.utilization.valueDescription",
+      "variant": "$data.utilization.variant"
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "today-header-label": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.todayHeader.label"
+    },
+    "today-header-tag": {
+      "type": "Tag",
+      "variant": "error",
+      "children": "$data.todayHeader.hotCountLabel"
+    },
+    "today-header": {
+      "type": "Flex",
+      "name": "today-header",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "today-header-label",
+        "today-header-tag"
+      ]
+    },
+    "today-grid": {
+      "type": "AutoGrid",
+      "name": "today-grid",
+      "columnWidth": 250,
+      "flexible": true,
+      "gap": "small",
+      "children": [
+        {
+          "$forEach": "$data.todayLoads",
+          "as": "load",
+          "render": {
+            "type": "Tile",
+            "compact": true,
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "justify": "between",
+                    "align": "center",
+                    "children": [
+                      {
+                        "type": "Link",
+                        "overlay": {
+                          "type": "Panel",
+                          "id": "load-panel-today-{{load.id}}",
+                          "title": "Load {{load.id}}",
+                          "width": "small",
+                          "variant": "modal",
+                          "flush": true,
+                          "children": [
+                            {
+                              "type": "PanelBody",
+                              "children": [
+                                {
+                                  "type": "PanelSection",
+                                  "children": [
+                                    {
+                                      "type": "Flex",
+                                      "direction": "column",
+                                      "gap": "sm",
+                                      "children": [
+                                        {
+                                          "type": "DescriptionList",
+                                          "direction": "column",
+                                          "children": [
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Route",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "format": {
+                                                    "fontWeight": "demibold"
+                                                  },
+                                                  "children": "$load.routeLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Pickup date",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.pickupDateLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Pickup window",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.pickupWindow"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Weight",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.weightLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Miles",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.milesLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Rate",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "format": {
+                                                    "fontWeight": "demibold"
+                                                  },
+                                                  "children": "$load.rateLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Rate per mile",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.ratePerMileLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Commodity",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.commodity"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Broker",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.broker"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Divider",
+                                          "visible": "$load.hasNotes"
+                                        },
+                                        {
+                                          "type": "Flex",
+                                          "visible": "$load.hasNotes",
+                                          "direction": "column",
+                                          "gap": "flush",
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "variant": "microcopy",
+                                              "children": "Notes"
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "children": "$load.notes"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "type": "Text",
+                            "format": {
+                              "fontWeight": "demibold"
+                            },
+                            "children": "$load.id"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$load.rateLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "children": "$load.routeLabel"
+                  },
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "justify": "between",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "$load.weightLabel"
+                      },
+                      {
+                        "type": "Text",
+                        "variant": "microcopy",
+                        "children": "Pickup: {{load.pickupWindow}}"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Select",
+                    "name": "assign-{{load.id}}",
+                    "label": "Assign truck",
+                    "variant": "transparent",
+                    "placeholder": "Select truck...",
+                    "options": "$data.truckOptions"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "today-section": {
+      "type": "Flex",
+      "name": "today-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "today-header",
+        "today-grid"
+      ]
+    },
+    "divider-1": {
+      "type": "Divider"
+    },
+    "tomorrow-header-label": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.tomorrowHeader.label"
+    },
+    "tomorrow-header-count": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.tomorrowHeader.countLabel"
+    },
+    "tomorrow-header": {
+      "type": "Flex",
+      "name": "tomorrow-header",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "tomorrow-header-label",
+        "tomorrow-header-count"
+      ]
+    },
+    "tomorrow-table": {
+      "type": "Table",
+      "name": "tomorrow-table",
+      "bordered": true,
+      "flush": true,
+      "children": [
+        {
+          "type": "TableHead",
+          "children": [
+            {
+              "type": "TableRow",
+              "children": [
+                {
+                  "type": "TableHeader",
+                  "width": "min",
+                  "sortDirection": "never",
+                  "children": "Load"
+                },
+                {
+                  "type": "TableHeader",
+                  "width": "auto",
+                  "sortDirection": "never",
+                  "children": "Route"
+                },
+                {
+                  "type": "TableHeader",
+                  "width": "min",
+                  "sortDirection": "never",
+                  "children": "Weight"
+                },
+                {
+                  "type": "TableHeader",
+                  "width": "min",
+                  "sortDirection": "never",
+                  "children": "Pickup"
+                },
+                {
+                  "type": "TableHeader",
+                  "width": "min",
+                  "sortDirection": "never",
+                  "children": "Rate"
+                },
+                {
+                  "type": "TableHeader",
+                  "width": "min",
+                  "sortDirection": "never",
+                  "children": "Truck"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TableBody",
+          "children": [
+            {
+              "$forEach": "$data.tomorrowLoads",
+              "as": "load",
+              "render": {
+                "type": "TableRow",
+                "children": [
+                  {
+                    "type": "TableCell",
+                    "width": "min",
+                    "children": [
+                      {
+                        "type": "Link",
+                        "overlay": {
+                          "type": "Panel",
+                          "id": "load-panel-tomorrow-{{load.id}}",
+                          "title": "Load {{load.id}}",
+                          "width": "small",
+                          "variant": "modal",
+                          "flush": true,
+                          "children": [
+                            {
+                              "type": "PanelBody",
+                              "children": [
+                                {
+                                  "type": "PanelSection",
+                                  "children": [
+                                    {
+                                      "type": "Flex",
+                                      "direction": "column",
+                                      "gap": "sm",
+                                      "children": [
+                                        {
+                                          "type": "DescriptionList",
+                                          "direction": "column",
+                                          "children": [
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Route",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "format": {
+                                                    "fontWeight": "demibold"
+                                                  },
+                                                  "children": "$load.routeLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Pickup date",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.pickupDateLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Pickup window",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.pickupWindow"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Weight",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.weightLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Miles",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.milesLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Rate",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "format": {
+                                                    "fontWeight": "demibold"
+                                                  },
+                                                  "children": "$load.rateLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Rate per mile",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.ratePerMileLabel"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Commodity",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.commodity"
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "DescriptionListItem",
+                                              "label": "Broker",
+                                              "children": [
+                                                {
+                                                  "type": "Text",
+                                                  "children": "$load.broker"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "Divider",
+                                          "visible": "$load.hasNotes"
+                                        },
+                                        {
+                                          "type": "Flex",
+                                          "visible": "$load.hasNotes",
+                                          "direction": "column",
+                                          "gap": "flush",
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "variant": "microcopy",
+                                              "children": "Notes"
+                                            },
+                                            {
+                                              "type": "Text",
+                                              "children": "$load.notes"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "children": [
+                          {
+                            "type": "Text",
+                            "format": {
+                              "fontWeight": "demibold"
+                            },
+                            "children": "$load.id"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "width": "auto",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "children": "$load.routeLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "width": "min",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "children": "$load.weightLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "width": "min",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "children": "$load.pickupWindow"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "width": "min",
+                    "children": [
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "children": "$load.rateLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TableCell",
+                    "width": "min",
+                    "children": [
+                      {
+                        "type": "Select",
+                        "name": "assign-tomorrow-{{load.id}}",
+                        "label": "",
+                        "variant": "transparent",
+                        "placeholder": "Assign...",
+                        "options": "$data.truckOptions"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "tomorrow-section": {
+      "type": "Flex",
+      "name": "tomorrow-section",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "tomorrow-header",
+        "tomorrow-table"
+      ]
+    },
+    "upcoming-table": {
+      "type": "DataTable",
+      "name": "upcoming-table",
+      "data": "$data.upcomingLoads",
+      "searchFields": [
+        "id",
+        "origin",
+        "destination"
+      ],
+      "searchPlaceholder": "Search loads...",
+      "pageSize": 7,
+      "columns": [
+        {
+          "field": "id",
+          "label": "Load",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "load-panel-upcoming-{{row.id}}",
+                "title": "Load {{row.id}}",
+                "width": "small",
+                "variant": "modal",
+                "flush": true,
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "direction": "column",
+                            "gap": "sm",
+                            "children": [
+                              {
+                                "type": "DescriptionList",
+                                "direction": "column",
+                                "children": [
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Route",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "format": {
+                                          "fontWeight": "demibold"
+                                        },
+                                        "children": "$row.routeLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Pickup date",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.pickupDateLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Pickup window",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.pickupWindow"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Weight",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.weightLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Miles",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.milesLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Rate",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "format": {
+                                          "fontWeight": "demibold"
+                                        },
+                                        "children": "$row.rateLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Rate per mile",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.ratePerMileLabel"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Commodity",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.commodity"
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "type": "DescriptionListItem",
+                                    "label": "Broker",
+                                    "children": [
+                                      {
+                                        "type": "Text",
+                                        "children": "$row.broker"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Divider",
+                                "visible": "$row.hasNotes"
+                              },
+                              {
+                                "type": "Flex",
+                                "visible": "$row.hasNotes",
+                                "direction": "column",
+                                "gap": "flush",
+                                "children": [
+                                  {
+                                    "type": "Text",
+                                    "variant": "microcopy",
+                                    "children": "Notes"
+                                  },
+                                  {
+                                    "type": "Text",
+                                    "children": "$row.notes"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "Text",
+                  "format": {
+                    "fontWeight": "demibold"
+                  },
+                  "children": "$value"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "routeLabel",
+          "label": "Route"
+        },
+        {
+          "field": "weightLabel",
+          "label": "Weight"
+        },
+        {
+          "field": "pickupDateLabel",
+          "label": "Date"
+        },
+        {
+          "field": "pickupWindow",
+          "label": "Pickup"
+        },
+        {
+          "field": "rateLabel",
+          "label": "Rate",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Text",
+              "format": {
+                "fontWeight": "demibold"
+              },
+              "children": "$value"
+            }
+          }
+        }
+      ],
+      "emptyTitle": "No results found",
+      "emptyMessage": "No upcoming loads match your search."
+    },
+    "upcoming-accordion": {
+      "type": "Accordion",
+      "name": "upcoming-accordion",
+      "title": "Upcoming loads",
+      "defaultOpen": false,
+      "size": "sm",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "flush",
+          "children": [
+            "upcoming-table"
+          ]
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "carrier-identity",
+        "utilization-bar",
+        "divider",
+        "today-section",
+        "divider-1",
+        "tomorrow-section",
+        "upcoming-accordion"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

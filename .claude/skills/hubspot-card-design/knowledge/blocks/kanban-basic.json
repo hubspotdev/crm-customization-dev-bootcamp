@@ -1,0 +1,89 @@
+{
+  "name": "kanban-basic",
+  "description": "Kanban board (hs-uix). `stages` defines the columns (label, variant, optional `terminal: true` to hide behind a 'Show closed' toggle). `cardFields` is REQUIRED (not `columns`) — each field has placement of 'title' | 'subtitle' | 'meta' | 'body' | 'footer'. Field `render` uses the $render operator: inside the node, `$value` is the field value and `$row` is the card's data. No drag-and-drop in HubSpot UI Extensions — `stageControl: 'select'` (or 'menu') puts a per-card stage picker on the card. Sort is board-wide, not per-column.",
+  "componentsUsed": [
+    "Kanban",
+    "Link",
+    "KanbanCardActions"
+  ],
+  "dataShape": {
+    "deals": [
+      {
+        "id": "d1",
+        "name": "Acme Corp",
+        "company": "Acme",
+        "stage": "qualified",
+        "amountLabel": "$42K"
+      },
+      {
+        "id": "d2",
+        "name": "Bayside Inc",
+        "company": "Bayside",
+        "stage": "negotiation",
+        "amountLabel": "$18K"
+      }
+    ],
+    "dealStages": [
+      {
+        "value": "qualified",
+        "label": "Qualified",
+        "variant": "info"
+      },
+      {
+        "value": "negotiation",
+        "label": "Negotiation",
+        "variant": "warning"
+      },
+      {
+        "value": "closed_won",
+        "label": "Closed Won",
+        "variant": "success",
+        "terminal": true
+      },
+      {
+        "value": "closed_lost",
+        "label": "Closed Lost",
+        "variant": "danger",
+        "terminal": true
+      }
+    ]
+  },
+  "node": {
+    "root": "deals-board",
+    "elements": {
+      "deals-board": {
+        "type": "Kanban",
+        "name": "deals-board",
+        "data": "$data.deals",
+        "stages": "$data.dealStages",
+        "groupBy": "stage",
+        "searchFields": [
+          "name",
+          "company"
+        ],
+        "stageControl": "select",
+        "cardFields": [
+          {
+            "field": "name",
+            "placement": "title",
+            "render": {
+              "$render": "value",
+              "node": {
+                "type": "Link",
+                "children": "$value"
+              }
+            }
+          },
+          {
+            "field": "company",
+            "placement": "subtitle"
+          },
+          {
+            "field": "amountLabel",
+            "placement": "meta"
+          }
+        ]
+      }
+    }
+  }
+}

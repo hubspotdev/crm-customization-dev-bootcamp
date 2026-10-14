@@ -1,0 +1,125 @@
+{
+  "name": "record-header-tile",
+  "description": "Identity header for a record-tab card: a Tile containing a single demibold Text identity line (NO Heading — the record page already provides the heading context) with inline StatusTag(s) for stage/risk, above a DescriptionList direction='row' meta row where each item's value is a Flex with an Icon + Text sibling pair. Keeps everything on the same baseline left-to-right so no element floats in empty right-column space. Use at the top of Deal/Company/Contact record tab cards.",
+  "componentsUsed": [
+    "Tile",
+    "Flex",
+    "Text",
+    "StatusTag",
+    "Icon",
+    "DescriptionList",
+    "DescriptionListItem"
+  ],
+  "dataShape": {
+    "deal": {
+      "name": "Acme Corp - Enterprise Upgrade",
+      "stage": "Proposal Sent",
+      "healthScore": "62 / 100",
+      "healthVariant": "warning",
+      "riskLabel": "At Risk",
+      "ownerName": "Sarah Chen",
+      "closeDisplay": "Jun 30, 2026 (18 days)",
+      "amountDisplay": "$142,000"
+    }
+  },
+  "node": {
+    "root": "header-tile",
+    "elements": {
+      "deal-name": {
+        "type": "Text",
+        "format": { "fontWeight": "demibold" },
+        "children": "$data.deal.name"
+      },
+      "stage-tag": {
+        "type": "StatusTag",
+        "variant": "info",
+        "children": "$data.deal.stage"
+      },
+      "health-icon": {
+        "type": "Icon",
+        "name": "gauge"
+      },
+      "health-score": {
+        "type": "Text",
+        "children": "$data.deal.healthScore"
+      },
+      "risk-tag": {
+        "type": "StatusTag",
+        "variant": "$data.deal.healthVariant",
+        "children": "$data.deal.riskLabel"
+      },
+      "identity-row": {
+        "type": "Flex",
+        "direction": "row",
+        "align": "center",
+        "gap": "sm",
+        "children": [
+          "deal-name",
+          "stage-tag",
+          "health-icon",
+          "health-score",
+          "risk-tag"
+        ]
+      },
+      "owner-icon": { "type": "Icon", "name": "contact" },
+      "owner-text": { "type": "Text", "children": "$data.deal.ownerName" },
+      "owner-value": {
+        "type": "Flex",
+        "direction": "row",
+        "align": "center",
+        "gap": "xs",
+        "children": ["owner-icon", "owner-text"]
+      },
+      "owner-item": {
+        "type": "DescriptionListItem",
+        "label": "Owner",
+        "children": ["owner-value"]
+      },
+      "close-icon": { "type": "Icon", "name": "date" },
+      "close-text": { "type": "Text", "children": "$data.deal.closeDisplay" },
+      "close-value": {
+        "type": "Flex",
+        "direction": "row",
+        "align": "center",
+        "gap": "xs",
+        "children": ["close-icon", "close-text"]
+      },
+      "close-item": {
+        "type": "DescriptionListItem",
+        "label": "Close date",
+        "children": ["close-value"]
+      },
+      "amount-icon": { "type": "Icon", "name": "invoice" },
+      "amount-text": { "type": "Text", "children": "$data.deal.amountDisplay" },
+      "amount-value": {
+        "type": "Flex",
+        "direction": "row",
+        "align": "center",
+        "gap": "xs",
+        "children": ["amount-icon", "amount-text"]
+      },
+      "amount-item": {
+        "type": "DescriptionListItem",
+        "label": "Amount",
+        "children": ["amount-value"]
+      },
+      "meta-row": {
+        "type": "DescriptionList",
+        "direction": "row",
+        "children": ["owner-item", "close-item", "amount-item"]
+      },
+      "header-stack": {
+        "type": "Flex",
+        "direction": "column",
+        "gap": "sm",
+        "children": ["identity-row", "meta-row"]
+      },
+      "header-tile": {
+        "type": "Tile",
+        "name": "header-tile",
+        "compact": true,
+        "children": ["header-stack"]
+      }
+    }
+  }
+}

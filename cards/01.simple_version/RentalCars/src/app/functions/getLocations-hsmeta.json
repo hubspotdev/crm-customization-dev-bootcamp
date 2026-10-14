@@ -1,0 +1,8 @@
+{
+  "uid": "getLocations",
+  "type": "app-function",
+  "config": {
+    "entrypoint": "/app/functions/getLocations.js",
+    "secretKeys": []
+  }
+}

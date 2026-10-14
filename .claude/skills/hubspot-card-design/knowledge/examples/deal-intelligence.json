@@ -1,0 +1,2050 @@
+{
+  "meta": {
+    "name": "Deal Intelligence",
+    "tagline": "Health \u00b7 Timeline \u00b7 Battlecard",
+    "description": "Three-view deal card for AEs: live health pulse, interaction timeline, and competitive battlecard \u2014 all without leaving the record.",
+    "surface": "crm.record.tab",
+    "object": "deal"
+  },
+  "state": {
+    "activeTab": "pulse",
+    "timelineFilter": "all",
+    "viewMode": "loaded",
+    "competitor": "salesforce"
+  },
+  "data": {
+    "dealName": "Acme Corp \u2014 Enterprise",
+    "dealStage": "Proposal Sent",
+    "dealStageVariant": "warning",
+    "closeDate": "Jun 30, 2025",
+    "daysToClose": 18,
+    "daysToCloseLabel": "18 days",
+    "dealAmount": "$142,000",
+    "dealOwner": "Sarah Chen",
+    "healthScore": 62,
+    "healthScoreVariant": "warning",
+    "healthScoreLabel": "At Risk",
+    "kpis": [
+      {
+        "label": "Deal Value",
+        "value": "$142K",
+        "trendLabel": "+8%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Engagement",
+        "value": "74%",
+        "trendLabel": "-6%",
+        "trendDirection": "decrease"
+      },
+      {
+        "label": "Days Open",
+        "value": "47",
+        "trendLabel": "+12d",
+        "trendDirection": "decrease"
+      }
+    ],
+    "urgencyTiles": [
+      {
+        "id": "u1",
+        "title": "Proposal unopened",
+        "detail": "Sent 5 days ago \u2014 no open event recorded yet",
+        "variant": "danger",
+        "icon": "email",
+        "action": "Resend"
+      },
+      {
+        "id": "u2",
+        "title": "Champion gone dark",
+        "detail": "No reply from J. Torres in 9 days",
+        "variant": "warning",
+        "icon": "contact",
+        "action": "Follow up"
+      },
+      {
+        "id": "u3",
+        "title": "Legal review pending",
+        "detail": "MSA requested 3 days ago, no update since",
+        "variant": "warning",
+        "icon": "description",
+        "action": "Nudge"
+      },
+      {
+        "id": "u4",
+        "title": "Multi-threading gap",
+        "detail": "Only 1 stakeholder engaged so far",
+        "variant": "info",
+        "icon": "objectAssociations",
+        "action": "Map contacts"
+      }
+    ],
+    "timelineItems": [
+      {
+        "id": "t1",
+        "type": "Email",
+        "date": "Jun 11, 2025",
+        "dateSort": "2025-06-11",
+        "title": "Sent proposal v2",
+        "notePreview": "Updated pricing for 250 seats \u2014 awaiting sign-off from J. Torres.",
+        "note": "Updated pricing for 250 seats. Awaiting sign-off from J. Torres. Included a revised ROI calculator showing 14-month payback. Next step: follow up if no open by Jun 14.",
+        "typeVariant": "info",
+        "icon": "email"
+      },
+      {
+        "id": "t2",
+        "type": "Call",
+        "date": "Jun 6, 2025",
+        "dateSort": "2025-06-06",
+        "title": "Discovery call \u2014 technical deep-dive",
+        "notePreview": "IT team joined. SSO + EU data residency flagged as blockers.",
+        "note": "IT team joined. Main concerns: SSO integration and data residency (EU). Need to send security questionnaire by EOW. CTO flagged Salesforce SSO as current blocker.",
+        "typeVariant": "success",
+        "icon": "calling"
+      },
+      {
+        "id": "t3",
+        "type": "Email",
+        "date": "Jun 3, 2025",
+        "dateSort": "2025-06-03",
+        "title": "Sent proposal v1",
+        "notePreview": "Initial 3-year pricing at $138K/yr. Salesforce renewal in Sept flagged.",
+        "note": "Initial 3-year pricing at $138K/yr. Champion flagged a budget ceiling of $150K/yr. Competitor Salesforce was mentioned \u2014 contract renews in Sept.",
+        "typeVariant": "info",
+        "icon": "email"
+      },
+      {
+        "id": "t4",
+        "type": "Meeting",
+        "date": "May 28, 2025",
+        "dateSort": "2025-05-28",
+        "title": "Exec intro \u2014 VP Sales + CTO",
+        "notePreview": "Strong interest. VP wants ROI case before board review Jun 20.",
+        "note": "Strong interest. VP wants ROI case before board review June 20. CTO wants 2 fintech reference customers. Action: intro Loom + Postman CTOs by June 10.",
+        "typeVariant": "warning",
+        "icon": "appointment"
+      },
+      {
+        "id": "t5",
+        "type": "Note",
+        "date": "May 22, 2025",
+        "dateSort": "2025-05-22",
+        "title": "Initial outreach \u2014 sequence complete",
+        "notePreview": "5-touch sequence ended. 1 reply from J. Torres (VP Ops).",
+        "note": "5-touch sequence ended. 3 email opens, 1 reply from J. Torres (VP Ops). Need to get CFO involved. Ask J. Torres for a warm intro.",
+        "typeVariant": "default",
+        "icon": "description"
+      }
+    ],
+    "timelineFilterOptions": [
+      {
+        "label": "All activity",
+        "value": "all"
+      },
+      {
+        "label": "Emails",
+        "value": "Email"
+      },
+      {
+        "label": "Calls",
+        "value": "Call"
+      },
+      {
+        "label": "Meetings",
+        "value": "Meeting"
+      },
+      {
+        "label": "Notes",
+        "value": "Note"
+      }
+    ],
+    "competitorKpis": [
+      {
+        "label": "Win rate vs. Salesforce",
+        "value": "58%",
+        "trendLabel": "+4%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg deal size (won)",
+        "value": "$118K",
+        "trendLabel": "+11%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg cycle won (days)",
+        "value": "62",
+        "trendLabel": "-8d",
+        "trendDirection": "increase"
+      }
+    ],
+    "battlecardCategories": [
+      {
+        "id": "b1",
+        "category": "Why we win",
+        "icon": "success",
+        "iconColor": "success",
+        "defaultOpen": true,
+        "points": [
+          "Native HubSpot CRM integration \u2014 no middleware, zero sync lag",
+          "2\u00d7 faster onboarding: avg 3 weeks vs. 7 weeks for Salesforce",
+          "All-in pricing \u2014 no per-seat add-ons for APIs or analytics",
+          "Live support SLA included at every tier"
+        ]
+      },
+      {
+        "id": "b2",
+        "category": "Why we lose",
+        "icon": "xCircle",
+        "iconColor": "alert",
+        "defaultOpen": false,
+        "points": [
+          "Salesforce AppExchange ecosystem is larger (5,000+ integrations)",
+          "Enterprise customization depth \u2014 complex workflow rules",
+          "Longer brand recognition in F500 procurement"
+        ]
+      },
+      {
+        "id": "b3",
+        "category": "Objection handlers",
+        "icon": "questionCircle",
+        "iconColor": "inherit",
+        "defaultOpen": false,
+        "points": [
+          "\"We're already on Salesforce\" \u2192 Ask: what's your renewal date? Switching costs drop at contract end.",
+          "\"Salesforce has more integrations\" \u2192 1,400+ HubSpot integrations cover 95% of SMB+mid-market stacks.",
+          "\"Enterprise needs Salesforce\" \u2192 Reference: Loom, Canva, and Postman all run HubSpot at scale."
+        ]
+      }
+    ],
+    "timelineTypeOptions": [
+      {
+        "label": "Email",
+        "value": "Email"
+      },
+      {
+        "label": "Call",
+        "value": "Call"
+      },
+      {
+        "label": "Meeting",
+        "value": "Meeting"
+      },
+      {
+        "label": "Note",
+        "value": "Note"
+      }
+    ],
+    "comparisonRows": [
+      {
+        "criteria": "Onboarding time",
+        "us": "~3 weeks avg",
+        "usVariant": "success",
+        "them": "~7 weeks avg",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "All-in, no add-ons",
+        "usVariant": "success",
+        "them": "Per-seat + add-ons",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "CRM integration",
+        "us": "Native, zero lag",
+        "usVariant": "success",
+        "them": "Middleware required",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Integrations",
+        "us": "1,400+",
+        "usVariant": "warning",
+        "them": "5,000+ (AppExchange)",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Enterprise custom rules",
+        "us": "Standard depth",
+        "usVariant": "warning",
+        "them": "Deep customization",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Live support SLA",
+        "us": "All tiers included",
+        "usVariant": "success",
+        "them": "Paid tiers only",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Brand recognition (F500)",
+        "us": "Growing",
+        "usVariant": "warning",
+        "them": "Dominant",
+        "themVariant": "success"
+      }
+    ],
+    "competitorOptions": [
+      {
+        "label": "Salesforce",
+        "value": "salesforce"
+      },
+      {
+        "label": "Microsoft Dynamics",
+        "value": "dynamics"
+      },
+      {
+        "label": "Pipedrive",
+        "value": "pipedrive"
+      },
+      {
+        "label": "Zoho CRM",
+        "value": "zoho"
+      }
+    ],
+    "dynamicsRows": [
+      {
+        "criteria": "Onboarding time",
+        "us": "~3 weeks avg",
+        "usVariant": "success",
+        "them": "~10 weeks avg",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "All-in, no add-ons",
+        "usVariant": "success",
+        "them": "Per-seat + modules",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "CRM integration",
+        "us": "Native, zero lag",
+        "usVariant": "success",
+        "them": "Deep Microsoft stack only",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Integrations",
+        "us": "1,400+",
+        "usVariant": "warning",
+        "them": "Microsoft ecosystem (Teams, Azure)",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Enterprise custom rules",
+        "us": "Standard depth",
+        "usVariant": "warning",
+        "them": "Power Automate + full customization",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Live support SLA",
+        "us": "All tiers included",
+        "usVariant": "success",
+        "them": "Premier support add-on",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Brand recognition (F500)",
+        "us": "Growing",
+        "usVariant": "warning",
+        "them": "Strong (Microsoft halo)",
+        "themVariant": "success"
+      }
+    ],
+    "pipedriveRows": [
+      {
+        "criteria": "Onboarding time",
+        "us": "~3 weeks avg",
+        "usVariant": "success",
+        "them": "~2 weeks avg",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "All-in, no add-ons",
+        "usVariant": "success",
+        "them": "Per-seat, affordable",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "CRM integration",
+        "us": "Native, zero lag",
+        "usVariant": "success",
+        "them": "Limited native integrations",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Integrations",
+        "us": "1,400+",
+        "usVariant": "success",
+        "them": "400+",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Enterprise custom rules",
+        "us": "Standard depth",
+        "usVariant": "success",
+        "them": "Basic workflow automation",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Live support SLA",
+        "us": "All tiers included",
+        "usVariant": "success",
+        "them": "Email-only on lower tiers",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Brand recognition (F500)",
+        "us": "Growing",
+        "usVariant": "success",
+        "them": "SMB-focused, limited enterprise",
+        "themVariant": "danger"
+      }
+    ],
+    "zohoRows": [
+      {
+        "criteria": "Onboarding time",
+        "us": "~3 weeks avg",
+        "usVariant": "success",
+        "them": "~4 weeks avg",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Pricing model",
+        "us": "All-in, no add-ons",
+        "usVariant": "success",
+        "them": "Per-seat, very low cost",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "CRM integration",
+        "us": "Native, zero lag",
+        "usVariant": "success",
+        "them": "Zoho suite only",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Integrations",
+        "us": "1,400+",
+        "usVariant": "success",
+        "them": "900+ (Zoho marketplace)",
+        "themVariant": "warning"
+      },
+      {
+        "criteria": "Enterprise custom rules",
+        "us": "Standard depth",
+        "usVariant": "warning",
+        "them": "Deep customization (Zoho Creator)",
+        "themVariant": "success"
+      },
+      {
+        "criteria": "Live support SLA",
+        "us": "All tiers included",
+        "usVariant": "success",
+        "them": "Paid tiers only",
+        "themVariant": "danger"
+      },
+      {
+        "criteria": "Brand recognition (F500)",
+        "us": "Growing",
+        "usVariant": "success",
+        "them": "Limited enterprise presence",
+        "themVariant": "danger"
+      }
+    ],
+    "salesforceKpis": [
+      {
+        "label": "Win rate vs. Salesforce",
+        "value": "58%",
+        "trendLabel": "+4%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg deal size (won)",
+        "value": "$118K",
+        "trendLabel": "+11%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg cycle won (days)",
+        "value": "62",
+        "trendLabel": "-8d",
+        "trendDirection": "increase"
+      }
+    ],
+    "dynamicsKpis": [
+      {
+        "label": "Win rate vs. Dynamics",
+        "value": "71%",
+        "trendLabel": "+6%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg deal size (won)",
+        "value": "$124K",
+        "trendLabel": "+9%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg cycle won (days)",
+        "value": "58",
+        "trendLabel": "-5d",
+        "trendDirection": "increase"
+      }
+    ],
+    "pipedriveKpis": [
+      {
+        "label": "Win rate vs. Pipedrive",
+        "value": "63%",
+        "trendLabel": "+3%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg deal size (won)",
+        "value": "$109K",
+        "trendLabel": "+14%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg cycle won (days)",
+        "value": "54",
+        "trendLabel": "-11d",
+        "trendDirection": "increase"
+      }
+    ],
+    "zohoKpis": [
+      {
+        "label": "Win rate vs. Zoho",
+        "value": "76%",
+        "trendLabel": "+8%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg deal size (won)",
+        "value": "$131K",
+        "trendLabel": "+17%",
+        "trendDirection": "increase"
+      },
+      {
+        "label": "Avg cycle won (days)",
+        "value": "49",
+        "trendLabel": "-14d",
+        "trendDirection": "increase"
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "deal-header",
+        "tab-shell"
+      ]
+    },
+    "deal-header": {
+      "type": "Tile",
+      "name": "deal-header",
+      "compact": true,
+      "children": [
+        "deal-header-inner"
+      ]
+    },
+    "deal-header-left": {
+      "type": "Flex",
+      "name": "deal-header-left",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "deal-name-row",
+        "deal-meta-row"
+      ]
+    },
+    "deal-name-row": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "wrap": "wrap",
+      "children": [
+        "deal-name-text",
+        "deal-stage-tag",
+        "health-score-inline"
+      ]
+    },
+    "deal-name-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.dealName"
+    },
+    "deal-stage-tag": {
+      "type": "StatusTag",
+      "variant": "$data.dealStageVariant",
+      "children": "$data.dealStage"
+    },
+    "deal-meta-row": {
+      "type": "Flex",
+      "name": "deal-meta-row",
+      "direction": "row",
+      "gap": "md",
+      "align": "center",
+      "children": [
+        "meta-owner-item",
+        "meta-close-item",
+        "meta-amount-item"
+      ]
+    },
+    "meta-owner": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "meta-owner-icon",
+        "meta-owner-text"
+      ]
+    },
+    "meta-owner-icon": {
+      "type": "Icon",
+      "name": "contact"
+    },
+    "meta-owner-text": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.dealOwner"
+    },
+    "meta-close": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "meta-close-icon",
+        "meta-close-text"
+      ]
+    },
+    "meta-close-icon": {
+      "type": "Icon",
+      "name": "date"
+    },
+    "meta-close-text": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "Close: {{data.closeDate}} ({{data.daysToCloseLabel}})"
+    },
+    "meta-amount": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "meta-amount-icon",
+        "meta-amount-text"
+      ]
+    },
+    "meta-amount-icon": {
+      "type": "Icon",
+      "name": "invoice"
+    },
+    "meta-amount-text": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.dealAmount"
+    },
+    "deal-header-right": {
+      "type": "Flex",
+      "name": "deal-header-right",
+      "direction": "column",
+      "align": "end",
+      "gap": "xs",
+      "children": [
+        "health-score-display"
+      ]
+    },
+    "health-icon": {
+      "type": "Icon",
+      "name": "gauge"
+    },
+    "health-number": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "{{data.healthScore}} / 100"
+    },
+    "health-label": {
+      "type": "StatusTag",
+      "variant": "$data.healthScoreVariant",
+      "children": "$data.healthScoreLabel"
+    },
+    "tab-shell": {
+      "type": "Tabs",
+      "name": "tab-shell",
+      "variant": "default",
+      "selected": "$state.activeTab",
+      "onSelectedChange": {
+        "$action": "setState",
+        "key": "activeTab",
+        "value": "$value"
+      },
+      "children": [
+        "tab-pulse",
+        "tab-timeline",
+        "tab-battlecard"
+      ]
+    },
+    "tab-pulse": {
+      "type": "Tab",
+      "tabId": "pulse",
+      "title": "Pulse",
+      "children": [
+        "pulse-content"
+      ]
+    },
+    "pulse-content": {
+      "type": "Flex",
+      "name": "pulse-content",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "pulse-kpis",
+        "pulse-urgency-header",
+        "pulse-urgency-grid"
+      ]
+    },
+    "pulse-kpis": {
+      "type": "Statistics",
+      "name": "pulse-kpis",
+      "children": [
+        {
+          "$forEach": "$data.kpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              {
+                "type": "StatisticsTrend",
+                "direction": "$kpi.trendDirection",
+                "children": "$kpi.trendLabel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "pulse-urgency-header": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "urgency-header-icon",
+        "urgency-header-text"
+      ]
+    },
+    "urgency-header-icon": {
+      "type": "Icon",
+      "name": "warning"
+    },
+    "urgency-header-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Needs attention"
+    },
+    "pulse-urgency-grid": {
+      "type": "AutoGrid",
+      "name": "pulse-urgency-grid",
+      "columnWidth": 200,
+      "flexible": true,
+      "gap": "small",
+      "children": {
+        "$forEach": "$data.urgencyTiles",
+        "as": "tile",
+        "render": {
+          "type": "Tile",
+          "compact": true,
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "column",
+              "gap": "xs",
+              "grow": true,
+              "children": [
+                {
+                  "type": "StatusTag",
+                  "variant": "$tile.variant",
+                  "children": "$tile.title"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "$tile.detail"
+                },
+                {
+                  "type": "Button",
+                  "variant": "secondary",
+                  "size": "xs",
+                  "onClick": {
+                    "$action": "addAlert",
+                    "type": "info",
+                    "message": "Opening action for: {{tile.title}}"
+                  },
+                  "children": "$tile.action"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "align": "stretch"
+    },
+    "tab-timeline": {
+      "type": "Tab",
+      "tabId": "timeline",
+      "title": "Timeline",
+      "children": [
+        "timeline-content"
+      ]
+    },
+    "timeline-content": {
+      "type": "Flex",
+      "name": "timeline-content",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "timeline-header-row",
+        "timeline-feed"
+      ]
+    },
+    "timeline-filter-row": {
+      "type": "Flex",
+      "name": "timeline-header-row",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "timeline-title",
+        "timeline-log-btn"
+      ]
+    },
+    "timeline-log-btn": {
+      "type": "Button",
+      "variant": "primary",
+      "children": [
+        {
+          "type": "Icon",
+          "name": "add"
+        },
+        "Log activity"
+      ],
+      "overlay": {
+        "type": "Panel",
+        "id": "log-activity-panel",
+        "title": "Log activity",
+        "variant": "modal",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "column",
+                    "gap": "sm",
+                    "children": [
+                      {
+                        "type": "Select",
+                        "name": "logType",
+                        "label": "Activity type",
+                        "options": [
+                          {
+                            "label": "Email",
+                            "value": "email"
+                          },
+                          {
+                            "label": "Call",
+                            "value": "call"
+                          },
+                          {
+                            "label": "Meeting",
+                            "value": "meeting"
+                          },
+                          {
+                            "label": "Note",
+                            "value": "note"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "Input",
+                        "name": "logTitle",
+                        "label": "Title",
+                        "placeholder": "Brief description"
+                      },
+                      {
+                        "type": "DateInput",
+                        "name": "logDate",
+                        "label": "Date"
+                      },
+                      {
+                        "type": "TextArea",
+                        "name": "logNote",
+                        "label": "Notes",
+                        "placeholder": "What happened? Key takeaways, next steps..."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "justify": "between",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "log-activity-panel"
+                        },
+                        "children": "Cancel"
+                      },
+                      {
+                        "type": "LoadingButton",
+                        "variant": "primary",
+                        "onClick": {
+                          "$action": "batch",
+                          "actions": [
+                            {
+                              "$action": "closeOverlay",
+                              "id": "log-activity-panel"
+                            },
+                            {
+                              "$action": "addAlert",
+                              "type": "success",
+                              "message": "Activity logged"
+                            }
+                          ]
+                        },
+                        "children": "Save activity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "size": "small"
+    },
+    "tab-battlecard": {
+      "type": "Tab",
+      "tabId": "battlecard",
+      "title": "Battlecard",
+      "children": [
+        "battlecard-content"
+      ]
+    },
+    "battlecard-content": {
+      "type": "Flex",
+      "name": "battlecard-content",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "battlecard-header",
+        "battlecard-comp-kpis",
+        "battlecard-accordion-group"
+      ]
+    },
+    "battlecard-header": {
+      "type": "Flex",
+      "name": "battlecard-header",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "comp-label",
+        "comp-competitor-select"
+      ]
+    },
+    "comp-icon": {
+      "type": "Icon",
+      "name": "warning"
+    },
+    "comp-label": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Competing against"
+    },
+    "comp-tag": {
+      "type": "StatusTag",
+      "variant": "warning",
+      "children": "Salesforce"
+    },
+    "battlecard-comp-kpis": {
+      "type": "Flex",
+      "name": "battlecard-comp-kpis",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "comp-kpis-salesforce",
+        "comp-kpis-dynamics",
+        "comp-kpis-pipedrive",
+        "comp-kpis-zoho"
+      ]
+    },
+    "battlecard-accordion-group": {
+      "type": "DataTable",
+      "name": "battlecard-comparison-table",
+      "data": {
+        "$if": {
+          "$eq": [
+            "$state.competitor",
+            "dynamics"
+          ]
+        },
+        "$then": "$data.dynamicsRows",
+        "$else": {
+          "$if": {
+            "$eq": [
+              "$state.competitor",
+              "pipedrive"
+            ]
+          },
+          "$then": "$data.pipedriveRows",
+          "$else": {
+            "$if": {
+              "$eq": [
+                "$state.competitor",
+                "zoho"
+              ]
+            },
+            "$then": "$data.zohoRows",
+            "$else": "$data.comparisonRows"
+          }
+        }
+      },
+      "columns": [
+        {
+          "field": "criteria",
+          "label": "Criteria",
+          "width": "auto"
+        },
+        {
+          "field": "us",
+          "label": "HubSpot",
+          "width": "auto",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.usVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "them",
+          "label": {
+            "$if": {
+              "$eq": [
+                "$state.competitor",
+                "dynamics"
+              ]
+            },
+            "$then": "Microsoft Dynamics",
+            "$else": {
+              "$if": {
+                "$eq": [
+                  "$state.competitor",
+                  "pipedrive"
+                ]
+              },
+              "$then": "Pipedrive",
+              "$else": {
+                "$if": {
+                  "$eq": [
+                    "$state.competitor",
+                    "zoho"
+                  ]
+                },
+                "$then": "Zoho CRM",
+                "$else": "Salesforce"
+              }
+            }
+          },
+          "width": "auto",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.themVariant",
+              "children": "$value"
+            }
+          }
+        }
+      ],
+      "showRowCount": false
+    },
+    "deal-header-inner": {
+      "type": "Flex",
+      "name": "deal-header-inner",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "deal-name-row",
+        "deal-meta-dl"
+      ]
+    },
+    "health-score-display": {
+      "type": "Flex",
+      "name": "health-score-display",
+      "direction": "column",
+      "align": "end",
+      "gap": "xs",
+      "children": [
+        "health-number-row",
+        "health-label"
+      ]
+    },
+    "timeline-title": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Activity log"
+    },
+    "timeline-table": {
+      "type": "Text",
+      "visible": false,
+      "children": ""
+    },
+    "timeline-header-row": {
+      "type": "Flex",
+      "name": "timeline-header-row",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "timeline-filter-select",
+        "timeline-log-btn"
+      ]
+    },
+    "health-number-row": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "health-icon",
+        "health-number"
+      ]
+    },
+    "timeline-filter-select": {
+      "type": "Select",
+      "name": "timeline-filter-select",
+      "variant": "transparent",
+      "value": {
+        "$bindState": "timelineFilter"
+      },
+      "options": [
+        {
+          "label": "All activity",
+          "value": "all"
+        },
+        {
+          "label": "Emails only",
+          "value": "Email"
+        },
+        {
+          "label": "Calls only",
+          "value": "Call"
+        },
+        {
+          "label": "Meetings only",
+          "value": "Meeting"
+        },
+        {
+          "label": "Notes only",
+          "value": "Note"
+        }
+      ]
+    },
+    "timeline-feed": {
+      "type": "Flex",
+      "name": "timeline-feed",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "tl-item-1",
+        "tl-item-2",
+        "tl-item-3",
+        "tl-item-4",
+        "tl-item-5"
+      ]
+    },
+    "health-score-inline": {
+      "type": "Flex",
+      "name": "health-score-inline",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "health-icon",
+        "health-number",
+        "health-label"
+      ]
+    },
+    "comp-competitor-select": {
+      "type": "Select",
+      "name": "comp-competitor-select",
+      "variant": "transparent",
+      "value": {
+        "$bindState": "competitor"
+      },
+      "options": [
+        {
+          "label": "Salesforce",
+          "value": "salesforce"
+        },
+        {
+          "label": "Microsoft Dynamics",
+          "value": "dynamics"
+        },
+        {
+          "label": "Pipedrive",
+          "value": "pipedrive"
+        },
+        {
+          "label": "Zoho CRM",
+          "value": "zoho"
+        }
+      ]
+    },
+    "tl-item-1": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "email"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "Jun 11, 2025"
+                }
+              ]
+            },
+            {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "detail-panel-1",
+                "title": "Sent proposal v2",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "label": "Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": "Email"
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Date",
+                                "children": "Jun 11, 2025"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "label": "Notes",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "Updated pricing for 250 seats. Awaiting sign-off from J. Torres. Included a revised ROI calculator showing 14-month payback. Next step: follow up if no open by Jun 14."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "detail-panel-1"
+                            },
+                            "children": "Close"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Sent proposal v2"
+            },
+            {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "Updated pricing for 250 seats \u2014 awaiting sign-off from J. Torres."
+            }
+          ]
+        }
+      ]
+    },
+    "tl-item-2": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "calling"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "Jun 6, 2025"
+                }
+              ]
+            },
+            {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "detail-panel-2",
+                "title": "Discovery call \u2014 technical deep-dive",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "label": "Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": "Call"
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Date",
+                                "children": "Jun 6, 2025"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "label": "Notes",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "IT team joined. Main concerns: SSO integration and data residency (EU). Need to send security questionnaire by EOW. CTO flagged Salesforce SSO as current blocker."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "detail-panel-2"
+                            },
+                            "children": "Close"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Discovery call \u2014 technical deep-dive"
+            },
+            {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "IT team joined. SSO + EU data residency flagged as blockers."
+            }
+          ]
+        }
+      ]
+    },
+    "tl-item-3": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "email"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "Jun 3, 2025"
+                }
+              ]
+            },
+            {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "detail-panel-3",
+                "title": "Sent proposal v1",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "label": "Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": "Email"
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Date",
+                                "children": "Jun 3, 2025"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "label": "Notes",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "Initial 3-year pricing at $138K/yr. Champion flagged a budget ceiling of $150K/yr. Competitor Salesforce was mentioned \u2014 contract renews in Sept."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "detail-panel-3"
+                            },
+                            "children": "Close"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Sent proposal v1"
+            },
+            {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "Initial 3-year pricing at $138K/yr. Salesforce renewal in Sept flagged."
+            }
+          ]
+        }
+      ]
+    },
+    "tl-item-4": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "appointment"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "May 28, 2025"
+                }
+              ]
+            },
+            {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "detail-panel-4",
+                "title": "Exec intro \u2014 VP Sales + CTO",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "label": "Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": "Meeting"
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Date",
+                                "children": "May 28, 2025"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "label": "Notes",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "Strong interest. VP wants ROI case before board review June 20. CTO wants 2 fintech reference customers. Action: intro Loom + Postman CTOs by June 10."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "detail-panel-4"
+                            },
+                            "children": "Close"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Exec intro \u2014 VP Sales + CTO"
+            },
+            {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "Strong interest. VP wants ROI case before board review Jun 20."
+            }
+          ]
+        }
+      ]
+    },
+    "tl-item-5": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Flex",
+              "direction": "row",
+              "align": "center",
+              "gap": "xs",
+              "children": [
+                {
+                  "type": "Icon",
+                  "name": "description"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "May 22, 2025"
+                }
+              ]
+            },
+            {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "detail-panel-5",
+                "title": "Initial outreach \u2014 sequence complete",
+                "variant": "modal",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "label": "Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "column",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": "Note"
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Date",
+                                "children": "May 22, 2025"
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "label": "Notes",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "children": "5-touch sequence ended. 3 email opens, 1 reply from J. Torres (VP Ops). Need to get CFO involved. Ask J. Torres for a warm intro."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "column",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "detail-panel-5"
+                            },
+                            "children": "Close"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "Initial outreach \u2014 sequence complete"
+            },
+            {
+              "type": "Text",
+              "variant": "microcopy",
+              "children": "5-touch sequence ended. 1 reply from J. Torres (VP Ops)."
+            }
+          ]
+        }
+      ]
+    },
+    "comp-kpis-salesforce": {
+      "type": "Statistics",
+      "name": "comp-kpis-salesforce",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "salesforce"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.salesforceKpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              {
+                "type": "StatisticsTrend",
+                "direction": "$kpi.trendDirection",
+                "children": "$kpi.trendLabel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "comp-kpis-dynamics": {
+      "type": "Statistics",
+      "name": "comp-kpis-dynamics",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "dynamics"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.dynamicsKpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              {
+                "type": "StatisticsTrend",
+                "direction": "$kpi.trendDirection",
+                "children": "$kpi.trendLabel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "comp-kpis-pipedrive": {
+      "type": "Statistics",
+      "name": "comp-kpis-pipedrive",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "pipedrive"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.pipedriveKpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              {
+                "type": "StatisticsTrend",
+                "direction": "$kpi.trendDirection",
+                "children": "$kpi.trendLabel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "comp-kpis-zoho": {
+      "type": "Statistics",
+      "name": "comp-kpis-zoho",
+      "visible": {
+        "$eq": [
+          "$state.competitor",
+          "zoho"
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.zohoKpis",
+          "as": "kpi",
+          "render": {
+            "type": "StatisticsItem",
+            "label": "$kpi.label",
+            "number": "$kpi.value",
+            "children": [
+              {
+                "type": "StatisticsTrend",
+                "direction": "$kpi.trendDirection",
+                "children": "$kpi.trendLabel"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "meta-owner-item": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        {
+          "type": "Icon",
+          "name": "contact"
+        },
+        {
+          "type": "DescriptionList",
+          "direction": "column",
+          "children": [
+            {
+              "type": "DescriptionListItem",
+              "label": "Owner",
+              "children": [
+                {
+                  "type": "Text",
+                  "children": "$data.dealOwner"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "meta-close-item": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        {
+          "type": "Icon",
+          "name": "date"
+        },
+        {
+          "type": "DescriptionList",
+          "direction": "column",
+          "children": [
+            {
+              "type": "DescriptionListItem",
+              "label": "Close date",
+              "children": [
+                {
+                  "type": "Text",
+                  "children": "{{data.closeDate}} ({{data.daysToCloseLabel}})"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "meta-amount-item": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        {
+          "type": "Icon",
+          "name": "invoice"
+        },
+        {
+          "type": "DescriptionList",
+          "direction": "column",
+          "children": [
+            {
+              "type": "DescriptionListItem",
+              "label": "Amount",
+              "children": [
+                {
+                  "type": "Text",
+                  "children": "$data.dealAmount"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "deal-meta-dl": {
+      "type": "DescriptionList",
+      "name": "deal-meta-dl",
+      "direction": "row",
+      "children": [
+        "meta-dl-owner",
+        "meta-dl-close",
+        "meta-dl-amount"
+      ]
+    },
+    "meta-dl-owner": {
+      "type": "DescriptionListItem",
+      "label": "Owner",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "row",
+          "align": "center",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Icon",
+              "name": "contact"
+            },
+            {
+              "type": "Text",
+              "children": "$data.dealOwner"
+            }
+          ]
+        }
+      ]
+    },
+    "meta-dl-close": {
+      "type": "DescriptionListItem",
+      "label": "Close date",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "row",
+          "align": "center",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Icon",
+              "name": "date"
+            },
+            {
+              "type": "Text",
+              "children": "{{data.closeDate}} ({{data.daysToCloseLabel}})"
+            }
+          ]
+        }
+      ]
+    },
+    "meta-dl-amount": {
+      "type": "DescriptionListItem",
+      "label": "Amount",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "row",
+          "align": "center",
+          "gap": "xs",
+          "children": [
+            {
+              "type": "Icon",
+              "name": "invoice"
+            },
+            {
+              "type": "Text",
+              "children": "$data.dealAmount"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

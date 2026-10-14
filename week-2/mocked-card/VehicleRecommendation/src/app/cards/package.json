@@ -1,0 +1,10 @@
+{
+  "name": "vehicle-recommendation-mock-cards",
+  "version": "0.1.0",
+  "license": "MIT",
+  "dependencies": {
+    "@hubspot/ui-extensions": "latest",
+    "hs-uix": "^2.3.3",
+    "react": "^18.2.0"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "name": "calendar-month",
+  "description": "Month-view calendar (hs-uix Calendar) plotting records on a date. `events` is the data array; `eventFields` maps YOUR keys to calendar roles (id/start/title/subtitle/color/href) — `start` is REQUIRED for an event to appear. `color` must be a Tag variant (default|info|success|warning|error), precomputed per event in data (don't express a lookup in the spec). Search needs `showSearch` + `searchFields`. `filters` share the DataTable shape. `maxEventsPerDay` caps chips per day before a '+N more' popover. Use `overlayMode: 'modal'` or 'panel' for a stable event overlay (popover is experimental). The view switcher is a Select, not Tabs.",
+  "componentsUsed": [
+    "Calendar"
+  ],
+  "dataShape": {
+    "deals": [
+      {
+        "id": "d1",
+        "name": "Acme Corp — renewal",
+        "owner": "Sarah Chen",
+        "closeDate": "2026-06-12",
+        "stage": "Negotiation",
+        "color": "warning"
+      },
+      {
+        "id": "d2",
+        "name": "Bayside Inc — expansion",
+        "owner": "Jordan Kim",
+        "closeDate": "2026-06-19",
+        "stage": "Closed won",
+        "color": "success"
+      },
+      {
+        "id": "d3",
+        "name": "Cedar LLC — new business",
+        "owner": "Sam Patel",
+        "closeDate": "2026-06-26",
+        "stage": "Discovery",
+        "color": "default"
+      }
+    ],
+    "stageOptions": [
+      { "label": "Discovery", "value": "Discovery" },
+      { "label": "Negotiation", "value": "Negotiation" },
+      { "label": "Closed won", "value": "Closed won" }
+    ]
+  },
+  "node": {
+    "root": "deal-calendar",
+    "elements": {
+      "deal-calendar": {
+        "type": "Calendar",
+        "name": "deal-calendar",
+        "events": "$data.deals",
+        "eventFields": {
+          "id": "id",
+          "start": "closeDate",
+          "title": "name",
+          "subtitle": "owner",
+          "color": "color"
+        },
+        "defaultView": "month",
+        "showSearch": true,
+        "searchFields": ["name", "owner", "stage"],
+        "filters": [
+          {
+            "name": "stage",
+            "type": "multiselect",
+            "placeholder": "All stages",
+            "chipLabel": "Stage",
+            "options": "$data.stageOptions"
+          }
+        ],
+        "maxEventsPerDay": 3,
+        "overlayMode": "modal"
+      }
+    }
+  }
+}

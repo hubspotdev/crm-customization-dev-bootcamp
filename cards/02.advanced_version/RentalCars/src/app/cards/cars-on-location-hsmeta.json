@@ -1,0 +1,11 @@
+{
+  "uid": "cars_on_location",
+  "type": "card",
+  "config": {
+    "name": "Cars on the location",
+    "description": "Vehicles associated with this location.",
+    "location": "crm.record.tab",
+    "entrypoint": "/app/cards/CarsOnLocation.jsx",
+    "objectTypes": ["p_locations"]
+  }
+}

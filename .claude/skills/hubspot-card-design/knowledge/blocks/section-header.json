@@ -1,0 +1,37 @@
+{
+  "name": "section-header",
+  "description": "Section header row: demibold title on the left, a primary action Button on the right (justify=between). Use at the top of a list/table section that has a single primary action like 'Log service' or 'Add record'. For a title-only section header with no action, use the hs-uix SectionHeader component instead.",
+  "componentsUsed": [
+    "Flex",
+    "Text",
+    "Button"
+  ],
+  "node": {
+    "root": "section-header",
+    "elements": {
+      "text": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "Maintenance log"
+      },
+      "button": {
+        "type": "Button",
+        "variant": "primary",
+        "children": "Log service"
+      },
+      "section-header": {
+        "type": "Flex",
+        "name": "section-header",
+        "direction": "row",
+        "justify": "between",
+        "align": "center",
+        "children": [
+          "text",
+          "button"
+        ]
+      }
+    }
+  }
+}

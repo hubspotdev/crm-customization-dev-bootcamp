@@ -1,0 +1,773 @@
+{
+  "meta": {
+    "name": "Competitive Intelligence",
+    "tagline": "Three-tab competitor brief: KPI snapshot, side-by-side battlecard, and a recent-activity timeline.",
+    "description": "Gives sellers a fast read on a competitor right from the company record: key stats up top, a battlecard of win/loss talking points by category, and a running log of recent moves like product launches and funding. Sellers copy talking points straight to their clipboard and filter activity by type. \u2014 Multi-View card on Tabs: KPI Snapshot + Grouped Detail battlecard + filterable event timeline, all state-driven.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "competitor": {
+      "name": "RivalTech Solutions",
+      "employees": "2,340",
+      "employeeTrendDirection": "increase",
+      "employeeTrendValue": "18%",
+      "employeeTrendColor": "green",
+      "funding": "$185M",
+      "fundingRound": "Series D",
+      "marketPosition": "#3",
+      "marketPositionTrendDirection": "increase",
+      "marketPositionTrendValue": "1 spot",
+      "marketPositionTrendColor": "green",
+      "lastLaunchLabel": "RivalConnect Pro (Jan 15, 2026)",
+      "knownCustomers": "Acme Corp, Globex Industries, Initech, Umbrella Corp, Soylent Corp",
+      "revenueEstimate": "$95M ARR",
+      "founded": "2014",
+      "headquarters": "Austin, TX",
+      "ceo": "Dana Whitfield",
+      "website": "rivaltech.example.com",
+      "websiteUrl": "https://www.rivaltech.example.com"
+    },
+    "categoryOptions": [
+      {
+        "label": "All categories",
+        "value": "all"
+      },
+      {
+        "label": "Price",
+        "value": "Price"
+      },
+      {
+        "label": "Features",
+        "value": "Features"
+      },
+      {
+        "label": "Support",
+        "value": "Support"
+      },
+      {
+        "label": "Integrations",
+        "value": "Integrations"
+      }
+    ],
+    "activityTypeOptions": [
+      {
+        "label": "All types",
+        "value": "all"
+      },
+      {
+        "label": "Product Launch",
+        "value": "Product Launch"
+      },
+      {
+        "label": "Pricing Change",
+        "value": "Pricing Change"
+      },
+      {
+        "label": "Press Mention",
+        "value": "Press Mention"
+      },
+      {
+        "label": "Funding",
+        "value": "Funding"
+      }
+    ],
+    "battlecard": [
+      {
+        "category": "Price",
+        "winPoints": [
+          "Our per-seat pricing is 22% lower at the Enterprise tier \u2014 highlight TCO over 3 years.",
+          "We include SSO and audit logs in our base plan; RivalTech charges $8/user/mo extra for security add-ons.",
+          "Offer a 90-day money-back guarantee \u2014 RivalTech locks customers into annual contracts with no exit clause."
+        ],
+        "lossPoints": [
+          "RivalTech bundles onboarding for free on 2-year deals \u2014 we charge $5K for implementation.",
+          "Their startup tier undercuts us by 40% \u2014 avoid competing on price below 50 seats."
+        ]
+      },
+      {
+        "category": "Features",
+        "winPoints": [
+          "Our native bi-directional Salesforce sync is production-grade; RivalTech relies on a third-party connector that breaks on custom objects.",
+          "Real-time collaboration editing shipped Q4 2025 \u2014 RivalTech still uses a lock-and-edit model.",
+          "We support 14 languages out of the box vs. their 6. Lead with this for EMEA and APAC prospects."
+        ],
+        "lossPoints": [
+          "RivalTech's AI summarization feature is more mature \u2014 avoid live demos of our beta AI assistant.",
+          "Their mobile app has offline mode; ours requires connectivity. Downplay for field-sales use cases."
+        ]
+      },
+      {
+        "category": "Support",
+        "winPoints": [
+          "Our median first-response time is 23 minutes vs. RivalTech's 4-hour SLA on their Growth plan.",
+          "We assign a dedicated CSM at 100+ seats; RivalTech doesn't until 500+ seats."
+        ],
+        "lossPoints": [
+          "RivalTech offers 24/7 phone support on all paid plans \u2014 we only offer it on Enterprise.",
+          "Their community forum is significantly more active \u2014 prospects may reference it in evaluations."
+        ]
+      },
+      {
+        "category": "Integrations",
+        "winPoints": [
+          "We have 340+ native integrations in our marketplace vs. RivalTech's 185.",
+          "Our open API has full webhook support with retry logic \u2014 their API has rate limits 3x more restrictive.",
+          "Our HubSpot integration is best-in-class with bi-directional property sync and workflow triggers."
+        ],
+        "lossPoints": [
+          "RivalTech's Snowflake integration is deeper \u2014 they support reverse ETL natively.",
+          "Their Slack integration includes in-channel record creation; ours is read-only notifications."
+        ]
+      }
+    ],
+    "activity": [
+      {
+        "id": "a1",
+        "type": "Product Launch",
+        "typeLabel": "Launch",
+        "dateLabel": "Jan 15, 2026",
+        "iconName": "circleHollow",
+        "description": "Launched RivalConnect Pro \u2014 a unified inbox product targeting mid-market teams. Priced at $45/user/mo."
+      },
+      {
+        "id": "a2",
+        "type": "Pricing Change",
+        "typeLabel": "Pricing",
+        "dateLabel": "Dec 1, 2025",
+        "iconName": "circleHollow",
+        "description": "Increased Enterprise tier pricing by 12%. Grandfathered existing customers for 6 months."
+      },
+      {
+        "id": "a3",
+        "type": "Press Mention",
+        "typeLabel": "Press",
+        "dateLabel": "Nov 18, 2025",
+        "iconName": "checkCircle",
+        "description": "Featured in TechCrunch as a \"Top 10 B2B SaaS Company to Watch in 2026.\" Highlighted AI capabilities."
+      },
+      {
+        "id": "a4",
+        "type": "Funding",
+        "typeLabel": "Funding",
+        "dateLabel": "Oct 5, 2025",
+        "iconName": "checkCircle",
+        "description": "Closed $65M Series D led by Benchmark Capital. Total funding now $185M. Stated plans to expand into APAC."
+      },
+      {
+        "id": "a5",
+        "type": "Product Launch",
+        "typeLabel": "Launch",
+        "dateLabel": "Sep 22, 2025",
+        "iconName": "checkCircle",
+        "description": "Released AI-powered deal scoring feature in beta. Limited to Enterprise customers initially."
+      },
+      {
+        "id": "a6",
+        "type": "Press Mention",
+        "typeLabel": "Press",
+        "dateLabel": "Aug 10, 2025",
+        "iconName": "checkCircle",
+        "description": "Named a Gartner Cool Vendor in CRM category. Report highlighted integration ecosystem strength."
+      },
+      {
+        "id": "a7",
+        "type": "Pricing Change",
+        "typeLabel": "Pricing",
+        "dateLabel": "Jul 1, 2025",
+        "iconName": "checkCircle",
+        "description": "Introduced a new Startup tier at $12/user/mo for companies under 50 employees. Aggressive market entry pricing."
+      },
+      {
+        "id": "a8",
+        "type": "Product Launch",
+        "typeLabel": "Launch",
+        "dateLabel": "Jun 14, 2025",
+        "iconName": "checkCircle",
+        "description": "Shipped offline mode for iOS and Android apps. Major differentiator for field sales teams."
+      },
+      {
+        "id": "a9",
+        "type": "Press Mention",
+        "typeLabel": "Press",
+        "dateLabel": "May 2, 2025",
+        "iconName": "checkCircle",
+        "description": "CEO Dana Whitfield keynoted at SaaStr Annual. Announced goal to reach $200M ARR by end of 2026."
+      }
+    ],
+    "categoryCountLabel": "4 categories",
+    "activityCountLabel": "5 events"
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading competitive data...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Failed to load competitive data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve intelligence for this competitor. Please check your API connection and try again."
+    },
+    "text": {
+      "type": "Text",
+      "children": "No competitive data has been gathered for this company yet. Add intelligence manually or connect a data provider."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No competitive intelligence",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "statisticstrend": {
+      "type": "StatisticsTrend",
+      "direction": "$data.competitor.employeeTrendDirection",
+      "value": "$data.competitor.employeeTrendValue",
+      "color": "$data.competitor.employeeTrendColor"
+    },
+    "statisticsitem": {
+      "type": "StatisticsItem",
+      "label": "Employees",
+      "number": "$data.competitor.employees",
+      "children": [
+        "statisticstrend"
+      ]
+    },
+    "statisticstrend-1": {
+      "type": "StatisticsTrend",
+      "direction": "increase",
+      "value": "$data.competitor.fundingRound"
+    },
+    "statisticsitem-1": {
+      "type": "StatisticsItem",
+      "label": "Total Funding",
+      "number": "$data.competitor.funding",
+      "children": [
+        "statisticstrend-1"
+      ]
+    },
+    "statisticstrend-2": {
+      "type": "StatisticsTrend",
+      "direction": "$data.competitor.marketPositionTrendDirection",
+      "value": "$data.competitor.marketPositionTrendValue",
+      "color": "$data.competitor.marketPositionTrendColor"
+    },
+    "statisticsitem-2": {
+      "type": "StatisticsItem",
+      "label": "Market Position",
+      "number": "$data.competitor.marketPosition",
+      "children": [
+        "statisticstrend-2"
+      ]
+    },
+    "competitor-kpis": {
+      "type": "Statistics",
+      "name": "competitor-kpis",
+      "children": [
+        "statisticsitem",
+        "statisticsitem-1",
+        "statisticsitem-2"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "text-1": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.competitor.lastLaunchLabel"
+    },
+    "descriptionlistitem": {
+      "type": "DescriptionListItem",
+      "label": "Last Product Launch",
+      "children": [
+        "text-1"
+      ]
+    },
+    "text-2": {
+      "type": "Text",
+      "children": "$data.competitor.knownCustomers"
+    },
+    "descriptionlistitem-1": {
+      "type": "DescriptionListItem",
+      "label": "Known Customers",
+      "children": [
+        "text-2"
+      ]
+    },
+    "text-3": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.competitor.revenueEstimate"
+    },
+    "descriptionlistitem-2": {
+      "type": "DescriptionListItem",
+      "label": "Revenue Estimate",
+      "children": [
+        "text-3"
+      ]
+    },
+    "descriptionlist": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem",
+        "descriptionlistitem-1",
+        "descriptionlistitem-2"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "children": "$data.competitor.founded"
+    },
+    "descriptionlistitem-3": {
+      "type": "DescriptionListItem",
+      "label": "Founded",
+      "children": [
+        "text-4"
+      ]
+    },
+    "text-5": {
+      "type": "Text",
+      "children": "$data.competitor.headquarters"
+    },
+    "descriptionlistitem-4": {
+      "type": "DescriptionListItem",
+      "label": "Headquarters",
+      "children": [
+        "text-5"
+      ]
+    },
+    "text-6": {
+      "type": "Text",
+      "children": "$data.competitor.ceo"
+    },
+    "descriptionlistitem-5": {
+      "type": "DescriptionListItem",
+      "label": "CEO",
+      "children": [
+        "text-6"
+      ]
+    },
+    "link": {
+      "type": "Link",
+      "href": {
+        "url": "$data.competitor.websiteUrl",
+        "external": true
+      },
+      "children": "$data.competitor.website"
+    },
+    "descriptionlistitem-6": {
+      "type": "DescriptionListItem",
+      "label": "Website",
+      "children": [
+        "link"
+      ]
+    },
+    "descriptionlist-1": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "descriptionlistitem-3",
+        "descriptionlistitem-4",
+        "descriptionlistitem-5",
+        "descriptionlistitem-6"
+      ]
+    },
+    "snapshot-tab": {
+      "type": "Flex",
+      "name": "snapshot-tab",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "competitor-kpis",
+        "divider",
+        "descriptionlist",
+        "descriptionlist-1"
+      ]
+    },
+    "tab": {
+      "type": "Tab",
+      "tabId": "snapshot",
+      "title": "Snapshot",
+      "children": [
+        "snapshot-tab"
+      ]
+    },
+    "select": {
+      "type": "Select",
+      "label": "",
+      "variant": "transparent",
+      "options": "$data.categoryOptions"
+    },
+    "text-7": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.categoryCountLabel"
+    },
+    "battlecard-filter-bar": {
+      "type": "Flex",
+      "name": "battlecard-filter-bar",
+      "direction": "row",
+      "justify": "between",
+      "align": "end",
+      "children": [
+        "select",
+        "text-7"
+      ]
+    },
+    "icon": {
+      "type": "Icon",
+      "size": "small",
+      "screenReaderText": "Win point"
+    },
+    "text-8": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Win points"
+    },
+    "icon-1": {
+      "type": "Icon",
+      "size": "sm",
+      "screenReaderText": "Copy win points"
+    },
+    "link-1": {
+      "type": "Link",
+      "onClick": {
+        "$action": "copyTextToClipboard",
+        "value": "{{section.category}} \u2014 Win Points"
+      },
+      "children": [
+        "icon-1"
+      ]
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "icon",
+        "text-8",
+        "link-1"
+      ]
+    },
+    "flex": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "flex-1",
+        {
+          "$forEach": "$section.winPoints",
+          "as": "point",
+          "render": {
+            "type": "Text",
+            "children": "$point"
+          }
+        }
+      ]
+    },
+    "tile": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        "flex"
+      ]
+    },
+    "icon-2": {
+      "type": "Icon",
+      "size": "small",
+      "screenReaderText": "Loss point"
+    },
+    "text-9": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Loss points"
+    },
+    "icon-3": {
+      "type": "Icon",
+      "size": "sm",
+      "screenReaderText": "Copy loss points"
+    },
+    "link-2": {
+      "type": "Link",
+      "onClick": {
+        "$action": "copyTextToClipboard",
+        "value": "{{section.category}} \u2014 Loss Points"
+      },
+      "children": [
+        "icon-3"
+      ]
+    },
+    "flex-3": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "gap": "xs",
+      "children": [
+        "icon-2",
+        "text-9",
+        "link-2"
+      ]
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "flex-3",
+        {
+          "$forEach": "$section.lossPoints",
+          "as": "point",
+          "render": {
+            "type": "Text",
+            "children": "$point"
+          }
+        }
+      ]
+    },
+    "tile-1": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        "flex-2"
+      ]
+    },
+    "autogrid": {
+      "type": "AutoGrid",
+      "columnWidth": 250,
+      "flexible": true,
+      "gap": "small",
+      "children": [
+        "tile",
+        "tile-1"
+      ]
+    },
+    "battlecard-tab": {
+      "type": "Flex",
+      "name": "battlecard-tab",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "battlecard-filter-bar",
+        {
+          "$forEach": "$data.battlecard",
+          "as": "section",
+          "render": {
+            "type": "Accordion",
+            "title": "$section.category",
+            "defaultOpen": true,
+            "size": "sm",
+            "children": [
+              "autogrid"
+            ]
+          }
+        }
+      ]
+    },
+    "tab-1": {
+      "type": "Tab",
+      "tabId": "battlecard",
+      "title": "Battlecard",
+      "children": [
+        "battlecard-tab"
+      ]
+    },
+    "select-1": {
+      "type": "Select",
+      "label": "",
+      "variant": "transparent",
+      "options": "$data.activityTypeOptions"
+    },
+    "text-10": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.activityCountLabel"
+    },
+    "activity-filter-bar": {
+      "type": "Flex",
+      "name": "activity-filter-bar",
+      "direction": "row",
+      "justify": "between",
+      "align": "end",
+      "children": [
+        "select-1",
+        "text-10"
+      ]
+    },
+    "icon-4": {
+      "type": "Icon",
+      "size": "small",
+      "screenReaderText": "Event"
+    },
+    "text-11": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$event.dateLabel"
+    },
+    "tag": {
+      "type": "Tag",
+      "variant": "default",
+      "children": "$event.typeLabel"
+    },
+    "flex-4": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "icon-4",
+        "text-11",
+        "tag"
+      ]
+    },
+    "text-12": {
+      "type": "Text",
+      "children": "$event.description"
+    },
+    "activity-timeline": {
+      "type": "Flex",
+      "name": "activity-timeline",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        {
+          "$forEach": "$data.activity",
+          "as": "event",
+          "render": {
+            "type": "Flex",
+            "direction": "column",
+            "gap": "flush",
+            "children": [
+              "flex-4",
+              "text-12"
+            ]
+          }
+        }
+      ]
+    },
+    "button": {
+      "type": "Button",
+      "variant": "transparent",
+      "size": "small",
+      "children": "View more"
+    },
+    "flex-5": {
+      "type": "Flex",
+      "direction": "row",
+      "justify": "center",
+      "children": [
+        "button"
+      ]
+    },
+    "activity-tab": {
+      "type": "Flex",
+      "name": "activity-tab",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "activity-filter-bar",
+        "activity-timeline",
+        "flex-5"
+      ]
+    },
+    "tab-2": {
+      "type": "Tab",
+      "tabId": "activity",
+      "title": "Recent Activity",
+      "children": [
+        "activity-tab"
+      ]
+    },
+    "tabs": {
+      "type": "Tabs",
+      "defaultSelected": "snapshot",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "tab",
+        "tab-1",
+        "tab-2"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "emptystate",
+        "tabs"
+      ]
+    }
+  }
+}

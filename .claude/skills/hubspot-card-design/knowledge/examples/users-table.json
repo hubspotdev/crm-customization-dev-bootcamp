@@ -1,0 +1,405 @@
+{
+  "meta": {
+    "name": "Users Table",
+    "tagline": "HubSpot users in one table with search, filters, and per-row edit.",
+    "description": "Lists HubSpot users in a single searchable, filterable table \u2014 an easy way to find, compare, and edit a user without navigating through settings. Per-row edit opens inline without a page change. \u2014 List Manager: DataTable with search, filters, and per-row edit Modal.",
+    "surface": "crm.record.tab",
+    "object": "contact"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "users": [
+      {
+        "id": "u1",
+        "name": "Sarah Chen",
+        "email": "sarah.chen@acme.com",
+        "role": "Super Admin",
+        "status": "Active",
+        "statusVariant": "success",
+        "lastActive": "Today at 9:41 AM"
+      },
+      {
+        "id": "u2",
+        "name": "Marcus Webb",
+        "email": "marcus.webb@acme.com",
+        "role": "Sales Rep",
+        "status": "Active",
+        "statusVariant": "success",
+        "lastActive": "Today at 8:15 AM"
+      },
+      {
+        "id": "u3",
+        "name": "Priya Nair",
+        "email": "priya.nair@acme.com",
+        "role": "Sales Manager",
+        "status": "Invited",
+        "statusVariant": "warning",
+        "lastActive": "--"
+      },
+      {
+        "id": "u4",
+        "name": "Jordan Kim",
+        "email": "jordan.kim@acme.com",
+        "role": "Sales Rep",
+        "status": "Active",
+        "statusVariant": "success",
+        "lastActive": "Yesterday"
+      },
+      {
+        "id": "u5",
+        "name": "Tom Russo",
+        "email": "tom.russo@acme.com",
+        "role": "View Only",
+        "status": "Deactivated",
+        "statusVariant": "danger",
+        "lastActive": "Oct 3, 2024"
+      }
+    ],
+    "roleOptions": [
+      {
+        "label": "Super Admin",
+        "value": "Super Admin"
+      },
+      {
+        "label": "Sales Manager",
+        "value": "Sales Manager"
+      },
+      {
+        "label": "Sales Rep",
+        "value": "Sales Rep"
+      },
+      {
+        "label": "View Only",
+        "value": "View Only"
+      }
+    ],
+    "statusOptions": [
+      {
+        "label": "Active",
+        "value": "Active"
+      },
+      {
+        "label": "Invited",
+        "value": "Invited"
+      },
+      {
+        "label": "Deactivated",
+        "value": "Deactivated"
+      }
+    ],
+    "totalUsers": 5,
+    "activeUsers": 3
+  },
+  "root": "card-root",
+  "elements": {
+    "text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Users"
+    },
+    "text-1": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "{{data.activeUsers}} active \u00b7 {{data.totalUsers}} total"
+    },
+    "header-stats": {
+      "type": "Flex",
+      "name": "header-stats",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "text",
+        "text-1"
+      ]
+    },
+    "button": {
+      "type": "Button",
+      "variant": "primary",
+      "size": "small",
+      "overlay": {
+        "type": "Modal",
+        "id": "invite-user-modal",
+        "title": "Invite user",
+        "width": "medium",
+        "children": [
+          {
+            "type": "ModalBody",
+            "children": [
+              {
+                "type": "Form",
+                "onSubmit": {
+                  "$action": "closeOverlay",
+                  "id": "invite-user-modal"
+                },
+                "children": [
+                  {
+                    "type": "Flex",
+                    "name": "invite-form-fields",
+                    "direction": "column",
+                    "gap": "md",
+                    "children": [
+                      {
+                        "type": "Input",
+                        "label": "Full name",
+                        "required": true,
+                        "placeholder": "e.g. Jane Smith"
+                      },
+                      {
+                        "type": "Input",
+                        "label": "Email address",
+                        "required": true,
+                        "placeholder": "e.g. jane@acme.com"
+                      },
+                      {
+                        "type": "Select",
+                        "label": "Role",
+                        "required": true,
+                        "placeholder": "Select a role",
+                        "options": "$data.roleOptions"
+                      },
+                      {
+                        "type": "Flex",
+                        "name": "invite-footer-buttons",
+                        "direction": "row",
+                        "justify": "between",
+                        "align": "center",
+                        "gap": "md",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "invite-user-modal"
+                            },
+                            "children": "Cancel"
+                          },
+                          {
+                            "type": "Button",
+                            "variant": "primary",
+                            "children": "Send invite"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "+ Invite user"
+    },
+    "header-row": {
+      "type": "Flex",
+      "name": "header-row",
+      "direction": "row",
+      "justify": "between",
+      "align": "end",
+      "children": [
+        "header-stats",
+        "button"
+      ]
+    },
+    "datatable": {
+      "type": "DataTable",
+      "data": "$data.users",
+      "columns": [
+        {
+          "field": "name",
+          "label": "Name",
+          "sortable": true,
+          "width": 160
+        },
+        {
+          "field": "email",
+          "label": "Email",
+          "renderCell": {
+            "$render": "value",
+            "node": {
+              "type": "Link",
+              "onClick": {
+                "$action": "batch",
+                "actions": [
+                  {
+                    "$action": "copyTextToClipboard",
+                    "value": "$value"
+                  },
+                  {
+                    "type": "success",
+                    "$action": "addAlert",
+                    "message": "Email copied to clipboard"
+                  }
+                ]
+              },
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "role",
+          "label": "Role",
+          "sortable": true,
+          "width": 160
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "{{row.statusVariant}}",
+              "children": "{{value}}"
+            }
+          }
+        },
+        {
+          "field": "lastActive",
+          "label": "Last active",
+          "sortable": true,
+          "width": 120
+        },
+        {
+          "field": "id",
+          "label": "",
+          "width": 40,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Link",
+              "overlay": {
+                "type": "Modal",
+                "id": "edit-user-{{row.id}}",
+                "title": "Edit {{row.name}}",
+                "width": "medium",
+                "children": [
+                  {
+                    "type": "ModalBody",
+                    "children": [
+                      {
+                        "type": "Form",
+                        "onSubmit": {
+                          "$action": "closeOverlay",
+                          "id": "edit-user-{{row.id}}"
+                        },
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "name": "edit-form-fields",
+                            "direction": "column",
+                            "gap": "md",
+                            "children": [
+                              {
+                                "type": "Input",
+                                "label": "Full name",
+                                "required": true,
+                                "defaultValue": "{{row.name}}"
+                              },
+                              {
+                                "type": "Input",
+                                "label": "Email address",
+                                "required": true,
+                                "defaultValue": "{{row.email}}"
+                              },
+                              {
+                                "type": "Select",
+                                "label": "Role",
+                                "required": true,
+                                "defaultValue": "{{row.role}}",
+                                "options": "$data.roleOptions"
+                              },
+                              {
+                                "type": "Select",
+                                "label": "Status",
+                                "required": true,
+                                "defaultValue": "{{row.status}}",
+                                "options": "$data.statusOptions"
+                              },
+                              {
+                                "type": "Flex",
+                                "name": "edit-footer-buttons",
+                                "direction": "row",
+                                "justify": "between",
+                                "align": "center",
+                                "gap": "md",
+                                "children": [
+                                  {
+                                    "type": "Button",
+                                    "variant": "secondary",
+                                    "onClick": {
+                                      "$action": "closeOverlay",
+                                      "id": "edit-user-{{row.id}}"
+                                    },
+                                    "children": "Cancel"
+                                  },
+                                  {
+                                    "type": "Button",
+                                    "variant": "primary",
+                                    "children": "Save changes"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "Icon",
+                  "screenReaderText": "Edit user"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "searchFields": [
+        "name",
+        "email"
+      ],
+      "fuzzySearch": true,
+      "filters": [
+        {
+          "type": "multiselect",
+          "name": "role",
+          "placeholder": "All roles",
+          "options": "$data.roleOptions"
+        },
+        {
+          "type": "multiselect",
+          "name": "status",
+          "placeholder": "All statuses",
+          "options": "$data.statusOptions"
+        }
+      ],
+      "pageSize": 10
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "md",
+      "children": [
+        "header-row",
+        "datatable"
+      ]
+    }
+  }
+}

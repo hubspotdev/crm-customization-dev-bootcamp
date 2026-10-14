@@ -1,0 +1,1368 @@
+{
+  "meta": {
+    "name": "Starlink Install Dispatch",
+    "tagline": "Triage open installation tickets and assign nearby techs.",
+    "description": "Helps a dispatcher work through open installation tickets and pair each one with a nearby tech. Triage surfaces which jobs are urgent, and assignment happens right from the card. \u2014 Triage Dashboard: open-ticket queue with inline assignment action.",
+    "surface": "crm.record.tab",
+    "object": "ticket"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "kpis": {
+      "urgentSla": "3",
+      "unassignedHigh": "3",
+      "availableNow": "2",
+      "avgJobsPerTech": "1.4"
+    },
+    "statusOptions": [
+      {
+        "label": "New",
+        "value": "new"
+      },
+      {
+        "label": "Assigned",
+        "value": "assigned"
+      },
+      {
+        "label": "En Route",
+        "value": "en_route"
+      },
+      {
+        "label": "Done",
+        "value": "done"
+      }
+    ],
+    "priorityOptions": [
+      {
+        "label": "High",
+        "value": "high"
+      },
+      {
+        "label": "Normal",
+        "value": "normal"
+      },
+      {
+        "label": "Low",
+        "value": "low"
+      }
+    ],
+    "typeOptions": [
+      {
+        "label": "Residential",
+        "value": "residential"
+      },
+      {
+        "label": "Commercial",
+        "value": "commercial"
+      },
+      {
+        "label": "RV",
+        "value": "rv"
+      }
+    ],
+    "tickets": [
+      {
+        "id": "t1",
+        "customer": "Maria Gutierrez",
+        "address": "412 Elm St, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 5:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 2:00 PM",
+        "zone": "Central",
+        "assignedTech": "--",
+        "priorityOrder": 1
+      },
+      {
+        "id": "t2",
+        "customer": "Derek Owens",
+        "address": "88 Barton Springs Rd, Austin TX",
+        "type": "Commercial",
+        "typeVariant": "default",
+        "status": "assigned",
+        "statusLabel": "Assigned",
+        "statusVariant": "info",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Tomorrow 12:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Tomorrow 9:00 AM",
+        "zone": "South",
+        "assignedTech": "Jake Torres",
+        "priorityOrder": 2
+      },
+      {
+        "id": "t3",
+        "customer": "Sun Li",
+        "address": "3300 N Lamar Blvd, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "en_route",
+        "statusLabel": "En Route",
+        "statusVariant": "success",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Today 4:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 1:30 PM",
+        "zone": "North",
+        "assignedTech": "Rosa Kim",
+        "priorityOrder": 2
+      },
+      {
+        "id": "t4",
+        "customer": "Bill Hartley",
+        "address": "7 Rainey St, Austin TX",
+        "type": "RV",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "low",
+        "priorityLabel": "Low",
+        "priorityVariant": "default",
+        "slaDue": "Fri 5:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Thu 3:00 PM",
+        "zone": "East",
+        "assignedTech": "--",
+        "priorityOrder": 3
+      },
+      {
+        "id": "t5",
+        "customer": "Amara Diallo",
+        "address": "2200 S Congress Ave, Austin TX",
+        "type": "Commercial",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 6:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 3:30 PM",
+        "zone": "South",
+        "assignedTech": "--",
+        "priorityOrder": 1
+      },
+      {
+        "id": "t6",
+        "customer": "Tom Nguyen",
+        "address": "500 W 6th St, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "assigned",
+        "statusLabel": "Assigned",
+        "statusVariant": "info",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Tomorrow 3:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Tomorrow 11:00 AM",
+        "zone": "Central",
+        "assignedTech": "Mike Shaw",
+        "priorityOrder": 2
+      },
+      {
+        "id": "t7",
+        "customer": "Priya Patel",
+        "address": "1600 E Cesar Chavez, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 7:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 5:00 PM",
+        "zone": "East",
+        "assignedTech": "--",
+        "priorityOrder": 1
+      }
+    ],
+    "techs": [
+      {
+        "id": "tech1",
+        "name": "Jake Torres",
+        "initials": "JT",
+        "zone": "South",
+        "jobsRemaining": 2,
+        "nextAvailable": "1:30 PM",
+        "distanceMiles": "1.2 mi",
+        "specialty": "Residential, RV"
+      },
+      {
+        "id": "tech2",
+        "name": "Rosa Kim",
+        "initials": "RK",
+        "zone": "North",
+        "jobsRemaining": 1,
+        "nextAvailable": "Now",
+        "distanceMiles": "3.4 mi",
+        "specialty": "Residential"
+      },
+      {
+        "id": "tech3",
+        "name": "Mike Shaw",
+        "initials": "MS",
+        "zone": "Central",
+        "jobsRemaining": 3,
+        "nextAvailable": "2:00 PM",
+        "distanceMiles": "0.8 mi",
+        "specialty": "Commercial, Residential"
+      },
+      {
+        "id": "tech4",
+        "name": "Dana Brooks",
+        "initials": "DB",
+        "zone": "East",
+        "jobsRemaining": 0,
+        "nextAvailable": "Now",
+        "distanceMiles": "2.1 mi",
+        "specialty": "RV, Residential"
+      },
+      {
+        "id": "tech5",
+        "name": "Carlos Vega",
+        "initials": "CV",
+        "zone": "South",
+        "jobsRemaining": 1,
+        "nextAvailable": "3:00 PM",
+        "distanceMiles": "0.5 mi",
+        "specialty": "Commercial"
+      }
+    ],
+    "unassignedTickets": [
+      {
+        "id": "t1",
+        "customer": "Maria Gutierrez",
+        "address": "412 Elm St, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 5:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 2:00 PM",
+        "zone": "Central",
+        "assignedTech": "--",
+        "priorityOrder": 1,
+        "techs": [
+          {
+            "id": "tech1",
+            "name": "Jake Torres",
+            "initials": "JT",
+            "zone": "South",
+            "jobsRemaining": 2,
+            "nextAvailable": "1:30 PM",
+            "distanceMiles": "1.2 mi",
+            "specialty": "Residential, RV"
+          },
+          {
+            "id": "tech2",
+            "name": "Rosa Kim",
+            "initials": "RK",
+            "zone": "North",
+            "jobsRemaining": 1,
+            "nextAvailable": "Now",
+            "distanceMiles": "3.4 mi",
+            "specialty": "Residential"
+          },
+          {
+            "id": "tech3",
+            "name": "Mike Shaw",
+            "initials": "MS",
+            "zone": "Central",
+            "jobsRemaining": 3,
+            "nextAvailable": "2:00 PM",
+            "distanceMiles": "0.8 mi",
+            "specialty": "Commercial, Residential"
+          },
+          {
+            "id": "tech4",
+            "name": "Dana Brooks",
+            "initials": "DB",
+            "zone": "East",
+            "jobsRemaining": 0,
+            "nextAvailable": "Now",
+            "distanceMiles": "2.1 mi",
+            "specialty": "RV, Residential"
+          },
+          {
+            "id": "tech5",
+            "name": "Carlos Vega",
+            "initials": "CV",
+            "zone": "South",
+            "jobsRemaining": 1,
+            "nextAvailable": "3:00 PM",
+            "distanceMiles": "0.5 mi",
+            "specialty": "Commercial"
+          }
+        ]
+      },
+      {
+        "id": "t5",
+        "customer": "Amara Diallo",
+        "address": "2200 S Congress Ave, Austin TX",
+        "type": "Commercial",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 6:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 3:30 PM",
+        "zone": "South",
+        "assignedTech": "--",
+        "priorityOrder": 1,
+        "techs": [
+          {
+            "id": "tech1",
+            "name": "Jake Torres",
+            "initials": "JT",
+            "zone": "South",
+            "jobsRemaining": 2,
+            "nextAvailable": "1:30 PM",
+            "distanceMiles": "1.2 mi",
+            "specialty": "Residential, RV"
+          },
+          {
+            "id": "tech2",
+            "name": "Rosa Kim",
+            "initials": "RK",
+            "zone": "North",
+            "jobsRemaining": 1,
+            "nextAvailable": "Now",
+            "distanceMiles": "3.4 mi",
+            "specialty": "Residential"
+          },
+          {
+            "id": "tech3",
+            "name": "Mike Shaw",
+            "initials": "MS",
+            "zone": "Central",
+            "jobsRemaining": 3,
+            "nextAvailable": "2:00 PM",
+            "distanceMiles": "0.8 mi",
+            "specialty": "Commercial, Residential"
+          },
+          {
+            "id": "tech4",
+            "name": "Dana Brooks",
+            "initials": "DB",
+            "zone": "East",
+            "jobsRemaining": 0,
+            "nextAvailable": "Now",
+            "distanceMiles": "2.1 mi",
+            "specialty": "RV, Residential"
+          },
+          {
+            "id": "tech5",
+            "name": "Carlos Vega",
+            "initials": "CV",
+            "zone": "South",
+            "jobsRemaining": 1,
+            "nextAvailable": "3:00 PM",
+            "distanceMiles": "0.5 mi",
+            "specialty": "Commercial"
+          }
+        ]
+      },
+      {
+        "id": "t7",
+        "customer": "Priya Patel",
+        "address": "1600 E Cesar Chavez, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "high",
+        "priorityLabel": "High",
+        "priorityVariant": "danger",
+        "slaDue": "Today 7:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 5:00 PM",
+        "zone": "East",
+        "assignedTech": "--",
+        "priorityOrder": 1,
+        "techs": [
+          {
+            "id": "tech1",
+            "name": "Jake Torres",
+            "initials": "JT",
+            "zone": "South",
+            "jobsRemaining": 2,
+            "nextAvailable": "1:30 PM",
+            "distanceMiles": "1.2 mi",
+            "specialty": "Residential, RV"
+          },
+          {
+            "id": "tech2",
+            "name": "Rosa Kim",
+            "initials": "RK",
+            "zone": "North",
+            "jobsRemaining": 1,
+            "nextAvailable": "Now",
+            "distanceMiles": "3.4 mi",
+            "specialty": "Residential"
+          },
+          {
+            "id": "tech3",
+            "name": "Mike Shaw",
+            "initials": "MS",
+            "zone": "Central",
+            "jobsRemaining": 3,
+            "nextAvailable": "2:00 PM",
+            "distanceMiles": "0.8 mi",
+            "specialty": "Commercial, Residential"
+          },
+          {
+            "id": "tech4",
+            "name": "Dana Brooks",
+            "initials": "DB",
+            "zone": "East",
+            "jobsRemaining": 0,
+            "nextAvailable": "Now",
+            "distanceMiles": "2.1 mi",
+            "specialty": "RV, Residential"
+          },
+          {
+            "id": "tech5",
+            "name": "Carlos Vega",
+            "initials": "CV",
+            "zone": "South",
+            "jobsRemaining": 1,
+            "nextAvailable": "3:00 PM",
+            "distanceMiles": "0.5 mi",
+            "specialty": "Commercial"
+          }
+        ]
+      },
+      {
+        "id": "t4",
+        "customer": "Bill Hartley",
+        "address": "7 Rainey St, Austin TX",
+        "type": "RV",
+        "typeVariant": "default",
+        "status": "new",
+        "statusLabel": "New",
+        "statusVariant": "warning",
+        "priority": "low",
+        "priorityLabel": "Low",
+        "priorityVariant": "default",
+        "slaDue": "Fri 5:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Thu 3:00 PM",
+        "zone": "East",
+        "assignedTech": "--",
+        "priorityOrder": 3,
+        "techs": [
+          {
+            "id": "tech1",
+            "name": "Jake Torres",
+            "initials": "JT",
+            "zone": "South",
+            "jobsRemaining": 2,
+            "nextAvailable": "1:30 PM",
+            "distanceMiles": "1.2 mi",
+            "specialty": "Residential, RV"
+          },
+          {
+            "id": "tech2",
+            "name": "Rosa Kim",
+            "initials": "RK",
+            "zone": "North",
+            "jobsRemaining": 1,
+            "nextAvailable": "Now",
+            "distanceMiles": "3.4 mi",
+            "specialty": "Residential"
+          },
+          {
+            "id": "tech3",
+            "name": "Mike Shaw",
+            "initials": "MS",
+            "zone": "Central",
+            "jobsRemaining": 3,
+            "nextAvailable": "2:00 PM",
+            "distanceMiles": "0.8 mi",
+            "specialty": "Commercial, Residential"
+          },
+          {
+            "id": "tech4",
+            "name": "Dana Brooks",
+            "initials": "DB",
+            "zone": "East",
+            "jobsRemaining": 0,
+            "nextAvailable": "Now",
+            "distanceMiles": "2.1 mi",
+            "specialty": "RV, Residential"
+          },
+          {
+            "id": "tech5",
+            "name": "Carlos Vega",
+            "initials": "CV",
+            "zone": "South",
+            "jobsRemaining": 1,
+            "nextAvailable": "3:00 PM",
+            "distanceMiles": "0.5 mi",
+            "specialty": "Commercial"
+          }
+        ]
+      }
+    ],
+    "assignedTickets": [
+      {
+        "id": "t3",
+        "customer": "Sun Li",
+        "address": "3300 N Lamar Blvd, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "en_route",
+        "statusLabel": "En Route",
+        "statusVariant": "success",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Today 4:00 PM",
+        "slaUrgent": true,
+        "scheduled": "Today 1:30 PM",
+        "zone": "North",
+        "assignedTech": "Rosa Kim",
+        "priorityOrder": 2
+      },
+      {
+        "id": "t2",
+        "customer": "Derek Owens",
+        "address": "88 Barton Springs Rd, Austin TX",
+        "type": "Commercial",
+        "typeVariant": "default",
+        "status": "assigned",
+        "statusLabel": "Assigned",
+        "statusVariant": "info",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Tomorrow 12:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Tomorrow 9:00 AM",
+        "zone": "South",
+        "assignedTech": "Jake Torres",
+        "priorityOrder": 2
+      },
+      {
+        "id": "t6",
+        "customer": "Tom Nguyen",
+        "address": "500 W 6th St, Austin TX",
+        "type": "Residential",
+        "typeVariant": "default",
+        "status": "assigned",
+        "statusLabel": "Assigned",
+        "statusVariant": "info",
+        "priority": "normal",
+        "priorityLabel": "Normal",
+        "priorityVariant": "default",
+        "slaDue": "Tomorrow 3:00 PM",
+        "slaUrgent": false,
+        "scheduled": "Tomorrow 11:00 AM",
+        "zone": "Central",
+        "assignedTech": "Mike Shaw",
+        "priorityOrder": 2
+      }
+    ],
+    "unassignedCount": "4",
+    "assignedCount": "3"
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading tickets...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Unable to load tickets",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Refresh to retry."
+    },
+    "text": {
+      "type": "Text",
+      "children": "All caught up \u2014 no tickets need attention right now."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No open tickets",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "statisticsitem": {
+      "type": "StatisticsItem",
+      "label": "Urgent SLA Today",
+      "number": "$data.kpis.urgentSla",
+      "numberStyle": "danger"
+    },
+    "statisticsitem-1": {
+      "type": "StatisticsItem",
+      "label": "Unassigned High Priority",
+      "number": "$data.kpis.unassignedHigh",
+      "numberStyle": "warning"
+    },
+    "statisticsitem-2": {
+      "type": "StatisticsItem",
+      "label": "Techs Available Now",
+      "number": "$data.kpis.availableNow",
+      "numberStyle": "success"
+    },
+    "statisticsitem-3": {
+      "type": "StatisticsItem",
+      "label": "Avg Jobs / Tech",
+      "number": "$data.kpis.avgJobsPerTech"
+    },
+    "dispatch-kpis": {
+      "type": "Statistics",
+      "name": "dispatch-kpis",
+      "children": [
+        "statisticsitem",
+        "statisticsitem-1",
+        "statisticsitem-2",
+        "statisticsitem-3"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "unassigned-table": {
+      "type": "DataTable",
+      "name": "unassigned-table",
+      "data": "$data.unassignedTickets",
+      "searchFields": [
+        "customer",
+        "address",
+        "zone"
+      ],
+      "fuzzySearch": true,
+      "pageSize": 10,
+      "filters": [
+        {
+          "type": "multiselect",
+          "name": "priority",
+          "placeholder": "All priorities",
+          "options": "$data.priorityOptions"
+        },
+        {
+          "type": "multiselect",
+          "name": "type",
+          "placeholder": "All types",
+          "options": "$data.typeOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "customer",
+          "label": "Customer & Address",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Flex",
+              "direction": "column",
+              "gap": "extra-small",
+              "children": [
+                {
+                  "type": "Text",
+                  "format": {
+                    "fontWeight": "demibold"
+                  },
+                  "truncate": true,
+                  "children": "$row.customer"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "truncate": true,
+                  "children": "$row.address"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "type",
+          "label": "Type",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "default",
+              "children": "$row.type"
+            }
+          }
+        },
+        {
+          "field": "priority",
+          "label": "Priority",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.priorityVariant",
+              "children": "$row.priorityLabel"
+            }
+          }
+        },
+        {
+          "field": "scheduled",
+          "label": "Scheduled",
+          "sortable": false
+        },
+        {
+          "field": "slaDue",
+          "label": "SLA Due",
+          "sortable": false
+        },
+        {
+          "field": "zone",
+          "label": "Zone",
+          "sortable": false
+        },
+        {
+          "field": "id",
+          "label": "Action",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Button",
+              "size": "xs",
+              "variant": "primary",
+              "overlay": {
+                "type": "Panel",
+                "id": "assign-panel-{{row.id}}",
+                "title": "Assign Tech \u2014 {{row.customer}}",
+                "width": "sm",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "title": "Job Details",
+                        "children": [
+                          {
+                            "type": "DescriptionList",
+                            "direction": "row",
+                            "children": [
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Address",
+                                "children": {
+                                  "type": "Text",
+                                  "children": "{{row.address}}"
+                                }
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Type",
+                                "children": {
+                                  "type": "Text",
+                                  "children": "{{row.type}}"
+                                }
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Scheduled",
+                                "children": {
+                                  "type": "Text",
+                                  "children": "{{row.scheduled}}"
+                                }
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "SLA Due",
+                                "children": {
+                                  "type": "Text",
+                                  "children": "{{row.slaDue}}"
+                                }
+                              },
+                              {
+                                "type": "DescriptionListItem",
+                                "label": "Zone",
+                                "children": {
+                                  "type": "Text",
+                                  "children": "{{row.zone}}"
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "title": "Available Techs",
+                        "children": [
+                          {
+                            "type": "Flex",
+                            "name": "tech-list",
+                            "direction": "column",
+                            "gap": "sm",
+                            "children": [
+                              {
+                                "type": "Tile",
+                                "compact": true,
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "align": "center",
+                                    "justify": "between",
+                                    "gap": "sm",
+                                    "children": [
+                                      {
+                                        "type": "Flex",
+                                        "direction": "column",
+                                        "gap": "extra-small",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "format": {
+                                              "fontWeight": "demibold"
+                                            },
+                                            "children": "Jake Torres"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Zone: South \u00b7 1.2 mi"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Residential, RV \u00b7 2 jobs left \u00b7 Next: 1:30 PM"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Button",
+                                        "size": "xs",
+                                        "variant": "secondary",
+                                        "onClick": {
+                                          "type": "success",
+                                          "$action": "addAlert",
+                                          "message": "Jake Torres assigned to {{row.customer}}"
+                                        },
+                                        "children": "Assign"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Tile",
+                                "compact": true,
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "align": "center",
+                                    "justify": "between",
+                                    "gap": "sm",
+                                    "children": [
+                                      {
+                                        "type": "Flex",
+                                        "direction": "column",
+                                        "gap": "extra-small",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "format": {
+                                              "fontWeight": "demibold"
+                                            },
+                                            "children": "Rosa Kim"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Zone: North \u00b7 3.4 mi"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Residential \u00b7 1 job left \u00b7 Next: Now"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Button",
+                                        "size": "xs",
+                                        "variant": "secondary",
+                                        "onClick": {
+                                          "type": "success",
+                                          "$action": "addAlert",
+                                          "message": "Rosa Kim assigned to {{row.customer}}"
+                                        },
+                                        "children": "Assign"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Tile",
+                                "compact": true,
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "align": "center",
+                                    "justify": "between",
+                                    "gap": "sm",
+                                    "children": [
+                                      {
+                                        "type": "Flex",
+                                        "direction": "column",
+                                        "gap": "extra-small",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "format": {
+                                              "fontWeight": "demibold"
+                                            },
+                                            "children": "Mike Shaw"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Zone: Central \u00b7 0.8 mi"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Commercial, Residential \u00b7 3 jobs left \u00b7 Next: 2:00 PM"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Button",
+                                        "size": "xs",
+                                        "variant": "secondary",
+                                        "onClick": {
+                                          "type": "success",
+                                          "$action": "addAlert",
+                                          "message": "Mike Shaw assigned to {{row.customer}}"
+                                        },
+                                        "children": "Assign"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Tile",
+                                "compact": true,
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "align": "center",
+                                    "justify": "between",
+                                    "gap": "sm",
+                                    "children": [
+                                      {
+                                        "type": "Flex",
+                                        "direction": "column",
+                                        "gap": "extra-small",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "format": {
+                                              "fontWeight": "demibold"
+                                            },
+                                            "children": "Dana Brooks"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Zone: East \u00b7 2.1 mi"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "RV, Residential \u00b7 0 jobs left \u00b7 Next: Now"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Button",
+                                        "size": "xs",
+                                        "variant": "secondary",
+                                        "onClick": {
+                                          "type": "success",
+                                          "$action": "addAlert",
+                                          "message": "Dana Brooks assigned to {{row.customer}}"
+                                        },
+                                        "children": "Assign"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "Tile",
+                                "compact": true,
+                                "children": [
+                                  {
+                                    "type": "Flex",
+                                    "direction": "row",
+                                    "align": "center",
+                                    "justify": "between",
+                                    "gap": "sm",
+                                    "children": [
+                                      {
+                                        "type": "Flex",
+                                        "direction": "column",
+                                        "gap": "extra-small",
+                                        "children": [
+                                          {
+                                            "type": "Text",
+                                            "format": {
+                                              "fontWeight": "demibold"
+                                            },
+                                            "children": "Carlos Vega"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Zone: South \u00b7 0.5 mi"
+                                          },
+                                          {
+                                            "type": "Text",
+                                            "variant": "microcopy",
+                                            "children": "Commercial \u00b7 1 job left \u00b7 Next: 3:00 PM"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "type": "Button",
+                                        "size": "xs",
+                                        "variant": "secondary",
+                                        "onClick": {
+                                          "type": "success",
+                                          "$action": "addAlert",
+                                          "message": "Carlos Vega assigned to {{row.customer}}"
+                                        },
+                                        "children": "Assign"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "row",
+                        "justify": "end",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "assign-panel-{{row.id}}"
+                            },
+                            "children": "Cancel"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": [
+                {
+                  "type": "Icon",
+                  "screenReaderText": "Assign tech"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "unassigned-table-wrap": {
+      "type": "Flex",
+      "name": "unassigned-table-wrap",
+      "direction": "column",
+      "gap": "flush",
+      "children": [
+        "unassigned-table"
+      ]
+    },
+    "unassigned-accordion": {
+      "type": "Accordion",
+      "name": "unassigned-accordion",
+      "title": "Needs Assignment (4)",
+      "size": "sm",
+      "defaultOpen": true,
+      "children": [
+        "unassigned-table-wrap"
+      ]
+    },
+    "assigned-table": {
+      "type": "DataTable",
+      "name": "assigned-table",
+      "data": "$data.assignedTickets",
+      "searchFields": [
+        "customer",
+        "address",
+        "zone",
+        "assignedTech"
+      ],
+      "fuzzySearch": true,
+      "pageSize": 10,
+      "filters": [
+        {
+          "type": "multiselect",
+          "name": "status",
+          "placeholder": "All statuses",
+          "options": "$data.statusOptions"
+        },
+        {
+          "type": "multiselect",
+          "name": "type",
+          "placeholder": "All types",
+          "options": "$data.typeOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "customer",
+          "label": "Customer & Address",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Flex",
+              "direction": "column",
+              "gap": "extra-small",
+              "children": [
+                {
+                  "type": "Text",
+                  "format": {
+                    "fontWeight": "demibold"
+                  },
+                  "truncate": true,
+                  "children": "$row.customer"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "truncate": true,
+                  "children": "$row.address"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "field": "type",
+          "label": "Type",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "default",
+              "children": "$row.type"
+            }
+          }
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "sortable": false,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.statusVariant",
+              "children": "$row.statusLabel"
+            }
+          }
+        },
+        {
+          "field": "scheduled",
+          "label": "Scheduled",
+          "sortable": false
+        },
+        {
+          "field": "slaDue",
+          "label": "SLA Due",
+          "sortable": false
+        },
+        {
+          "field": "zone",
+          "label": "Zone",
+          "sortable": false
+        },
+        {
+          "field": "assignedTech",
+          "label": "Assigned Tech",
+          "sortable": false
+        }
+      ]
+    },
+    "assigned-table-wrap": {
+      "type": "Flex",
+      "name": "assigned-table-wrap",
+      "direction": "column",
+      "gap": "flush",
+      "children": [
+        "assigned-table"
+      ]
+    },
+    "assigned-accordion": {
+      "type": "Accordion",
+      "name": "assigned-accordion",
+      "title": "Assigned & En Route (3)",
+      "size": "sm",
+      "defaultOpen": false,
+      "children": [
+        "assigned-table-wrap"
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "md",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "dispatch-kpis",
+        "divider",
+        "unassigned-accordion",
+        "assigned-accordion"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

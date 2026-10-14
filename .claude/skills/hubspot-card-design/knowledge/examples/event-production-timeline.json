@@ -1,0 +1,673 @@
+{
+  "meta": {
+    "name": "Event Production Timeline",
+    "tagline": "Eight-phase StepIndicator over an active-phase subtask checklist with overdue alerts and per-subtask update modals.",
+    "description": "Keeps an event coordinator oriented across a long production schedule \u2014 which phase is active, what's overdue, and which subtasks still need doing. They click a subtask to mark it complete and jot a note without leaving the page. \u2014 Checklist / Step Tracker: StepIndicator + active-phase subtask list + Accordion recaps for past and future phases.",
+    "surface": "crm.record.tab",
+    "object": "custom"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "event": {
+      "name": "Meridian Global Leadership Summit 2026",
+      "eventDateLabel": "May 14, 2026",
+      "venue": "Grand Hyatt Chicago \u2014 Ballroom A & B",
+      "coordinator": "Rachel Dominguez",
+      "client": "Meridian Financial Group",
+      "budget": "$184,500"
+    },
+    "phaseNames": [
+      "Venue Secured",
+      "Vendors Contracted",
+      "Marketing Live",
+      "Rehearsal Complete",
+      "Event Day",
+      "Post-Event Survey",
+      "Final Billing",
+      "Archive"
+    ],
+    "activePhaseIndex": 3,
+    "activePhaseName": "Rehearsal Complete",
+    "activePhaseHeaderLabel": "Rehearsal Complete \u2014 subtasks",
+    "activePhaseProgressLabel": "2 of 6 subtasks complete",
+    "overdue": {
+      "hasOverdue": true,
+      "alertTitle": "4 overdue subtasks",
+      "alertBody": "Complete AV rehearsal at venue, Walk through emergency procedures, Distribute staff assignments & radios, Confirm final headcount with catering \u2014 action needed to keep the event on schedule."
+    },
+    "activeSubtasks": [
+      {
+        "id": "s4-1",
+        "name": "Finalize run-of-show document",
+        "dueLabel": "Due Mar 25, 2026 \u2014 v3 approved by client. Shared with all vendor leads.",
+        "dueDateLabel": "Mar 25, 2026",
+        "notes": "v3 approved by client. Shared with all vendor leads.",
+        "complete": true,
+        "overdue": false,
+        "iconName": "success",
+        "iconColor": "success",
+        "showOverdueTag": false,
+        "overdueLabel": ""
+      },
+      {
+        "id": "s4-2",
+        "name": "Conduct vendor coordination call",
+        "dueLabel": "Due Mar 28, 2026 \u2014 All 6 vendors on call. Load-in schedule confirmed.",
+        "dueDateLabel": "Mar 28, 2026",
+        "notes": "All 6 vendors on call. Load-in schedule confirmed.",
+        "complete": true,
+        "overdue": false,
+        "iconName": "success",
+        "iconColor": "success",
+        "showOverdueTag": false,
+        "overdueLabel": ""
+      },
+      {
+        "id": "s4-3",
+        "name": "Complete AV rehearsal at venue",
+        "dueLabel": "Due Apr 2, 2026",
+        "dueDateLabel": "Apr 2, 2026 (overdue)",
+        "notes": "",
+        "complete": false,
+        "overdue": true,
+        "iconName": "warning",
+        "iconColor": "warning",
+        "showOverdueTag": true,
+        "overdueLabel": "Overdue"
+      },
+      {
+        "id": "s4-4",
+        "name": "Walk through emergency procedures",
+        "dueLabel": "Due Mar 29, 2026",
+        "dueDateLabel": "Mar 29, 2026 (overdue)",
+        "notes": "",
+        "complete": false,
+        "overdue": true,
+        "iconName": "warning",
+        "iconColor": "warning",
+        "showOverdueTag": true,
+        "overdueLabel": "Overdue"
+      },
+      {
+        "id": "s4-5",
+        "name": "Distribute staff assignments & radios",
+        "dueLabel": "Due Apr 5, 2026",
+        "dueDateLabel": "Apr 5, 2026 (overdue)",
+        "notes": "",
+        "complete": false,
+        "overdue": true,
+        "iconName": "warning",
+        "iconColor": "warning",
+        "showOverdueTag": true,
+        "overdueLabel": "Overdue"
+      },
+      {
+        "id": "s4-6",
+        "name": "Confirm final headcount with catering",
+        "dueLabel": "Due Apr 1, 2026",
+        "dueDateLabel": "Apr 1, 2026 (overdue)",
+        "notes": "",
+        "complete": false,
+        "overdue": true,
+        "iconName": "warning",
+        "iconColor": "warning",
+        "showOverdueTag": true,
+        "overdueLabel": "Overdue"
+      }
+    ],
+    "upcomingPhases": [
+      {
+        "id": "phase-5",
+        "name": "Event Day",
+        "countLabel": "(5)"
+      },
+      {
+        "id": "phase-6",
+        "name": "Post-Event Survey",
+        "countLabel": "(3)"
+      },
+      {
+        "id": "phase-7",
+        "name": "Final Billing",
+        "countLabel": "(4)"
+      },
+      {
+        "id": "phase-8",
+        "name": "Archive",
+        "countLabel": "(3)"
+      }
+    ],
+    "completedPhases": [
+      {
+        "id": "phase-1",
+        "name": "Venue Secured",
+        "countLabel": "(4/4)"
+      },
+      {
+        "id": "phase-2",
+        "name": "Vendors Contracted",
+        "countLabel": "(5/5)"
+      },
+      {
+        "id": "phase-3",
+        "name": "Marketing Live",
+        "countLabel": "(4/4)"
+      }
+    ],
+    "hasUpcoming": true,
+    "hasCompleted": true
+  },
+  "root": "card-root",
+  "elements": {
+    "loading-spinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading event data...",
+      "layout": "centered",
+      "showLabel": true
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loading-spinner"
+      ]
+    },
+    "error-body": {
+      "type": "Text",
+      "children": "The event production data could not be retrieved. Please try again in a few moments."
+    },
+    "error-state": {
+      "type": "ErrorState",
+      "name": "error-state",
+      "title": "Unable to load event timeline",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": [
+        "error-body"
+      ]
+    },
+    "empty-event-text": {
+      "type": "Text",
+      "children": "$data.event.name"
+    },
+    "empty-event-item": {
+      "type": "DescriptionListItem",
+      "label": "Event",
+      "children": [
+        "empty-event-text"
+      ]
+    },
+    "empty-client-text": {
+      "type": "Text",
+      "children": "$data.event.client"
+    },
+    "empty-client-item": {
+      "type": "DescriptionListItem",
+      "label": "Client",
+      "children": [
+        "empty-client-text"
+      ]
+    },
+    "empty-coord-text": {
+      "type": "Text",
+      "children": "$data.event.coordinator"
+    },
+    "empty-coord-item": {
+      "type": "DescriptionListItem",
+      "label": "Coordinator",
+      "children": [
+        "empty-coord-text"
+      ]
+    },
+    "empty-identity": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-event-item",
+        "empty-client-item",
+        "empty-coord-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "This event does not have a production timeline yet. Set up phases and subtasks to begin tracking progress."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No production phases configured",
+      "layout": "vertical",
+      "imageName": "tasks",
+      "imageWidth": 120,
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "overdue-alert-body": {
+      "type": "Text",
+      "children": "$data.overdue.alertBody"
+    },
+    "overdue-alert": {
+      "type": "Alert",
+      "name": "overdue-alert",
+      "variant": "warning",
+      "title": "$data.overdue.alertTitle",
+      "visible": "$data.overdue.hasOverdue",
+      "children": [
+        "overdue-alert-body"
+      ]
+    },
+    "event-name-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.event.name"
+    },
+    "event-name-item": {
+      "type": "DescriptionListItem",
+      "label": "Event",
+      "children": [
+        "event-name-text"
+      ]
+    },
+    "event-date-text": {
+      "type": "Text",
+      "children": "$data.event.eventDateLabel"
+    },
+    "event-date-item": {
+      "type": "DescriptionListItem",
+      "label": "Date",
+      "children": [
+        "event-date-text"
+      ]
+    },
+    "event-venue-text": {
+      "type": "Text",
+      "children": "$data.event.venue"
+    },
+    "event-venue-item": {
+      "type": "DescriptionListItem",
+      "label": "Venue",
+      "children": [
+        "event-venue-text"
+      ]
+    },
+    "event-coord-text": {
+      "type": "Text",
+      "children": "$data.event.coordinator"
+    },
+    "event-coord-item": {
+      "type": "DescriptionListItem",
+      "label": "Coordinator",
+      "children": [
+        "event-coord-text"
+      ]
+    },
+    "event-budget-text": {
+      "type": "Text",
+      "children": "$data.event.budget"
+    },
+    "event-budget-item": {
+      "type": "DescriptionListItem",
+      "label": "Budget",
+      "children": [
+        "event-budget-text"
+      ]
+    },
+    "event-identity": {
+      "type": "DescriptionList",
+      "name": "event-identity",
+      "direction": "row",
+      "children": [
+        "event-name-item",
+        "event-date-item",
+        "event-venue-item",
+        "event-coord-item",
+        "event-budget-item"
+      ]
+    },
+    "divider-1": {
+      "type": "Divider"
+    },
+    "phase-step-indicator": {
+      "type": "StepIndicator",
+      "name": "phase-step-indicator",
+      "currentStep": "$data.activePhaseIndex",
+      "stepNames": "$data.phaseNames",
+      "direction": "horizontal",
+      "variant": "compact"
+    },
+    "divider-2": {
+      "type": "Divider"
+    },
+    "active-phase-header-title": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "bold"
+      },
+      "children": "$data.activePhaseHeaderLabel"
+    },
+    "active-phase-header-count": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.activePhaseProgressLabel"
+    },
+    "active-phase-header": {
+      "type": "Flex",
+      "name": "active-phase-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "active-phase-header-title",
+        "active-phase-header-count"
+      ]
+    },
+    "active-subtasks-list": {
+      "type": "Flex",
+      "name": "active-subtasks-list",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        {
+          "$forEach": "$data.activeSubtasks",
+          "as": "subtask",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "align": "center",
+            "gap": "xs",
+            "children": [
+              {
+                "type": "Icon",
+                "name": "$subtask.iconName",
+                "color": "$subtask.iconColor",
+                "size": "sm"
+              },
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "flush",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "wrap": "nowrap",
+                    "children": [
+                      {
+                        "type": "Link",
+                        "overlay": {
+                          "type": "Modal",
+                          "id": "subtask-modal-{{subtask.id}}",
+                          "title": "Update subtask",
+                          "children": [
+                            {
+                              "type": "ModalBody",
+                              "children": [
+                                {
+                                  "type": "Flex",
+                                  "direction": "column",
+                                  "gap": "sm",
+                                  "children": [
+                                    {
+                                      "type": "Text",
+                                      "format": {
+                                        "fontWeight": "demibold"
+                                      },
+                                      "children": "$subtask.name"
+                                    },
+                                    {
+                                      "type": "Text",
+                                      "variant": "microcopy",
+                                      "children": "Due: {{subtask.dueDateLabel}}"
+                                    },
+                                    {
+                                      "type": "Divider"
+                                    },
+                                    {
+                                      "type": "Checkbox",
+                                      "name": "subtask-complete",
+                                      "checked": "$subtask.complete",
+                                      "description": "Mark this subtask as done",
+                                      "children": "Complete"
+                                    },
+                                    {
+                                      "type": "TextArea",
+                                      "label": "Notes",
+                                      "name": "subtask-notes",
+                                      "placeholder": "Add details, observations, or follow-up items...",
+                                      "value": "$subtask.notes",
+                                      "resize": "vertical",
+                                      "rows": 4
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ModalFooter",
+                              "children": [
+                                {
+                                  "type": "Button",
+                                  "variant": "secondary",
+                                  "onClick": {
+                                    "$action": "closeOverlay",
+                                    "id": "subtask-modal-{{subtask.id}}"
+                                  },
+                                  "children": "Cancel"
+                                },
+                                {
+                                  "type": "Button",
+                                  "variant": "primary",
+                                  "children": "Save"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "children": "$subtask.name"
+                      },
+                      {
+                        "type": "Tag",
+                        "variant": "error",
+                        "visible": "$subtask.showOverdueTag",
+                        "children": "$subtask.overdueLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$subtask.dueLabel"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "upcoming-divider": {
+      "type": "Divider",
+      "visible": "$data.hasUpcoming"
+    },
+    "upcoming-accordion": {
+      "type": "Accordion",
+      "name": "upcoming-accordion",
+      "title": "Upcoming phases",
+      "size": "sm",
+      "defaultOpen": false,
+      "visible": "$data.hasUpcoming",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "flush",
+          "children": [
+            {
+              "$forEach": "$data.upcomingPhases",
+              "as": "phase",
+              "render": {
+                "type": "Flex",
+                "direction": "row",
+                "align": "center",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Icon",
+                    "name": "circleHollow",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "Text",
+                    "children": "$phase.name"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$phase.countLabel"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "completed-accordion": {
+      "type": "Accordion",
+      "name": "completed-accordion",
+      "title": "Completed phases",
+      "size": "sm",
+      "defaultOpen": false,
+      "visible": "$data.hasCompleted",
+      "children": [
+        {
+          "type": "Flex",
+          "direction": "column",
+          "gap": "flush",
+          "children": [
+            {
+              "$forEach": "$data.completedPhases",
+              "as": "phase",
+              "render": {
+                "type": "Flex",
+                "direction": "row",
+                "align": "center",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Icon",
+                    "name": "success",
+                    "color": "success",
+                    "size": "sm"
+                  },
+                  {
+                    "type": "Text",
+                    "children": "$phase.name"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$phase.countLabel"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "overdue-alert",
+        "event-identity",
+        "divider-1",
+        "phase-step-indicator",
+        "divider-2",
+        "active-phase-header",
+        "active-subtasks-list",
+        "upcoming-divider",
+        "upcoming-accordion",
+        "completed-accordion"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "error-state",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

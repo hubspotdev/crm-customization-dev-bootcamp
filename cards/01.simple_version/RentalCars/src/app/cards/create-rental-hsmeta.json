@@ -1,0 +1,11 @@
+{
+  "uid": "create_rental",
+  "type": "card",
+  "config": {
+    "name": "Create Rental",
+    "description": "Search rental locations by zip code from a contact record.",
+    "location": "crm.record.tab",
+    "entrypoint": "/app/cards/CreateRental.jsx",
+    "objectTypes": ["contacts"]
+  }
+}

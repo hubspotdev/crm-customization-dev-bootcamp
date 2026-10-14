@@ -1,0 +1,140 @@
+{
+  "name": "activity-timeline-feed",
+  "description": "PREFER the `feed-activity-timeline` block (hs-uix `Feed`) for new cards — it ships search, filters, sort, date grouping, and pagination out of one `items` array. Use this hand-rolled version only when you need a layout `Feed` can't express. Vertical activity feed for chronological interaction history (emails, calls, meetings, notes). Not a table — a timeline is inherently spatial. A filter Select and a primary 'Log activity' Button sit together on a single justify='between' header row (no separate section heading). Each entry is a compact Tile: icon + date + type-tag on the top row, the activity title as a Link that opens a detail Panel, and a one-line preview below. Uses $forEach to render items dynamically. Requires each item in data to carry its own resolved `icon` name (e.g. email, calling, appointment, description) and pre-computed `typeVariant` for the StatusTag — see RULES.md DAT-15 and the derivation-into-data policy.",
+  "componentsUsed": [
+    "Flex",
+    "Select",
+    "Button",
+    "Tile",
+    "Icon",
+    "Text",
+    "StatusTag",
+    "Link",
+    "Panel",
+    "PanelBody"
+  ],
+  "dataShape": {
+    "activityTypeOptions": [
+      { "label": "All types", "value": "all" },
+      { "label": "Emails", "value": "email" },
+      { "label": "Calls", "value": "call" },
+      { "label": "Meetings", "value": "meeting" },
+      { "label": "Notes", "value": "note" }
+    ],
+    "timelineItems": [
+      {
+        "id": "t1",
+        "icon": "email",
+        "type": "Email",
+        "typeVariant": "info",
+        "date": "Apr 22",
+        "title": "Sent proposal v2",
+        "preview": "Attached updated pricing with the CFO's annual-prepay discount…"
+      },
+      {
+        "id": "t2",
+        "icon": "calling",
+        "type": "Call",
+        "typeVariant": "success",
+        "date": "Apr 20",
+        "title": "Discovery with Marcus (CTO)",
+        "preview": "Confirmed SSO is table-stakes; flagged concern about SAML provider…"
+      }
+    ]
+  },
+  "state": {
+    "typeFilter": "all",
+    "activeItemId": null
+  },
+  "node": {
+    "root": "timeline-feed",
+    "elements": {
+      "type-filter": {
+        "type": "Select",
+        "label": "Filter by type",
+        "options": "$data.activityTypeOptions",
+        "$bindState": "typeFilter"
+      },
+      "log-button": {
+        "type": "Button",
+        "variant": "primary",
+        "size": "small",
+        "onClick": {
+          "$action": "addAlert",
+          "type": "info",
+          "message": "Opening log-activity form"
+        },
+        "children": "Log activity"
+      },
+      "feed-header": {
+        "type": "Flex",
+        "direction": "row",
+        "justify": "between",
+        "align": "end",
+        "gap": "sm",
+        "children": ["type-filter", "log-button"]
+      },
+      "feed-list": {
+        "type": "Flex",
+        "direction": "column",
+        "gap": "sm",
+        "children": [
+          {
+            "$forEach": "$data.timelineItems",
+            "as": "item",
+            "render": {
+              "type": "Tile",
+              "compact": true,
+              "children": [
+                {
+                  "type": "Flex",
+                  "direction": "column",
+                  "gap": "xs",
+                  "children": [
+                    {
+                      "type": "Flex",
+                      "direction": "row",
+                      "align": "center",
+                      "gap": "xs",
+                      "children": [
+                        { "type": "Icon", "name": "$item.icon" },
+                        { "type": "Text", "variant": "microcopy", "children": "$item.date" },
+                        {
+                          "type": "StatusTag",
+                          "variant": "$item.typeVariant",
+                          "children": "$item.type"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "Link",
+                      "onClick": {
+                        "$action": "setState",
+                        "key": "activeItemId",
+                        "value": "$item.id"
+                      },
+                      "children": "$item.title"
+                    },
+                    {
+                      "type": "Text",
+                      "variant": "microcopy",
+                      "truncate": true,
+                      "children": "$item.preview"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "timeline-feed": {
+        "type": "Flex",
+        "name": "timeline-feed",
+        "direction": "column",
+        "gap": "md",
+        "children": ["feed-header", "feed-list"]
+      }
+    }
+  }
+}

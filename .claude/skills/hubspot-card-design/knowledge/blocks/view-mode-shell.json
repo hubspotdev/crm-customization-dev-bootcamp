@@ -1,0 +1,118 @@
+{
+  "name": "view-mode-shell",
+  "description": "Card root that dispatches between loaded / loading / error / empty view modes based on $state.viewMode. Drop your loaded content into the loaded-content Flex; the other three branches are already wired. Pair with loading-state, error-alert, and empty-state blocks for a full skeleton.",
+  "componentsUsed": [
+    "Flex",
+    "LoadingSpinner",
+    "Alert",
+    "EmptyState",
+    "Text"
+  ],
+  "initialState": {
+    "viewMode": "empty"
+  },
+  "dataShape": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ]
+  },
+  "node": {
+    "root": "card-root",
+    "elements": {
+      "loadingspinner": {
+        "type": "LoadingSpinner",
+        "size": "sm",
+        "label": "Loading...",
+        "showLabel": true,
+        "layout": "centered"
+      },
+      "loading-state": {
+        "type": "Flex",
+        "name": "loading-state",
+        "align": "center",
+        "justify": "center",
+        "visible": {
+          "$eq": [
+            "$state.viewMode",
+            "loading"
+          ]
+        },
+        "children": [
+          "loadingspinner"
+        ]
+      },
+      "alert": {
+        "type": "Alert",
+        "variant": "error",
+        "title": "Unable to load",
+        "visible": {
+          "$eq": [
+            "$state.viewMode",
+            "error"
+          ]
+        },
+        "children": "Something went wrong loading this data. Refresh to retry."
+      },
+      "text": {
+        "type": "Text",
+        "children": "No data yet for this record."
+      },
+      "emptystate": {
+        "type": "EmptyState",
+        "title": "Nothing here yet",
+        "layout": "vertical",
+        "imageName": "idea",
+        "imageWidth": 150,
+        "visible": {
+          "$eq": [
+            "$state.viewMode",
+            "empty"
+          ]
+        },
+        "children": [
+          "text"
+        ]
+      },
+      "loaded-content": {
+        "type": "Flex",
+        "name": "loaded-content",
+        "direction": "column",
+        "gap": "sm",
+        "visible": {
+          "$eq": [
+            "$state.viewMode",
+            "loaded"
+          ]
+        },
+        "children": []
+      },
+      "card-root": {
+        "type": "Flex",
+        "name": "card-root",
+        "direction": "column",
+        "gap": "sm",
+        "children": [
+          "loading-state",
+          "alert",
+          "emptystate",
+          "loaded-content"
+        ]
+      }
+    }
+  }
+}

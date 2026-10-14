@@ -1,0 +1,1013 @@
+{
+  "meta": {
+    "name": "Service Center Repair Queue",
+    "tagline": "Bay utilization, urgent repairs grid, and full repair table with status actions.",
+    "description": "Gives a service manager the state of the shop at a glance \u2014 bay utilization, repairs that need attention right now, and the full queue one scroll away. Status changes happen inline from the table. \u2014 Triage + List Manager: utilization hero, urgent repair Tiles, and DataTable with inline status actions.",
+    "surface": "app.home",
+    "object": "custom"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "shop": {
+      "name": "QuickFix Auto Center",
+      "location": "Austin, TX",
+      "totalBays": 12,
+      "occupiedBays": 9,
+      "utilizationPct": 75,
+      "utilizationVariant": "success",
+      "utilizationDescription": "9 of 12 bays occupied"
+    },
+    "urgentSummary": {
+      "count": 6,
+      "tagVariant": "danger"
+    },
+    "urgentItems": [
+      {
+        "id": "rep-001",
+        "customer": "Sarah Jenkins",
+        "vehicle": "2019 Honda Accord",
+        "service": "Transmission rebuild",
+        "status": "Waiting on parts",
+        "statusVariant": "warning",
+        "daysInShop": 8,
+        "technician": "Mike Ross",
+        "priorityTag": "Overdue",
+        "priorityVariant": "error"
+      },
+      {
+        "id": "rep-002",
+        "customer": "David Chen",
+        "vehicle": "2021 Toyota Camry",
+        "service": "Brake pad replacement",
+        "status": "In progress",
+        "statusVariant": "primary",
+        "daysInShop": 5,
+        "technician": "Unassigned",
+        "priorityTag": "High",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "rep-003",
+        "customer": "Lisa Garcia",
+        "vehicle": "2018 Ford F-150",
+        "service": "Engine diagnostics",
+        "status": "Waiting for approval",
+        "statusVariant": "default",
+        "daysInShop": 3,
+        "technician": "James Lee",
+        "priorityTag": "High",
+        "priorityVariant": "warning"
+      },
+      {
+        "id": "rep-004",
+        "customer": "Tom Bradley",
+        "vehicle": "2020 BMW X3",
+        "service": "Suspension repair",
+        "status": "In progress",
+        "statusVariant": "primary",
+        "daysInShop": 4,
+        "technician": "Mike Ross",
+        "priorityTag": "Medium",
+        "priorityVariant": "info"
+      },
+      {
+        "id": "rep-005",
+        "customer": "Angela White",
+        "vehicle": "2017 Chevy Malibu",
+        "service": "AC refrigerant leak",
+        "status": "Waiting on parts",
+        "statusVariant": "warning",
+        "daysInShop": 3,
+        "technician": "Unassigned",
+        "priorityTag": "Medium",
+        "priorityVariant": "info"
+      },
+      {
+        "id": "rep-006",
+        "customer": "Robert Kim",
+        "vehicle": "2022 Nissan Altima",
+        "service": "Oil change + inspection",
+        "status": "Ready for pickup",
+        "statusVariant": "success",
+        "daysInShop": 1,
+        "technician": "James Lee",
+        "priorityTag": "Low",
+        "priorityVariant": "default"
+      }
+    ],
+    "repairRows": [
+      {
+        "id": "rep-001",
+        "customer": "Sarah Jenkins",
+        "vehicle": "2019 Honda Accord",
+        "service": "Transmission rebuild",
+        "status": "Waiting on parts",
+        "statusKey": "waiting_parts",
+        "statusVariant": "warning",
+        "priority": "Overdue",
+        "priorityKey": "overdue",
+        "priorityVariant": "error",
+        "technician": "Mike Ross",
+        "daysInShop": 8
+      },
+      {
+        "id": "rep-002",
+        "customer": "David Chen",
+        "vehicle": "2021 Toyota Camry",
+        "service": "Brake pad replacement",
+        "status": "In progress",
+        "statusKey": "in_progress",
+        "statusVariant": "primary",
+        "priority": "High",
+        "priorityKey": "high",
+        "priorityVariant": "warning",
+        "technician": "Unassigned",
+        "daysInShop": 5
+      },
+      {
+        "id": "rep-003",
+        "customer": "Lisa Garcia",
+        "vehicle": "2018 Ford F-150",
+        "service": "Engine diagnostics",
+        "status": "Waiting for approval",
+        "statusKey": "waiting_approval",
+        "statusVariant": "default",
+        "priority": "High",
+        "priorityKey": "high",
+        "priorityVariant": "warning",
+        "technician": "James Lee",
+        "daysInShop": 3
+      },
+      {
+        "id": "rep-004",
+        "customer": "Tom Bradley",
+        "vehicle": "2020 BMW X3",
+        "service": "Suspension repair",
+        "status": "In progress",
+        "statusKey": "in_progress",
+        "statusVariant": "primary",
+        "priority": "Medium",
+        "priorityKey": "medium",
+        "priorityVariant": "info",
+        "technician": "Mike Ross",
+        "daysInShop": 4
+      },
+      {
+        "id": "rep-005",
+        "customer": "Angela White",
+        "vehicle": "2017 Chevy Malibu",
+        "service": "AC refrigerant leak",
+        "status": "Waiting on parts",
+        "statusKey": "waiting_parts",
+        "statusVariant": "warning",
+        "priority": "Medium",
+        "priorityKey": "medium",
+        "priorityVariant": "info",
+        "technician": "Unassigned",
+        "daysInShop": 3
+      },
+      {
+        "id": "rep-006",
+        "customer": "Robert Kim",
+        "vehicle": "2022 Nissan Altima",
+        "service": "Oil change + inspection",
+        "status": "Ready for pickup",
+        "statusKey": "ready_pickup",
+        "statusVariant": "success",
+        "priority": "Low",
+        "priorityKey": "low",
+        "priorityVariant": "default",
+        "technician": "James Lee",
+        "daysInShop": 1
+      },
+      {
+        "id": "rep-007",
+        "customer": "Jennifer Lopez",
+        "vehicle": "2019 Jeep Wrangler",
+        "service": "Tire rotation + alignment",
+        "status": "In progress",
+        "statusKey": "in_progress",
+        "statusVariant": "primary",
+        "priority": "Low",
+        "priorityKey": "low",
+        "priorityVariant": "default",
+        "technician": "Mike Ross",
+        "daysInShop": 2
+      },
+      {
+        "id": "rep-008",
+        "customer": "Mark Stevens",
+        "vehicle": "2021 Hyundai Sonata",
+        "service": "Battery replacement",
+        "status": "At par",
+        "statusKey": "at_par",
+        "statusVariant": "default",
+        "priority": "Low",
+        "priorityKey": "low",
+        "priorityVariant": "default",
+        "technician": "James Lee",
+        "daysInShop": 1
+      }
+    ],
+    "statusFilterOptions": [
+      {
+        "label": "Waiting on parts",
+        "value": "waiting_parts"
+      },
+      {
+        "label": "In progress",
+        "value": "in_progress"
+      },
+      {
+        "label": "Waiting for approval",
+        "value": "waiting_approval"
+      },
+      {
+        "label": "Ready for pickup",
+        "value": "ready_pickup"
+      },
+      {
+        "label": "At par",
+        "value": "at_par"
+      }
+    ],
+    "priorityFilterOptions": [
+      {
+        "label": "Overdue",
+        "value": "overdue"
+      },
+      {
+        "label": "High",
+        "value": "high"
+      },
+      {
+        "label": "Medium",
+        "value": "medium"
+      },
+      {
+        "label": "Low",
+        "value": "low"
+      }
+    ],
+    "techFilterOptions": [
+      {
+        "label": "Mike Ross",
+        "value": "Mike Ross"
+      },
+      {
+        "label": "James Lee",
+        "value": "James Lee"
+      },
+      {
+        "label": "Unassigned",
+        "value": "Unassigned"
+      }
+    ]
+  },
+  "root": "root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading repair queue...",
+      "layout": "centered",
+      "showLabel": true,
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      }
+    },
+    "alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Failed to load repairs",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve repair queue data. Please try again."
+    },
+    "text": {
+      "type": "Text",
+      "children": "Repairs will appear here when customers check in vehicles."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No repairs in queue",
+      "layout": "vertical",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "text"
+      ]
+    },
+    "text-1": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.shop.name"
+    },
+    "text-2": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "\u00b7"
+    },
+    "text-3": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$data.shop.location"
+    },
+    "flex-1": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "text-1",
+        "text-2",
+        "text-3"
+      ]
+    },
+    "button": {
+      "type": "Button",
+      "variant": "primary",
+      "children": "New check-in"
+    },
+    "flex": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "justify": "space-between",
+      "children": [
+        "flex-1",
+        "button"
+      ]
+    },
+    "header-section": {
+      "type": "Box",
+      "name": "header-section",
+      "children": [
+        "flex"
+      ]
+    },
+    "progressbar": {
+      "type": "ProgressBar",
+      "title": "Bay utilization",
+      "value": "$data.shop.occupiedBays",
+      "maxValue": "$data.shop.totalBays",
+      "showPercentage": true,
+      "variant": "$data.shop.utilizationVariant",
+      "valueDescription": "$data.shop.utilizationDescription"
+    },
+    "utilization-section": {
+      "type": "Box",
+      "name": "utilization-section",
+      "children": [
+        "progressbar"
+      ]
+    },
+    "text-4": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Urgent Repairs"
+    },
+    "tag": {
+      "type": "Tag",
+      "variant": "danger",
+      "children": "6"
+    },
+    "flex-3": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "text-4",
+        "tag"
+      ]
+    },
+    "link": {
+      "type": "Link",
+      "children": "View all"
+    },
+    "flex-2": {
+      "type": "Flex",
+      "direction": "row",
+      "align": "center",
+      "justify": "space-between",
+      "children": [
+        "flex-3",
+        "link"
+      ]
+    },
+    "tag-1": {
+      "type": "Tag",
+      "variant": "$item.priorityVariant",
+      "children": "$item.priorityTag"
+    },
+    "flex-5": {
+      "type": "Flex",
+      "direction": "row",
+      "children": [
+        "tag-1"
+      ]
+    },
+    "link-1": {
+      "type": "Link",
+      "overlay": {
+        "type": "Panel",
+        "id": "tile-repair-detail",
+        "title": "Repair Details",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Text",
+                    "format": {
+                      "fontWeight": "demibold"
+                    },
+                    "children": "$item.customer"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$item.vehicle"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$item.service"
+                  }
+                ]
+              },
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "StatusTag",
+                    "variant": "$item.statusVariant",
+                    "children": "$item.status"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "{{item.daysInShop}} days in shop"
+                  }
+                ]
+              },
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Select",
+                    "label": "Assign technician",
+                    "placeholder": "Choose a technician...",
+                    "options": [
+                      {
+                        "label": "Mike Ross",
+                        "value": "mike"
+                      },
+                      {
+                        "label": "James Lee",
+                        "value": "james"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TextArea",
+                    "label": "Notes",
+                    "placeholder": "Log parts ordered, customer contact, or delay reason..."
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "gap": "sm",
+                    "justify": "end",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "tile-repair-detail"
+                        },
+                        "children": "Cancel"
+                      },
+                      {
+                        "type": "Button",
+                        "variant": "primary",
+                        "onClick": {
+                          "type": "success",
+                          "$action": "addAlert",
+                          "message": "Technician assigned."
+                        },
+                        "children": "Assign"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "children": "$item.customer"
+    },
+    "text-5": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$item.vehicle"
+    },
+    "text-6": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$item.service"
+    },
+    "statustag": {
+      "type": "StatusTag",
+      "variant": "$item.statusVariant",
+      "children": "$item.status"
+    },
+    "link-2": {
+      "type": "Link",
+      "overlay": {
+        "type": "Panel",
+        "id": "assign-tech-tile",
+        "title": "Assign Technician",
+        "children": [
+          {
+            "type": "PanelBody",
+            "children": [
+              {
+                "type": "PanelSection",
+                "children": [
+                  {
+                    "type": "Text",
+                    "format": {
+                      "fontWeight": "demibold"
+                    },
+                    "children": "$item.customer"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$item.vehicle"
+                  },
+                  {
+                    "type": "Select",
+                    "label": "Technician",
+                    "placeholder": "Choose a technician...",
+                    "options": [
+                      {
+                        "label": "Mike Ross",
+                        "value": "mike"
+                      },
+                      {
+                        "label": "James Lee",
+                        "value": "james"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "PanelFooter",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "column",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "gap": "sm",
+                    "justify": "end",
+                    "children": [
+                      {
+                        "type": "Button",
+                        "variant": "secondary",
+                        "onClick": {
+                          "$action": "closeOverlay",
+                          "id": "assign-tech-tile"
+                        },
+                        "children": "Cancel"
+                      },
+                      {
+                        "type": "Button",
+                        "variant": "primary",
+                        "onClick": {
+                          "type": "success",
+                          "$action": "addAlert",
+                          "message": "Technician assigned."
+                        },
+                        "children": "Assign"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "visible": {
+        "$eq": [
+          "$item.technician",
+          "Unassigned"
+        ]
+      },
+      "children": "+ Assign tech"
+    },
+    "icon": {
+      "type": "Icon"
+    },
+    "text-7": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "$item.technician"
+    },
+    "flex-6": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "visible": {
+        "$neq": [
+          "$item.technician",
+          "Unassigned"
+        ]
+      },
+      "children": [
+        "icon",
+        "text-7"
+      ]
+    },
+    "icon-1": {
+      "type": "Icon"
+    },
+    "text-8": {
+      "type": "Text",
+      "variant": "microcopy",
+      "children": "{{item.daysInShop}} days in shop"
+    },
+    "flex-7": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "icon-1",
+        "text-8"
+      ]
+    },
+    "flex-4": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        "flex-5",
+        "link-1",
+        "text-5",
+        "text-6",
+        "statustag",
+        "link-2",
+        "flex-6",
+        "flex-7"
+      ]
+    },
+    "autogrid": {
+      "type": "AutoGrid",
+      "columnWidth": 240,
+      "flexible": true,
+      "gap": "small",
+      "children": {
+        "$forEach": "$data.urgentItems",
+        "as": "item",
+        "render": {
+          "type": "Tile",
+          "children": [
+            "flex-4"
+          ]
+        }
+      }
+    },
+    "urgent-repairs-section": {
+      "type": "Box",
+      "name": "urgent-repairs-section",
+      "children": [
+        "flex-2",
+        "autogrid"
+      ]
+    },
+    "text-9": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "All Repairs"
+    },
+    "datatable": {
+      "type": "DataTable",
+      "data": "$data.repairRows",
+      "searchFields": [
+        "customer",
+        "vehicle",
+        "service",
+        "technician"
+      ],
+      "filters": [
+        {
+          "type": "multiselect",
+          "field": "statusKey",
+          "label": "Status",
+          "placeholder": "All statuses",
+          "options": "$data.statusFilterOptions"
+        },
+        {
+          "type": "multiselect",
+          "field": "priorityKey",
+          "label": "Priority",
+          "placeholder": "All priorities",
+          "options": "$data.priorityFilterOptions"
+        },
+        {
+          "type": "multiselect",
+          "field": "technician",
+          "label": "Technician",
+          "placeholder": "All technicians",
+          "options": "$data.techFilterOptions"
+        }
+      ],
+      "columns": [
+        {
+          "field": "customer",
+          "label": "Customer",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Link",
+              "overlay": {
+                "type": "Panel",
+                "id": "manage-repair",
+                "title": "Manage Repair",
+                "children": [
+                  {
+                    "type": "PanelBody",
+                    "children": [
+                      {
+                        "type": "PanelSection",
+                        "children": [
+                          {
+                            "type": "Text",
+                            "format": {
+                              "fontWeight": "demibold"
+                            },
+                            "children": "$row.customer"
+                          },
+                          {
+                            "type": "Text",
+                            "variant": "microcopy",
+                            "children": "$row.vehicle"
+                          },
+                          {
+                            "type": "Text",
+                            "variant": "microcopy",
+                            "children": "$row.service"
+                          }
+                        ]
+                      },
+                      {
+                        "type": "PanelSection",
+                        "children": [
+                          {
+                            "type": "Select",
+                            "label": "Update status",
+                            "options": [
+                              {
+                                "label": "Waiting on parts",
+                                "value": "waiting_parts"
+                              },
+                              {
+                                "label": "In progress",
+                                "value": "in_progress"
+                              },
+                              {
+                                "label": "Waiting for approval",
+                                "value": "waiting_approval"
+                              },
+                              {
+                                "label": "Ready for pickup",
+                                "value": "ready_pickup"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "Select",
+                            "label": "Assign technician",
+                            "options": [
+                              {
+                                "label": "Mike Ross",
+                                "value": "mike"
+                              },
+                              {
+                                "label": "James Lee",
+                                "value": "james"
+                              },
+                              {
+                                "label": "Unassigned",
+                                "value": "unassigned"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "TextArea",
+                            "label": "Notes",
+                            "placeholder": "Log parts ordered, customer contact, or delay reason..."
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "PanelFooter",
+                    "children": [
+                      {
+                        "type": "Flex",
+                        "direction": "row",
+                        "gap": "sm",
+                        "justify": "end",
+                        "children": [
+                          {
+                            "type": "Button",
+                            "variant": "secondary",
+                            "onClick": {
+                              "$action": "closeOverlay",
+                              "id": "manage-repair"
+                            },
+                            "children": "Cancel"
+                          },
+                          {
+                            "type": "Button",
+                            "variant": "primary",
+                            "onClick": {
+                              "type": "success",
+                              "$action": "addAlert",
+                              "message": "Repair record updated."
+                            },
+                            "children": "Save changes"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "children": "$value"
+            }
+          },
+          "width": null,
+          "cellWidth": "min"
+        },
+        {
+          "field": "vehicle",
+          "label": "Vehicle",
+          "cellWidth": "min"
+        },
+        {
+          "field": "service",
+          "label": "Service"
+        },
+        {
+          "field": "status",
+          "label": "Status",
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "StatusTag",
+              "variant": "$row.statusVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "priority",
+          "label": "Priority",
+          "sortable": true,
+          "renderCell": {
+            "$render": [
+              "value",
+              "row"
+            ],
+            "node": {
+              "type": "Tag",
+              "variant": "$row.priorityVariant",
+              "children": "$value"
+            }
+          }
+        },
+        {
+          "field": "technician",
+          "label": "Technician",
+          "sortable": true
+        },
+        {
+          "field": "daysInShop",
+          "label": "Days",
+          "sortable": true
+        }
+      ]
+    },
+    "repairs-table-section": {
+      "type": "Box",
+      "name": "repairs-table-section",
+      "children": [
+        "text-9",
+        "datatable"
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "header-section",
+        "utilization-section",
+        "urgent-repairs-section",
+        "repairs-table-section"
+      ]
+    },
+    "root": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loadingspinner",
+        "alert",
+        "emptystate",
+        "loaded-content"
+      ]
+    }
+  }
+}

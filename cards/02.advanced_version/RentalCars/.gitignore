@@ -1,8 +1,9 @@
 src/app/.vite
-src/app/app.functions/node_modules
-src/app/app.functions/package-lock.json
-src/app/app.functions/.env
-src/app/extensions/node_modules
-src/app/extensions/package-lock.json
+src/app/functions/node_modules
+src/app/functions/package-lock.json
+src/app/functions/.env
+src/app/cards/node_modules
+src/app/cards/package-lock.json
 src/app/dist
 src/app/.firebase
+*bun.lockb

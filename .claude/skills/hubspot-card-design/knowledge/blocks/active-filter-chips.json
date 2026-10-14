@@ -1,0 +1,49 @@
+{
+  "name": "active-filter-chips",
+  "description": "Row of deletable Tag chips summarizing active filters, followed by a 'Clear all' transparent extra-small Button. Iterates $data.activeFilterChips (each item { key, label }). In v0 specs, pre-compute which chips are present rather than deriving from filter state in the spec. Render this block below filter-bar, conditionally visible when any chips exist.",
+  "componentsUsed": [
+    "Flex",
+    "Tag",
+    "Button"
+  ],
+  "dataShape": {
+    "hasActiveFilters": true,
+    "activeFilterChips": [
+      { "key": "type", "label": "Type: Oil change" },
+      { "key": "status", "label": "Status: In progress" },
+      { "key": "owner", "label": "Owner: Jamie Chen" }
+    ]
+  },
+  "node": {
+    "root": "active-filter-chips",
+    "elements": {
+      "button": {
+        "type": "Button",
+        "variant": "transparent",
+        "size": "extra-small",
+        "children": "Clear all"
+      },
+      "active-filter-chips": {
+        "type": "Flex",
+        "name": "active-filter-chips",
+        "direction": "row",
+        "align": "center",
+        "gap": "sm",
+        "wrap": "wrap",
+        "visible": "$data.hasActiveFilters",
+        "children": [
+          {
+            "$forEach": "$data.activeFilterChips",
+            "as": "chip",
+            "render": {
+              "type": "Tag",
+              "variant": "default",
+              "children": "$chip.label"
+            }
+          },
+          "button"
+        ]
+      }
+    }
+  }
+}

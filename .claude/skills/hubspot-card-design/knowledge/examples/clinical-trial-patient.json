@@ -1,0 +1,811 @@
+{
+  "meta": {
+    "name": "Clinical Trial Patient Compliance",
+    "tagline": "Checklist card tracking a trial patient's protocol compliance with overdue alerts, an overall progress hero, and per-item mark-complete modals.",
+    "description": "Keeps trial coordinators on top of a patient's visit schedule and protocol obligations from the contact record. They see overall compliance at a glance, get flagged on overdue items first, and mark work done from a per-item modal. \u2014 Checklist / Step Tracker with a ProgressBar hero, urgency-sorted item rows, and a supplemental completion-log Accordion.",
+    "surface": "crm.record.tab",
+    "object": "contact"
+  },
+  "state": {
+    "viewMode": "loaded"
+  },
+  "data": {
+    "viewModes": [
+      {
+        "value": "loaded",
+        "label": "Loaded"
+      },
+      {
+        "value": "loading",
+        "label": "Loading"
+      },
+      {
+        "value": "error",
+        "label": "Error"
+      },
+      {
+        "value": "empty",
+        "label": "Empty"
+      }
+    ],
+    "trial": {
+      "trialPhase": "Phase III",
+      "protocolId": "ONCO-2025-0417",
+      "subjectId": "SCR-90412",
+      "enrollmentDateLabel": "Nov 3, 2025",
+      "siteLocation": "Memorial Sloan Kettering \u2014 Site 014",
+      "principalInvestigator": "Dr. Elena Vasquez",
+      "sponsor": "Meridian BioSciences"
+    },
+    "emptyContact": {
+      "name": "Margaret Chen",
+      "email": "m.chen@email.com",
+      "status": "Pre-screening"
+    },
+    "completedCount": 4,
+    "totalCount": 11,
+    "compliancePctLabel": "36%",
+    "progressVariant": "danger",
+    "progressValueDescription": "4 of 11 items complete",
+    "hasOverdue": true,
+    "hasDue": true,
+    "overdueCountLabel": "2 overdue",
+    "dueCountLabel": "2 due",
+    "overdueAlertTitle": "2 items overdue \u2014 regulatory non-compliance risk",
+    "overdueAlertBody": "Week 4 follow-up visit, Adverse event report filed. These must be addressed immediately to maintain FDA 21 CFR Part 11 compliance.",
+    "hasCompletedItems": true,
+    "sortedChecklist": [
+      {
+        "id": "week4_visit",
+        "name": "Week 4 follow-up visit",
+        "status": "overdue",
+        "isActionable": true,
+        "iconName": "xCircle",
+        "tagVariant": "error",
+        "statusLabel": "Overdue",
+        "dueDateLabel": "Dec 1, 2025",
+        "dueDatePhrase": "144 days overdue",
+        "modalId": "complete-modal-week4_visit",
+        "modalTitle": "Mark complete: Week 4 follow-up visit",
+        "overdueAlertBody": "Due date was Dec 1, 2025. A protocol deviation report may be required. Document the reason for delay in the notes field.",
+        "notesDescription": "Required for overdue items. Include reason for delay.",
+        "notesRequired": true
+      },
+      {
+        "id": "adverse_event",
+        "name": "Adverse event report filed",
+        "status": "overdue",
+        "isActionable": true,
+        "iconName": "xCircle",
+        "tagVariant": "error",
+        "statusLabel": "Overdue",
+        "dueDateLabel": "Dec 5, 2025",
+        "dueDatePhrase": "140 days overdue",
+        "modalId": "complete-modal-adverse_event",
+        "modalTitle": "Mark complete: Adverse event report filed",
+        "overdueAlertBody": "Due date was Dec 5, 2025. A protocol deviation report may be required. Document the reason for delay in the notes field.",
+        "notesDescription": "Required for overdue items. Include reason for delay.",
+        "notesRequired": true
+      },
+      {
+        "id": "ecg_assessment",
+        "name": "12-lead ECG assessment",
+        "status": "due",
+        "isActionable": true,
+        "iconName": "warning",
+        "tagVariant": "warning",
+        "statusLabel": "Due",
+        "dueDateLabel": "Apr 5, 2026",
+        "dueDatePhrase": "Due Apr 5, 2026",
+        "modalId": "complete-modal-ecg_assessment",
+        "modalTitle": "Mark complete: 12-lead ECG assessment",
+        "notesDescription": "Optional. Include relevant clinical observations.",
+        "notesRequired": false
+      },
+      {
+        "id": "week8_visit",
+        "name": "Week 8 follow-up visit",
+        "status": "due",
+        "isActionable": true,
+        "iconName": "warning",
+        "tagVariant": "warning",
+        "statusLabel": "Due",
+        "dueDateLabel": "Apr 14, 2026",
+        "dueDatePhrase": "Due Apr 14, 2026",
+        "modalId": "complete-modal-week8_visit",
+        "modalTitle": "Mark complete: Week 8 follow-up visit",
+        "notesDescription": "Optional. Include relevant clinical observations.",
+        "notesRequired": false
+      },
+      {
+        "id": "tumor_response",
+        "name": "Tumor response assessment (RECIST)",
+        "status": "not_required",
+        "isActionable": false,
+        "iconName": "circleHollow",
+        "tagVariant": "default",
+        "statusLabel": "Not yet required",
+        "dueDateLabel": "May 12, 2026",
+        "dueDatePhrase": "Due May 12, 2026"
+      },
+      {
+        "id": "pk_sampling",
+        "name": "Pharmacokinetic blood sampling",
+        "status": "not_required",
+        "isActionable": false,
+        "iconName": "circleHollow",
+        "tagVariant": "default",
+        "statusLabel": "Not yet required",
+        "dueDateLabel": "May 12, 2026",
+        "dueDatePhrase": "Due May 12, 2026"
+      },
+      {
+        "id": "quality_of_life",
+        "name": "Quality of life questionnaire (EQ-5D)",
+        "status": "not_required",
+        "isActionable": false,
+        "iconName": "circleHollow",
+        "tagVariant": "default",
+        "statusLabel": "Not yet required",
+        "dueDateLabel": "Jun 9, 2026",
+        "dueDatePhrase": "Due Jun 9, 2026"
+      },
+      {
+        "id": "consent",
+        "name": "Informed consent form signed",
+        "status": "complete",
+        "isActionable": false,
+        "iconName": "checkCircle",
+        "tagVariant": "success",
+        "statusLabel": "Complete",
+        "dueDateLabel": "Nov 3, 2025",
+        "dueDatePhrase": "Completed Nov 3, 2025"
+      },
+      {
+        "id": "baseline_labs",
+        "name": "Baseline laboratory panel",
+        "status": "complete",
+        "isActionable": false,
+        "iconName": "checkCircle",
+        "tagVariant": "success",
+        "statusLabel": "Complete",
+        "dueDateLabel": "Nov 10, 2025",
+        "dueDatePhrase": "Completed Nov 8, 2025"
+      },
+      {
+        "id": "randomization",
+        "name": "Randomization assigned",
+        "status": "complete",
+        "isActionable": false,
+        "iconName": "checkCircle",
+        "tagVariant": "success",
+        "statusLabel": "Complete",
+        "dueDateLabel": "Nov 14, 2025",
+        "dueDatePhrase": "Completed Nov 14, 2025"
+      },
+      {
+        "id": "week2_visit",
+        "name": "Week 2 follow-up visit",
+        "status": "complete",
+        "isActionable": false,
+        "iconName": "checkCircle",
+        "tagVariant": "success",
+        "statusLabel": "Complete",
+        "dueDateLabel": "Nov 17, 2025",
+        "dueDatePhrase": "Completed Nov 17, 2025"
+      }
+    ],
+    "completedItems": [
+      {
+        "id": "consent",
+        "name": "Informed consent form signed",
+        "completedDateLabel": "Nov 3, 2025",
+        "completedBy": "J. Nakamura",
+        "notes": "Original consent v3.2 signed in clinic. Copy scanned to eTMF.",
+        "logLine": "By: J. Nakamura \u2014 Original consent v3.2 signed in clinic. Copy scanned to eTMF."
+      },
+      {
+        "id": "baseline_labs",
+        "name": "Baseline laboratory panel",
+        "completedDateLabel": "Nov 8, 2025",
+        "completedBy": "Lab \u2014 Quest Diagnostics",
+        "notes": "CBC, CMP, LFTs, coagulation panel all within inclusion criteria.",
+        "logLine": "By: Lab \u2014 Quest Diagnostics \u2014 CBC, CMP, LFTs, coagulation panel all within inclusion criteria."
+      },
+      {
+        "id": "randomization",
+        "name": "Randomization assigned",
+        "completedDateLabel": "Nov 14, 2025",
+        "completedBy": "IWRS System",
+        "notes": "Randomized to Arm B (combination therapy). Kit #4471 dispensed.",
+        "logLine": "By: IWRS System \u2014 Randomized to Arm B (combination therapy). Kit #4471 dispensed."
+      },
+      {
+        "id": "week2_visit",
+        "name": "Week 2 follow-up visit",
+        "completedDateLabel": "Nov 17, 2025",
+        "completedBy": "Dr. E. Vasquez",
+        "notes": "Vitals stable. No dose-limiting toxicities. Compliance confirmed.",
+        "logLine": "By: Dr. E. Vasquez \u2014 Vitals stable. No dose-limiting toxicities. Compliance confirmed."
+      }
+    ]
+  },
+  "root": "card-root",
+  "elements": {
+    "loadingspinner": {
+      "type": "LoadingSpinner",
+      "size": "sm",
+      "label": "Loading compliance data...",
+      "showLabel": true,
+      "layout": "centered"
+    },
+    "loading-state": {
+      "type": "Flex",
+      "name": "loading-state",
+      "align": "center",
+      "justify": "center",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loading"
+        ]
+      },
+      "children": [
+        "loadingspinner"
+      ]
+    },
+    "error-alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "Failed to load compliance data",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "error"
+        ]
+      },
+      "children": "Could not retrieve clinical trial checklist. The eTMF integration may be temporarily unavailable. Please try again in a few minutes."
+    },
+    "empty-subject-text": {
+      "type": "Text",
+      "children": "$data.emptyContact.name"
+    },
+    "empty-subject-item": {
+      "type": "DescriptionListItem",
+      "label": "Subject",
+      "children": [
+        "empty-subject-text"
+      ]
+    },
+    "empty-email-text": {
+      "type": "Text",
+      "children": "$data.emptyContact.email"
+    },
+    "empty-email-item": {
+      "type": "DescriptionListItem",
+      "label": "Email",
+      "children": [
+        "empty-email-text"
+      ]
+    },
+    "empty-status-text": {
+      "type": "Text",
+      "children": "$data.emptyContact.status"
+    },
+    "empty-status-item": {
+      "type": "DescriptionListItem",
+      "label": "Status",
+      "children": [
+        "empty-status-text"
+      ]
+    },
+    "empty-identity": {
+      "type": "DescriptionList",
+      "direction": "row",
+      "children": [
+        "empty-subject-item",
+        "empty-email-item",
+        "empty-status-item"
+      ]
+    },
+    "empty-divider": {
+      "type": "Divider"
+    },
+    "empty-body-text": {
+      "type": "Text",
+      "children": "This contact has not been enrolled in a clinical trial. Enrollment creates the compliance checklist automatically."
+    },
+    "emptystate": {
+      "type": "EmptyState",
+      "title": "No trial enrollment",
+      "layout": "vertical",
+      "children": [
+        "empty-body-text"
+      ]
+    },
+    "empty-state": {
+      "type": "Flex",
+      "name": "empty-state",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "empty"
+        ]
+      },
+      "children": [
+        "empty-identity",
+        "empty-divider",
+        "emptystate"
+      ]
+    },
+    "overdue-alert-body": {
+      "type": "Text",
+      "children": "$data.overdueAlertBody"
+    },
+    "overdue-alert": {
+      "type": "Alert",
+      "variant": "error",
+      "title": "$data.overdueAlertTitle",
+      "visible": {
+        "$eq": [
+          "$data.hasOverdue",
+          true
+        ]
+      },
+      "children": [
+        "overdue-alert-body"
+      ]
+    },
+    "progress-bar": {
+      "type": "ProgressBar",
+      "title": "Overall compliance",
+      "value": "$data.completedCount",
+      "maxValue": "$data.totalCount",
+      "showPercentage": true,
+      "valueDescription": "$data.progressValueDescription",
+      "variant": "$data.progressVariant"
+    },
+    "trial-phase-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.trial.trialPhase"
+    },
+    "trial-phase-item": {
+      "type": "DescriptionListItem",
+      "label": "Trial phase",
+      "children": [
+        "trial-phase-text"
+      ]
+    },
+    "protocol-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.trial.protocolId"
+    },
+    "protocol-item": {
+      "type": "DescriptionListItem",
+      "label": "Protocol",
+      "children": [
+        "protocol-text"
+      ]
+    },
+    "subject-id-text": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "$data.trial.subjectId"
+    },
+    "subject-id-item": {
+      "type": "DescriptionListItem",
+      "label": "Subject ID",
+      "children": [
+        "subject-id-text"
+      ]
+    },
+    "enrollment-text": {
+      "type": "Text",
+      "children": "$data.trial.enrollmentDateLabel"
+    },
+    "enrollment-item": {
+      "type": "DescriptionListItem",
+      "label": "Enrollment date",
+      "children": [
+        "enrollment-text"
+      ]
+    },
+    "site-text": {
+      "type": "Text",
+      "children": "$data.trial.siteLocation"
+    },
+    "site-item": {
+      "type": "DescriptionListItem",
+      "label": "Site",
+      "children": [
+        "site-text"
+      ]
+    },
+    "pi-text": {
+      "type": "Text",
+      "children": "$data.trial.principalInvestigator"
+    },
+    "pi-item": {
+      "type": "DescriptionListItem",
+      "label": "Principal investigator",
+      "children": [
+        "pi-text"
+      ]
+    },
+    "trial-header": {
+      "type": "DescriptionList",
+      "name": "trial-header",
+      "direction": "row",
+      "children": [
+        "trial-phase-item",
+        "protocol-item",
+        "subject-id-item",
+        "enrollment-item",
+        "site-item",
+        "pi-item"
+      ]
+    },
+    "divider": {
+      "type": "Divider"
+    },
+    "checklist-header-label": {
+      "type": "Text",
+      "format": {
+        "fontWeight": "demibold"
+      },
+      "children": "Compliance checklist"
+    },
+    "overdue-count-tag": {
+      "type": "Tag",
+      "variant": "error",
+      "visible": {
+        "$eq": [
+          "$data.hasOverdue",
+          true
+        ]
+      },
+      "children": "$data.overdueCountLabel"
+    },
+    "due-count-tag": {
+      "type": "Tag",
+      "variant": "warning",
+      "visible": {
+        "$eq": [
+          "$data.hasDue",
+          true
+        ]
+      },
+      "children": "$data.dueCountLabel"
+    },
+    "checklist-header-tags": {
+      "type": "Flex",
+      "direction": "row",
+      "gap": "xs",
+      "align": "center",
+      "children": [
+        "overdue-count-tag",
+        "due-count-tag"
+      ]
+    },
+    "checklist-header": {
+      "type": "Flex",
+      "name": "checklist-header",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "children": [
+        "checklist-header-label",
+        "checklist-header-tags"
+      ]
+    },
+    "checklist-rows": {
+      "type": "Flex",
+      "name": "checklist-rows",
+      "direction": "column",
+      "gap": "xs",
+      "children": [
+        {
+          "$forEach": "$data.sortedChecklist",
+          "as": "item",
+          "render": {
+            "type": "Flex",
+            "direction": "row",
+            "align": "center",
+            "gap": "xs",
+            "children": [
+              {
+                "type": "Icon",
+                "name": "$item.iconName",
+                "size": "sm"
+              },
+              {
+                "type": "Flex",
+                "direction": "column",
+                "gap": "flush",
+                "children": [
+                  {
+                    "type": "Flex",
+                    "direction": "row",
+                    "align": "center",
+                    "gap": "xs",
+                    "wrap": "nowrap",
+                    "children": [
+                      {
+                        "type": "Link",
+                        "visible": {
+                          "$eq": [
+                            "$item.isActionable",
+                            true
+                          ]
+                        },
+                        "overlay": {
+                          "type": "Modal",
+                          "id": "{{item.modalId}}",
+                          "title": "$item.modalTitle",
+                          "width": "medium",
+                          "children": [
+                            {
+                              "type": "ModalBody",
+                              "children": [
+                                {
+                                  "type": "Flex",
+                                  "direction": "column",
+                                  "gap": "sm",
+                                  "children": [
+                                    {
+                                      "type": "Alert",
+                                      "variant": "error",
+                                      "title": "This item is overdue",
+                                      "visible": {
+                                        "$eq": [
+                                          "$item.status",
+                                          "overdue"
+                                        ]
+                                      },
+                                      "children": [
+                                        {
+                                          "type": "Text",
+                                          "children": "$item.overdueAlertBody"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "DescriptionList",
+                                      "direction": "column",
+                                      "children": [
+                                        {
+                                          "type": "DescriptionListItem",
+                                          "label": "Due date",
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "children": "$item.dueDateLabel"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "DescriptionListItem",
+                                          "label": "Current status",
+                                          "children": [
+                                            {
+                                              "type": "Tag",
+                                              "variant": "$item.tagVariant",
+                                              "children": "$item.statusLabel"
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "type": "DescriptionListItem",
+                                          "label": "Protocol",
+                                          "children": [
+                                            {
+                                              "type": "Text",
+                                              "children": "$data.trial.protocolId"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "Divider"
+                                    },
+                                    {
+                                      "type": "DateInput",
+                                      "label": "Completion date",
+                                      "name": "completion-date",
+                                      "required": true,
+                                      "format": "medium",
+                                      "maxValidationMessage": "Completion date cannot be in the future."
+                                    },
+                                    {
+                                      "type": "TextArea",
+                                      "label": "Notes",
+                                      "name": "notes",
+                                      "placeholder": "Document completion details, any deviations, or observations...",
+                                      "required": "$item.notesRequired",
+                                      "description": "$item.notesDescription",
+                                      "resize": "vertical",
+                                      "rows": 4
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "ModalFooter",
+                              "children": [
+                                {
+                                  "type": "Button",
+                                  "variant": "secondary",
+                                  "onClick": {
+                                    "$action": "closeOverlay",
+                                    "id": "{{item.modalId}}"
+                                  },
+                                  "children": "Cancel"
+                                },
+                                {
+                                  "type": "LoadingButton",
+                                  "variant": "primary",
+                                  "children": "Mark complete"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "children": "$item.name"
+                      },
+                      {
+                        "type": "Text",
+                        "format": {
+                          "fontWeight": "demibold"
+                        },
+                        "visible": {
+                          "$eq": [
+                            "$item.isActionable",
+                            false
+                          ]
+                        },
+                        "children": "$item.name"
+                      },
+                      {
+                        "type": "Tag",
+                        "variant": "$item.tagVariant",
+                        "children": "$item.statusLabel"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "$item.dueDatePhrase"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "divider-2": {
+      "type": "Divider"
+    },
+    "completion-log-empty": {
+      "type": "Text",
+      "variant": "microcopy",
+      "visible": {
+        "$eq": [
+          "$data.hasCompletedItems",
+          false
+        ]
+      },
+      "children": "No items completed yet."
+    },
+    "completion-log-entries": {
+      "type": "Flex",
+      "direction": "column",
+      "gap": "flush",
+      "visible": {
+        "$eq": [
+          "$data.hasCompletedItems",
+          true
+        ]
+      },
+      "children": [
+        {
+          "$forEach": "$data.completedItems",
+          "as": "entry",
+          "render": {
+            "type": "Flex",
+            "direction": "column",
+            "gap": "flush",
+            "children": [
+              {
+                "type": "Flex",
+                "direction": "row",
+                "align": "center",
+                "gap": "xs",
+                "children": [
+                  {
+                    "type": "Text",
+                    "format": {
+                      "fontWeight": "demibold"
+                    },
+                    "children": "$entry.name"
+                  },
+                  {
+                    "type": "Text",
+                    "variant": "microcopy",
+                    "children": "({{entry.completedDateLabel}})"
+                  }
+                ]
+              },
+              {
+                "type": "Text",
+                "variant": "microcopy",
+                "children": "$entry.logLine"
+              },
+              {
+                "type": "Divider"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "completion-log": {
+      "type": "Accordion",
+      "name": "completion-log",
+      "title": "Completion log",
+      "defaultOpen": false,
+      "size": "sm",
+      "children": [
+        "completion-log-empty",
+        "completion-log-entries"
+      ]
+    },
+    "loaded-content": {
+      "type": "Flex",
+      "name": "loaded-content",
+      "direction": "column",
+      "gap": "sm",
+      "visible": {
+        "$eq": [
+          "$state.viewMode",
+          "loaded"
+        ]
+      },
+      "children": [
+        "overdue-alert",
+        "progress-bar",
+        "trial-header",
+        "divider",
+        "checklist-header",
+        "checklist-rows",
+        "divider-2",
+        "completion-log"
+      ]
+    },
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "sm",
+      "children": [
+        "loading-state",
+        "error-alert",
+        "empty-state",
+        "loaded-content"
+      ]
+    }
+  }
+}

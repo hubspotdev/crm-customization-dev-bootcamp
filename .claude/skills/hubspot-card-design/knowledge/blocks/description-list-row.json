@@ -1,0 +1,73 @@
+{
+  "name": "description-list-row",
+  "description": "Horizontal identity/metadata header: direction='row' DescriptionList with N DescriptionListItems. Each item's child is a demibold Text bound to a pre-computed display string in data (e.g. '2022 Ford Transit 250' rather than year/make/model split in the spec). Use at the top of record-tab cards to surface the key identifying fields of the record.",
+  "componentsUsed": [
+    "DescriptionList",
+    "DescriptionListItem",
+    "Text"
+  ],
+  "dataShape": {
+    "vehicle": {
+      "displayName": "2022 Ford Transit 250",
+      "vin": "1FTBW2CM3NKA12847",
+      "licensePlate": "NJ-K42-7FM"
+    }
+  },
+  "node": {
+    "root": "record-identity",
+    "elements": {
+      "text": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "$data.vehicle.displayName"
+      },
+      "descriptionlistitem": {
+        "type": "DescriptionListItem",
+        "label": "Vehicle",
+        "children": [
+          "text"
+        ]
+      },
+      "text-1": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "$data.vehicle.vin"
+      },
+      "descriptionlistitem-1": {
+        "type": "DescriptionListItem",
+        "label": "VIN",
+        "children": [
+          "text-1"
+        ]
+      },
+      "text-2": {
+        "type": "Text",
+        "format": {
+          "fontWeight": "demibold"
+        },
+        "children": "$data.vehicle.licensePlate"
+      },
+      "descriptionlistitem-2": {
+        "type": "DescriptionListItem",
+        "label": "License plate",
+        "children": [
+          "text-2"
+        ]
+      },
+      "record-identity": {
+        "type": "DescriptionList",
+        "name": "record-identity",
+        "direction": "row",
+        "children": [
+          "descriptionlistitem",
+          "descriptionlistitem-1",
+          "descriptionlistitem-2"
+        ]
+      }
+    }
+  }
+}

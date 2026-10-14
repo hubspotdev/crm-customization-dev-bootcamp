@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "name": "Vendor Onboarding",
+    "tagline": "Capture vendor company, contact, billing, and compliance details in one structured intake.",
+    "description": "Header tile summarizes onboarding status and the last submission. The primary action opens a modal hosting a hs-uix FormBuilder with five logical sections — company info, primary address, primary contact, billing terms, and compliance — totalling 18 fields across most field types (text, textarea, select, multiselect, date, currency, number, toggle, checkboxGroup, radioGroup). A `dependsOn` rule shows the insurance-expiry date only when the 'insurance on file' toggle is on. Submit closes the modal and toasts confirmation; cancel just closes. This is the canonical FormBuilder reference — reach for it for any intake with 5+ fields, sectioned layout, validation, or conditional visibility.",
+    "surface": "crm.record.tab",
+    "object": "company"
+  },
+  "state": {
+    "lastSubmittedVendor": "Northshore Logistics",
+    "lastSubmittedAt": "2 days ago"
+  },
+  "data": {
+    "intakeStats": [
+      { "label": "Submitted this quarter", "value": "12" },
+      { "label": "Pending review", "value": "3" },
+      { "label": "Approved", "value": "9" }
+    ],
+    "industryOptions": [
+      { "label": "Construction", "value": "construction" },
+      { "label": "Logistics & freight", "value": "logistics" },
+      { "label": "Manufacturing", "value": "manufacturing" },
+      { "label": "Professional services", "value": "professional_services" },
+      { "label": "Software & SaaS", "value": "software" },
+      { "label": "Other", "value": "other" }
+    ],
+    "stateOptions": [
+      { "label": "California", "value": "CA" },
+      { "label": "New York", "value": "NY" },
+      { "label": "Texas", "value": "TX" },
+      { "label": "Washington", "value": "WA" },
+      { "label": "Massachusetts", "value": "MA" },
+      { "label": "Illinois", "value": "IL" }
+    ],
+    "contactRoleOptions": [
+      { "label": "Owner / Founder", "value": "owner" },
+      { "label": "Accounts payable", "value": "ap" },
+      { "label": "Operations lead", "value": "operations" },
+      { "label": "Sales", "value": "sales" },
+      { "label": "Other", "value": "other" }
+    ],
+    "paymentMethodOptions": [
+      { "label": "ACH transfer", "value": "ach" },
+      { "label": "Wire", "value": "wire" },
+      { "label": "Credit card", "value": "card" },
+      { "label": "Check", "value": "check" }
+    ],
+    "paymentTermsOptions": [
+      { "label": "Net 15", "value": "net_15" },
+      { "label": "Net 30", "value": "net_30" },
+      { "label": "Net 60", "value": "net_60" },
+      { "label": "Due on receipt", "value": "due_on_receipt" }
+    ],
+    "serviceOptions": [
+      { "label": "Hauling", "value": "hauling" },
+      { "label": "Warehousing", "value": "warehousing" },
+      { "label": "Last-mile delivery", "value": "last_mile" },
+      { "label": "Customs brokerage", "value": "customs" },
+      { "label": "Cold chain", "value": "cold_chain" }
+    ],
+    "documentChecklist": [
+      { "label": "W-9 / W-8BEN", "value": "w9" },
+      { "label": "Certificate of insurance", "value": "coi" },
+      { "label": "Master service agreement", "value": "msa" },
+      { "label": "Diversity certification", "value": "diversity" }
+    ],
+    "prefill": {
+      "companyName": "",
+      "industry": "",
+      "country": "US",
+      "paymentTerms": "net_30",
+      "preferredPaymentMethod": "ach",
+      "insuranceOnFile": false,
+      "documentsReceived": ["w9"]
+    }
+  },
+  "root": "card-root",
+  "elements": {
+    "card-root": {
+      "type": "Flex",
+      "name": "card-root",
+      "direction": "column",
+      "gap": "md",
+      "children": [
+        "header-tile",
+        "header-row",
+        "intake-form-button"
+      ]
+    },
+    "header-tile": {
+      "type": "Tile",
+      "compact": true,
+      "children": [
+        {
+          "type": "Flex",
+          "name": "header-tile-row",
+          "direction": "row",
+          "justify": "between",
+          "align": "center",
+          "gap": "md",
+          "children": [
+            {
+              "type": "Flex",
+              "name": "header-text",
+              "direction": "column",
+              "gap": "flush",
+              "children": [
+                {
+                  "type": "Text",
+                  "format": { "fontWeight": "demibold" },
+                  "children": "Vendor onboarding"
+                },
+                {
+                  "type": "Text",
+                  "variant": "microcopy",
+                  "children": "Last submission: {{state.lastSubmittedVendor}} · {{state.lastSubmittedAt}}"
+                }
+              ]
+            },
+            {
+              "type": "Statistics",
+              "children": {
+                "$forEach": "$data.intakeStats",
+                "as": "stat",
+                "render": {
+                  "type": "StatisticsItem",
+                  "label": "$stat.label",
+                  "number": "$stat.value"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "header-row": {
+      "type": "Flex",
+      "name": "header-row",
+      "direction": "row",
+      "justify": "between",
+      "align": "center",
+      "gap": "sm",
+      "children": [
+        {
+          "type": "Text",
+          "variant": "microcopy",
+          "children": "All vendors must complete onboarding before any payment can be issued."
+        }
+      ]
+    },
+    "intake-form-button": {
+      "type": "Button",
+      "variant": "primary",
+      "overlay": {
+        "type": "Modal",
+        "id": "vendor-intake-modal",
+        "title": "New vendor onboarding",
+        "width": "large",
+        "children": [
+          {
+            "type": "ModalBody",
+            "children": [
+              "vendor-form"
+            ]
+          }
+        ]
+      },
+      "children": "+ Add new vendor"
+    },
+    "vendor-form": {
+      "type": "FormBuilder",
+      "name": "vendor-form",
+      "columns": 2,
+      "submitAlign": "between",
+      "values": "$data.prefill",
+      "labels": {
+        "submit": "Save vendor",
+        "cancel": "Cancel",
+        "required": "Required"
+      },
+      "onCancel": {
+        "$action": "closeOverlay",
+        "id": "vendor-intake-modal"
+      },
+      "onSubmit": {
+        "$action": "batch",
+        "actions": [
+          {
+            "$action": "closeOverlay",
+            "id": "vendor-intake-modal"
+          },
+          {
+            "$action": "addAlert",
+            "type": "success",
+            "title": "Vendor saved",
+            "message": "We sent a confirmation email and the AP team is on the hook to review."
+          }
+        ]
+      },
+      "sections": [
+        {
+          "id": "company-info",
+          "label": "Company information",
+          "defaultOpen": true,
+          "fields": ["companyName", "legalName", "industry", "website", "yearsInBusiness", "headcount"]
+        },
+        {
+          "id": "primary-address",
+          "label": "Primary address",
+          "fields": ["street", "addressLine2", "city", "state", "postalCode"]
+        },
+        {
+          "id": "primary-contact",
+          "label": "Primary contact",
+          "fields": ["contactName", "contactRole", "contactEmail", "contactPhone"]
+        },
+        {
+          "id": "billing",
+          "label": "Billing & payment terms",
+          "fields": ["paymentTerms", "preferredPaymentMethod", "creditLimit", "taxId"]
+        },
+        {
+          "id": "compliance",
+          "label": "Compliance",
+          "fields": ["servicesOffered", "documentsReceived", "insuranceOnFile", "insuranceExpiry", "notes"]
+        }
+      ],
+      "fields": [
+        {
+          "type": "text",
+          "name": "companyName",
+          "label": "Company name",
+          "required": true,
+          "description": "Used on contracts and invoices.",
+          "placeholder": "e.g. Northshore Logistics"
+        },
+        {
+          "type": "text",
+          "name": "legalName",
+          "label": "Legal entity name",
+          "description": "Leave blank if same as company name."
+        },
+        {
+          "type": "select",
+          "name": "industry",
+          "label": "Industry",
+          "required": true,
+          "options": "$data.industryOptions"
+        },
+        {
+          "type": "text",
+          "name": "website",
+          "label": "Website",
+          "placeholder": "https://"
+        },
+        {
+          "type": "number",
+          "name": "yearsInBusiness",
+          "label": "Years in business",
+          "min": 0,
+          "max": 200
+        },
+        {
+          "type": "number",
+          "name": "headcount",
+          "label": "Approx. headcount",
+          "min": 0
+        },
+        {
+          "type": "text",
+          "name": "street",
+          "label": "Street address",
+          "required": true,
+          "colSpan": 2
+        },
+        {
+          "type": "text",
+          "name": "addressLine2",
+          "label": "Apt / suite / unit",
+          "colSpan": 2
+        },
+        {
+          "type": "text",
+          "name": "city",
+          "label": "City",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "state",
+          "label": "State",
+          "required": true,
+          "options": "$data.stateOptions"
+        },
+        {
+          "type": "text",
+          "name": "postalCode",
+          "label": "ZIP / postal code",
+          "required": true,
+          "pattern": "^[0-9]{5}(-[0-9]{4})?$",
+          "patternMessage": "Use a 5-digit or 9-digit US ZIP."
+        },
+        {
+          "type": "text",
+          "name": "contactName",
+          "label": "Full name",
+          "required": true
+        },
+        {
+          "type": "select",
+          "name": "contactRole",
+          "label": "Role",
+          "required": true,
+          "options": "$data.contactRoleOptions"
+        },
+        {
+          "type": "text",
+          "name": "contactEmail",
+          "label": "Email",
+          "required": true,
+          "pattern": "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$",
+          "patternMessage": "Enter a valid email."
+        },
+        {
+          "type": "text",
+          "name": "contactPhone",
+          "label": "Phone",
+          "placeholder": "+1 (555) 555-0100"
+        },
+        {
+          "type": "radioGroup",
+          "name": "paymentTerms",
+          "label": "Payment terms",
+          "required": true,
+          "options": "$data.paymentTermsOptions"
+        },
+        {
+          "type": "select",
+          "name": "preferredPaymentMethod",
+          "label": "Preferred payment method",
+          "required": true,
+          "options": "$data.paymentMethodOptions"
+        },
+        {
+          "type": "currency",
+          "name": "creditLimit",
+          "label": "Initial credit limit",
+          "currency": "USD"
+        },
+        {
+          "type": "text",
+          "name": "taxId",
+          "label": "Tax ID / EIN",
+          "required": true,
+          "pattern": "^[0-9]{2}-?[0-9]{7}$",
+          "patternMessage": "Use the format 12-3456789."
+        },
+        {
+          "type": "multiselect",
+          "name": "servicesOffered",
+          "label": "Services offered",
+          "required": true,
+          "colSpan": 2,
+          "options": "$data.serviceOptions"
+        },
+        {
+          "type": "checkboxGroup",
+          "name": "documentsReceived",
+          "label": "Documents on file",
+          "colSpan": 2,
+          "options": "$data.documentChecklist"
+        },
+        {
+          "type": "toggle",
+          "name": "insuranceOnFile",
+          "label": "Certificate of insurance on file",
+          "size": "sm",
+          "textChecked": "Yes",
+          "textUnchecked": "No"
+        },
+        {
+          "type": "date",
+          "name": "insuranceExpiry",
+          "label": "Insurance expiry date",
+          "format": "long",
+          "dependsOn": {
+            "field": "insuranceOnFile",
+            "equals": true
+          }
+        },
+        {
+          "type": "textarea",
+          "name": "notes",
+          "label": "Internal notes",
+          "rows": 3,
+          "colSpan": 2,
+          "placeholder": "Anything the review team should know — preferred regions, capacity caveats, etc."
+        }
+      ]
+    }
+  }
+}
