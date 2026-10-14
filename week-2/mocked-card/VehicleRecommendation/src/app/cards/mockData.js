@@ -1,38 +1,49 @@
 // Everything the card shows comes from this file during the mockup stage.
-// Display values (prices, labels, totals) are already formatted here so the
-// card only renders them. In the "first slice" step you replace one value at
-// a time with real data and delete it from here. When this file is empty,
-// the card is built.
+// Display labels are already formatted here so the card only renders them.
+// In the "first slice" step you replace one value at a time with real data
+// and delete it from here. When this file is empty, the card is built.
 
 export const MOCK_CUSTOMER = {
   name: "Jordan Rivera",
-  pastRentals: 3,
-  usualClassLabel: "Midsize · $95/day",
+  email: "jordan.rivera@example.com",
+  usualRentalLabel: "Midsize, $95/day (3 rentals)",
 };
 
+// Dates use the DateInput shape: month starts at 0 (9 = October).
 export const MOCK_TRIP = {
-  pickupDate: "Oct 20",
-  returnDate: "Oct 24",
-  days: 4,
-  label: "Oct 20 – Oct 24 (4 days)",
+  pickupDate: { year: 2026, month: 9, date: 20 },
+  returnDate: { year: 2026, month: 9, date: 24 },
+  label: "Oct 20 – 24 (4 days)",
 };
 
 export const MOCK_LOCATION = {
-  address: "560 Penstock Drive, Grass Valley, CA 95945",
-  distanceMiles: 4.2,
-  label: "560 Penstock Drive, Grass Valley, CA 95945 (4.2 mi)",
+  name: "Grass Valley",
+  label: "Grass Valley, CA (4.2 mi)",
 };
+
+export const MOCK_INSURANCE_PER_DAY = 15;
 
 export const MOCK_TOP_PICK = {
   id: "v-101",
   vehicleName: "2022 Subaru Outback",
-  priceLabel: "$89/day",
-  tripTotalLabel: "$356 for the trip",
+  dailyPrice: 89,
+  priceLabel: "$89/day · $356 total",
   reasons: ["Matches usual class", "Under usual price", "Available now"],
 };
 
 export const MOCK_ALTERNATIVES = [
-  { id: "v-102", vehicleName: "2023 Toyota Camry", priceLabel: "$112/day", note: "Upgrade" },
-  { id: "v-103", vehicleName: "2021 Honda Civic", priceLabel: "$64/day", note: "Budget" },
-  { id: "v-104", vehicleName: "2022 Ford Transit", priceLabel: "$140/day", note: "More seats" },
+  { id: "v-102", vehicleName: "2023 Toyota Camry", dailyPrice: 112, priceLabel: "$112/day", totalLabel: "$448", note: "Upgrade" },
+  { id: "v-103", vehicleName: "2021 Honda Civic", dailyPrice: 64, priceLabel: "$64/day", totalLabel: "$256", note: "Budget" },
+  { id: "v-104", vehicleName: "2022 Ford Transit", dailyPrice: 140, priceLabel: "$140/day", totalLabel: "$560", note: "More seats" },
 ];
+
+// What "Create rental" would write to a Rental Agreement record.
+// Used when you jump straight to the Booked view from the state toggle.
+export const MOCK_BOOKING = {
+  agreementId: "RA-1042",
+  vehicle: MOCK_TOP_PICK,
+  pickupDate: MOCK_TRIP.pickupDate,
+  returnDate: MOCK_TRIP.returnDate,
+  insurance: true,
+  notes: "",
+};

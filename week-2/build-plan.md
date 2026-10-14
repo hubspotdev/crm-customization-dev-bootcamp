@@ -58,3 +58,10 @@ The order you'll replace mocked values with real ones. Start with the one that h
 | Nearest location | p_locations, by contact zip → lat/lng | Function `getNearestLocation` | [ ] |
 | Top pick + alternatives | p_vehicles at that location where `available = true`, ranked against usual class/price | Function `getVehicleOptions` | [ ] |
 | Trip total | `daily_price × days` | Computed in the card | [ ] |
+
+| Button / action | Result | Writes to CRM? |
+| --- | --- | --- |
+| Offer this vehicle / Offer | Opens the booking panel for that vehicle | No |
+| Create rental | Creates a Rental Agreement (`start_date`, `end_date`, `insurance`, `cost_per_day`, `total_days`) associated with the contact and vehicle; marks the vehicle unavailable | Yes, function `createRental` |
+| Send confirmation | Emails the customer their booking | Yes (email / timeline). Decide: HubSpot email, or a note on the contact? |
+| View agreement | Opens the new Rental Agreement record | No (`CrmActionLink`) |
