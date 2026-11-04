@@ -1,0 +1,30 @@
+{
+  "uid": "rental_webhooks_subscriptions",
+  "type": "webhooks",
+  "config": {
+    "settings": {
+      "targetUrl": "${WEBHOOK_URL}",
+      "maxConcurrentRequests": 10
+    },
+    "subscriptions": {
+      "crmObjects": [
+        {
+          "subscriptionType": "object.creation",
+          "objectType": "contact",
+          "active": true
+        },
+        {
+          "subscriptionType": "object.propertyChange",
+          "objectType": "contact",
+          "propertyName": "zip",
+          "active": true
+        },
+        {
+          "subscriptionType": "object.deletion",
+          "objectType": "contact",
+          "active": true
+        }
+      ]
+    }
+  }
+}

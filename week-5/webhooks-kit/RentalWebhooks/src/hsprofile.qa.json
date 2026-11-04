@@ -1,0 +1,7 @@
+{
+  "accountId": 0,
+  "variables": {
+    "ENV": "QA",
+    "WEBHOOK_URL": "https://webhook.site/replace-with-your-qa-url"
+  }
+}
