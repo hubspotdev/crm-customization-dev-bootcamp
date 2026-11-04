@@ -16,7 +16,8 @@ It's the best place to connect and work with other HubSpot developers.
 1. **Import the data.** Follow [`data/README.md`](data/README.md) to create the custom objects, properties, and sample records in your developer test account.
 2. **Week 2: design before you build.** Work through [`week-2/README.md`](week-2/README.md): write a problem brief, mock the card with fake data, and turn the approved mockup into a build plan.
 3. **Week 3: serverless functions.** Work through [`week-3/README.md`](week-3/README.md): the card-to-function handshake, an external API with Axios, the HubSpot API with Axios, then replace mocked values one slice at a time.
-4. **Reference cards.** Use the projects in [`cards/`](cards/README.md) as working examples of a card wired up to serverless functions.
+4. **Week 5: going public.** Work through [`week-5/README.md`](week-5/README.md): static vs OAuth and what each costs, config profiles for QA and prod, webhooks to webhook.site, error telemetry, and the Node.js serverless CVE.
+5. **Reference cards.** Use the projects in [`cards/`](cards/README.md) as working examples of a card wired up to serverless functions.
 
 ## File Structure
 | Path | What it is |
@@ -26,6 +27,7 @@ It's the best place to connect and work with other HubSpot developers.
 | [`cards/`](cards/README.md) | A simple and an advanced RentalCars card to show you how to get started. Built on platform version **2026.09**. |
 | [`week-2/`](week-2/README.md) | Understand the problem before you build: problem brief, Claude Code prompts, build plan, a fully mocked Vehicle Recommendation card (recommendation, booking panel, and Loaded / Loading / Error / Empty states), and a one-shot card to compare against. |
 | [`week-3/`](week-3/README.md) | Serverless functions: a runnable project with one card and three functions (echo handshake, external API via Axios, HubSpot API via Axios), copy-paste function recipes (REST, associations, search, GraphQL, secrets), and a hook-vs-function decision table. |
+| [`week-5/`](week-5/README.md) | Going public: distribution and install limits, migration, config profiles (`qa` / `prod`), a runnable webhooks project, OAuth setup and its two common failures, Sentry error telemetry, and the CVE-2026-111497 upgrade path. |
 | [`CRM-CARD-FRONTEND-STANDARDS.md`](CRM-CARD-FRONTEND-STANDARDS.md) | Rules, patterns, and gotchas for building cards that look and behave like native HubSpot. |
 | [`.claude/skills/hubspot-card-design`](.claude/skills/hubspot-card-design/SKILL.md) | A Claude Code skill with the design rules for cards that look and feel like HubSpot (uses [hs-uix](https://github.com/05bmckay/hs-uix)). Claude Code picks it up automatically when you open this repo. |
 

@@ -1,0 +1,23 @@
+{
+  "uid": "rental_webhooks",
+  "type": "app",
+  "config": {
+    "name": "Rental Webhooks (${ENV})",
+    "description": "Week 5 demo: contact webhooks sent to webhook.site, with QA and prod config profiles.",
+    "distribution": "private",
+    "auth": {
+      "type": "static",
+      "requiredScopes": [
+        "oauth",
+        "crm.objects.contacts.read"
+      ],
+      "optionalScopes": [],
+      "conditionallyRequiredScopes": []
+    },
+    "permittedUrls": {
+      "fetch": [],
+      "iframe": [],
+      "img": []
+    }
+  }
+}
